@@ -1,0 +1,19 @@
+<h1><i class="material-icons">people</i> Enrollment Overview</h1>
+
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-multiSelect [options]="grade" [(ngModel)]="selectedGrades"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

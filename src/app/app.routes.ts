@@ -23,6 +23,8 @@ import { LoginComponent } from './demo/view/login.component';
 import { HomeComponent } from './demo/view/home.component';
 import { DashboardComponent } from './demo/view/dashboard.component';
 import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
+import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
+
 import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
 
 
@@ -32,6 +34,8 @@ export const routes: Routes = [
 
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { expectedRole: 'ClientUser' } },
     { path: 'student-information', component: StudentInformationComponent, canActivate: [AuthGuard] },
+    { path: 'enrollment-overview', component: EnrollmentOverviewComponent, canActivate: [AuthGuard] },
+
     { path: 'assessments', component: AssessmentsComponent, canActivate: [AuthGuard] },
 
     { path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
