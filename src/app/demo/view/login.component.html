@@ -1,0 +1,46 @@
+﻿<div class="login-body">
+    <div class="login-overlay">
+        <div class="login-box">
+            <div class="login-box-title">
+                <img src="./assets/layout/images/logo.png"  />
+            </div>
+            <div class="login-panel-content">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <label class="login-label">Username</label>
+                        <div class="login-input">
+                            <input type="text" class="ui-inputtext ui-widget ui-state-default" [(ngModel)]="login.username" />
+                        </div>
+                    </div>
+                    <div class="ui-g-12">
+                        <label class="login-label">Password</label>
+                        <div class="login-input">
+                            <input type="password" class="ui-inputtext ui-widget ui-state-default" [(ngModel)]="login.password" />
+                        </div>
+                    </div>
+                    <div class="ui-g-12 button-pane">
+                        <button type="button" (click)="ngOnLogin()" class="ui-button ui-blockui ui-widget ui-state-default ui-corner-all ui-button-text-only" ng-disabled="loginProcessing == true" role="button" aria-disabled="false">
+                            <span class="ui-button-text ui-c">Login</span>
+                        </button>
+                    </div>
+
+                    <div class="ui-g-12">
+                        <label class="text-danger">{{msgError}}</label>
+                    </div>
+
+                    <div class="ui-g-12 link-pane">
+                        <table>
+                            <tr>
+                                <td><a href="#">Continue as a guest</a></td>
+                                <td style="text-align:center">|</td>
+                                <td style="text-align:center"><a href="#">Register?</a></td>
+                                <td style="text-align:center">|</td>
+                                <td style="text-align:right"><a class="right">Forget Password?</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

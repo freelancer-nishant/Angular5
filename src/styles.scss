@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+$secondaryColor: #5898a6;
+
+.menu-horizontal {
+    height: 40px;
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    color: #fff;
+    background: $secondaryColor;
+    font-size: 14px;
+    padding: 0px 15px;
+    z-index:10;
+
+    ul {
+        padding: 0;
+
+        li {
+            float: left;
+            list-style: none;
+            margin-right: 30px;
+        }
+
+        a {
+            color: #ffffff;
+            display: block;
+        }
+
+        .active,
+        a:hover {
+            color: #fff;
+            border-bottom: 2px solid #ffffff;
+        }
+    }
+}
+
+.layout-wrapper.menu-layout-horizontal .layout-menu-container, .layout-wrapper .layout-menu-container {
+    top: 100px;
+}
+
+.layout-wrapper .layout-main {
+    padding: 120px 15px 15px 15px;
+}
+
+.layout-wrapper.menu-layout-horizontal .layout-main {
+    padding-top: 145px;
+}
+
+.layout-wrapper .topbar .topbar-right #menu-button:hover,
+.layout-wrapper .topbar .topbar-right #menu-button {
+    background: $secondaryColor;
+    color: #fff;
+    top: 110px;
+    left: 235px;
+    transition: 0.3s;
+    border-radius:0 4px 4px 0;
+}
+.layout-wrapper .topbar .topbar-right #menu-button.menu-button-rotate {
+    transition: 0.3s;    
+    left: -5px;
+}
+
+.page-profile {
+    border-bottom: 1px solid #ccc;
+    position: relative;
+
+    .page-profile-image {
+        padding: 5px;
+        float: left;
+        width: 70px;
+
+        img {
+            max-width: 60px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin: 0 auto;
+        }
+    }
+
+    .page-profile-name {
+        float: left;
+        font-size: large;
+        padding-top: 15px;
+    }
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.img-responsive {
+    max-width: 100%;
+}
+
+.text-danger {
+    color: #ff0000;
+}
+
+.hide {
+    display: none !important;
+}
+
+.clear {
+    clear: both !important;
+}
