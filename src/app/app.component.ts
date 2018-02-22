@@ -111,13 +111,14 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     }
 
     hasHorizontalSubMenuAccess(): boolean {
-        try {            
-            let tokenPayload: any = this.auth.decodeToken();
-            return (tokenPayload != undefined && tokenPayload != null && tokenPayload.role != GlobalConstants.ROLE_GUEST);
-        }
-        catch (e) {
-            return false;
-        }
+        //try {            
+        //    let tokenPayload: any = this.auth.decodeToken();
+        //    return (tokenPayload != undefined && tokenPayload != null && tokenPayload.role != GlobalConstants.ROLE_GUEST);
+        //}
+        //catch (e) {
+        //    return false;
+        //}
+        return true; 
     }
 
     displayLeftMenu(visible: boolean) {
