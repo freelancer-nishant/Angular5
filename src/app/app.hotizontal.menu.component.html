@@ -1,9 +1,19 @@
-<div class="menu-horizontal">
-    <ul>
+<div class="menu-horizontal" [ngClass]="{'hide':app.hasHorizontalSubMenuAccess()==false}">
+    <ul class="pull-left">
         <li><a class="active" href="#">Dashboards</a></li>
         <li><a href="#">Reports</a></li>
         <li><a href="#">Data</a></li>
         <li><a href="#">Configuration</a></li>
         <li><a href="#">Uploads</a></li>
     </ul>
+    <!--<ul class="pull-right topbar-items fadeInDown">
+        <li #categoryItems [ngClass]="{'active-top-menu':app.activeTopbarItem === categoryItems,'hide': app.activeCategoryDropdown ===false}">
+            <a href="#" (click)="app.onTopbarItemClick($event,categoryItems)">Categories <i  class="fa fa-angle-down"></i></a>
+            <ul class="layout-menu fadeInDown">
+                <li role="menuitem" *ngFor="let category of app.categories">
+                    <a href="{{ category.route }}">{{ category.name }}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>-->
 </div>

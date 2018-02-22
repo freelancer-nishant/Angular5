@@ -88,13 +88,13 @@ import {AppComponent} from './app.component';
                     <li #admin [ngClass]="{'active-top-menu':app.activeTopbarItem === admin, 'hide':app.hasAccess('Admin') !== true}">
                         <a href="#" (click)="app.onTopbarItemClick($event,admin)">                                                        
                             <i class="topbar-icon material-icons">transfer_within_a_station</i>
-                            <span class="topbar-item-name">Help</span>
+                            <span class="topbar-item-name">Admin</span>
                         </a>
                         <ul class="layout-menu fadeInDown">
                            <li role="menuitem">
                                 <a href="#">
                                     <i class="fa fa-fw fa-question-circle-o"></i>
-                                    <span>help</span>
+                                    <span>Admin</span>
                                 </a>
                             </li>                            
                         </ul>

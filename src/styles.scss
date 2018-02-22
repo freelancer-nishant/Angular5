@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 $secondaryColor: #5898a6;
 
-.menu-horizontal {
+.top-sub-menu-active .menu-horizontal {
     height: 40px;
     position: fixed;
     top: 60px;
@@ -10,39 +10,48 @@ $secondaryColor: #5898a6;
     background: $secondaryColor;
     font-size: 14px;
     padding: 0px 15px;
-    z-index:10;
+    z-index: 10;
 
-    ul {
+    > ul {
         padding: 0;
 
-        li {
+        > li {
             float: left;
             list-style: none;
             margin-right: 30px;
-        }
 
-        a {
-            color: #ffffff;
-            display: block;
-        }
+            > a {
+                color: #ffffff;
+                display: block;
+            }
 
-        .active,
-        a:hover {
-            color: #fff;
-            border-bottom: 2px solid #ffffff;
+            > .active,
+            > a:hover {
+                color: #fff;
+                border-bottom: 2px solid #ffffff;
+            }
         }
+    }
+
+    .topbar-items {
+        margin-top: 15px;
+    }
+
+    .topbar-items > li > ul {
+        top: 35px;
     }
 }
 
-.layout-wrapper.menu-layout-horizontal .layout-menu-container, .layout-wrapper .layout-menu-container {
+.top-sub-menu-active.layout-wrapper.menu-layout-horizontal .layout-menu-container,
+.top-sub-menu-active.layout-wrapper .layout-menu-container {
     top: 100px;
 }
 
-.layout-wrapper .layout-main {
+.top-sub-menu-active.layout-wrapper .layout-main {
     padding: 120px 15px 15px 15px;
 }
 
-.layout-wrapper.menu-layout-horizontal .layout-main {
+.top-sub-menu-active.layout-wrapper.menu-layout-horizontal .layout-main {
     padding-top: 145px;
 }
 
@@ -50,13 +59,19 @@ $secondaryColor: #5898a6;
 .layout-wrapper .topbar .topbar-right #menu-button {
     background: $secondaryColor;
     color: #fff;
-    top: 110px;
+    top: 70px;
     left: 235px;
     transition: 0.3s;
-    border-radius:0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
 }
+.top-sub-menu-active .topbar .topbar-right #menu-button:hover,
+.top-sub-menu-active .topbar .topbar-right #menu-button {    
+    top: 110px;
+    left: 235px;
+}
+
 .layout-wrapper .topbar .topbar-right #menu-button.menu-button-rotate {
-    transition: 0.3s;    
+    transition: 0.3s;
     left: -5px;
 }
 
@@ -82,6 +97,11 @@ $secondaryColor: #5898a6;
         font-size: large;
         padding-top: 15px;
         width: calc(100% - 70px)
+    }
+
+    .page-profile-role{
+        color:inherit;
+        font-size:small;
     }
 }
 

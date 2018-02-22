@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy } 
 import { Router } from '@angular/router';
 import { LoginResult } from './demo/domain/login'
 import { AuthService } from './demo/service/auth.service'
-
+import { GlobalConstants } from './../globals'
 
 enum MenuOrientation {
     STATIC,
@@ -18,7 +18,7 @@ declare var jQuery: any;
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit, OnDestroy  {
+export class AppComponent implements AfterViewInit, OnDestroy {
     issinglepage = false;
 
     layoutCompact = true;
@@ -54,10 +54,13 @@ export class AppComponent implements AfterViewInit, OnDestroy  {
     resetMenu: boolean;
 
     menuHoverActive: boolean;
-    
+
     isLoggedIn: boolean;
 
     access_token: string;
+
+    activeCategoryDropdown: boolean = false;
+    categories: any[] = [];
 
     leftMenuToggleButtonActive: boolean = true;
 
@@ -90,7 +93,7 @@ export class AppComponent implements AfterViewInit, OnDestroy  {
     doLogout() {
         localStorage.removeItem('token');
         this.access_token = "";
-        
+
         this.isLoggedIn = false;
         this.issinglepage = true;
         this.router.navigate(['/login']);
@@ -102,7 +105,17 @@ export class AppComponent implements AfterViewInit, OnDestroy  {
             let tokenPayload: any = this.auth.decodeToken();
             return (tokenPayload != undefined && tokenPayload != null && tokenPayload.role == role);
         }
-        catch(e){
+        catch (e) {
+            return false;
+        }
+    }
+
+    hasHorizontalSubMenuAccess(): boolean {
+        try {            
+            let tokenPayload: any = this.auth.decodeToken();
+            return (tokenPayload != undefined && tokenPayload != null && tokenPayload.role != GlobalConstants.ROLE_GUEST);
+        }
+        catch (e) {
             return false;
         }
     }

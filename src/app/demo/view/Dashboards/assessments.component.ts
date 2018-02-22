@@ -10,6 +10,7 @@ export class AssessmentsComponent implements OnInit {
 
     constructor(public app: AppComponent) {
         app.displayLeftMenu(true);
+        app.activeCategoryDropdown = true;
         app.LeftMenuItems = [
             {
                 label: 'SBAC', icon: 'fa fa-fw fa-sitemap',

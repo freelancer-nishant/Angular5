@@ -26,19 +26,20 @@ import { StudentInformationComponent } from './demo/view/Dashboards/student-info
 import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
 
 import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
+import { GlobalConstants } from './../globals'
 
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { expectedRole: 'ClientUser' } },
+    { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_CLIENT_USER } },
 
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { expectedRole: 'ClientUser' } },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_CLIENT_USER } },
     { path: 'student-information', component: StudentInformationComponent, canActivate: [AuthGuard] },
     { path: 'enrollment-overview', component: EnrollmentOverviewComponent, canActivate: [AuthGuard] },
 
     { path: 'assessments', component: AssessmentsComponent, canActivate: [AuthGuard] },
 
-    { path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin' } },
+    { path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_ADMIN } },
     { path: 'sample', component: SampleDemoComponent, canActivate: [AuthGuard] },
     { path: 'forms', component: FormsDemoComponent, canActivate: [AuthGuard] },
     { path: 'data', component: DataDemoComponent, canActivate: [AuthGuard] },

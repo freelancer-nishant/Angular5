@@ -22,6 +22,7 @@ export class EnrollmentOverviewComponent implements OnInit {
 
     constructor(public app: AppComponent) {
         app.displayLeftMenu(true);
+        app.activeCategoryDropdown = true;
         app.LeftMenuItems = [
             {
                 label: 'Enrollment', icon: 'fa fa-fw fa-sitemap',
