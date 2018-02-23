@@ -103,12 +103,11 @@ import { DashboardComponent } from './demo/view/dashboard.component'
 import { HomeComponent } from './demo/view/home.component'
 import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
 import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
-
 import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
+import { VJSComponent } from './vjs.component'
 
 
-
-
+import { VJSConfig } from './demo/service/vjsconfig.service';
 import { CarService } from './demo/service/carservice';
 import { CountryService } from './demo/service/countryservice';
 import { EventService } from './demo/service/eventservice';
@@ -243,13 +242,15 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         StudentInformationComponent,
         EnrollmentOverviewComponent,
 
-        AssessmentsComponent
+        AssessmentsComponent,
+        VJSComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CarService, CountryService, EventService, NodeService,
         LoginService, HttpClient,
-        JwtHelperService, AuthService, AuthGuardService        
+        JwtHelperService, AuthService, AuthGuardService,
+        VJSConfig
     ],
     bootstrap: [AppComponent]
 })

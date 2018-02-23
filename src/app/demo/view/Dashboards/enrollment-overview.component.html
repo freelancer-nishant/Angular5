@@ -4,16 +4,22 @@
     <div class="ui-g-12">
         <div class="card card-w-title">
             <div class="ui-g form-group">
-                <div class="ui-g-12 ui-md-4">
+                <div class="ui-g-12 ui-md-3">
                     <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-4">
+                <div class="ui-g-12 ui-md-3">
                     <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-4">
+                <div class="ui-g-12 ui-md-3">
                     <p-multiSelect [options]="grade" [(ngModel)]="selectedGrades"></p-multiSelect>
                 </div>
+                <div class="ui-g-12 ui-md-3">
+                    <button pButton type="button" label="Submit" (click)="submit()"></button>
+                </div>
             </div>
+        </div>
+        <div class="card card-w-title">
+            <vjs-component class="resource" id="enrollmentdashboard" [(params)]="parameters"></vjs-component>
         </div>
     </div>
 </div>
