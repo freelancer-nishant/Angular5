@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="ui-g-12 button-pane">
-                        <button type="button" (click)="ngOnLogin()" class="ui-button ui-blockui ui-widget ui-state-default ui-corner-all ui-button-text-only" ng-disabled="loginProcessing == true" role="button" aria-disabled="false">
+                        <button type="button" (click)="ngOnLogin()" class="ui-button ui-blockui ui-widget ui-state-default ui-corner-all ui-button-text-only" [disabled]="loginProcessing == true" role="button" aria-disabled="false">
                             <span class="ui-button-text ui-c">Login</span>
                         </button>
                     </div>

@@ -1,26 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Login, LoginResult } from '../domain/login';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+//import 'rxjs/add/operator/map';
+//import 'rxjs/add/operator/catch';
+
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { GlobalConstants, GlobalHelper } from './../../shared/app.globals';
+import { GlobalConstants } from './../../shared/app.globals';
+
 
 const httpOptionsa = {
     headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
     //headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8' })
 };
 @Injectable()
-export class LoginService {
+export class SchoolService {
 
     constructor(private http: HttpClient) { }    
-    public getTocket<LoginResult>(login: Login): Observable<LoginResult> {
-        return this.http.post<LoginResult>(GlobalConstants.API_BASE_URL + '/oauth/token', GlobalHelper.toHttpParams(login), httpOptionsa);
+    
+    get(client_id: number): Observable<any> {
+        return this.http.get(GlobalConstants.API_BASE_URL + '/api/school?client_id=' + client_id);
+            //.map((response: Response) => <any>response.json())
+            // .do(data => console.log("All: " + JSON.stringify(data)))
+            //.catch();            
     }
 }
 

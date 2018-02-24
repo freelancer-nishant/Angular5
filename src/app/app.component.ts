@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy } 
 import { Router } from '@angular/router';
 import { LoginResult } from './demo/domain/login'
 import { AuthService } from './demo/service/auth.service'
-import { GlobalConstants } from './../globals'
+import { GlobalConstants } from './shared/app.globals'
 
 enum MenuOrientation {
     STATIC,
@@ -99,6 +99,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.router.navigate(['/login']);
     }
 
+    getSession(): any {
+        return this.auth.decodeToken();
+    }
     hasAccess(role: string): boolean {
         try {
 
@@ -179,7 +182,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.resetMenu = false;
 
         if (!this.isHorizontal()) {
-            setTimeout(() => {
+            setTimeout(() => {                                
                 jQuery(this.layoutMenuScroller).nanoScroller();
             }, 500);
         }

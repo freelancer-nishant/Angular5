@@ -5,7 +5,7 @@
         <div class="card card-w-title">
             <div class="ui-g form-group">
                 <div class="ui-g-12 ui-md-3">
-                    <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" [autoWidth]="false"></p-dropdown>
+                    <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" (onChange)="schoolChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-3">
                     <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" [autoWidth]="false"></p-dropdown>

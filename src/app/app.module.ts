@@ -117,6 +117,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { LoginService } from './demo/service/loginservice';
+import { SchoolService } from './demo/service/school.service';
+import { SchoolYearService } from './demo/service/school.year.service';
 
 
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
@@ -248,7 +250,8 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CarService, CountryService, EventService, NodeService,
-        LoginService, HttpClient,
+        HttpClient,
+        LoginService, SchoolService, SchoolYearService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
     ],

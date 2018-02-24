@@ -26,7 +26,7 @@ import { StudentInformationComponent } from './demo/view/Dashboards/student-info
 import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
 
 import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
-import { GlobalConstants } from './../globals'
+import { GlobalConstants } from './shared/app.globals'
 
 
 export const routes: Routes = [
