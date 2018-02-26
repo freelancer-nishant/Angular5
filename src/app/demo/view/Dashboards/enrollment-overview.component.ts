@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../../app.component';
+import { GlobalHelper, MenuType } from './../../../shared/app.globals';
 import { SelectItem } from 'primeng/primeng';
-
 import { SchoolService } from './../../service/school.service';
 import { SchoolYearService } from './../../service/school.year.service';
-
 import { School } from './../../domain/school';
 import { SchoolSchoolYear } from './../../domain/school.schoolyear';
 
@@ -30,20 +29,7 @@ export class EnrollmentOverviewComponent implements OnInit {
     constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService ) {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
-        app.LeftMenuItems = [
-            {
-                label: 'Enrollment', icon: 'fa fa-fw fa-sitemap',
-                items: [
-                    { label: 'Enrollment Overview', icon: 'fa fa-fw fa-columns', routerLink: ['/enrollment-overview'] },
-                ]
-            },
-            {
-                label: 'Attendance', icon: 'fa fa-fw fa-sitemap',
-                items: [
-                    { label: 'Attendance Overview', icon: 'fa fa-fw fa-columns', routerLink: ['/attendance-overview'] },
-                ]
-            }
-        ];
+        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentInformation);
 
         app.pageProfile = {
             icon: './assets/layout/images/dashboard/student-information.png',
@@ -96,6 +82,9 @@ export class EnrollmentOverviewComponent implements OnInit {
         let schollYears: SchoolSchoolYear[] = [];
 
         this.schoolYears = [];
+        this.selectedYear = null;
+        this.selectedGrades = [];
+
         this.schoolYearService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => schollYears = result.data,
             //error => () => { this.msgError = "Invalid credentials"; this.loginProcessing = false; },
             (error: any) => { },

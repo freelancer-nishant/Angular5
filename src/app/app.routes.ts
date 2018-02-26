@@ -25,6 +25,13 @@ import { DashboardComponent } from './demo/view/dashboard.component';
 import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
 import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
 import { AttendanceOverviewComponent } from './demo/view/Dashboards/attendance-overview.component'
+import { AssessmentsSBACOverviewComponent } from './demo/view/Dashboards/assessments-sbac-overview.component'
+import { AssessmentsSBACDetailComponent } from './demo/view/Dashboards/assessments-sbac-detail.component'
+import { AssessmentsPFTOverviewComponent } from './demo/view/Dashboards/assessments-pft-overview.component'
+import { AssessmentsCELDTOverviewComponent } from './demo/view/Dashboards/assessments-celdt-overview.component'
+import { AssessmentsNWEAOverviewComponent } from './demo/view/Dashboards/assessments-nwea-overview.component'
+import { AssessmentsDORAOverviewComponent } from './demo/view/Dashboards/assessments-dora-adam-overview.component'
+import { AssessmentsDOMAOverviewComponent } from './demo/view/Dashboards/assessments-doma-overview.component'
 
 import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
 import { GlobalConstants } from './shared/app.globals'
@@ -40,6 +47,14 @@ export const routes: Routes = [
     { path: 'attendance-overview', component: AttendanceOverviewComponent, canActivate: [AuthGuard] },
 
     { path: 'assessments', component: AssessmentsComponent, canActivate: [AuthGuard] },
+    { path: 'assessments/sbac-overview', component: AssessmentsSBACOverviewComponent, canActivate: [AuthGuard] },
+    { path: 'assessments/sbac-detail', component: AssessmentsSBACDetailComponent, canActivate: [AuthGuard] },
+    { path: 'assessments/pft-overview', component: AssessmentsPFTOverviewComponent, canActivate: [AuthGuard] },
+    { path: 'assessments/celdt-overview', component: AssessmentsCELDTOverviewComponent, canActivate: [AuthGuard] },
+    { path: 'assessments/nwea-overview', component: AssessmentsNWEAOverviewComponent, canActivate: [AuthGuard] },
+    { path: 'assessments/dora-adam-overview', component: AssessmentsDORAOverviewComponent, canActivate: [AuthGuard] },
+    { path: 'assessments/doma-overview', component: AssessmentsDOMAOverviewComponent, canActivate: [AuthGuard] },
+    
 
     { path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_ADMIN } },
     { path: 'sample', component: SampleDemoComponent, canActivate: [AuthGuard] },

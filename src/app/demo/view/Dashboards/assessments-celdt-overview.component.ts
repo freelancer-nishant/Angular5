@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../../app.component';
 import { GlobalHelper, MenuType } from './../../../shared/app.globals';
+
 import { SelectItem } from 'primeng/primeng';
 
 import { SchoolService } from './../../service/school.service';
@@ -10,10 +11,10 @@ import { School } from './../../domain/school';
 import { SchoolSchoolYear } from './../../domain/school.schoolyear';
 
 @Component({
-    templateUrl: './attendance-overview.component.html'    
+    templateUrl: './assessments-celdt-overview.component.html'
 })
 
-export class AttendanceOverviewComponent implements OnInit {
+export class AssessmentsCELDTOverviewComponent implements OnInit {
 
     sessionInfo: any = {}
     schools: SelectItem[];
@@ -30,11 +31,11 @@ export class AttendanceOverviewComponent implements OnInit {
     constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService ) {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
-        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentInformation);
+        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
 
         app.pageProfile = {
-            icon: './assets/layout/images/dashboard/student-information.png',
-            name: "Attendance Overview"
+            icon: './assets/layout/images/dashboard/assessments.png',
+            name: "CELDT Overview"
         }
 
         this.sessionInfo = this.app.getSession();        
@@ -73,9 +74,12 @@ export class AttendanceOverviewComponent implements OnInit {
     }
 
 
-    submit() {        
-        this.parameters = JSON.stringify({
-            "client_id": [this.sessionInfo.client_id] ,"School_Year": [this.selectedYear], "School": [this.selectedSchool], "Grade": this.selectedGrades
+    submit() {                
+        this.parameters = JSON.stringify({            
+            "client_id": [this.sessionInfo.client_id],
+            "School_Year_CELDT": [this.selectedYear],
+            "School_CELDT": [this.selectedSchool],
+            "Grade_CELDT": this.selectedGrades
         });
     }
 

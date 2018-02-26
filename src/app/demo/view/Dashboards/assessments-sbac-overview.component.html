@@ -1,0 +1,35 @@
+<h1><i class="material-icons">people</i> SBAC Overview</h1>
+
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-1 control-label">
+                    <label for="selectedSchool">School</label>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" (onChange)="schoolChange($event)" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-1 control-label">
+                    <label for="selectedYear">School Year</label>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-1 control-label">
+                    <label for="selectedGrades">Grade</label>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <p-multiSelect [options]="grade" [(ngModel)]="selectedGrades"></p-multiSelect>
+                </div>
+
+                <div class="ui-g-12 ui-md-1">
+                    <button pButton type="button" label="Submit" (click)="submit()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="card card-w-title">
+            <vjs-component class="resource" id="sbac-overview" [(params)]="parameters"></vjs-component>
+        </div>
+    </div>
+</div>
