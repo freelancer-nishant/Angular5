@@ -59,21 +59,23 @@ $secondaryColor: #5898a6;
 .layout-wrapper .topbar .topbar-right #menu-button {
     background: $secondaryColor;
     color: #fff;
-    top: 70px;
+    top: 60px;
     left: 235px;
     transition: 0.3s;
     border-radius: 0 4px 4px 0;
 }
+.menu-layout-static.layout-menu-static-active .topbar .topbar-right #menu-button,
 .top-sub-menu-active .topbar .topbar-right #menu-button:hover,
-.top-sub-menu-active .topbar .topbar-right #menu-button {    
-    top: 110px;
-    left: 235px;
+.top-sub-menu-active .topbar .topbar-right #menu-button {
+    top: 100px;
+    left: 235px
 }
 
 .layout-wrapper .topbar .topbar-right #menu-button.menu-button-rotate {
     transition: 0.3s;
     left: -5px;
 }
+
 
 .page-profile {
     border-bottom: 1px solid #ccc;
@@ -105,6 +107,10 @@ $secondaryColor: #5898a6;
     }
 }
 
+.control-label {
+    padding-top: 18px !important;
+    text-align: right;
+}
 
 .text-center {
     text-align: center;

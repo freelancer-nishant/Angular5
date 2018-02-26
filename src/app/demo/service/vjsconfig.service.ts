@@ -8,10 +8,17 @@ export class VJSConfig {
         password: "jasperadmin"
     };
 
-    resourceDetails = [{
-        id: "enrollmentdashboard",
-        type: "report",
-        uri: "/CF/Dashboard/Enrollment_Dashboard/EnrollmentDashboard"
-    }];
+    resourceDetails = [
+        {
+            id: "enrollmentdashboard",
+            type: "report",
+            uri: "/CF/Dashboard/Enrollment_Dashboard/EnrollmentDashboard"
+        },
+        {
+            id: "attendancedashboard",
+            type: "report",
+            uri: "/CF/Dashboard/Attendance_Dashboard/attendance_dashboard"
+        }
+    ];
 
 };

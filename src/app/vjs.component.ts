@@ -52,7 +52,7 @@ export class VJSComponent implements OnChanges {
                         case "report": {
                             v("#" + vjsConfig.resourceDetails[resourceIndex].id).report({
                                 resource: vjsConfig.resourceDetails[resourceIndex].uri,
-                                scale:'width',
+                                //scale:'width',
                                 params: JSON.parse(params),
                                 success: function () { console.log("success") },
                                 error: function (err) { alert("Report draw failed: " + err) }

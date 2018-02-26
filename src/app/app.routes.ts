@@ -24,6 +24,7 @@ import { HomeComponent } from './demo/view/home.component';
 import { DashboardComponent } from './demo/view/dashboard.component';
 import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
 import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
+import { AttendanceOverviewComponent } from './demo/view/Dashboards/attendance-overview.component'
 
 import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
 import { GlobalConstants } from './shared/app.globals'
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_CLIENT_USER } },
     { path: 'student-information', component: StudentInformationComponent, canActivate: [AuthGuard] },
     { path: 'enrollment-overview', component: EnrollmentOverviewComponent, canActivate: [AuthGuard] },
+    { path: 'attendance-overview', component: AttendanceOverviewComponent, canActivate: [AuthGuard] },
 
     { path: 'assessments', component: AssessmentsComponent, canActivate: [AuthGuard] },
 

@@ -103,6 +103,8 @@ import { DashboardComponent } from './demo/view/dashboard.component'
 import { HomeComponent } from './demo/view/home.component'
 import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
 import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
+import { AttendanceOverviewComponent } from './demo/view/Dashboards/attendance-overview.component'
+
 import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
 import { VJSComponent } from './vjs.component'
 
@@ -242,7 +244,8 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         DashboardComponent,
 
         StudentInformationComponent,
-        EnrollmentOverviewComponent,
+        EnrollmentOverviewComponent, 
+        AttendanceOverviewComponent,
 
         AssessmentsComponent,
         VJSComponent

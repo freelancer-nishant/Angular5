@@ -21,7 +21,7 @@ export class StudentInformationComponent implements OnInit {
             {
                 label: 'Attendance', icon: 'fa fa-fw fa-sitemap',
                 items: [
-                    { label: 'Attendance Overview', icon: 'fa fa-fw fa-columns', routerLink: ['/'] },
+                    { label: 'Attendance Overview', icon: 'fa fa-fw fa-columns', routerLink: ['/attendance-overview'] },
                 ]
             }
         ];

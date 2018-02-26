@@ -2,5 +2,17 @@
   {
     "outputFile": "src/assets/layout/css/layout-blue.css",
     "inputFile": "src/assets/layout/css/layout-blue.scss"
+  },
+  {
+    "outputFile": "src/assets/layout/css/layout-custom.css",
+    "inputFile": "src/assets/layout/css/layout-custom.scss"
+  },
+  {
+    "outputFile": "src/assets/theme/theme-custom.css",
+    "inputFile": "src/assets/theme/theme-custom.scss"
+  },
+  {
+    "outputFile": "src/assets/theme/theme-blue.css",
+    "inputFile": "src/assets/theme/theme-blue.scss"
   }
 ]

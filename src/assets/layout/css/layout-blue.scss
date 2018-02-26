@@ -1,7 +1,7 @@
-$topbarLeftGradientStartBgColor: #548198;/*Changed for color changes*/
-$topbarLeftGradientEndBgColor:#548198;/*Changed for color changes*/
-$topbarRightGradientStartBgColor:#548198;/*Changed for color changes*/
-$topbarRightGradientEndBgColor:#548198;/*Changed for color changes*/
+$topbarLeftGradientStartBgColor:#457fca;
+$topbarLeftGradientEndBgColor:#5691c8;
+$topbarRightGradientStartBgColor:#457fca;
+$topbarRightGradientEndBgColor:#5691c8;
 $topbarTextColor:#ffffff;
 $menuGradientStartBgColor:#ffffff;
 $menuGradientEndBgColor:#ffffff;
@@ -19,11 +19,12 @@ $darkMenuMenuitemColor:#ffffff;
 $darkMenuMenuitemActiveColor:#6aa5d8;
 $darkMenuMenuitemActiveBgColor:#282b30;
 
+
 /*Added for color changes*/
-$dashboardHeaderColor:#1e4959;
-$layoutBgColor:#f4f4f4;
-$profileArrowColor:#ebedf2;
-$sidebarMainMenuColor:#3e3e3e;
-$sidebarSubMenuColor:#656565;
+$dashboardHeaderColor: #1e4959;
+$layoutBgColor: #f4f4f4;
+$profileArrowColor: #ebedf2;
+$sidebarMainMenuColor: #3e3e3e;
+$sidebarSubMenuColor: #656565;
 
 @import '../../sass/layout/_layout';

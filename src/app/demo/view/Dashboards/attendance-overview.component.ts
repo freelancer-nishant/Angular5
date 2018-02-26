@@ -9,11 +9,10 @@ import { School } from './../../domain/school';
 import { SchoolSchoolYear } from './../../domain/school.schoolyear';
 
 @Component({
-    templateUrl: './enrollment-overview.component.html',
-    styleUrls: ['./enrollment-overview.component.css']    
+    templateUrl: './attendance-overview.component.html'    
 })
 
-export class EnrollmentOverviewComponent implements OnInit {
+export class AttendanceOverviewComponent implements OnInit {
 
     sessionInfo: any = {}
     schools: SelectItem[];
@@ -47,7 +46,7 @@ export class EnrollmentOverviewComponent implements OnInit {
 
         app.pageProfile = {
             icon: './assets/layout/images/dashboard/student-information.png',
-            name: "Enrollment Overview"
+            name: "Attendance Overview"
         }
 
         this.sessionInfo = this.app.getSession();        
@@ -88,7 +87,7 @@ export class EnrollmentOverviewComponent implements OnInit {
 
     submit() {        
         this.parameters = JSON.stringify({
-            "client_id": [this.sessionInfo.client_id], "School_Year": [this.selectedYear], "School": [this.selectedSchool], "Grade": this.selectedGrades
+            "client_id": [this.sessionInfo.client_id] ,"School_Year": [this.selectedYear], "School": [this.selectedSchool], "Grade": this.selectedGrades
         });
     }
 

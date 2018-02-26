@@ -47,7 +47,7 @@ body {
             width: 235px;
             float: left;
             @include background-gradient-left2right($topbarLeftGradientStartBgColor, $topbarLeftGradientEndBgColor);
-            @include shadow(0 0 10px 0 rgba(0, 0, 0, 0.25));
+            /*@include shadow(0 0 10px 0 rgba(0, 0, 0, 0.25));*/
 
             .topbar-logo {
                 height: 30px;
@@ -1346,6 +1346,7 @@ body {
 }
 .layout-main {
     background-color: $layoutBgColor;
+    min-height:93.5vh;
 }
 .profile a{
     color:$profileArrowColor;
