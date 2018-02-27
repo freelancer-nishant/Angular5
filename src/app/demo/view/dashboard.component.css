@@ -1,16 +1,1 @@
-﻿.dashboard-card {
-    padding:0;
-    margin: 0 16px;
-}
-.dashboard-card .img-box {
-    height: 150px;
-    padding:15px;
-}
-    .dashboard-card .img-box .img-responsive{
-        height:90%;
-    }
-        .dashboard-card .card-title {
-        font-weight: normal;
-        padding: 15px 0;
-        border-top: 1px solid #e8e8e8;
-    }
+﻿

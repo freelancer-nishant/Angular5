@@ -1,7 +1,7 @@
 <div class="menu-horizontal" [ngClass]="{'hide':app.hasHorizontalSubMenuAccess()==false}">
     <ul class="pull-left">
-        <li><a class="active" href="#">Dashboards</a></li>
-        <li><a href="#">Reports</a></li>        
+        <li><a [ngClass]="{'active': selectedItem == 'dashboards'}" href="#/dashboard" (click)="onItemClick('dashboards')" >Dashboards</a></li>
+        <li><a [ngClass]="{'active': selectedItem == 'reports'}"href="#/reports" (click)="onItemClick('reports')">Reports</a></li>        
     </ul>
     <!--<ul class="pull-right topbar-items fadeInDown">
         <li #categoryItems [ngClass]="{'active-top-menu':app.activeTopbarItem === categoryItems,'hide': app.activeCategoryDropdown ===false}">

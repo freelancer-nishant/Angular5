@@ -104,6 +104,7 @@ import { HomeComponent } from './demo/view/home.component'
 import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
 import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
 import { AttendanceOverviewComponent } from './demo/view/Dashboards/attendance-overview.component'
+import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
 import { AssessmentsSBACOverviewComponent } from './demo/view/Dashboards/assessments-sbac-overview.component'
 import { AssessmentsSBACDetailComponent } from './demo/view/Dashboards/assessments-sbac-detail.component'
 import { AssessmentsPFTOverviewComponent } from './demo/view/Dashboards/assessments-pft-overview.component'
@@ -112,7 +113,9 @@ import { AssessmentsNWEAOverviewComponent } from './demo/view/Dashboards/assessm
 import { AssessmentsDORAOverviewComponent } from './demo/view/Dashboards/assessments-dora-adam-overview.component'
 import { AssessmentsDOMAOverviewComponent } from './demo/view/Dashboards/assessments-doma-overview.component'
 
-import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
+
+import { ReportsComponent } from './demo/view/reports.component'
+
 import { VJSComponent } from './vjs.component'
 
 import { VJSConfig } from './demo/service/vjsconfig.service';
@@ -248,6 +251,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         LoginComponent,
         HomeComponent,
         DashboardComponent,
+        ReportsComponent,
 
         StudentInformationComponent,
         EnrollmentOverviewComponent, 

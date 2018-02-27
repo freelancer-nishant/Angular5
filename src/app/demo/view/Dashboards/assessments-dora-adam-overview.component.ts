@@ -31,13 +31,9 @@ export class AssessmentsDORAOverviewComponent implements OnInit {
     constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService ) {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
+        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
         app.LeftMenuItems = app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
-
-        app.pageProfile = {
-            icon: './assets/layout/images/dashboard/assessments.png',
-            name: "DORA / ADAM Overview"
-        }
-
+        
         this.sessionInfo = this.app.getSession();        
     }
 

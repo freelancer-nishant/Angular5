@@ -30,13 +30,8 @@ export class AttendanceOverviewComponent implements OnInit {
     constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService ) {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
-        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentInformation);
-
-        app.pageProfile = {
-            icon: './assets/layout/images/dashboard/student-information.png',
-            name: "Attendance Overview"
-        }
-
+        app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.StudentInformation);
+        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentInformation);        
         this.sessionInfo = this.app.getSession();        
     }
 

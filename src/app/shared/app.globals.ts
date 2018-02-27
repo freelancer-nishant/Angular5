@@ -23,6 +23,28 @@ export enum MenuType {
 
 export class GlobalHelper {
 
+    public static getSideMenuTitle(menufor: MenuType): any {
+        let sideMenuTitle: any = {};
+
+        switch (menufor) {
+            case MenuType.StudentInformation:
+                sideMenuTitle = {
+                    icon: './assets/layout/images/dashboard/student-information.png',
+                    name: "Student Information"
+                };
+                break;
+            case MenuType.Assessment:
+                sideMenuTitle = {
+                    icon: './assets/layout/images/dashboard/assessments.png',
+                    name: "Assessments"
+                }
+                break;
+            default:
+        }
+        return sideMenuTitle;
+
+    }
+
     public static getMenuItems(menufor: MenuType): any[] {
 
         let menuItems: any[] = [];

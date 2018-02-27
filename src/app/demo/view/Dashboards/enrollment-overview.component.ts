@@ -8,8 +8,7 @@ import { School } from './../../domain/school';
 import { SchoolSchoolYear } from './../../domain/school.schoolyear';
 
 @Component({
-    templateUrl: './enrollment-overview.component.html',
-    styleUrls: ['./enrollment-overview.component.css']    
+    templateUrl: './enrollment-overview.component.html'   
 })
 
 export class EnrollmentOverviewComponent implements OnInit {
@@ -29,12 +28,8 @@ export class EnrollmentOverviewComponent implements OnInit {
     constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService ) {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
+        app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.StudentInformation);
         app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentInformation);
-
-        app.pageProfile = {
-            icon: './assets/layout/images/dashboard/student-information.png',
-            name: "Enrollment Overview"
-        }
 
         this.sessionInfo = this.app.getSession();        
     }

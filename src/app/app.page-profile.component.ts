@@ -6,13 +6,11 @@ import { MenuItem } from 'primeng/primeng';
     selector: 'app-inline-page-profile',
     template: `
         <div class="page-profile">
-            <a href="#">
-                <div class="page-profile-image"><img src="{{ app.pageProfile.icon}}" /></div>
-                <div class="page-profile-name">
-                    <span>{{ app.pageProfile.name}}</span>                                        
-                </div>
-                <div class="clear"></div>
-            </a>          
+            <div class="page-profile-image"><img src="{{ app.pageProfile.icon}}" /></div>
+            <div class="page-profile-name">
+                <span>{{ app.pageProfile.name}}</span>                                        
+            </div>
+            <div class="clear"></div>            
              <a href="#" (click)="onClick($event)">
                  <div class="page-profile-role">Change Catrgory <i class="fa fa-fw fa-caret-down"></i></div>
              </a>               
@@ -21,7 +19,7 @@ import { MenuItem } from 'primeng/primeng';
         <ul id="profile-menu" class="layout-menu" [@menu]="active ? 'visible' : 'hidden'">
 
             <li role="menuitem" *ngFor="let category of app.categories">                  
-                <a href="{{ category.route }}" [attr.tabindex]="!active ? '-1' : null">                    
+                <a href="{{ category.route }}" [attr.tabindex]="!active ? '-1' : null" (click)="onSubItemClick($event)">                    
                     <span>{{ category.name }}</span>
                 </a>
                 <div class="layout-menu-tooltip">
@@ -51,5 +49,9 @@ export class AppPageProfileComponent {
     onClick(event) {
         this.active = !this.active;
         event.preventDefault();
+    }
+
+    onSubItemClick(event) {
+        this.active = false;
     }
 }

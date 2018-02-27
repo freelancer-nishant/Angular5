@@ -32,11 +32,7 @@ export class AssessmentsCELDTOverviewComponent implements OnInit {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
         app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
-
-        app.pageProfile = {
-            icon: './assets/layout/images/dashboard/assessments.png',
-            name: "CELDT Overview"
-        }
+        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
 
         this.sessionInfo = this.app.getSession();        
     }

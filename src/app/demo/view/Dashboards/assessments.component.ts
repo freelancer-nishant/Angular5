@@ -3,8 +3,7 @@ import { AppComponent } from '../../../app.component';
 import { GlobalHelper, MenuType } from './../../../shared/app.globals';
 
 @Component({
-    templateUrl: './assessments.component.html',
-    styleUrls: ['./assessments.component.css']
+    templateUrl: './assessments.component.html'   
 })
 
 export class AssessmentsComponent implements OnInit {
@@ -13,11 +12,7 @@ export class AssessmentsComponent implements OnInit {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
         app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
-
-        app.pageProfile = {
-            icon: './assets/layout/images/dashboard/assessments.png',
-            name:"Assessments"
-        }
+        app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Assessment);
     }
 
     ngOnInit() {
