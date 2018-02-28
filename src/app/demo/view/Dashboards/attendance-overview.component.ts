@@ -5,12 +5,13 @@ import { SelectItem } from 'primeng/primeng';
 
 import { SchoolService } from './../../service/school.service';
 import { SchoolYearService } from './../../service/school.year.service';
-
+import { SchoolGradeService } from './../../service/school.grade.service';
 import { School } from './../../domain/school';
 import { SchoolSchoolYear } from './../../domain/school.schoolyear';
+import { SchoolGrade } from './../../domain/school.schoolgrade';
 
 @Component({
-    templateUrl: './attendance-overview.component.html'    
+    templateUrl: './attendance-overview.component.html'
 })
 
 export class AttendanceOverviewComponent implements OnInit {
@@ -26,19 +27,19 @@ export class AttendanceOverviewComponent implements OnInit {
     grade: SelectItem[];
     selectedGrades: any[] = [];
     parameters: {};
-    
-    constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService ) {
+
+    constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService, private schoolGradeService: SchoolGradeService) {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
         app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.StudentInformation);
-        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentInformation);        
-        this.sessionInfo = this.app.getSession();        
+        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentInformation);
+        this.sessionInfo = this.app.getSession();
     }
 
     ngOnInit() {
 
-        this.schools = [];        
-        this.schoolYears = [];        
+        this.schools = [];
+        this.schoolYears = [];
         this.grade = [];
 
 
@@ -51,16 +52,8 @@ export class AttendanceOverviewComponent implements OnInit {
                 this.schools.push({ label: 'Select School', value: 0 })
                 schoolResult.map(o => { this.schools.push({ label: o.name, value: o.id }); });
             });
-        
-        
-        this.grade.push({ label: '1', value: 1 });
-        this.grade.push({ label: '2', value: 2 });
-        this.grade.push({ label: '3', value: 3 });
-        this.grade.push({ label: '4', value: 4 });
-        this.grade.push({ label: '5', value: 5 });
-        this.grade.push({ label: '6', value: 6 });
-        this.grade.push({ label: '7', value: 7 });
-        this.grade.push({ label: '8', value: 8 });
+
+
 
         //this.parameters = JSON.stringify({
         //    "School_Year": [this.selectedYear], "School": [this.selectedSchool], "Grade": this.selectedGrades
@@ -68,14 +61,15 @@ export class AttendanceOverviewComponent implements OnInit {
     }
 
 
-    submit() {        
+    submit() {
         this.parameters = JSON.stringify({
-            "client_id": [this.sessionInfo.client_id] ,"School_Year": [this.selectedYear], "School": [this.selectedSchool], "Grade": this.selectedGrades
+            "client_id": [this.sessionInfo.client_id], "School_Year": [this.selectedYear], "School": [this.selectedSchool], "Grade": this.selectedGrades
         });
     }
 
-    schoolChange(e) {        
+    schoolChange(e) {
         let schollYears: SchoolSchoolYear[] = [];
+        let grades: SchoolGrade[] = [];
 
         this.schoolYears = [];
         this.selectedYear = null;
@@ -89,5 +83,14 @@ export class AttendanceOverviewComponent implements OnInit {
                 this.schoolYears.push({ label: 'Select School Year', value: 0 })
                 schollYears.map(o => { this.schoolYears.push({ label: o.school_year, value: o.school_year_id }); });
             });
+
+        this.schoolGradeService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => grades = result.data,
+            //error => () => { this.msgError = "Invalid credentials"; this.loginProcessing = false; },
+            (error: any) => { },
+            () => {
+                this.grade = [];
+                grades.map(o => { this.grade.push({ label: o.grade, value: o.grade }); });
+            });
+
     }
 }

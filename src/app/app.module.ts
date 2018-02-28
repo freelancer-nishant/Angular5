@@ -131,7 +131,9 @@ import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';//Adde
 import { LoginService } from './demo/service/loginservice';
 import { SchoolService } from './demo/service/school.service';
 import { SchoolYearService } from './demo/service/school.year.service';
-
+import { SchoolGradeService } from './demo/service/school.grade.service';
+import { TestService } from './demo/service/test.service'
+import { TestVersionService } from './demo/service/testversion.service'
 
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './demo/service/auth.service';
@@ -273,7 +275,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CarService, CountryService, EventService, NodeService,
         HttpClient,
-        LoginService, SchoolService, SchoolYearService,
+        LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
     ],

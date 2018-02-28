@@ -18,14 +18,14 @@ const httpOptionsa = {
     //headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8' })
 };
 @Injectable()
-export class SchoolService {
+export class TestService {
 
     constructor(private http: HttpClient) { }    
     
-    get(client_id: number, test_type_ids?: string): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/school?client_id=' + client_id;
+    get(test_type_ids?: string): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/test';
         if (test_type_ids != null && test_type_ids != 'undefined') {
-            url = url + "&test_type_ids=" + test_type_ids;
+            url = url + "?test_type_id=" + test_type_ids;
         }
         return this.http.get(url);
             //.map((response: Response) => <any>response.json())

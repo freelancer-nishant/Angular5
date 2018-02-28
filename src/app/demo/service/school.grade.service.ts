@@ -11,12 +11,12 @@ const httpOptionsa = {
 };
 
 @Injectable()
-export class SchoolYearService {
+export class SchoolGradeService {
 
     constructor(private http: HttpClient) { }    
     
     get(clientId: any, schoolId: any, test_type_ids?: string): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/schoolschoolyear?clientId=' + clientId + '&schoolId=' + schoolId;
+        let url: string = GlobalConstants.API_BASE_URL + '/api/schoolgrade?clientId=' + clientId + '&school_id=' + schoolId;
         if (test_type_ids != null && test_type_ids != 'undefined') {
             url = url + "&test_type_ids=" + test_type_ids;
         }
