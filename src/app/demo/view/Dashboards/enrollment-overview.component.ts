@@ -61,9 +61,9 @@ export class EnrollmentOverviewComponent implements OnInit {
         this.grade.push({ label: '7', value: 7 });
         this.grade.push({ label: '8', value: 8 });
 
-        //this.parameters = JSON.stringify({
-        //    "School_Year": [this.selectedYear], "School": [this.selectedSchool], "Grade": this.selectedGrades
-        //});
+        this.parameters = JSON.stringify({
+            "client_id": [this.sessionInfo.client_id], "School_Year": [this.selectedYear], "School": [this.selectedSchool], "Grade": this.selectedGrades
+        });
     }
 
 

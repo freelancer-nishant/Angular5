@@ -205,7 +205,9 @@ $secondaryColor: #5898a6;
     padding-bottom: 0 !important;
     margin-bottom:5px;
 }
-
+.sk-cube-grid .sk-cube {
+    background-color:$secondaryColor;
+}
 @media only screen and (max-device-width : 768px) {
     .dashboard-card {
         margin: 0;

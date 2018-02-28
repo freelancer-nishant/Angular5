@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy } from '@angular/core';
+import { Spinkit } from 'ng-http-loader/spinkits';//Added
 import { Router } from '@angular/router';
 import { LoginResult } from './demo/domain/login'
 import { AuthService } from './demo/service/auth.service'
@@ -19,6 +20,9 @@ declare var jQuery: any;
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
+
+    spinkit = Spinkit; //Added
+
     issinglepage = false;
 
     layoutCompact = true;

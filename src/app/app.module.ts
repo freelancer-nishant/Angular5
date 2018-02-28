@@ -126,6 +126,7 @@ import { NodeService } from './demo/service/nodeservice';
 
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';//Added
 
 import { LoginService } from './demo/service/loginservice';
 import { SchoolService } from './demo/service/school.service';
@@ -144,6 +145,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         AppRoutes,
         HttpModule,
         HttpClientModule,
+        NgHttpLoaderModule,
         BrowserAnimationsModule,
         AccordionModule,
         AutoCompleteModule,
