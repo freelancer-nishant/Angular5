@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Spinkit } from 'ng-http-loader/spinkits';//Added
 import { Router } from '@angular/router';
 import { LoginResult } from './demo/domain/login'
@@ -78,21 +78,21 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     constructor(public renderer: Renderer, private router: Router, private auth: AuthService) { }
 
     ngAfterViewInit() {
-        this.layoutMenuScroller = <HTMLDivElement>this.layoutMenuScrollerViewChild.nativeElement;
-
+        this.layoutMenuScroller = <HTMLDivElement>this.layoutMenuScrollerViewChild.nativeElement;        
         setTimeout(() => {
-            if (!this.issinglepage) jQuery(this.layoutMenuScroller).nanoScroller({ flash: true });
-        }, 10);
+            if (!this.issinglepage) { jQuery(this.layoutMenuScroller).nanoScroller({ flash: true }) };
+        }, 500);
     }
     doLogin(loginResult: LoginResult) {
 
         this.access_token = loginResult.access_token;
 
         localStorage.setItem("token", loginResult.access_token);
-
+        
         this.isLoggedIn = true;
-        this.issinglepage = false;
+        this.issinglepage = false;        
         this.router.navigate(['']);
+        
     }
     doLogout() {
         localStorage.removeItem('token');
@@ -125,14 +125,17 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         //catch (e) {
         //    return false;
         //}
-        return true; 
+        return true;
     }
 
     displayLeftMenu(visible: boolean) {
         this.staticMenuDesktopInactive = !visible;
         this.staticMenuMobileActive = visible;
         this.leftMenuToggleButtonActive = visible;
-        this.rotateMenuButton = !visible;
+        this.rotateMenuButton = !visible;        
+        setTimeout(() => {
+            jQuery('.nano').nanoScroller();
+        }, 500);
     }
 
 
@@ -183,10 +186,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     onMenuClick($event) {
         this.menuClick = true;
-        this.resetMenu = false;
-
+        this.resetMenu = false;        
         if (!this.isHorizontal()) {
-            setTimeout(() => {                                
+            setTimeout(() => {
                 jQuery(this.layoutMenuScroller).nanoScroller();
             }, 500);
         }

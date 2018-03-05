@@ -4,31 +4,24 @@
     <div class="ui-g-12">
         <div class="card card-w-title filter-pan">
             <div class="ui-g form-group">
-                <div class="ui-g-12 ui-md-1 control-label">
-                    <label for="selectedSchool">School</label>
-                </div>
-                <div class="ui-g-12 ui-md-2">
+                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
+                    <label for="selectedSchool" class="control-label">School</label>                
                     <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" (onChange)="schoolChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-1 control-label">
-                    <label for="selectedYear">School Year</label>
-                </div>
-                <div class="ui-g-12 ui-md-1">
+                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
+                    <label for="selectedYear" class="control-label">School Year</label>                
                     <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" (onChange)="schoolYearChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-1 control-label">
-                    <label for="selectedGrades">Grade</label>
-                </div>
-                <div class="ui-g-12 ui-md-2">
+                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
+                    <label for="selectedGrades" class="control-label">Grade</label>                
                     <p-multiSelect [options]="grade" [(ngModel)]="selectedGrades"></p-multiSelect>
                 </div>
-                <div class="ui-g-12 ui-md-1 control-label">
-                    <label for="selectedTestVersion">Test Version</label>
-                </div>
-                <div class="ui-g-12 ui-md-2">
+                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
+                    <label for="selectedTestVersion" class="control-label">Test Version</label>                
                     <p-dropdown [options]="testVersions" [(ngModel)]="selectedTestVersion" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-1">
+                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
+                    <label class="control-label">&nbsp;</label>
                     <button pButton type="button" label="Submit" (click)="submit()"></button>
                 </div>
             </div>

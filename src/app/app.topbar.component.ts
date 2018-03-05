@@ -57,9 +57,9 @@ import {AppComponent} from './app.component';
                         </ul>
                     </li>                   
                     <li #userinfo [ngClass]="{'active-top-menu':app.activeTopbarItem === userinfo}">
-                        <a href="#" (click)="app.onTopbarItemClick($event,userinfo)" style="color:#fff;">
-                            <i class="topbar-icon  material-icons">perm_identity</i>
-                            <i class="material-icons">keyboard_arrow_down</i>
+                        <a href="#" (click)="app.onTopbarItemClick($event,userinfo)">
+                            <i class="topbar-icon material-icons">perm_identity</i>
+                            <i class="topbar-icon material-icons">keyboard_arrow_down</i>
                             <span class="topbar-item-name">User Info</span>
                         </a>
                         <ul class="layout-menu fadeInDown">

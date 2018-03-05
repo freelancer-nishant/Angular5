@@ -108,8 +108,8 @@ $secondaryColor: #5898a6;
 }
 
 .control-label {
-    padding-top: 18px !important;
-    text-align: right;
+    display: block;
+    padding-bottom: 5px;
 }
 
 .text-center {
@@ -171,7 +171,7 @@ $secondaryColor: #5898a6;
 
     .icon-wrapper .img-center {
         margin: 0 auto;
-        display: inherit;
+        display: block;
     }
 
     .card-label {

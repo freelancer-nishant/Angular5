@@ -15,7 +15,7 @@ import { SchoolGrade } from './../../domain/school.schoolgrade';
 import { TestVersion } from './../../domain/testversion';
 
 @Component({
-    templateUrl: './assessments-dora-adam-overview.component.html'
+    templateUrl: './assessments-dora-adam-overview.component.html'    
 })
 
 export class AssessmentsDORAOverviewComponent implements OnInit {
