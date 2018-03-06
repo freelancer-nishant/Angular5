@@ -40,48 +40,77 @@ export class VJSComponent implements OnChanges {
     }
 
     public drawResource(vjsConfig, resourceIndex, params) {
-        var waitingForVjsLoad = setInterval(function () {            
+        var waitingForVjsLoad = setInterval(function () {
             if (typeof (visualize) != 'undefined') {
                 clearInterval(waitingForVjsLoad);
+
+                if (params != undefined) {
+                    let spinerDiv: HTMLElement = document.createElement("div");
+                    spinerDiv.id = 'report-spinner';
+                    spinerDiv.innerHTML = `
+                                     <div _ngcontent-c4="" class="sk-cube-grid colored">
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube1"></div>
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube2"></div>
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube3"></div>
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube4"></div>
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube5"></div>
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube6"></div>
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube7"></div>
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube8"></div>
+                                        <div _ngcontent-c4="" class="sk-cube sk-cube9"></div>
+                                    </div>`
+                    document.getElementById(vjsConfig.resourceDetails[resourceIndex].id).innerHTML = '';
+                    document.getElementById(vjsConfig.resourceDetails[resourceIndex].id).appendChild(spinerDiv);
+                }
 
                 visualize({
                     auth: vjsConfig.userAuth
                 },
-                function (v) {
-                    switch (vjsConfig.resourceDetails[resourceIndex].type) {
-                        case "report": {
-                            v("#" + vjsConfig.resourceDetails[resourceIndex].id).report({
-                                resource: vjsConfig.resourceDetails[resourceIndex].uri,
-                                //scale:'width',
-                                params: JSON.parse(params),
-                                success: function () { console.log("success") },
-                                error: function (err) { alert("Report draw failed: " + err) }
-                            });
-                            break;
-                        }
+                    function (v) {
+                        switch (vjsConfig.resourceDetails[resourceIndex].type) {
+                            case "report": {
+                                v("#" + vjsConfig.resourceDetails[resourceIndex].id).report({
+                                    resource: vjsConfig.resourceDetails[resourceIndex].uri,
+                                    //scale:'width',
+                                    params: JSON.parse(params),
+                                    success: function () { console.log("success") },
+                                    error: function (err) {
+                                        document.getElementById('report-spinner').remove(); alert("Report draw failed: " + err)
+                                    },
+                                    events: {
+                                        reportCompleted: function (status) {
+                                            if (status == 'ready') {
+                                                if (document.getElementById('report-spinner'))
+                                                    document.getElementById('report-spinner').remove();
+                                            }
+                                        }
+                                    }
+                                });
+                                break;
+                            }
 
-                        case "dashboard": {
-                            v("#" + vjsConfig.resourceDetails[resourceIndex].id).dashboard({
-                                resource: vjsConfig.resourceDetails[resourceIndex].uri,
-                                //params: vjsConfig.resourceDetails[resourceIndex].params,
-                                success: function () { console.log("success") },
-                                error: function (err) { alert("Dashboard draw failed: " + err) }
-                            });
-                            break;
-                        }
+                            case "dashboard": {
+                                v("#" + vjsConfig.resourceDetails[resourceIndex].id).dashboard({
+                                    resource: vjsConfig.resourceDetails[resourceIndex].uri,
+                                    //params: vjsConfig.resourceDetails[resourceIndex].params,
+                                    success: function () { console.log("success") },
+                                    error: function (err) { alert("Dashboard draw failed: " + err) }
+                                });
+                                break;
+                            }
 
-                        default: {
-                            alert("Visualize.js resource type not found.");
-                        }
+                            default: {
+                                alert("Visualize.js resource type not found.");
+                            }
 
-                    };
-                },
-                function (err) {
-                    alert("Visualize.js could not authenticate user/password.");
-                });
-            }            
-        },100);
-        
+                        };
+                    },
+                    function (err) {
+                        alert("Visualize.js could not authenticate user/password.");
+                    });
+            }
+        }, 100);
+
     };
 
     private getObjectIndex(object: any, id: any): number {
