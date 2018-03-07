@@ -116,14 +116,17 @@ import { AssessmentsDOMAOverviewComponent } from './demo/view/Dashboards/assessm
 
 
 import { ReportsComponent } from './reports/view/reports.component'
-import { SchoolScorecardsComponent } from './reports/view/school.scorecards'
-import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report'
-import { ComparisonSchoolsComponent } from './reports/view/comparison.schools'
-import { ComparisonSchoolsReportComponent } from './reports/view/comparison.schools.report'
-import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards'
-import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report'
-import { StudentScorecardsComponent } from './reports/view/student.scorecards'
-import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report'
+import { SchoolScorecardsComponent } from './reports/view/school.scorecards.component'
+import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report.component'
+import { ComparisonSchoolsComponent } from './reports/view/comparison.schools.component'
+import { ComparisonSchoolsReportComponent } from './reports/view/comparison.schools.report.component'
+import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.component'
+import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component'
+import { StudentScorecardsComponent } from './reports/view/student.scorecards.component'
+import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report.component'
+
+import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
+import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 
 import { VJSComponent } from './vjs.component'
 
@@ -287,6 +290,9 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         TeacherScorecardsReportComponent,
         StudentScorecardsComponent,
         StudentScorecardsReportComponent,
+
+        AdminConfigurationComponent,
+        SchoolComparisonListComponent,
 
         VJSComponent
     ],

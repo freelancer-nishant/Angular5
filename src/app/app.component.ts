@@ -105,11 +105,22 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     getSession(): any {
         return this.auth.decodeToken();
     }
-    hasAccess(role: string): boolean {
-        try {
-
+    hasAccess(roles: string): boolean {
+        try {            
+            let access = false;
             let tokenPayload: any = this.auth.decodeToken();
-            return (tokenPayload != undefined && tokenPayload != null && tokenPayload.role == role);
+            if (tokenPayload != undefined && tokenPayload != null) {
+
+                let roleList: string[] = roles.split(',');
+
+                for (var indx = 0; indx < roleList.length; indx++) {
+                    if (tokenPayload.role === roleList[indx]) {
+                        access = true;
+                        break;
+                    }
+                }
+            }
+            return access;
         }
         catch (e) {
             return false;

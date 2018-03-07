@@ -24,6 +24,8 @@ export enum MenuType {
     ComparisonSchools,
     TeacherScorecards,
     StudentScorecards,
+
+    SchoolComparisonList
 }
 
 export class GlobalHelper {
@@ -46,6 +48,11 @@ export class GlobalHelper {
                     { name: 'Comparison Schools', route: "#/comparison-schools" },
                     { name: 'Teacher Scorecards', route: "#/teacher-scorecards" },
                     { name: 'Students Scorecards', route: "#/student-scorecards" }
+                ];
+                break;
+            case MenuType.SchoolComparisonList:
+                categories = [
+                    { name: 'School Comparison List', route: "#/school-comparison-list" },                    
                 ];
                 break;
             default:
@@ -94,6 +101,14 @@ export class GlobalHelper {
                     name: "Student Scorecards"
                 }
                 break;
+
+            case MenuType.SchoolComparisonList:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/comparative-school-list.png',
+                    name: "School Comparison List"
+                }
+                break;
+
             default:
         }
 
@@ -196,6 +211,17 @@ export class GlobalHelper {
                         items: [
                             { label: 'Student Scorecards', icon: '', routerLink: ['/student-scorecards/report'] },
                         ]
+                    }
+                ];
+                break;
+
+            case MenuType.SchoolComparisonList:
+                menuItems = [
+                    {
+                        label: 'Comparison School Lists', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/school-comparison-list']
+                        //items: [
+                        //    { label: 'Add/Update Comparison School Lists', icon: '', routerLink: ['/school-comparison-list'] },
+                        //]
                     }
                 ];
                 break;

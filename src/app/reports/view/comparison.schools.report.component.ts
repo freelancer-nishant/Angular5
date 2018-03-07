@@ -3,13 +3,13 @@ import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 @Component({
-    templateUrl: './comparison.schools.html'
+    templateUrl: './comparison.schools.report.component.html'
 })
-export class ComparisonSchoolsComponent implements OnInit {
+export class ComparisonSchoolsReportComponent implements OnInit {
 
     constructor(public app: AppComponent) {
         app.displayLeftMenu(true);
-        app.activeCategoryDropdown = true;        
+        app.activeCategoryDropdown = true;
         app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.ComparisonSchools);
         app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.ComparisonSchools);
 

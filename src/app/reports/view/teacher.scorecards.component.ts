@@ -3,9 +3,9 @@ import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 @Component({
-    templateUrl: './teacher.scorecards.report.html'
+    templateUrl: './teacher.scorecards.component.html'
 })
-export class TeacherScorecardsReportComponent implements OnInit {
+export class TeacherScorecardsComponent implements OnInit {
 
     constructor(public app: AppComponent) {
         app.displayLeftMenu(true);

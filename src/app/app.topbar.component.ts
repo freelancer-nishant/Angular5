@@ -93,9 +93,9 @@ import { AppComponent } from './app.component';
                         </a>
                         <ul class="layout-menu fadeInDown">
                            <li role="menuitem">
-                                <a href="#">
+                                <a href="#/admin-configuration">
                                     <!--<i class="fa fa-fw fa-question-circle-o"></i>-->
-                                    <span>Admin</span>
+                                    <span>Configuration</span>
                                 </a>
                             </li>                            
                         </ul>

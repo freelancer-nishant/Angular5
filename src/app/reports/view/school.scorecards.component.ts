@@ -3,7 +3,7 @@ import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 @Component({
-    templateUrl: './school.scorecards.html'
+    templateUrl: './school.scorecards.component.html'
 })
 export class SchoolScorecardsComponent implements OnInit {
 
