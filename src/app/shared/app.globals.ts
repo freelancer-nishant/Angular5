@@ -18,30 +18,88 @@ export class GlobalConstants {
 
 export enum MenuType {
     StudentInformation,
-    Assessment
+    Assessment,
+
+    SchoolScorecard,
+    ComparisonSchools,
+    TeacherScorecards,
+    StudentScorecards,
 }
 
 export class GlobalHelper {
+    public static getCategories(menufor: MenuType): any[] {
+        let categories:any[] = []
+        switch (menufor) {
+            case MenuType.StudentInformation:                
+            case MenuType.Assessment:
+                categories = [
+                    { name: 'Student Information', route: "#/student-information" },
+                    { name: 'Assesments', route: "#/assessments" }
+                ];
+                break;
+            case MenuType.SchoolScorecard:
+            case MenuType.ComparisonSchools:    
+            case MenuType.TeacherScorecards:
+            case MenuType.TeacherScorecards:
+                categories = [
+                    { name: 'School Scorecards', route: "#/school-scorecards" },
+                    { name: 'Comparison Schools', route: "#/comparison-schools" },
+                    { name: 'Teacher Scorecards', route: "#/teacher-scorecards" },
+                    { name: 'Students Scorecards', route: "#/student-scorecards" }
+                ];
+                break;
+            default:
+        }
+
+        return categories;
+    }
 
     public static getSideMenuTitle(menufor: MenuType): any {
-        let sideMenuTitle: any = {};
+        let sideMenuInfo: any = {};
 
         switch (menufor) {
             case MenuType.StudentInformation:
-                sideMenuTitle = {
+                sideMenuInfo = {
                     icon: './assets/layout/images/dashboard/student-information.png',
-                    name: "Student Information"
+                    name: "Student Information"                   
                 };
                 break;
             case MenuType.Assessment:
-                sideMenuTitle = {
+                sideMenuInfo = {
                     icon: './assets/layout/images/dashboard/assessments.png',
                     name: "Assessments"
                 }
                 break;
+            case MenuType.SchoolScorecard:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/report/school-report-card.png',
+                    name: "School Scorecards"                    
+                }
+                break;
+            case MenuType.ComparisonSchools:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/report/comparative-data.png',
+                    name: "Comparison Schools"
+                }
+                break;
+            case MenuType.TeacherScorecards:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/report/school-report-card.png',
+                    name: "Teacher Scorecards"                    
+                }
+                break;           
+            case MenuType.StudentScorecards:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/report/school-report-card.png',
+                    name: "Student Scorecards"
+                }
+                break;
             default:
         }
-        return sideMenuTitle;
+
+        sideMenuInfo.categories = this.getCategories(menufor);
+
+        return sideMenuInfo;
 
     }
 
@@ -52,15 +110,15 @@ export class GlobalHelper {
             case MenuType.StudentInformation:
                 menuItems = [
                     {
-                        label: 'Enrollment', icon: 'fa fa-fw fa-sitemap',
+                        label: 'Enrollment', icon: 'fa fa-fw fa-indent',
                         items: [
-                            { label: 'Enrollment Overview', icon: 'fa fa-fw fa-columns', routerLink: ['/enrollment-overview'] },
+                            { label: 'Enrollment Overview', icon: '', routerLink: ['/enrollment-overview'] },
                         ]
                     },
                     {
-                        label: 'Attendance', icon: 'fa fa-fw fa-sitemap',
+                        label: 'Attendance', icon: 'fa fa-fw fa-check',
                         items: [
-                            { label: 'Attendance Overview', icon: 'fa fa-fw fa-columns', routerLink: ['/attendance-overview'] },
+                            { label: 'Attendance Overview', icon: '', routerLink: ['/attendance-overview'] },
                         ]
                     }
                 ];
@@ -97,6 +155,46 @@ export class GlobalHelper {
                         items: [
                             { label: 'DORA / ADAM Overview', icon: 'fa fa-fw fa-columns', routerLink: ['/assessments/dora-adam-overview'] },
                             { label: 'DOMA Overview', icon: 'fa fa-fw fa-columns', routerLink: ['/assessments/doma-overview'] },
+                        ]
+                    }
+                ];
+                break;
+            case MenuType.SchoolScorecard:
+                menuItems = [
+                    {
+                        label: 'School Scorecards', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'School Scorecards', icon: '', routerLink: ['/school-scorecards/report'] },                            
+                        ]
+                    }
+                ];
+                break;
+            case MenuType.ComparisonSchools:
+                menuItems = [
+                    {
+                        label: 'Comparison Schools', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Comparison Schools', icon: '', routerLink: ['/comparison-schools/report'] },
+                        ]
+                    }
+                ];
+                break;
+            case MenuType.TeacherScorecards:
+                menuItems = [
+                    {
+                        label: 'Teacher Scorecards', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Teacher Scorecards', icon: '', routerLink: ['/teacher-scorecards/report'] },
+                        ]
+                    }
+                ];
+                break;
+            case MenuType.StudentScorecards:
+                menuItems = [
+                    {
+                        label: 'Student Scorecards', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Student Scorecards', icon: '', routerLink: ['/student-scorecards/report'] },
                         ]
                     }
                 ];

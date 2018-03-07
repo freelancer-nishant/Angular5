@@ -1,0 +1,6 @@
+<div class="client-topbar">
+    <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)"
+       [ngClass]="{'hide': app.leftMenuToggleButtonActive === false, 'menu-button-rotate': app.rotateMenuButton}">
+        <i class="fa fa-angle-left"></i>
+    </a>
+</div>

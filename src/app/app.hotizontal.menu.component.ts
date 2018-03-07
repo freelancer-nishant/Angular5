@@ -12,11 +12,7 @@ export class AppHotizontalMenuComponent implements OnInit {
 
     selectedItem: any = {};
 
-    ngOnInit() {
-        this.app.categories = [
-            { name: 'Student Information', route: "#/student-information" },
-            { name: 'Assesments', route: "#/assessments" }
-        ]
+    ngOnInit() {        
     }
 
     onItemClick(val) {        

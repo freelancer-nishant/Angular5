@@ -17,7 +17,9 @@ import { DocumentationComponent } from './demo/view/documentation.component';
 
 
 
+
 import { AuthGuardService as AuthGuard } from './demo/service/auth-guard.service';
+import { GlobalConstants } from './shared/app.globals'
 
 import { LoginComponent } from './demo/view/login.component';
 import { HomeComponent } from './demo/view/home.component';
@@ -34,10 +36,15 @@ import { AssessmentsNWEAOverviewComponent } from './demo/view/Dashboards/assessm
 import { AssessmentsDORAOverviewComponent } from './demo/view/Dashboards/assessments-dora-adam-overview.component'
 import { AssessmentsDOMAOverviewComponent } from './demo/view/Dashboards/assessments-doma-overview.component'
 
-import { ReportsComponent } from './demo/view/reports.component';
-
-import { GlobalConstants } from './shared/app.globals'
-
+import { ReportsComponent } from './reports/view/reports.component'
+import { SchoolScorecardsComponent } from './reports/view/school.scorecards'
+import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report'
+import { ComparisonSchoolsComponent } from './reports/view/comparison.schools'
+import { ComparisonSchoolsReportComponent } from './reports/view/comparison.schools.report'
+import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards'
+import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report'
+import { StudentScorecardsComponent } from './reports/view/student.scorecards'
+import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report'
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -57,7 +64,16 @@ export const routes: Routes = [
     { path: 'assessments/doma-overview', component: AssessmentsDOMAOverviewComponent, canActivate: [AuthGuard] },
 
     { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
+    { path: 'school-scorecards', component: SchoolScorecardsComponent, canActivate: [AuthGuard] },
+    { path: 'school-scorecards/report', component: SchoolScorecardsReportComponent, canActivate: [AuthGuard] },
+    { path: 'comparison-schools', component: ComparisonSchoolsComponent, canActivate: [AuthGuard] },
+    { path: 'comparison-schools/report', component: ComparisonSchoolsReportComponent, canActivate: [AuthGuard] },
+    { path: 'teacher-scorecards', component: TeacherScorecardsComponent, canActivate: [AuthGuard] },
+    { path: 'teacher-scorecards/report', component: TeacherScorecardsReportComponent, canActivate: [AuthGuard] },
+    { path: 'student-scorecards', component: StudentScorecardsComponent, canActivate: [AuthGuard] },
+    { path: 'student-scorecards/report', component: StudentScorecardsReportComponent, canActivate: [AuthGuard] },
 
+    //Theme routes
     { path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_ADMIN } },
     { path: 'sample', component: SampleDemoComponent, canActivate: [AuthGuard] },
     { path: 'forms', component: FormsDemoComponent, canActivate: [AuthGuard] },

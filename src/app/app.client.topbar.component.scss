@@ -1,0 +1,84 @@
+$secondaryColor: #5898a6;
+
+.client-topbar {
+    height: 40px;
+    position: fixed;
+    width: 100%;
+    color: #fff;
+    background: $secondaryColor;
+    font-size: 14px;
+    padding: 0px 15px;
+    z-index: 10;
+
+    > ul {
+        padding: 0;
+
+        > li {
+            float: left;
+            list-style: none;
+            margin-right: 30px;
+
+            > a {
+                color: #ffffff;
+                display: block;
+            }
+
+            > .active,
+            > a:hover {
+                color: #fff;
+                border-bottom: 2px solid #ffffff;
+            }
+        }
+    }
+
+    .topbar-items {
+        margin-top: 15px;
+    }
+
+    .topbar-items > li > ul {
+        top: 35px;
+    }
+
+    #menu-button:hover,
+    #menu-button {
+        position: absolute;
+        top: 40px;
+        left: 235px;
+        background: $secondaryColor;
+        color: #fff;
+        transition: 0.3s;
+        border-radius: 0 4px 4px 0;
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    #menu-button.menu-button-rotate {
+        transition: 0.3s;
+        left: -5px;
+
+        i {
+            transform: rotate(180deg);
+        }
+    }
+
+
+    #menu-button i {
+        transition: all 0.3s;
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .client-topbar {
+        #menu-button {
+            left: -5px;
+
+            i {
+                transform: rotate(180deg);
+            }
+        }
+    }    
+}

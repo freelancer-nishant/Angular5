@@ -64,8 +64,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     access_token: string;
 
     activeCategoryDropdown: boolean = false;
-    categories: any[] = [];
-
+    
     leftMenuToggleButtonActive: boolean = true;
 
     LeftMenuItems: any[] = [];
@@ -125,7 +124,15 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         //catch (e) {
         //    return false;
         //}
+
+        if (this.isClientPage())
+            return false;
+
         return true;
+    }
+
+    isClientPage() {
+        return false;
     }
 
     displayLeftMenu(visible: boolean) {

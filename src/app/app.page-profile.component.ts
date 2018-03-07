@@ -18,7 +18,7 @@ import { MenuItem } from 'primeng/primeng';
 
         <ul id="profile-menu" class="layout-menu" [@menu]="active ? 'visible' : 'hidden'">
 
-            <li role="menuitem" *ngFor="let category of app.categories">                  
+            <li role="menuitem" *ngFor="let category of app.pageProfile.categories">                  
                 <a href="{{ category.route }}" [attr.tabindex]="!active ? '-1' : null" (click)="onSubItemClick($event)">                    
                     <span>{{ category.name }}</span>
                 </a>

@@ -76,6 +76,7 @@ import { TreeTableModule } from 'primeng/primeng';
 import { AppComponent } from './app.component';
 import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
 import { AppTopBarComponent } from './app.topbar.component';
+import { AppClientTopBarComponent } from './app.client.topbar.component';
 import { AppFooterComponent } from './app.footer.component';
 //import { AppProfileComponent } from './app.profile.component';
 import { DashboardDemoComponent } from './demo/view/dashboarddemo.component';
@@ -114,7 +115,15 @@ import { AssessmentsDORAOverviewComponent } from './demo/view/Dashboards/assessm
 import { AssessmentsDOMAOverviewComponent } from './demo/view/Dashboards/assessments-doma-overview.component'
 
 
-import { ReportsComponent } from './demo/view/reports.component'
+import { ReportsComponent } from './reports/view/reports.component'
+import { SchoolScorecardsComponent } from './reports/view/school.scorecards'
+import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report'
+import { ComparisonSchoolsComponent } from './reports/view/comparison.schools'
+import { ComparisonSchoolsReportComponent } from './reports/view/comparison.schools.report'
+import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards'
+import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report'
+import { StudentScorecardsComponent } from './reports/view/student.scorecards'
+import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report'
 
 import { VJSComponent } from './vjs.component'
 
@@ -231,6 +240,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         AppMenuComponent,
         AppSubMenuComponent,
         AppTopBarComponent,
+        AppClientTopBarComponent,
         AppFooterComponent,
         //AppProfileComponent,
         DashboardDemoComponent,
@@ -255,8 +265,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         LoginComponent,
         HomeComponent,
         DashboardComponent,
-        ReportsComponent,
-
+        
         StudentInformationComponent,
         EnrollmentOverviewComponent, 
         AttendanceOverviewComponent,
@@ -267,8 +276,18 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         AssessmentsNWEAOverviewComponent,
         AssessmentsDORAOverviewComponent,
         AssessmentsDOMAOverviewComponent,
-
         AssessmentsComponent,
+
+        ReportsComponent,
+        SchoolScorecardsComponent,
+        SchoolScorecardsReportComponent,
+        ComparisonSchoolsComponent,
+        ComparisonSchoolsReportComponent,
+        TeacherScorecardsComponent,
+        TeacherScorecardsReportComponent,
+        StudentScorecardsComponent,
+        StudentScorecardsReportComponent,
+
         VJSComponent
     ],
     providers: [

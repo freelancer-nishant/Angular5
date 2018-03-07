@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {AppComponent} from './app.component';
+import { AppComponent } from './app.component';
+//import { GlobalConstants } from './shared/app.globals';
 
 @Component({
     selector: 'app-topbar',
@@ -85,15 +86,15 @@ import {AppComponent} from './app.component';
                             </li>                            
                         </ul>
                     </li>                    
-                    <li #admin [ngClass]="{'active-top-menu':app.activeTopbarItem === admin, 'hide':app.hasAccess('Admin') !== true}">
+                    <li #admin [ngClass]="{'active-top-menu':app.activeTopbarItem === admin, 'hide':app.hasAccess('ClientUser') !== true}">
                         <a href="#" (click)="app.onTopbarItemClick($event,admin)">                                                        
-                            <i class="topbar-icon material-icons">transfer_within_a_station</i>
+                            <i class="topbar-icon material-icons">settings</i>                            
                             <span class="topbar-item-name">Admin</span>
                         </a>
                         <ul class="layout-menu fadeInDown">
                            <li role="menuitem">
                                 <a href="#">
-                                    <i class="fa fa-fw fa-question-circle-o"></i>
+                                    <!--<i class="fa fa-fw fa-question-circle-o"></i>-->
                                     <span>Admin</span>
                                 </a>
                             </li>                            

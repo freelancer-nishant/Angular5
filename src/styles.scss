@@ -76,7 +76,16 @@ $secondaryColor: #5898a6;
     transition: 0.3s;
     left: -5px;
 }
+/* BEgin Client ebbaded pages*/
+.client-topbar-active.layout-wrapper.menu-layout-horizontal .layout-menu-container,
+.client-topbar-active.layout-wrapper .layout-menu-container {
+    top: 40px;
+}
 
+.client-topbar-active.layout-wrapper .layout-main {
+    padding: 50px 15px 15px 15px;
+}
+/* End Client ebbaded pages*/
 
 .page-profile {
     border-bottom: 1px solid #ccc;
@@ -215,6 +224,10 @@ $secondaryColor: #5898a6;
 
 .card.card-w-title {
     padding: 0 16px 16px 16px;    
+}
+
+@media (max-width: 1024px) {
+   
 }
 
 @media only screen and (max-device-width : 768px) {
