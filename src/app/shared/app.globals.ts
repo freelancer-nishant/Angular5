@@ -42,7 +42,7 @@ export class GlobalHelper {
             case MenuType.SchoolScorecard:
             case MenuType.ComparisonSchools:    
             case MenuType.TeacherScorecards:
-            case MenuType.TeacherScorecards:
+            case MenuType.StudentScorecards:
                 categories = [
                     { name: 'School Scorecards', route: "#/school-scorecards" },
                     { name: 'Comparison Schools', route: "#/comparison-schools" },
