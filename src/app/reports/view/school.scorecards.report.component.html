@@ -5,17 +5,23 @@
     <div class="ui-g-12">
         <div class="card card-w-title filter-pan">
             <div class="ui-g form-group">
-                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-4">
-                    <label class="control-label" for="selectedSchool">Select a List</label>
+                <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
+                    <label class="control-label" for="selectedComparative">Select a List</label>
                     <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
+                <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
+                    <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
+                    <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1">
                     <label class="control-label">&nbsp;</label>
                     <button pButton type="button" label="Go" (click)="submit()"></button>
-                </div>                
+                </div>
             </div>
         </div>
         <div class="card card-w-title">
+            <vjs-component class="resource" id="school-scorecard" [(params)]="parameters"></vjs-component>
         </div>
+        
     </div>
 </div>

@@ -12,5 +12,12 @@ export interface ComparativeListItem {
     name,
     label,
     desc,
-    items
+    items: ComparativeItem[]
+}
+export interface ComparativeItem {
+    id,
+    us_school_id,
+    school_label,
+    alias,
+    target_flag
 }

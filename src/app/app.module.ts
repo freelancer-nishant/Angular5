@@ -147,6 +147,8 @@ import { SchoolService } from './demo/service/school.service';
 import { SchoolYearService } from './demo/service/school.year.service';
 import { SchoolGradeService } from './demo/service/school.grade.service';
 import { ComparativeListService } from './shared/services/comparativelist.service'
+import { CommonService } from './shared/services/Common.service'
+
 
 import { TestService } from './demo/service/test.service'
 import { TestVersionService } from './demo/service/testversion.service'
@@ -305,7 +307,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         CarService, CountryService, EventService, NodeService,
         HttpClient,
         LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
-
+        CommonService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
     ],
