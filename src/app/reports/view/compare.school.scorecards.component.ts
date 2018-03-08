@@ -7,9 +7,9 @@ import { ComparativeListItem } from './../../shared/domain/comparative.list'
 import { ComparativeListService } from './../../shared/services/comparativelist.service'
 
 @Component({
-    templateUrl: './comparison.schools.report.component.html'
+    templateUrl: './compare.school.scorecards.component.html'
 })
-export class ComparisonSchoolsReportComponent implements OnInit {
+export class CompareSchoolScorecardsComponent implements OnInit {
     parameters: any = {}
     sessionInfo: any = {}
 

@@ -119,7 +119,8 @@ import { ReportsComponent } from './reports/view/reports.component'
 import { SchoolScorecardsComponent } from './reports/view/school.scorecards.component'
 import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report.component'
 import { ComparisonSchoolsComponent } from './reports/view/comparison.schools.component'
-import { ComparisonSchoolsReportComponent } from './reports/view/comparison.schools.report.component'
+import { CompareSBACScoresComponent } from './reports/view/compare.sbac.scores.component'
+import { CompareSchoolScorecardsComponent } from './reports/view/compare.school.scorecards.component'
 import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.component'
 import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component'
 import { StudentScorecardsComponent } from './reports/view/student.scorecards.component'
@@ -287,7 +288,8 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         SchoolScorecardsComponent,
         SchoolScorecardsReportComponent,
         ComparisonSchoolsComponent,
-        ComparisonSchoolsReportComponent,
+        CompareSBACScoresComponent,
+        CompareSchoolScorecardsComponent,
         TeacherScorecardsComponent,
         TeacherScorecardsReportComponent,
         StudentScorecardsComponent,
@@ -302,7 +304,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CarService, CountryService, EventService, NodeService,
         HttpClient,
-        LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService
+        LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
 
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
