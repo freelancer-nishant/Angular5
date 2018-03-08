@@ -42,7 +42,7 @@ export class GlobalHelper {
             case MenuType.SchoolScorecard:
             case MenuType.ComparisonSchools:    
             case MenuType.TeacherScorecards:
-            case MenuType.TeacherScorecards:
+            case MenuType.StudentScorecards:
                 categories = [
                     { name: 'School Scorecards', route: "#/school-scorecards" },
                     { name: 'Comparison Schools', route: "#/comparison-schools" },
@@ -189,7 +189,8 @@ export class GlobalHelper {
                     {
                         label: 'Comparison Schools', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Comparison Schools', icon: '', routerLink: ['/comparison-schools/report'] },
+                            { label: 'Compare SBAC Scores', icon: '', routerLink: ['/comparison-schools/sbac-scores'] },
+                            { label: 'Compare School Scorecards', icon: '', routerLink: ['/comparison-schools/school-scorecards'] },
                         ]
                     }
                 ];

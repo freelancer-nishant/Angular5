@@ -40,7 +40,8 @@ import { ReportsComponent } from './reports/view/reports.component'
 import { SchoolScorecardsComponent } from './reports/view/school.scorecards.component'
 import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report.component'
 import { ComparisonSchoolsComponent } from './reports/view/comparison.schools.component'
-import { ComparisonSchoolsReportComponent } from './reports/view/comparison.schools.report.component'
+import { CompareSBACScoresComponent } from './reports/view/compare.sbac.scores.component'
+import { CompareSchoolScorecardsComponent } from './reports/view/compare.school.scorecards.component'
 import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.component'
 import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component'
 import { StudentScorecardsComponent } from './reports/view/student.scorecards.component'
@@ -71,8 +72,10 @@ export const routes: Routes = [
     { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
     { path: 'school-scorecards', component: SchoolScorecardsComponent, canActivate: [AuthGuard] },
     { path: 'school-scorecards/report', component: SchoolScorecardsReportComponent, canActivate: [AuthGuard] },
+
     { path: 'comparison-schools', component: ComparisonSchoolsComponent, canActivate: [AuthGuard] },
-    { path: 'comparison-schools/report', component: ComparisonSchoolsReportComponent, canActivate: [AuthGuard] },
+    { path: 'comparison-schools/sbac-scores', component: CompareSBACScoresComponent, canActivate: [AuthGuard] },    
+    { path: 'comparison-schools/school-scorecards', component: CompareSchoolScorecardsComponent, canActivate: [AuthGuard] },
     { path: 'teacher-scorecards', component: TeacherScorecardsComponent, canActivate: [AuthGuard] },
     { path: 'teacher-scorecards/report', component: TeacherScorecardsReportComponent, canActivate: [AuthGuard] },
     { path: 'student-scorecards', component: StudentScorecardsComponent, canActivate: [AuthGuard] },

@@ -119,7 +119,8 @@ import { ReportsComponent } from './reports/view/reports.component'
 import { SchoolScorecardsComponent } from './reports/view/school.scorecards.component'
 import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report.component'
 import { ComparisonSchoolsComponent } from './reports/view/comparison.schools.component'
-import { ComparisonSchoolsReportComponent } from './reports/view/comparison.schools.report.component'
+import { CompareSBACScoresComponent } from './reports/view/compare.sbac.scores.component'
+import { CompareSchoolScorecardsComponent } from './reports/view/compare.school.scorecards.component'
 import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.component'
 import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component'
 import { StudentScorecardsComponent } from './reports/view/student.scorecards.component'
@@ -140,13 +141,17 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';//Added
 
+//services
 import { LoginService } from './demo/service/loginservice';
 import { SchoolService } from './demo/service/school.service';
 import { SchoolYearService } from './demo/service/school.year.service';
 import { SchoolGradeService } from './demo/service/school.grade.service';
+import { ComparativeListService } from './shared/services/comparativelist.service'
+import { CommonService } from './shared/services/Common.service'
+
+
 import { TestService } from './demo/service/test.service'
 import { TestVersionService } from './demo/service/testversion.service'
-
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './demo/service/auth.service';
 import { AuthGuardService } from './demo/service/auth-guard.service';
@@ -285,7 +290,8 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         SchoolScorecardsComponent,
         SchoolScorecardsReportComponent,
         ComparisonSchoolsComponent,
-        ComparisonSchoolsReportComponent,
+        CompareSBACScoresComponent,
+        CompareSchoolScorecardsComponent,
         TeacherScorecardsComponent,
         TeacherScorecardsReportComponent,
         StudentScorecardsComponent,
@@ -300,7 +306,8 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CarService, CountryService, EventService, NodeService,
         HttpClient,
-        LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService,
+        LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
+        CommonService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
     ],

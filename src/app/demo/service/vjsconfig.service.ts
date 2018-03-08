@@ -53,6 +53,16 @@ export class VJSConfig {
             id: "doma-overview",
             type: "report",
             uri: "/CF/Dashboard/DOMA_Algebra_Assessment/DOMA_Algebra_Assessment"
+        },
+        {
+            id: "school-scorecard",
+            type: "report",
+            uri: "/CF/Reports/School_Card_Report"
+        },
+        {
+            id: "sabc-scorecard",
+            type: "report",
+            uri: "/CF/Reports/Comparative_Schools_SBAC_results_report"
         }
     ];
 

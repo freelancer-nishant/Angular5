@@ -245,3 +245,14 @@ $secondaryColor: #5898a6;
         height: 70px;
     }
 }
+@media (min-width: 678px) {
+    body .ui-dialog {
+        width: 50% !important;
+        left: 25% !important;
+    }
+}
+.ui-widget-overlay {
+    background: none !important;
+    background-color: #424242 !important;
+    opacity: 0.7 !important;
+}

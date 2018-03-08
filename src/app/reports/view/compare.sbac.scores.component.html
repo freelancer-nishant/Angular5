@@ -1,0 +1,107 @@
+
+<h1 class="page-title"><i class="material-icons">spellcheck</i> Compare SBAC Scores</h1>
+
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title filter-pan">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
+                    <label class="control-label" for="selectedComparative">Select a List</label>
+                    <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
+                    <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
+                    <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1">
+                    <label class="control-label">&nbsp;</label>
+                    <button pButton type="button" label="Go" (click)="submit()"></button>
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1 text-center">
+                    <label class="control-label">&nbsp;</label>
+                    <label class="control-label">-- Or --</label>
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-2">
+                    <label class="control-label">&nbsp;</label>
+                    <button type="button" label="Select Schools" (click)="dialogVisible=true" pButton></button>
+                </div>
+            </div>
+        </div>
+        <div class="card card-w-title">
+            <vjs-component class="resource" id="sabc-scorecard" [(params)]="parameters"></vjs-component>
+        </div>
+
+        <p-dialog header="Make a List" [resizable]="false" responsive="true" [(visible)]="dialogVisible" modal="true">
+            <div class="ui-g form-group" style="margin-bottom: 16px;">
+                <div class="ui-g-12 ui-md-3">
+                    <label for="input">List Name :</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <input id="input" type="text" pInputText [(ngModel)]="SchoolForScorecards.schoollabel" />
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <label for="input">School Year :</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <p-dropdown [options]="schoolYearList" [(ngModel)]="SchoolForScorecards.schoolyear" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12">
+                    <h3>Add School To List</h3>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <label for="input">State :</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="schoolChange($event)" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <label for="input">County :</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <p-dropdown [options]="countyList" [(ngModel)]="newSchool.county" (onChange)="countyChange($event)" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <label for="input">School Distinct :</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <p-dropdown [options]="districtList" [(ngModel)]="newSchool.district" (onChange)="districtChange($event)" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <label for="input">City :</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <p-dropdown [options]="cityList" [(ngModel)]="newSchool.city" (onChange)="schooltypeChange($event)" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <label for="input">School Type :</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <p-dropdown [options]="schooltypeList" [(ngModel)]="newSchool.schooltype" (onChange)="schooltypeChange($event)" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <label for="input">School :</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <p-dropdown [options]="schoolList" [(ngModel)]="newSchool.school" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-offset-5 ui-md-2">
+                    <button pButton type="button" label="Add To List" (click)="addToList()"></button>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                    <p-dataTable [value]="SchoolForScorecards.selectedschools">
+                        <p-header>List of Schools</p-header>
+                        <p-column field="school_label" header="School" sortable="true"></p-column>
+                        <p-column field="alias" header="Display Label" sortable="false"></p-column>
+                        <p-column field="target_flag" header="Highlight in List" sortable="false"></p-column>
+                    </p-dataTable>
+                </div>
+            </div>
+
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="button" label="Run Report" (click)="runReport()" pButton></button>
+                </div>
+            </p-footer>
+        </p-dialog>
+    </div>
+</div>
