@@ -22,7 +22,7 @@ export class VJSConfig {
         {
             id: "sbac-overview",
             type: "report",
-            uri: "/CF/Dashboard/Testing_Dahboard/Testing_Dahboard"
+            uri: "/CF/Dashboard/State_Testing/State_Testing"
         },
         {
             id: "sbac-detail",
