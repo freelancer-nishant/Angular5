@@ -228,13 +228,17 @@ $secondaryColor: #5898a6;
 
 #export-report {
     position: absolute;
-    width: 265px;
+    width: 300px;
     right: 20px;
-    z-index: 1;    
+    z-index: 1;
+
+    .ui-dropdown {
+        min-width:initial;
+    }
 }
 
+
 @media (max-width: 1024px) {
-   
 }
 
 @media only screen and (max-device-width : 768px) {
