@@ -121,8 +121,8 @@
                                     <input id="input" type="text" pInputText [(ngModel)]="school.alias" />
                                 </div>
                                 <div class="ui-g-2 ui-md-2">
-                                    <input id="input" type="checkbox" value="{{1}}" [(ngModel)]="school.target_flag" />
-                                    <!--<p-checkbox value="{{1}}" [(ngModel)]="school.target_flag"></p-checkbox>-->
+                                    <!--<input id="input" type="checkbox" value="{{1}}" [(ngModel)]="school.target_flag" />-->
+                                    <p-checkbox value="{{1}}" binary="true" [(ngModel)]="school.target_flag"></p-checkbox>
                                 </div>
                                 <div class="ui-g-2 ui-md-2">
                                     <button type="button" label="Delete" icon="fa-trash" (click)="deleteSchool(school.id)" pButton></button>
