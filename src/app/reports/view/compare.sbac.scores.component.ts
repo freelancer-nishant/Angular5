@@ -87,7 +87,7 @@ export class CompareSBACScoresComponent implements OnInit {
     }
 
 
-    schoolChange(e) {
+    stateChange(e) {
         let stateResult: State[] = [];
         this.commonService.getCounty(this.newSchool.state).subscribe((result: any) => stateResult = result.data,
             (error: any) => { },
@@ -95,6 +95,8 @@ export class CompareSBACScoresComponent implements OnInit {
                 this.countyList = [];
                 this.countyList.push({ label: 'Select County', value: 0 })
                 stateResult.map(o => { this.countyList.push({ label: o.label, value: o.id }); });
+                //this.newSchool.county = 1;
+                //this.countyChange(e);
             });
     }
     countyChange(e) {
@@ -105,6 +107,8 @@ export class CompareSBACScoresComponent implements OnInit {
                 this.districtList = [];
                 this.districtList.push({ label: 'Select District', value: 0 })
                 stateResult.map(o => { this.districtList.push({ label: o.label, value: o.id }); });
+                //this.newSchool.district = 1;
+                //this.districtChange(e);
             });
     }
     districtChange(e) {
@@ -152,25 +156,44 @@ export class CompareSBACScoresComponent implements OnInit {
         if (this.newSchool.school != undefined) {
             if (this.SchoolForScorecards.selectedschools == undefined)
                 this.SchoolForScorecards.selectedschools = [];
+
+            //Check is school already exist if yes then return without adding school into list
+            let isSchoolExist = this.SchoolForScorecards.selectedschools.find(x => x.id === this.newSchool.school);
+            if (isSchoolExist != undefined)
+                return;
+
             let school: School = this.fullschoolList.find(x => x.id === this.newSchool.school);
             this.SchoolForScorecards.selectedschools.push({
                 id: school.id,
                 us_school_id: school.id,
-                school_label: school.label,
-                alias: school.abbrev,
-                target_flag: false
+                school_label: school.name,
+                alias: school.label,
+                target_flag: 0
             });
             //this.newSchool = new SchoolModel();
         }
     }
+    deleteSchool(id) {
+        let findschool: ComparativeItem = this.SchoolForScorecards.selectedschools.find(x => x.id === id);
+        let index: number = this.SchoolForScorecards.selectedschools.indexOf(findschool);
+        this.SchoolForScorecards.selectedschools.splice(index, 1);
+    }
     runReport() {
-        this.dialogVisible = false;
-        this.parameters = JSON.stringify({
-            "test_id1": ['1'],
-            "schoolyear_id": [this.SchoolForScorecards.schoolyear],
-            "comparative_list_items": [JSON.stringify(this.SchoolForScorecards.selectedschools)],
-            "test_id2": ['2'],
-            "comparative_list_label": [this.SchoolForScorecards.schoollabel]
-        });
+        if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined) {
+            this.dialogVisible = false;
+            this.SchoolForScorecards.selectedschools.forEach(function (value, index) {
+                value.target_flag = value.target_flag==true ? 1 : 0;
+            });
+            this.parameters = JSON.stringify({
+                "test_id1": ['1'],
+                "schoolyear_id": [this.SchoolForScorecards.schoolyear],
+                "comparative_list_items": [JSON.stringify(this.SchoolForScorecards.selectedschools)],
+                "test_id2": ['2'],
+                "comparative_list_label": [this.SchoolForScorecards.schoollabel]
+            });
+        }
+        else {
+            alert('Please enter school label or select school year first.')
+        }
     }
 }

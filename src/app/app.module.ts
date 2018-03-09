@@ -100,6 +100,8 @@ import { AppHotizontalMenuComponent } from './app.hotizontal.menu.component';
 
 
 import { LoginComponent } from './demo/view/login.component';
+import { EmbeddedLoginComponent } from './demo/view/embedded.login.component';
+
 import { DashboardComponent } from './demo/view/dashboard.component'
 import { HomeComponent } from './demo/view/home.component'
 import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
@@ -271,6 +273,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         AppHotizontalMenuComponent,
 
         LoginComponent,
+        EmbeddedLoginComponent,
         HomeComponent,
         DashboardComponent,
         

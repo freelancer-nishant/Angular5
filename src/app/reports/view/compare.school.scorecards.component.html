@@ -3,18 +3,22 @@
 
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
-        <div class="card card-w-title filter-pan">
-            <div class="ui-g form-group">
-                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-4">
-                    <label class="control-label" for="selectedSchool">Select a List</label>
-                    <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false"></p-dropdown>
-                </div>
-                <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
-                    <label class="control-label">&nbsp;</label>
-                    <button pButton type="button" label="Go" (click)="submit()"></button>
+        <p-panel header="" [toggleable]="true">
+            <div class="card card-w-title filter-pan">
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-4">
+                        <label class="control-label" for="selectedSchool">Select a List</label>
+                        <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false"></p-dropdown>
+                    </div>
+                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
+                        <label class="control-label">&nbsp;</label>
+                        <button pButton type="button" label="Go" (click)="submit()"></button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </p-panel>
+    </div>
+    <div class="ui-g-12">
         <div class="card card-w-title">
         </div>
     </div>

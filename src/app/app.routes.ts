@@ -22,6 +22,7 @@ import { AuthGuardService as AuthGuard } from './demo/service/auth-guard.service
 import { GlobalConstants } from './shared/app.globals'
 
 import { LoginComponent } from './demo/view/login.component';
+import { EmbeddedLoginComponent } from './demo/view/embedded.login.component';
 import { HomeComponent } from './demo/view/home.component';
 import { DashboardComponent } from './demo/view/dashboard.component';
 import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
@@ -52,6 +53,7 @@ import { SchoolComparisonListComponent } from './admin/view/school.comparison.li
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
+    { path: 'embedded-report/:user/:pwd', component: EmbeddedLoginComponent},
     { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_CLIENT_USER } },
 
     //Dashboards

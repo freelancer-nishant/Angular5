@@ -70,6 +70,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     LeftMenuItems: any[] = [];
 
     pageProfile: any = {}
+    isClientPage: boolean = false;
+    
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
@@ -136,16 +138,12 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         //    return false;
         //}
 
-        if (this.isClientPage())
+        if (this.isClientPage)
             return false;
 
         return true;
     }
-
-    isClientPage() {
-        return false;
-    }
-
+    
     displayLeftMenu(visible: boolean) {
         this.staticMenuDesktopInactive = !visible;
         this.staticMenuMobileActive = visible;
