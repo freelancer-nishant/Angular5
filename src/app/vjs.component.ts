@@ -109,7 +109,7 @@ export class VJSComponent implements OnChanges {
                             case "report": {
                                 var report = v.report({
                                     resource: vjsConfig.resourceDetails[resourceIndex].uri,
-                                    scale: 1.25,
+                                    scale: 'height',
                                     container: "#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container',
                                     params: JSON.parse(params),
                                     success: function () { console.log("success") },
