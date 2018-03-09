@@ -58,7 +58,7 @@ export class CompareSBACScoresComponent implements OnInit {
 
 
         let schoolYearListItems: SchoolYear[] = [];
-        this.commonService.getSchoolYear().subscribe((result: any) => schoolYearListItems = result.data,
+        this.commonService.getSchoolYear(true).subscribe((result: any) => schoolYearListItems = result.data,
             (error: any) => { },
             () => {
                 this.schoolYearList = [];
