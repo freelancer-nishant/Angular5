@@ -18,8 +18,8 @@ export class CommonService {
 
     constructor(private http: HttpClient) { }    
     
-    getSchoolYear(): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/schoolyear';
+    getSchoolYear(isForReport?: boolean): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/schoolyear?isForReport=' + (isForReport == null ? false : isForReport);
         return this.http.get(url);
     }
     getState(): Observable<any> {
