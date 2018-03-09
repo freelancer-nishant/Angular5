@@ -15,10 +15,10 @@ declare var visualize: any;
                     <div class="ui-g-3">                        
                         <button id="btnExport" pButton type="button" label="Export"></button>
                     </div>
-                    <div class="ui-g-2">                        
+                    <div class="ui-g-2" [ngClass]="{'hide':!paging}">
                         <button id="btnNext" pButton type="button" icon="fa-caret-left" iconPos="left"></button>
                     </div>
-                    <div class="ui-g-2">                        
+                    <div class="ui-g-2" [ngClass]="{'hide':!paging}">                        
                         <button id="btnPrevious" pButton type="button" icon="fa-caret-right" iconPos="left"></button>
                     </div>
                 </div>                      
@@ -32,6 +32,9 @@ export class VJSComponent implements OnChanges {
     loadAPI: Promise<any>;
 
     @Input() params: {};
+
+    @Input() paging: boolean = false;
+    
     resourceIndex: number;
 
     exportFormats: SelectItem[];
