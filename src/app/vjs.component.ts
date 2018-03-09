@@ -54,8 +54,7 @@ export class VJSComponent implements OnChanges {
         this.exportFormats.push({ label: 'xlsx', value: 'xlsx' });
         this.exportFormats.push({ label: 'xls', value: 'xls' });
         this.exportFormats.push({ label: 'docx', value: 'docx' });
-        this.exportFormats.push({ label: 'png', value: 'png' });
-
+        
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
 
@@ -129,7 +128,7 @@ export class VJSComponent implements OnChanges {
                                 });
 
                                 $("#btnExport").click(function () {
-                                    var format = $("#drpExportFormat").attr("ng-reflect-model") == undefined ? 'pdf' : $("#drpExportFormat").attr("ng-reflect-model");
+                                    var format = ($("#drpExportFormat").attr("ng-reflect-model") == undefined ? 'pdf' : $("#drpExportFormat").attr("ng-reflect-model"));
                                     report.export({
                                         outputFormat: format,
                                     }, function (link) {
