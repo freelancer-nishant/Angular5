@@ -226,6 +226,13 @@ $secondaryColor: #5898a6;
     padding: 0 16px 16px 16px;    
 }
 
+#export-report {
+    position: absolute;
+    width: 265px;
+    right: 20px;
+    z-index: 1;    
+}
+
 @media (max-width: 1024px) {
    
 }

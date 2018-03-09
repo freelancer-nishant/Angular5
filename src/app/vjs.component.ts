@@ -1,11 +1,24 @@
 import { Component, Input, OnChanges, SimpleChanges, Attribute } from '@angular/core';
 import { VJSConfig } from './demo/service/vjsconfig.service';
+import { SelectItem } from 'primeng/primeng';
 
 declare var visualize: any;
 
 @Component({
     selector: 'vjs-component',
-    template: '<div id="{{resourceId}}"></div>',
+    template: `
+            <div id="export-report">
+                <div class="ui-g">
+                    <div class="ui-g-9 ui-sm-8 ui-md-8">
+                        <p-dropdown [options]="exportFormats" [(ngModel)]="selectedFormat" [autoWidth]="false"></p-dropdown>
+                    </div>  
+                    <div class="ui-g-3 ui-sm-4 ui-md-4">                        
+                        <button id="btn" pButton type="button" label="Export"></button>
+                    </div>
+                </div>                      
+            </div>
+            <div id="{{resourceId}}" class="vjs-container"></div>
+            `,
 })
 
 export class VJSComponent implements OnChanges {
@@ -15,12 +28,20 @@ export class VJSComponent implements OnChanges {
     @Input() params: {};
     resourceIndex: number;
 
+    exportFormats: SelectItem[];
+    selectedFormat: any;
+
     constructor( @Attribute('id') id: string, public vjsConfig: VJSConfig) {
 
         this.loadAPI = new Promise((resolve) => {
             this.loadScript();
             resolve(true);
         });
+
+        this.exportFormats = [];
+        this.exportFormats.push({ label: 'pdf', value: 'pdf' });
+        this.exportFormats.push({ label: 'xls', value: 'xls' });
+        this.exportFormats.push({ label: 'png', value: 'png' });
 
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
@@ -40,6 +61,10 @@ export class VJSComponent implements OnChanges {
     }
 
     public drawResource(vjsConfig, resourceIndex, params) {
+        
+        if (document.getElementById('export-report') != undefined)
+            document.getElementById('export-report').style.display = 'none';
+
         var waitingForVjsLoad = setInterval(function () {
             if (typeof (visualize) != 'undefined') {
                 clearInterval(waitingForVjsLoad);
@@ -59,8 +84,9 @@ export class VJSComponent implements OnChanges {
                                         <div _ngcontent-c4="" class="sk-cube sk-cube8"></div>
                                         <div _ngcontent-c4="" class="sk-cube sk-cube9"></div>
                                     </div>`
-                    document.getElementById(vjsConfig.resourceDetails[resourceIndex].id).innerHTML = '';
-                    document.getElementById(vjsConfig.resourceDetails[resourceIndex].id).appendChild(spinerDiv);
+                    let element = document.getElementById(vjsConfig.resourceDetails[resourceIndex].id);                    
+                    element.getElementsByClassName('vjs-container')[0].innerHTML = '';
+                    element.getElementsByClassName('vjs-container')[0].appendChild(spinerDiv);
                 }
 
                 visualize({
@@ -69,7 +95,7 @@ export class VJSComponent implements OnChanges {
                     function (v) {
                         switch (vjsConfig.resourceDetails[resourceIndex].type) {
                             case "report": {
-                                v("#" + vjsConfig.resourceDetails[resourceIndex].id).report({
+                                var report = v("#" + vjsConfig.resourceDetails[resourceIndex].id +' > .vjs-container').report({
                                     resource: vjsConfig.resourceDetails[resourceIndex].uri,
                                     scale: 1.25,
                                     params: JSON.parse(params),
@@ -79,18 +105,19 @@ export class VJSComponent implements OnChanges {
                                     },
                                     events: {
                                         reportCompleted: function (status) {
+                                            document.getElementById('export-report').style.display = 'block';
                                             if (status == 'ready') {
                                                 if (document.getElementById('report-spinner'))
                                                     document.getElementById('report-spinner').remove();
                                             }
                                         }
                                     }
-                                });
+                                });                                
                                 break;
                             }
 
                             case "dashboard": {
-                                v("#" + vjsConfig.resourceDetails[resourceIndex].id).dashboard({
+                                v("#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container').dashboard({
                                     resource: vjsConfig.resourceDetails[resourceIndex].uri,
                                     //params: vjsConfig.resourceDetails[resourceIndex].params,
                                     success: function () { console.log("success") },
