@@ -9,11 +9,17 @@ declare var visualize: any;
     template: `
             <div id="export-report">
                 <div class="ui-g">
-                    <div class="ui-g-9 ui-sm-8 ui-md-8">
+                    <div class="ui-g-5">
                         <p-dropdown [options]="exportFormats" [(ngModel)]="selectedFormat" [autoWidth]="false"></p-dropdown>
                     </div>  
-                    <div class="ui-g-3 ui-sm-4 ui-md-4">                        
-                        <button id="btn" pButton type="button" label="Export"></button>
+                    <div class="ui-g-3">                        
+                        <button id="btnExport" pButton type="button" label="Export"></button>
+                    </div>
+                    <div class="ui-g-2">                        
+                        <button id="btnNext" pButton type="button" icon="fa-caret-left" iconPos="left"></button>
+                    </div>
+                    <div class="ui-g-2">                        
+                        <button id="btnPrevious" pButton type="button" icon="fa-caret-right" iconPos="left"></button>
                     </div>
                 </div>                      
             </div>
