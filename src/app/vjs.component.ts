@@ -3,17 +3,19 @@ import { VJSConfig } from './demo/service/vjsconfig.service';
 import { SelectItem } from 'primeng/primeng';
 
 declare var visualize: any;
+declare var jquery: any;
+declare var $: any;
 
 @Component({
     selector: 'vjs-component',
     template: `
             <div id="export-report">
                 <div class="ui-g">
-                    <div class="ui-g-5">
+                    <div class="ui-g-5" [ngClass]="{'hide':true}">
                         <p-dropdown [options]="exportFormats" [(ngModel)]="selectedFormat" [autoWidth]="false"></p-dropdown>
                     </div>  
                     <div class="ui-g-3">                        
-                        <button id="btnExport" pButton type="button" label="Export"></button>
+                        <button id="btnExport" pButton type="button" label="Export" (click)="exportReport()"></button>
                     </div>
                     <div class="ui-g-2" [ngClass]="{'hide':!paging}">
                         <button id="btnNext" pButton type="button" icon="fa-caret-left" iconPos="left"></button>
@@ -36,7 +38,6 @@ export class VJSComponent implements OnChanges {
     @Input() paging: boolean = false;
     
     resourceIndex: number;
-
     exportFormats: SelectItem[];
     selectedFormat: any;
 
@@ -49,7 +50,9 @@ export class VJSComponent implements OnChanges {
 
         this.exportFormats = [];
         this.exportFormats.push({ label: 'pdf', value: 'pdf' });
+        this.exportFormats.push({ label: 'xlsx', value: 'xlsx' });
         this.exportFormats.push({ label: 'xls', value: 'xls' });
+        this.exportFormats.push({ label: 'docx', value: 'docx' });
         this.exportFormats.push({ label: 'png', value: 'png' });
 
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
@@ -104,9 +107,10 @@ export class VJSComponent implements OnChanges {
                     function (v) {
                         switch (vjsConfig.resourceDetails[resourceIndex].type) {
                             case "report": {
-                                var report = v("#" + vjsConfig.resourceDetails[resourceIndex].id +' > .vjs-container').report({
+                                var report = v.report({
                                     resource: vjsConfig.resourceDetails[resourceIndex].uri,
                                     scale: 1.25,
+                                    container: "#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container',
                                     params: JSON.parse(params),
                                     success: function () { console.log("success") },
                                     error: function (err) {
@@ -121,7 +125,36 @@ export class VJSComponent implements OnChanges {
                                             }
                                         }
                                     }
-                                });                                
+                                });
+
+                                $("#btnExport").click(function () {
+                                    report.export({
+                                        outputFormat: 'pdf',
+                                    }, function (link) {
+                                        var url = link.href ? link.href : link;
+                                        window.location.href = url;
+                                    }, function (error) {
+                                        console.log(error)
+                                    });
+                                });
+
+                                $("#btnPrevious").click(function () {
+                                    var currentPage = report.pages() || 1;
+                                    report
+                                        .pages(--currentPage)
+                                        .run()
+                                        .fail(function (err) { alert(err); });
+                                });
+
+                                $("#btnNext").click(function () {
+                                    var currentPage = report.pages() || 1;
+
+                                    report
+                                        .pages(++currentPage)
+                                        .run()
+                                        .fail(function (err) { alert(err); });
+                                }); 
+
                                 break;
                             }
 
@@ -148,6 +181,17 @@ export class VJSComponent implements OnChanges {
         }, 100);
 
     };
+
+    //public exportReport() {
+    //    this.report.export({
+    //        outputFormat: this.selectedFormat,
+    //    }, function (link) {
+    //        var url = link.href ? link.href : link;
+    //        window.location.href = url;
+    //    }, function (error) {
+    //        console.log(error)
+    //    });
+    //}
 
     private getObjectIndex(object: any, id: any): number {
         return object.map(function (x) { return x.id; }).indexOf(id);

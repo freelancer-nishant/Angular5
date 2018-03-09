@@ -4,5 +4,6 @@ export interface School {
     name,
     abbrev,
     label,
-    abbrev_ps
+    abbrev_ps,
+    state_school_code
 }

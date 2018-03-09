@@ -7,8 +7,8 @@
             <div class="card card-w-title filter-pan">
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
-                        <label class="control-label" for="selectedComparative">Select a List</label>
-                        <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false"></p-dropdown>
+                        <label class="control-label" for="selectedComparative">Select a School</label>
+                        <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
                         <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
@@ -24,7 +24,7 @@
     </div>
     <div class="ui-g-12">
         <div class="card card-w-title">
-            <vjs-component class="resource" id="school-scorecard" [(params)]="parameters" paging="true"></vjs-component>
+            <vjs-component class="resource" id="school-scorecard" [(params)]="parameters" paging="false"></vjs-component>
         </div>
 
     </div>
