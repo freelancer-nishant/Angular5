@@ -63,6 +63,11 @@ export class VJSConfig {
             id: "sabc-scorecard",
             type: "report",
             uri: "/CF/Reports/Comparative_Schools_SBAC_results_report"
+        },
+        {
+            id: "comparare-school-scorecard",
+            type: "report",
+            uri: "/CF/Reports/School_Card_Report"
         }
     ];
 

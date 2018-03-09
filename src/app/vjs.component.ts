@@ -11,11 +11,11 @@ declare var $: any;
     template: `
             <div id="export-report">
                 <div class="ui-g">
-                    <div class="ui-g-5" [ngClass]="{'hide':true}">
-                        <p-dropdown [options]="exportFormats" [(ngModel)]="selectedFormat" [autoWidth]="false"></p-dropdown>
+                    <div class="ui-g-6">
+                        <p-dropdown id="drpExportFormat" [options]="exportFormats" [(ngModel)]="selectedFormat" [autoWidth]="false"></p-dropdown>
                     </div>  
-                    <div class="ui-g-3">                        
-                        <button id="btnExport" pButton type="button" label="Export" (click)="exportReport()"></button>
+                    <div class="ui-g-2">                        
+                        <button id="btnExport" pButton type="button" icon="fa-download"></button>
                     </div>
                     <div class="ui-g-2" [ngClass]="{'hide':!paging}">
                         <button id="btnNext" pButton type="button" icon="fa-caret-left" iconPos="left"></button>
@@ -129,7 +129,7 @@ export class VJSComponent implements OnChanges {
 
                                 $("#btnExport").click(function () {
                                     report.export({
-                                        outputFormat: 'pdf',
+                                        outputFormat: $("#drpExportFormat").attr("ng-reflect-model"),
                                     }, function (link) {
                                         var url = link.href ? link.href : link;
                                         window.location.href = url;
