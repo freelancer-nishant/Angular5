@@ -49,6 +49,7 @@ export class VJSComponent implements OnChanges {
         });
 
         this.exportFormats = [];
+        this.exportFormats.push({ label: 'Select', value: '' });
         this.exportFormats.push({ label: 'pdf', value: 'pdf' });
         this.exportFormats.push({ label: 'xlsx', value: 'xlsx' });
         this.exportFormats.push({ label: 'xls', value: 'xls' });
@@ -128,8 +129,9 @@ export class VJSComponent implements OnChanges {
                                 });
 
                                 $("#btnExport").click(function () {
+                                    var format = $("#drpExportFormat").attr("ng-reflect-model") == undefined ? 'pdf' : $("#drpExportFormat").attr("ng-reflect-model");
                                     report.export({
-                                        outputFormat: $("#drpExportFormat").attr("ng-reflect-model"),
+                                        outputFormat: format,
                                     }, function (link) {
                                         var url = link.href ? link.href : link;
                                         window.location.href = url;
