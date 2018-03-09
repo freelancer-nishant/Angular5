@@ -3,30 +3,34 @@
 
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
-        <div class="card card-w-title filter-pan">
-            <div class="ui-g form-group">
-                <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
-                    <label class="control-label" for="selectedComparative">Select a List</label>
-                    <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false"></p-dropdown>
-                </div>
-                <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
-                    <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
-                    <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false"></p-dropdown>
-                </div>
-                <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1">
-                    <label class="control-label">&nbsp;</label>
-                    <button pButton type="button" label="Go" (click)="submit()"></button>
-                </div>
-                <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1 text-center">
-                    <label class="control-label">&nbsp;</label>
-                    <label class="control-label">-- Or --</label>
-                </div>
-                <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-2">
-                    <label class="control-label">&nbsp;</label>
-                    <button type="button" label="Select Schools" (click)="dialogVisible=true" pButton></button>
+        <p-panel header="" [toggleable]="true">
+            <div class="card card-w-title filter-pan">
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
+                        <label class="control-label" for="selectedComparative">Select a List</label>
+                        <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false"></p-dropdown>
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
+                        <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
+                        <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false"></p-dropdown>
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1">
+                        <label class="control-label">&nbsp;</label>
+                        <button pButton type="button" label="Go" (click)="submit()"></button>
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1 text-center">
+                        <label class="control-label">&nbsp;</label>
+                        <label class="control-label">-- Or --</label>
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-2">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="button" label="Select Schools" (click)="dialogVisible=true" pButton></button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </p-panel>
+    </div>
+    <div class="ui-g-12">
         <div class="card card-w-title">
             <vjs-component class="resource" id="sabc-scorecard" [(params)]="parameters"></vjs-component>
         </div>
@@ -52,7 +56,7 @@
                     <label for="input">State :</label>
                 </div>
                 <div class="ui-g-12 ui-md-9">
-                    <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="schoolChange($event)" [autoWidth]="false"></p-dropdown>
+                    <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="stateChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-3">
                     <label for="input">County :</label>
@@ -87,13 +91,45 @@
                 <div class="ui-g-12 ui-md-offset-5 ui-md-2">
                     <button pButton type="button" label="Add To List" (click)="addToList()"></button>
                 </div>
+                <div class="ui-g-12 text-center">
+                    <h3>List of Schools</h3>
+                </div>
                 <div class="ui-g-12 ui-md-12">
-                    <p-dataTable [value]="SchoolForScorecards.selectedschools">
-                        <p-header>List of Schools</p-header>
-                        <p-column field="school_label" header="School" sortable="true"></p-column>
-                        <p-column field="alias" header="Display Label" sortable="false"></p-column>
-                        <p-column field="target_flag" header="Highlight in List" sortable="false"></p-column>
-                    </p-dataTable>
+                    <p-dataGrid [value]="SchoolForScorecards.selectedschools" [paginator]="true" [rows]="10" [immutable]="false">
+                        <p-header class="form-group">
+                            <div class="ui-g">
+                                <div class="ui-g-4 ui-md-4">
+                                    <label>School</label>
+                                </div>
+                                <div class="ui-g-4 ui-md-4">
+                                    <label>Display Label</label>
+                                </div>
+                                <div class="ui-g-2 ui-md-2">
+                                    <label>Highlight in List</label>
+                                </div>
+                                <div class="ui-g-2 ui-md-2">
+                                    <label>&nbsp;</label>
+                                </div>
+                            </div>
+                        </p-header>
+                        <ng-template let-school pTemplate="item">
+                            <div class="ui-g-12 ui-md-12">
+                                <div class="ui-g-4 ui-md-4">
+                                    <label>{{school.school_label}}</label>
+                                </div>
+                                <div class="ui-g-4 ui-md-4">
+                                    <input id="input" type="text" pInputText [(ngModel)]="school.alias" />
+                                </div>
+                                <div class="ui-g-2 ui-md-2">
+                                    <input id="input" type="checkbox" value="{{1}}" [(ngModel)]="school.target_flag" />
+                                    <!--<p-checkbox value="{{1}}" [(ngModel)]="school.target_flag"></p-checkbox>-->
+                                </div>
+                                <div class="ui-g-2 ui-md-2">
+                                    <button type="button" label="Delete" icon="fa-trash" (click)="deleteSchool(school.id)" pButton></button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-dataGrid>
                 </div>
             </div>
 
