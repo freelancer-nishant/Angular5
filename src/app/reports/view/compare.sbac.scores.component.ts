@@ -95,8 +95,8 @@ export class CompareSBACScoresComponent implements OnInit {
                 this.countyList = [];
                 this.countyList.push({ label: 'Select County', value: 0 })
                 stateResult.map(o => { this.countyList.push({ label: o.label, value: o.id }); });
-                //this.newSchool.county = 1;
-                //this.countyChange(e);
+                this.newSchool.county = 1;
+                this.countyChange(e);
             });
     }
     countyChange(e) {
@@ -107,8 +107,8 @@ export class CompareSBACScoresComponent implements OnInit {
                 this.districtList = [];
                 this.districtList.push({ label: 'Select District', value: 0 })
                 stateResult.map(o => { this.districtList.push({ label: o.label, value: o.id }); });
-                //this.newSchool.district = 1;
-                //this.districtChange(e);
+                this.newSchool.district = 1;
+                this.districtChange(e);
             });
     }
     districtChange(e) {

@@ -1,9 +1,9 @@
-
-<h1 class="page-title"><i class="material-icons">spellcheck</i> Compare School Scorecards</h1>
-
 <div class="ui-g ui-fluid">
     <div class="ui-g-12">
-        <p-panel header="" [toggleable]="true">
+        <p-panel [toggleable]="true">
+            <p-header>
+                <i class="material-icons">spellcheck</i> Compare School Scorecards
+            </p-header>
             <div class="card card-w-title filter-pan">
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
@@ -36,78 +36,78 @@
         </div>
 
         <p-dialog header="Make a List" [resizable]="false" responsive="true" [(visible)]="dialogVisible" modal="true">
-            <div class="ui-g form-group" style="margin-bottom: 16px;">
-                <div class="ui-g-12 ui-md-3">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-2">
                     <label for="input">List Name :</label>
                 </div>
-                <div class="ui-g-12 ui-md-9">
+                <div class="ui-g-12 ui-md-4">
                     <input id="input" type="text" pInputText [(ngModel)]="SchoolForScorecards.schoollabel" />
                 </div>
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <label for="input">School Year :</label>
                 </div>
-                <div class="ui-g-12 ui-md-9">
+                <div class="ui-g-12 ui-md-4">
                     <p-dropdown [options]="schoolYearList" [(ngModel)]="SchoolForScorecards.schoolyear" [autoWidth]="false"></p-dropdown>
                 </div>
                 <div class="ui-g-12">
-                    <h3>Add School To List</h3>
+                    <h3 class="header">Add School To List</h3>
                 </div>
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <label for="input">State :</label>
                 </div>
-                <div class="ui-g-12 ui-md-9">
+                <div class="ui-g-12 ui-md-4">
                     <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="stateChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <label for="input">County :</label>
                 </div>
-                <div class="ui-g-12 ui-md-9">
+                <div class="ui-g-12 ui-md-4">
                     <p-dropdown [options]="countyList" [(ngModel)]="newSchool.county" (onChange)="countyChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <label for="input">School Distinct :</label>
                 </div>
-                <div class="ui-g-12 ui-md-9">
+                <div class="ui-g-12 ui-md-4">
                     <p-dropdown [options]="districtList" [(ngModel)]="newSchool.district" (onChange)="districtChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <label for="input">City :</label>
                 </div>
-                <div class="ui-g-12 ui-md-9">
+                <div class="ui-g-12 ui-md-4">
                     <p-dropdown [options]="cityList" [(ngModel)]="newSchool.city" (onChange)="schooltypeChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <label for="input">School Type :</label>
                 </div>
-                <div class="ui-g-12 ui-md-9">
+                <div class="ui-g-12 ui-md-4">
                     <p-dropdown [options]="schooltypeList" [(ngModel)]="newSchool.schooltype" (onChange)="schooltypeChange($event)" [autoWidth]="false"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-3">
+                <div class="ui-g-12 ui-md-2">
                     <label for="input">School :</label>
                 </div>
-                <div class="ui-g-12 ui-md-9">
+                <div class="ui-g-12 ui-md-4">
                     <p-dropdown [options]="schoolList" [(ngModel)]="newSchool.school" [autoWidth]="false"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-offset-5 ui-md-2">
                     <button pButton type="button" label="Add To List" (click)="addToList()"></button>
                 </div>
                 <div class="ui-g-12 text-center">
-                    <h3>List of Schools</h3>
+                    <h3 class="header">List of Schools</h3>
                 </div>
                 <div class="ui-g-12 ui-md-12">
-                    <p-dataGrid [value]="SchoolForScorecards.selectedschools" [paginator]="true" [rows]="10" [immutable]="false">
+                    <p-dataGrid [value]="SchoolForScorecards.selectedschools" [immutable]="false" styleClass="scroll-grid">
                         <p-header class="form-group">
                             <div class="ui-g">
                                 <div class="ui-g-4 ui-md-4">
                                     <label>School</label>
                                 </div>
-                                <div class="ui-g-4 ui-md-4">
+                                <div class="ui-g-5 ui-md-5">
                                     <label>Display Label</label>
                                 </div>
                                 <div class="ui-g-2 ui-md-2">
                                     <label>Highlight in List</label>
                                 </div>
-                                <div class="ui-g-2 ui-md-2">
+                                <div class="ui-g-1 ui-md-1">
                                     <label>&nbsp;</label>
                                 </div>
                             </div>
@@ -117,15 +117,15 @@
                                 <div class="ui-g-4 ui-md-4">
                                     <label>{{school.school_label}}</label>
                                 </div>
-                                <div class="ui-g-4 ui-md-4">
+                                <div class="ui-g-5 ui-md-5">
                                     <input id="input" type="text" pInputText [(ngModel)]="school.alias" />
                                 </div>
-                                <div class="ui-g-2 ui-md-2">
+                                <div class="ui-g-2 ui-md-2 text-center">
                                     <!--<input id="input" type="checkbox" value="{{1}}" [(ngModel)]="school.target_flag" />-->
                                     <p-checkbox value="{{1}}" binary="true" [(ngModel)]="school.target_flag"></p-checkbox>
                                 </div>
-                                <div class="ui-g-2 ui-md-2">
-                                    <button type="button" label="Delete" icon="fa-trash" (click)="deleteSchool(school.id)" pButton></button>
+                                <div class="ui-g-1 ui-md-1">
+                                    <button type="button" icon="fa-trash" (click)="deleteSchool(school.id)" pButton></button>
                                 </div>
                             </div>
                         </ng-template>

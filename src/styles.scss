@@ -223,7 +223,27 @@ $secondaryColor: #5898a6;
 }
 
 .card.card-w-title {
-    padding: 0 16px 16px 16px;    
+    padding: 0 16px 16px 16px;
+}
+
+.ui-widget-content .ui-g-1,
+.ui-widget-content .ui-g-2,
+.ui-widget-content .ui-g-3,
+.ui-widget-content .ui-g-4,
+.ui-widget-content .ui-g-5,
+.ui-widget-content .ui-g-6,
+.ui-widget-content .ui-g-7,
+.ui-widget-content .ui-g-8,
+.ui-widget-content .ui-g-9,
+.ui-widget-content .ui-g-10,
+.ui-widget-content .ui-g-11,
+.ui-widget-content .ui-g-12 {
+    padding: .3em;
+}
+
+.scroll-grid .ui-datagrid-content {
+    max-height: 200px;
+    overflow: auto;
 }
 
 #export-report {
@@ -233,12 +253,48 @@ $secondaryColor: #5898a6;
     z-index: 1;
 
     .ui-dropdown {
-        min-width:initial;
+        min-width: initial;
     }
 }
 
+.ui-widget-overlay {
+    background: none !important;
+    background-color: #424242 !important;
+    opacity: 0.7 !important;
+}
+
+.vjs-container {
+    /*height: 100vh;
+    width:100vh;*/
+}
 
 @media (max-width: 1024px) {
+}
+
+@media (min-width: 678px) {
+    body .ui-dialog {
+        width: 50% !important;
+        left: 25% !important;
+    }
+
+    .ui-widget-content .ui-md-1,
+    .ui-widget-content .ui-md-2,
+    .ui-widget-content .ui-md-3,
+    .ui-widget-content .ui-md-4,
+    .ui-widget-content .ui-md-5,
+    .ui-widget-content .ui-md-6,
+    .ui-widget-content .ui-md-7,
+    .ui-widget-content .ui-md-8,
+    .ui-widget-content .ui-md-9,
+    .ui-widget-content .ui-md-10,
+    .ui-widget-content .ui-md-11,
+    .ui-widget-content .ui-md-12 {
+        padding: 0.4em;
+    }
+
+    .ui-widget-content h3.header {
+        margin: 10px;
+    }
 }
 
 @media only screen and (max-device-width : 768px) {
@@ -255,19 +311,4 @@ $secondaryColor: #5898a6;
     .dashboard-card .icon-wrapper {
         height: 70px;
     }
-}
-@media (min-width: 678px) {
-    body .ui-dialog {
-        width: 50% !important;
-        left: 25% !important;
-    }
-}
-.ui-widget-overlay {
-    background: none !important;
-    background-color: #424242 !important;
-    opacity: 0.7 !important;
-}
-.vjs-container {
-    /*height: 100vh;
-    width:100vh;*/
 }

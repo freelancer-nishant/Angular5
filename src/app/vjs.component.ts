@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, Attribute } from '@angular/core';
 import { VJSConfig } from './demo/service/vjsconfig.service';
-import { SelectItem } from 'primeng/primeng';
+import { MenuItem } from 'primeng/primeng';
 
 declare var visualize: any;
 declare var jquery: any;
@@ -12,11 +12,9 @@ declare var $: any;
             <div id="export-report">
                 <div class="ui-g">
                     <div class="ui-g-6">
-                        <p-dropdown id="drpExportFormat" [options]="exportFormats" [(ngModel)]="selectedFormat" [autoWidth]="false"></p-dropdown>
+                        <p-splitButton label="Export" icon="fa-download" id= "btnExport" [model]="exportFormats"></p-splitButton>
                     </div>  
-                    <div class="ui-g-2">                        
-                        <button id="btnExport" pButton type="button" icon="fa-download"></button>
-                    </div>
+
                     <div class="ui-g-2" [ngClass]="{'hide':!paging}">
                         <button id="btnNext" pButton type="button" icon="fa-caret-left" iconPos="left"></button>
                     </div>
@@ -36,9 +34,9 @@ export class VJSComponent implements OnChanges {
     @Input() params: {};
 
     @Input() paging: boolean = false;
-    
+
     resourceIndex: number;
-    exportFormats: SelectItem[];
+    exportFormats: MenuItem[];
     selectedFormat: any;
 
     constructor( @Attribute('id') id: string, public vjsConfig: VJSConfig) {
@@ -49,12 +47,11 @@ export class VJSComponent implements OnChanges {
         });
 
         this.exportFormats = [];
-        this.exportFormats.push({ label: 'Select', value: '' });
-        this.exportFormats.push({ label: 'pdf', value: 'pdf' });
-        this.exportFormats.push({ label: 'xlsx', value: 'xlsx' });
-        this.exportFormats.push({ label: 'xls', value: 'xls' });
-        this.exportFormats.push({ label: 'docx', value: 'docx' });
-        
+        this.exportFormats.push({ label: 'pdf', icon: 'fa-file-pdf-o' });
+        this.exportFormats.push({ label: 'xlsx', icon: 'fa-file-excel-o' });
+        this.exportFormats.push({ label: 'xls', icon: 'fa-file-excel-o' });
+        this.exportFormats.push({ label: 'docx', icon: 'fa-file-word-o' });
+
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
 
@@ -73,7 +70,7 @@ export class VJSComponent implements OnChanges {
     }
 
     public drawResource(vjsConfig, resourceIndex, params) {
-        
+
         if (document.getElementById('export-report') != undefined)
             document.getElementById('export-report').style.display = 'none';
 
@@ -96,7 +93,7 @@ export class VJSComponent implements OnChanges {
                                         <div _ngcontent-c4="" class="sk-cube sk-cube8"></div>
                                         <div _ngcontent-c4="" class="sk-cube sk-cube9"></div>
                                     </div>`
-                    let element = document.getElementById(vjsConfig.resourceDetails[resourceIndex].id);                    
+                    let element = document.getElementById(vjsConfig.resourceDetails[resourceIndex].id);
                     element.getElementsByClassName('vjs-container')[0].innerHTML = '';
                     element.getElementsByClassName('vjs-container')[0].appendChild(spinerDiv);
                 }
@@ -127,8 +124,8 @@ export class VJSComponent implements OnChanges {
                                     }
                                 });
 
-                                $("#btnExport").click(function () {
-                                    var format = ($("#drpExportFormat").attr("ng-reflect-model") == undefined ? 'pdf' : $("#drpExportFormat").attr("ng-reflect-model"));
+                                $("#btnExport li").click(function () {
+                                    var format = ($(this).find("span").text() == undefined ? 'pdf' : $(this).find("span").text());
                                     report.export({
                                         outputFormat: format,
                                     }, function (link) {
@@ -154,7 +151,7 @@ export class VJSComponent implements OnChanges {
                                         .pages(++currentPage)
                                         .run()
                                         .fail(function (err) { alert(err); });
-                                }); 
+                                });
 
                                 break;
                             }
