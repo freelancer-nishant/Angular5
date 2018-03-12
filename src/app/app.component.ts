@@ -64,22 +64,27 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     access_token: string;
 
     activeCategoryDropdown: boolean = false;
-    
+
     leftMenuToggleButtonActive: boolean = true;
 
     LeftMenuItems: any[] = [];
 
     pageProfile: any = {}
     isClientPage: boolean = false;
-    
+
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
 
-    constructor(public renderer: Renderer, private router: Router, private auth: AuthService) { }
+    constructor(public renderer: Renderer, private router: Router, private auth: AuthService) {
+
+        if (this.isClientPage || localStorage.getItem('isClientPage') == "true") {
+            this.isClientPage = true;
+        }
+    }
 
     ngAfterViewInit() {
-        this.layoutMenuScroller = <HTMLDivElement>this.layoutMenuScrollerViewChild.nativeElement;        
+        this.layoutMenuScroller = <HTMLDivElement>this.layoutMenuScrollerViewChild.nativeElement;
         setTimeout(() => {
             if (!this.issinglepage) { jQuery(this.layoutMenuScroller).nanoScroller({ flash: true }) };
         }, 500);
@@ -89,14 +94,15 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.access_token = loginResult.access_token;
 
         localStorage.setItem("token", loginResult.access_token);
-        
+
         this.isLoggedIn = true;
-        this.issinglepage = false;        
+        this.issinglepage = false;
         this.router.navigate(['']);
-        
+
     }
     doLogout() {
         localStorage.removeItem('token');
+        localStorage.removeItem('isClientPage');
         this.access_token = "";
 
         this.isLoggedIn = false;
@@ -108,7 +114,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         return this.auth.decodeToken();
     }
     hasAccess(roles: string): boolean {
-        try {            
+        try {
             let access = false;
             let tokenPayload: any = this.auth.decodeToken();
             if (tokenPayload != undefined && tokenPayload != null) {
@@ -138,17 +144,17 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         //    return false;
         //}
 
-        if (this.isClientPage)
+        if (this.isClientPage || localStorage.getItem('isClientPage') == "true")
             return false;
 
         return true;
     }
-    
+
     displayLeftMenu(visible: boolean) {
         this.staticMenuDesktopInactive = !visible;
         this.staticMenuMobileActive = visible;
         this.leftMenuToggleButtonActive = visible;
-        this.rotateMenuButton = !visible;        
+        this.rotateMenuButton = !visible;
         setTimeout(() => {
             jQuery('.nano').nanoScroller();
         }, 500);
@@ -202,7 +208,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     onMenuClick($event) {
         this.menuClick = true;
-        this.resetMenu = false;        
+        this.resetMenu = false;
         if (!this.isHorizontal()) {
             setTimeout(() => {
                 jQuery(this.layoutMenuScroller).nanoScroller();
