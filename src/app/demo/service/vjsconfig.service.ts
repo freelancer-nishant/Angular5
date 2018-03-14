@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MenuItem } from 'primeng/primeng';
 
 @Injectable()
 export class VJSConfig {
@@ -71,4 +72,13 @@ export class VJSConfig {
         }
     ];
 
+    exportFormats: MenuItem[] = [{
+        icon: 'fa-download',
+        items: [
+            { label: 'pdf', icon: 'fa-file-pdf-o' },
+            { label: 'xlsx', icon: 'fa-file-excel-o' },
+            { label: 'xls', icon: 'fa-file-excel-o' },
+            { label: 'docx', icon: 'fa-file-word-o' }
+        ]
+    }];
 };

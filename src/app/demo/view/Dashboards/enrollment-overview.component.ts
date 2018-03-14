@@ -8,6 +8,8 @@ import { SchoolGradeService } from './../../service/school.grade.service';
 import { School } from './../../domain/school';
 import { SchoolSchoolYear } from './../../domain/school.schoolyear';
 import { SchoolGrade } from './../../domain/school.schoolgrade'
+import { MenuItem } from 'primeng/primeng';
+import { VJSConfig } from './../../service/vjsconfig.service';
 
 @Component({
     templateUrl: './enrollment-overview.component.html'   
@@ -26,12 +28,16 @@ export class EnrollmentOverviewComponent implements OnInit {
     grade: SelectItem[];
     selectedGrades: any[] = [];
     parameters: {};
+    exportFormats: MenuItem[];
     
-    constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService, private schoolGradeService: SchoolGradeService ) {
+    constructor(public app: AppComponent, private schoolService: SchoolService, private schoolYearService: SchoolYearService, private schoolGradeService: SchoolGradeService, private vjs:VJSConfig ) {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
         app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.StudentInformation);
         app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentInformation);
+
+
+        this.exportFormats = vjs.exportFormats;
 
         this.sessionInfo = this.app.getSession();        
     }

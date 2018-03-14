@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges, Attribute } from '@angular/core';
 import { VJSConfig } from './demo/service/vjsconfig.service';
-import { MenuItem } from 'primeng/primeng';
 
 declare var visualize: any;
 declare var jquery: any;
@@ -10,20 +9,6 @@ declare var $: any;
 @Component({
     selector: 'vjs-component',
     template: `
-            <div id="export-report">
-                <div class="ui-g">
-                    <div class="ui-g-2">
-                        <p-menubar autoDisplay="false" [model]="exportFormats" id= "btnExport" ></p-menubar>
-                    </div>  
-
-                    <div class="ui-g-2" [ngClass]="{'hide':!paging}">
-                        <button id="btnNext" pButton type="button" icon="fa-caret-left" iconPos="left"></button>
-                    </div>
-                    <div class="ui-g-2" [ngClass]="{'hide':!paging}">                        
-                        <button id="btnPrevious" pButton type="button" icon="fa-caret-right" iconPos="left"></button>
-                    </div>
-                </div>                      
-            </div>
             <div id="{{resourceId}}" class="vjs-container"></div>
             <div style="display: none;" id="exportContainer"></div>
             `,
@@ -38,7 +23,6 @@ export class VJSComponent implements OnChanges {
     @Input() paging: boolean = false;
 
     resourceIndex: number;
-    exportFormats: MenuItem[];
     selectedFormat: any;
 
     constructor( @Attribute('id') id: string, public vjsConfig: VJSConfig) {
@@ -47,20 +31,6 @@ export class VJSComponent implements OnChanges {
             this.loadScript();
             resolve(true);
         });
-
-        this.exportFormats = [{
-            icon: 'fa-download',
-            items: [
-                { label: 'pdf', icon: 'fa-file-pdf-o' },
-                { label: 'xlsx', icon: 'fa-file-excel-o' },
-                { label: 'xls', icon: 'fa-file-excel-o' },
-                { label: 'docx', icon: 'fa-file-word-o' }
-            ]
-        }];
-        //this.exportFormats.push({ label: 'pdf', icon: 'fa-file-pdf-o' });
-        //this.exportFormats.push({ label: 'xlsx', icon: 'fa-file-excel-o' });
-        //this.exportFormats.push({ label: 'xls', icon: 'fa-file-excel-o' });
-        //this.exportFormats.push({ label: 'docx', icon: 'fa-file-word-o' });
 
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
