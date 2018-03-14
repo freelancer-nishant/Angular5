@@ -24,6 +24,7 @@ declare var $: any;
                 </div>                      
             </div>
             <div id="{{resourceId}}" class="vjs-container"></div>
+            <div style="display: none;" id="exportContainer"></div>
             `,
 })
 
@@ -106,7 +107,7 @@ export class VJSComponent implements OnChanges {
                             case "report": {
                                 var report = v.report({
                                     resource: vjsConfig.resourceDetails[resourceIndex].uri,
-                                    scale: 1.5,
+                                    scale: 'width',
                                     container: "#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container',
                                     params: JSON.parse(params),
                                     success: function () { console.log("success") },
@@ -124,16 +125,35 @@ export class VJSComponent implements OnChanges {
                                     }
                                 });
 
+                                var exportTo = v.report({
+                                    resource: vjsConfig.resourceDetails[resourceIndex].uri,
+                                    container: "#exportContainer",
+                                    runImmediately: false,
+                                    /* this is added because we do not want to add run this. */
+                                    success: function () { console.log("success"); },
+                                    error: function (err) { alert("Report draw failed: " + err); }
+                                });
+
                                 $("#btnExport li").click(function () {
                                     var format = ($(this).find("span").text() == undefined ? 'pdf' : $(this).find("span").text());
-                                    report.export({
-                                        outputFormat: format,
-                                    }, function (link) {
-                                        var url = link.href ? link.href : link;
-                                        window.location.href = url;
-                                    }, function (error) {
-                                        console.log(error)
-                                    });
+                                    // add Stop_Transition function.     
+                                    var convertJSON = JSON.parse(params);
+
+                                    convertJSON.Stop_Transition = ["Yes"];
+
+                                    exportTo.params(convertJSON)
+
+                                        .run()
+                                        .done(function (link) {
+                                            exportTo.export({
+                                                outputFormat: format,
+                                            }, function (link) {
+                                                var url = link.href ? link.href : link;
+                                                window.location.href = url;
+                                            }, function (error) {
+                                                console.log(error)
+                                            })
+                                        });
                                 });
 
                                 $("#btnPrevious").click(function () {
@@ -179,17 +199,6 @@ export class VJSComponent implements OnChanges {
         }, 100);
 
     };
-
-    //public exportReport() {
-    //    this.report.export({
-    //        outputFormat: this.selectedFormat,
-    //    }, function (link) {
-    //        var url = link.href ? link.href : link;
-    //        window.location.href = url;
-    //    }, function (error) {
-    //        console.log(error)
-    //    });
-    //}
 
     private getObjectIndex(object: any, id: any): number {
         return object.map(function (x) { return x.id; }).indexOf(id);
