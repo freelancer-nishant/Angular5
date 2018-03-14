@@ -48,7 +48,7 @@ $secondaryColor: #5898a6;
 }
 
 .top-sub-menu-active.layout-wrapper .layout-main {
-    padding: 110px 15px 15px 15px;
+    padding: 95px 15px 15px 15px;
 }
 
 .top-sub-menu-active.layout-wrapper.menu-layout-horizontal .layout-main {
@@ -255,6 +255,19 @@ $secondaryColor: #5898a6;
     .ui-dropdown {
         min-width: initial;
     }
+
+    .ui-submenu-icon {
+        display: none;
+    }
+
+    .ui-splitbutton .ui-button {
+        border-radius: 4px;
+        width: 100% !important;
+    }
+
+    .ui-menuitem-link {
+        padding: 5px;
+    }
 }
 
 .ui-widget-overlay {
@@ -273,6 +286,19 @@ $secondaryColor: #5898a6;
     margin: 0;
     font-size: 35px;
 }
+
+.show_chartTypeSelector_wrapper {
+    display: none;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+body .ui-datagrid .ui-datagrid-header {
+    padding:0px;
+}
+
 @media (max-width: 1024px) {
 }
 
@@ -298,7 +324,7 @@ $secondaryColor: #5898a6;
     }
 
     .ui-widget-content h3.header {
-        margin: 10px;
+        margin: 0px;
     }
 }
 

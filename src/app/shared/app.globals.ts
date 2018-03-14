@@ -189,8 +189,8 @@ export class GlobalHelper {
                     {
                         label: 'Comparison Schools', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Compare SBAC Scores', icon: '', routerLink: ['/comparison-schools/sbac-scores'] },
-                            { label: 'Compare School Scorecards', icon: '', routerLink: ['/comparison-schools/school-scorecards'] },
+                            { label: 'Compare SBAC Scores', icon: 'fa fa-fw fa-columns', routerLink: ['/comparison-schools/sbac-scores'] },
+                            { label: 'Compare School Scorecards', icon: 'fa fa-fw fa-columns', routerLink: ['/comparison-schools/school-scorecards'] },
                         ]
                     }
                 ];

@@ -179,7 +179,11 @@ export class CompareSBACScoresComponent implements OnInit {
         this.SchoolForScorecards.selectedschools.splice(index, 1);
     }
     runReport() {
-        if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined) {
+        if (this.SchoolForScorecards.selectedschools.length <= 1) {
+            alert('Please select atleast two or more school.')
+            return;
+        }
+        if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined && this.SchoolForScorecards.selectedschools.length>0) {
             this.dialogVisible = false;
             this.SchoolForScorecards.selectedschools.forEach(function (value, index) {
                 value.target_flag = value.target_flag==true ? 1 : 0;
@@ -191,6 +195,7 @@ export class CompareSBACScoresComponent implements OnInit {
                 "test_id2": ['2'],
                 "comparative_list_label": [this.SchoolForScorecards.schoollabel]
             });
+            this.SchoolForScorecards = new SchoolListModel();
         }
         else {
             alert('Please enter school label or select school year first.')
