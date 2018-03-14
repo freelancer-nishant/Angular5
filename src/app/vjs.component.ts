@@ -5,14 +5,15 @@ import { MenuItem } from 'primeng/primeng';
 declare var visualize: any;
 declare var jquery: any;
 declare var $: any;
+//<p-splitButton icon= "fa-download" id= "btnExport"[model] = "exportFormats" > </p-splitButton>
 
 @Component({
     selector: 'vjs-component',
     template: `
             <div id="export-report">
                 <div class="ui-g">
-                    <div class="ui-g-6">
-                        <p-splitButton label="Export" icon="fa-download" id= "btnExport" [model]="exportFormats"></p-splitButton>
+                    <div class="ui-g-2">
+                        <p-menubar autoDisplay="false" [model]="exportFormats" id= "btnExport" ></p-menubar>
                     </div>  
 
                     <div class="ui-g-2" [ngClass]="{'hide':!paging}">
@@ -47,11 +48,19 @@ export class VJSComponent implements OnChanges {
             resolve(true);
         });
 
-        this.exportFormats = [];
-        this.exportFormats.push({ label: 'pdf', icon: 'fa-file-pdf-o' });
-        this.exportFormats.push({ label: 'xlsx', icon: 'fa-file-excel-o' });
-        this.exportFormats.push({ label: 'xls', icon: 'fa-file-excel-o' });
-        this.exportFormats.push({ label: 'docx', icon: 'fa-file-word-o' });
+        this.exportFormats = [{
+            icon: 'fa-download',
+            items: [
+                { label: 'pdf', icon: 'fa-file-pdf-o' },
+                { label: 'xlsx', icon: 'fa-file-excel-o' },
+                { label: 'xls', icon: 'fa-file-excel-o' },
+                { label: 'docx', icon: 'fa-file-word-o' }
+            ]
+        }];
+        //this.exportFormats.push({ label: 'pdf', icon: 'fa-file-pdf-o' });
+        //this.exportFormats.push({ label: 'xlsx', icon: 'fa-file-excel-o' });
+        //this.exportFormats.push({ label: 'xls', icon: 'fa-file-excel-o' });
+        //this.exportFormats.push({ label: 'docx', icon: 'fa-file-word-o' });
 
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
@@ -135,6 +144,8 @@ export class VJSComponent implements OnChanges {
                                 });
 
                                 $("#btnExport li").click(function () {
+                                    if ($(this).find("span").text() == 'pdfxlsxxlsdocx')
+                                        return;
                                     var format = ($(this).find("span").text() == undefined ? 'pdf' : $(this).find("span").text());
                                     // add Stop_Transition function.     
                                     var convertJSON = JSON.parse(params);

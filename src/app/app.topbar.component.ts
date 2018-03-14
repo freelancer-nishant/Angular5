@@ -58,7 +58,7 @@ import { AppComponent } from './app.component';
                         </ul>
                     </li>                   
                     <li #userinfo [ngClass]="{'active-top-menu':app.activeTopbarItem === userinfo}">
-                        <a href="#" (click)="app.onTopbarItemClick($event,userinfo)">
+                        <a href="#" (click)="app.onTopbarItemClick($event,userinfo)"  title="Admin">
                             <i class="topbar-icon material-icons">perm_identity</i>
                             <i class="topbar-icon material-icons">keyboard_arrow_down</i>
                             <span class="topbar-item-name">User Info</span>
@@ -87,7 +87,7 @@ import { AppComponent } from './app.component';
                         </ul>
                     </li>                    
                     <li #admin [ngClass]="{'active-top-menu':app.activeTopbarItem === admin, 'hide':app.hasAccess('ClientUser') !== true}">
-                        <a href="#" (click)="app.onTopbarItemClick($event,admin)">                                                        
+                        <a href="#" (click)="app.onTopbarItemClick($event,admin)"  title="User Settings">                                                        
                             <i class="topbar-icon material-icons">settings</i>                            
                             <span class="topbar-item-name">Admin</span>
                         </a>
