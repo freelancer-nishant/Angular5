@@ -9,7 +9,7 @@ declare var $: any;
     selector: 'vjs-component',
     template: `
             <div id="{{resourceId}}" class="vjs-container"></div>
-            <div style="display: none;" id="exportContainer"></div>
+            <div style="display: none;" id="exportContainer"></div>          
             `,
 })
 
@@ -18,8 +18,6 @@ export class VJSComponent implements OnChanges {
     loadAPI: Promise<any>;
 
     @Input() params: {};
-
-    @Input() paging: boolean = false;
 
     resourceIndex: number;
     selectedFormat: any;
@@ -54,6 +52,13 @@ export class VJSComponent implements OnChanges {
             if (typeof (visualize) != 'undefined') {
                 clearInterval(waitingForVjsLoad);
 
+                if (vjsConfig.resourceDetails[resourceIndex].paging) {
+                    $('#pagination-control').css('display', '');
+                }
+                else {
+                    $('#pagination-control').css('display', 'none');
+                }
+
                 if (params != undefined) {
                     let spinerDiv: HTMLElement = document.createElement("div");
                     spinerDiv.id = 'report-spinner';
@@ -80,7 +85,9 @@ export class VJSComponent implements OnChanges {
                     function (v) {
                         switch (vjsConfig.resourceDetails[resourceIndex].type) {
                             case "report": {
-                                var report = v.report({
+                                var currentPage = 1,
+                                totalPages,
+                                report = v.report({
                                     resource: vjsConfig.resourceDetails[resourceIndex].uri,
                                     scale: 'width',
                                     container: "#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container',
@@ -96,6 +103,16 @@ export class VJSComponent implements OnChanges {
                                                 if (document.getElementById('report-spinner'))
                                                     document.getElementById('report-spinner').remove();
                                             }
+                                        },
+                                        changePagesState: function (page) {
+                                            currentPage = page;
+                                            $("#btnPrevious").prop("disabled", currentPage === 1);
+                                            $("#btnNext").prop("disabled", currentPage === totalPages);
+                                        },
+                                        changeTotalPages: function (pages) {
+                                            totalPages = pages;
+                                            $("#btnPrevious").prop("disabled", currentPage === 1);
+                                             $("#btnNext").prop("disabled", currentPage === totalPages);
                                         }
                                     }
                                 });
@@ -138,7 +155,11 @@ export class VJSComponent implements OnChanges {
                                     report
                                         .pages(--currentPage)
                                         .run()
-                                        .fail(function (err) { alert(err); });
+                                        .done(function () {
+                                            $("#btnPrevious").prop("disabled", currentPage === 1);
+                                            $("#btnNext").prop("disabled", currentPage === totalPages);
+                                        })
+                                        .fail(function (err) {  });
                                 });
 
                                 $("#btnNext").click(function () {
@@ -147,9 +168,15 @@ export class VJSComponent implements OnChanges {
                                     report
                                         .pages(++currentPage)
                                         .run()
-                                        .fail(function (err) { alert(err); });
+                                        .done(function () {
+                                            $("#btnPrevious").prop("disabled", currentPage === 1);
+                                            $("#btnNext").prop("disabled", currentPage === totalPages);
+                                        })
+                                        .fail(function (err) {  });
                                 });
 
+                               
+                               
                                 break;
                             }
 
@@ -175,6 +202,7 @@ export class VJSComponent implements OnChanges {
             }
         }, 100);
 
+        
     };
 
     private getObjectIndex(object: any, id: any): number {
