@@ -11,13 +11,13 @@ import { GlobalConstants } from './../app.globals';
 
 
 const httpOptionsa = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })    
+    headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
 };
 @Injectable()
 export class CommonService {
 
-    constructor(private http: HttpClient) { }    
-    
+    constructor(private http: HttpClient) { }
+
     getSchoolYear(isForReport?: boolean): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/schoolyear?isForReport=' + (isForReport == null ? false : isForReport);
         return this.http.get(url);
@@ -26,7 +26,11 @@ export class CommonService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/state';
         return this.http.get(url);
     }
-    getCounty(state_id:number): Observable<any> {
+    getStateById(id: number): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/state/' + id;
+        return this.http.get(url);
+    }
+    getCounty(state_id: number): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/county?state_id=' + state_id;
         return this.http.get(url);
     }
@@ -42,10 +46,10 @@ export class CommonService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/school/schooltypes';
         return this.http.get(url);
     }
-    getSchool(school_type_id: number, district_id: number,city:string): Observable<any> {
+    getSchool(school_type_id: number, district_id: number, city: string): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/school/GetSchoolbyType/' + school_type_id + '?district_id=' + district_id + '&city=' + city;
         return this.http.get(url);
     }
-    
+
 }
 

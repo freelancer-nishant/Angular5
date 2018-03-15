@@ -67,13 +67,16 @@ export class CompareSchoolScorecardsComponent implements OnInit {
             });
 
         //Apis for Popup
-        let stateResult: State[] = [];
-        this.commonService.getState().subscribe((result: any) => stateResult = result.data,
+        //Passes State id=6 for california
+        //let stateResult: State[];
+        let stateResult: State;
+        this.commonService.getStateById(6).subscribe((result: any) => stateResult = result.data,
             (error: any) => { },
             () => {
                 this.stateList = [];
                 this.stateList.push({ label: 'Select State', value: 0 })
-                stateResult.map(o => { this.stateList.push({ label: o.name, value: o.id }); });
+                this.stateList.push({ label: stateResult.name, value: stateResult.id });
+                //stateResult.map(o => { this.stateList.push({ label: o.name, value: o.id }); });
             });
 
         let schoolTypeResult: SchoolType[] = [];
