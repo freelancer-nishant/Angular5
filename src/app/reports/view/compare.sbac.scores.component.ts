@@ -168,7 +168,8 @@ export class CompareSBACScoresComponent implements OnInit {
                 us_school_id: school.id,
                 school_label: school.name,
                 alias: school.label,
-                target_flag: 0
+                target_flag: 0,
+                school_code: school.state_school_code
             });
             //this.newSchool = new SchoolModel();
         }
@@ -183,10 +184,10 @@ export class CompareSBACScoresComponent implements OnInit {
             alert('Please select atleast two or more school.')
             return;
         }
-        if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined && this.SchoolForScorecards.selectedschools.length>0) {
+        if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined && this.SchoolForScorecards.selectedschools.length > 0) {
             this.dialogVisible = false;
             this.SchoolForScorecards.selectedschools.forEach(function (value, index) {
-                value.target_flag = value.target_flag==true ? 1 : 0;
+                value.target_flag = value.target_flag == true ? 1 : 0;
             });
             this.parameters = JSON.stringify({
                 "test_id1": ['1'],

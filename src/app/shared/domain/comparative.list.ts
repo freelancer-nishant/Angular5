@@ -19,5 +19,6 @@ export interface ComparativeItem {
     us_school_id,
     school_label,
     alias,
-    target_flag
+    target_flag,
+    school_code
 }

@@ -3,7 +3,7 @@ import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import { SelectItem } from 'primeng/primeng';
 
-import { ComparativeListItem, ComparativeItem  } from './../../shared/domain/comparative.list'
+import { ComparativeListItem, ComparativeItem } from './../../shared/domain/comparative.list'
 import { ComparativeListService } from './../../shared/services/comparativelist.service'
 import { CommonService } from './../../shared/services/Common.service'
 
@@ -134,20 +134,24 @@ export class CompareSchoolScorecardsComponent implements OnInit {
     }
 
     submit() {
-        //if (this.selectedComparative != undefined && this.selectedSchoolYear != undefined) {
-        //    let comparativeListItems: ComparativeListItem;
-        //    this.comparativeListService.getById(this.selectedComparative, this.sessionInfo.client_id).subscribe((result: any) => comparativeListItems = result.data,
-        //        (error: any) => { },
-        //        () => {
-        //            this.parameters = JSON.stringify({
-        //                "test_id1": ['1'],
-        //                "schoolyear_id": [this.selectedSchoolYear],
-        //                "comparative_list_items": [JSON.stringify(comparativeListItems.items)],
-        //                "test_id2": ['2'],
-        //                "comparative_list_label": [comparativeListItems.label]
-        //            });
-        //        });
-        //}
+        debugger
+        alert(this.selectedSchoolYear);
+        if (this.selectedComparative != undefined && this.selectedSchoolYear != undefined) {
+            let comparativeListItems: ComparativeListItem;
+            this.comparativeListService.getById(this.selectedComparative, this.sessionInfo.client_id).subscribe((result: any) => comparativeListItems = result.data,
+                (error: any) => { },
+                () => {
+                    let schoolCodes = [];
+                    comparativeListItems.items.forEach(function (value, index) {                        
+                        schoolCodes.push(value.school_code)
+                    });
+
+                    this.parameters = JSON.stringify({
+                        "School_Code": schoolCodes,
+                        "School_Year": [this.selectedSchoolYear]
+                    });
+                });
+        }
     }
 
     addToList() {
@@ -166,7 +170,8 @@ export class CompareSchoolScorecardsComponent implements OnInit {
                 us_school_id: school.id,
                 school_label: school.name,
                 alias: school.label,
-                target_flag: 0
+                target_flag: 0,
+                school_code: school.state_school_code
             });
             //this.newSchool = new SchoolModel();
         }
@@ -179,16 +184,15 @@ export class CompareSchoolScorecardsComponent implements OnInit {
     runReport() {
         if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined) {
             this.dialogVisible = false;
+            let schoolCodes = [];
             this.SchoolForScorecards.selectedschools.forEach(function (value, index) {
                 value.target_flag = value.target_flag == true ? 1 : 0;
+                schoolCodes.push(value.school_code)
             });
-            //this.parameters = JSON.stringify({
-            //    "test_id1": ['1'],
-            //    "schoolyear_id": [this.SchoolForScorecards.schoolyear],
-            //    "comparative_list_items": [JSON.stringify(this.SchoolForScorecards.selectedschools)],
-            //    "test_id2": ['2'],
-            //    "comparative_list_label": [this.SchoolForScorecards.schoollabel]
-            //});
+            this.parameters = JSON.stringify({
+                "School_Code": schoolCodes,
+                "School_Year": [this.selectedSchoolYear]
+            });
         }
         else {
             alert('Please enter school label or select school year first.')
