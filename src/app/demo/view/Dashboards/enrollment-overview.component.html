@@ -3,16 +3,9 @@
         <p-panel [toggleable]="true">
             <p-header>
                 <i class="material-icons">people</i> Enrollment Overview
+                <export-component></export-component>
             </p-header>
             <div class="card card-w-title filter-pan">
-                <div id="export-report" class="ui-toolbar-group-right">
-                    <div class="ui-lg-2 pull-right" style="margin-right:20px;">
-                        &nbsp;
-                    </div>
-                    <div class="ui-lg-2 pull-right">
-                        <p-menubar autoDisplay="false" [model]="exportFormats" id="btnExport"></p-menubar>
-                    </div>
-                </div>
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
                         <label class="control-label" for="selectedSchool">School</label>
@@ -36,7 +29,7 @@
     </div>
     <div class="ui-g-12">
         <div class="card card-w-title">
-            
+
             <vjs-component class="resource" id="enrollmentdashboard" [(params)]="parameters"></vjs-component>
         </div>
     </div>

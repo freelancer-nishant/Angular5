@@ -78,6 +78,8 @@ import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
 import { AppTopBarComponent } from './app.topbar.component';
 import { AppClientTopBarComponent } from './app.client.topbar.component';
 import { AppFooterComponent } from './app.footer.component';
+import { ExportComponent } from './export.component';
+
 //import { AppProfileComponent } from './app.profile.component';
 import { DashboardDemoComponent } from './demo/view/dashboarddemo.component';
 import { SampleDemoComponent } from './demo/view/sampledemo.component';
@@ -252,6 +254,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         AppTopBarComponent,
         AppClientTopBarComponent,
         AppFooterComponent,
+        ExportComponent,
         //AppProfileComponent,
         DashboardDemoComponent,
         SampleDemoComponent,

@@ -4,7 +4,6 @@ import { VJSConfig } from './demo/service/vjsconfig.service';
 declare var visualize: any;
 declare var jquery: any;
 declare var $: any;
-//<p-splitButton icon= "fa-download" id= "btnExport"[model] = "exportFormats" > </p-splitButton>
 
 @Component({
     selector: 'vjs-component',
@@ -51,9 +50,6 @@ export class VJSComponent implements OnChanges {
 
     public drawResource(vjsConfig, resourceIndex, params) {
 
-        if (document.getElementById('export-report') != undefined)
-            document.getElementById('export-report').style.display = 'none';
-
         var waitingForVjsLoad = setInterval(function () {
             if (typeof (visualize) != 'undefined') {
                 clearInterval(waitingForVjsLoad);
@@ -95,7 +91,7 @@ export class VJSComponent implements OnChanges {
                                     },
                                     events: {
                                         reportCompleted: function (status) {
-                                            document.getElementById('export-report').style.display = 'block';
+                                            document.getElementById('btnDownload').removeAttribute("disabled");
                                             if (status == 'ready') {
                                                 if (document.getElementById('report-spinner'))
                                                     document.getElementById('report-spinner').remove();

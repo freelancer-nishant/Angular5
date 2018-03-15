@@ -32,7 +32,7 @@ export class EmbeddedLoginComponent implements OnInit {
                 //console.log(this.loginResult);
 
                 if (this.loginResult.access_token != undefined) {
-                    this.app.doLogin(this.loginResult);
+                    this.app.doLogin(this.loginResult,true);
                     if (this.app.isLoggedIn) {
                         this.app.isClientPage = true;
                         localStorage.setItem("isClientPage", "true");

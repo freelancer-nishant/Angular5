@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
                 //console.log(this.loginResult);
 
                 if (this.loginResult.access_token != undefined) {
-                    this.app.doLogin(this.loginResult);
+                    this.app.doLogin(this.loginResult,false);
                 } else { this.msgError = "Invalid credentials"; }
 
                 this.loginProcessing = false;

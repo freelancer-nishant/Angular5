@@ -89,7 +89,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
             if (!this.issinglepage) { jQuery(this.layoutMenuScroller).nanoScroller({ flash: true }) };
         }, 500);
     }
-    doLogin(loginResult: LoginResult) {
+    doLogin(loginResult: LoginResult, isClientPage: boolean) {
 
         this.access_token = loginResult.access_token;
 
@@ -97,7 +97,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
         this.isLoggedIn = true;
         this.issinglepage = false;
-        this.router.navigate(['']);
+        if (isClientPage)
+            this.router.navigate(['/dashboard']);
+        else
+            this.router.navigate(['']);
 
     }
     doLogout() {
