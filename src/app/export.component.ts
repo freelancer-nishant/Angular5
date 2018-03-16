@@ -6,13 +6,13 @@ import { MenuItem } from 'primeng/primeng';
     selector: 'export-component',
     template: `
                 <span id="pagination-control" class="ui-panel-titlebar-icon" style="display:none;">
-                    <button id="btnPrevious" pButton type="button" icon="fa-caret-left" iconPos="left" disabled title="Previous Page"></button>                    
-                    <button id="btnNext" pButton type="button" icon="fa-caret-right" iconPos="left" disabled title="Next Page"></button>
+                    <button id="btnPrevious" pButton type="button" icon="fa-caret-left" iconPos="left" disabled title="Previous Page" class="ui-button-icon-only" title="Previous"></button>                    
+                    <button id="btnNext" pButton type="button" icon="fa-caret-right" iconPos="left" disabled title="Next Page" class="ui-button-icon-only" title="Next"></button>
                 </span>
 
                 <span id="export-report" class="ui-panel-titlebar-icon">
                     <p-menu #menu popup="popup" [model]="exportFormats" id="btnExport"></p-menu>
-                    <button type="button" pButton icon="fa fa-download" (click)="menu.toggle($event)" disabled id="btnDownload"></button>
+                    <button type="button" pButton icon="fa fa-download" (click)="menu.toggle($event)" disabled id="btnDownload" class="ui-button-icon-only" title="Export"></button>
                 </span>               
             `,
 })

@@ -1,4 +1,4 @@
-<div class="ui-g ui-fluid">
+<div class="ui-g ui-fluid seletor-panel">
     <div class="ui-g-12">
         <p-panel [toggleable]="true">
             <p-header>
@@ -15,17 +15,18 @@
                         <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
                         <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false"></p-dropdown>
                     </div>
-                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1">
-                        <label class="control-label">&nbsp;</label>
-                        <button pButton type="button" label="Go" (click)="submit()"></button>
+                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1 text-center">
+                        <label class="control-label hidden-xs">&nbsp;</label>
+                        <button pButton type="button" label="Go" (click)="submit()" style="width:auto;"></button>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1 text-center">
-                        <label class="control-label">&nbsp;</label>
+                        <label class="control-label hidden-xs">&nbsp;</label>
                         <label class="control-label">-- Or --</label>
                     </div>
-                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-2">
-                        <label class="control-label">&nbsp;</label>
-                        <button type="button" label="Select Schools" (click)="dialogVisible=true" pButton style="width:auto"></button>
+                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-2 text-center">
+                        <label class="control-label hidden-xs">&nbsp;</label>
+                        <button type="button" label="Select Schools" (click)="selectSchools()" pButton style="width:auto"></button>
+                        <button type="button" label="Edit Schools" (click)="editSchools()" pButton style="width:auto"></button>
                     </div>
                 </div>
             </div>
