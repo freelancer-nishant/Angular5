@@ -58,10 +58,10 @@ export const routes: Routes = [
 
     //Dashboards
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_CLIENT_USER, hasClientAccess: true } },
-    { path: 'student-information', component: StudentInformationComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
+    { path: 'student-information', component: EnrollmentOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'enrollment-overview', component: EnrollmentOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'attendance-overview', component: AttendanceOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true }},
-    { path: 'assessments', component: AssessmentsComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
+    { path: 'assessments', component: AssessmentsSBACOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments/sbac-overview', component: AssessmentsSBACOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments/sbac-detail', component: AssessmentsSBACDetailComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments/pft-overview', component: AssessmentsPFTOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
@@ -72,10 +72,10 @@ export const routes: Routes = [
 
     //Reports
     { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
-    { path: 'school-scorecards', component: SchoolScorecardsComponent, canActivate: [AuthGuard] },
+    { path: 'school-scorecards', component: SchoolScorecardsReportComponent, canActivate: [AuthGuard] },
     { path: 'school-scorecards/report', component: SchoolScorecardsReportComponent, canActivate: [AuthGuard] },
 
-    { path: 'comparison-schools', component: ComparisonSchoolsComponent, canActivate: [AuthGuard] },
+    { path: 'comparison-schools', component: CompareSBACScoresComponent, canActivate: [AuthGuard] },
     { path: 'comparison-schools/sbac-scores', component: CompareSBACScoresComponent, canActivate: [AuthGuard] },    
     { path: 'comparison-schools/school-scorecards', component: CompareSchoolScorecardsComponent, canActivate: [AuthGuard] },
     { path: 'teacher-scorecards', component: TeacherScorecardsComponent, canActivate: [AuthGuard] },
