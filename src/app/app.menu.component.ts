@@ -202,7 +202,7 @@ export class AppMenuComponent implements OnInit {
                 <a [href]="child.url||'#'" (click)="itemClick($event,child,i)" (mouseenter)="onMouseEnter(i)"
                    class="ripplelink" *ngIf="!child.routerLink"
                     [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
-                    <i [ngClass]="child.icon"></i><span>{{child.label}}</span>
+                    <i [ngClass]="child.icon"></i><span style="display: initial;">{{child.label}}</span>
                     <i class="fa fa-fw fa-angle-down menuitem-toggle-icon" *ngIf="child.items"></i>
                     <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
                 </a>
@@ -210,7 +210,7 @@ export class AppMenuComponent implements OnInit {
                 <a (click)="itemClick($event,child,i)" (mouseenter)="onMouseEnter(i)" class="ripplelink" *ngIf="child.routerLink"
                     [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink"
                    [routerLinkActiveOptions]="{exact: true}" [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
-                    <i [ngClass]="child.icon"></i><span>{{child.label}}</span>
+                    <i [ngClass]="child.icon"></i><span style="display: initial;">{{child.label}}</span>
                     <i class="fa fa-fw fa-angle-down menuitem-toggle-icon" *ngIf="child.items"></i>
                     <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
                 </a>

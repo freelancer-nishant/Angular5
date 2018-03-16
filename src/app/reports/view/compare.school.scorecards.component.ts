@@ -31,6 +31,7 @@ export class CompareSchoolScorecardsComponent implements OnInit {
     selectedComparative: any;
     selectedSchoolYear: any;
     SchoolForScorecards: SchoolListModel;
+    EditSchoolForScorecards: SchoolListModel;
     newSchool: SchoolModel;
 
     constructor(public app: AppComponent, private comparativeListService: ComparativeListService, private commonService: CommonService) {
@@ -96,6 +97,15 @@ export class CompareSchoolScorecardsComponent implements OnInit {
                 this.countyList = [];
                 this.countyList.push({ label: 'Select County', value: 0 })
                 stateResult.map(o => { this.countyList.push({ label: o.label, value: o.id }); });
+
+                this.districtList = [];
+                this.cityList = [];
+                this.schoolList = [];
+                this.newSchool.county = 0;
+                this.newSchool.district = 0;
+                this.newSchool.city = "";
+                this.newSchool.school = 0;
+
                 //this.newSchool.county = 1;
                 //this.countyChange(e);
             });
@@ -108,6 +118,13 @@ export class CompareSchoolScorecardsComponent implements OnInit {
                 this.districtList = [];
                 this.districtList.push({ label: 'Select District', value: 0 })
                 stateResult.map(o => { this.districtList.push({ label: o.label, value: o.id }); });
+
+                this.cityList = [];
+                this.schoolList = [];
+                this.newSchool.district = 0;
+                this.newSchool.city = "";
+                this.newSchool.school = 0;
+
                 //this.newSchool.district = 1;
                 //this.districtChange(e);
             });
@@ -182,7 +199,28 @@ export class CompareSchoolScorecardsComponent implements OnInit {
         let index: number = this.SchoolForScorecards.selectedschools.indexOf(findschool);
         this.SchoolForScorecards.selectedschools.splice(index, 1);
     }
+    selectSchools() {
+        this.SchoolForScorecards = new SchoolListModel();
+        this.newSchool = new SchoolModel();
+        this.countyList = [];
+        this.districtList = [];
+        this.cityList = [];
+        this.schoolList = [];
+
+        this.dialogVisible = true;
+    }
+    editSchools() {
+        if (this.EditSchoolForScorecards == undefined)
+            this.SchoolForScorecards = new SchoolListModel();
+        else
+            this.SchoolForScorecards = this.EditSchoolForScorecards;
+        this.dialogVisible = true;
+    }
     runReport() {
+        if (this.SchoolForScorecards.selectedschools==undefined || this.SchoolForScorecards.selectedschools.length <= 0) {
+            alert('Please select atleast one or more school.')
+            return;
+        }
         if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined) {
             this.dialogVisible = false;
             let schoolCodes = [];
@@ -194,6 +232,9 @@ export class CompareSchoolScorecardsComponent implements OnInit {
                 "School_Code": schoolCodes,
                 "School_Year": [this.selectedSchoolYear]
             });
+
+            this.EditSchoolForScorecards = this.SchoolForScorecards;
+            this.SchoolForScorecards = new SchoolListModel();
         }
         else {
             alert('Please enter school label or select school year first.')

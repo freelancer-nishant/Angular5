@@ -102,6 +102,9 @@ export class VJSComponent implements OnChanges {
                                             if (status == 'ready') {
                                                 if (document.getElementById('report-spinner'))
                                                     document.getElementById('report-spinner').remove();
+
+                                                var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
+                                                $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
                                             }
                                         },
                                         changePagesState: function (page) {
@@ -158,6 +161,9 @@ export class VJSComponent implements OnChanges {
                                         .done(function () {
                                             $("#btnPrevious").prop("disabled", currentPage === 1);
                                             $("#btnNext").prop("disabled", currentPage === totalPages);
+
+                                            var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
+                                            $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
                                         })
                                         .fail(function (err) {  });
                                 });
@@ -171,6 +177,9 @@ export class VJSComponent implements OnChanges {
                                         .done(function () {
                                             $("#btnPrevious").prop("disabled", currentPage === 1);
                                             $("#btnNext").prop("disabled", currentPage === totalPages);
+
+                                            var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
+                                            $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
                                         })
                                         .fail(function (err) {  });
                                 });
