@@ -26,7 +26,10 @@
                     <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-2 text-center">
                         <label class="control-label hidden-xs">&nbsp;</label>
                         <button type="button" label="Select Schools" (click)="selectSchools()" pButton style="width:auto"></button>
-                        <button type="button" label="Edit Schools" (click)="editSchools()" pButton style="width:auto"></button>
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1 text-center">
+                        <label class="control-label hidden-xs">&nbsp;</label>
+                        <button type="button" label="Edit" (click)="editSchools()" pButton style="width:auto" *ngIf="isRunReport"></button>
                     </div>
                 </div>
             </div>

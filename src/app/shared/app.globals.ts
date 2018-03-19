@@ -79,13 +79,13 @@ export class GlobalHelper {
                 break;
             case MenuType.SchoolScorecard:
                 sideMenuInfo = {
-                    icon: './assets/layout/images/report/school-report-card.png',
+                    icon: './assets/layout/images/report/school-scorecard.png',
                     name: "School Scorecards"                    
                 }
                 break;
             case MenuType.ComparisonSchools:
                 sideMenuInfo = {
-                    icon: './assets/layout/images/report/comparative-data.png',
+                    icon: './assets/layout/images/report/comparison-schools.png',
                     name: "Comparison Schools"
                 }
                 break;

@@ -86,39 +86,40 @@ export class VJSComponent implements OnChanges {
                         switch (vjsConfig.resourceDetails[resourceIndex].type) {
                             case "report": {
                                 var currentPage = 1,
-                                totalPages,
-                                report = v.report({
-                                    resource: vjsConfig.resourceDetails[resourceIndex].uri,
-                                    scale: 'width',
-                                    container: "#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container',
-                                    params: JSON.parse(params),
-                                    success: function () { console.log("success") },
-                                    error: function (err) {
-                                        document.getElementById('report-spinner').remove(); alert("Report draw failed: " + err)
-                                    },
-                                    events: {
-                                        reportCompleted: function (status) {
-                                            document.getElementById('btnDownload').removeAttribute("disabled");
-                                            if (status == 'ready') {
-                                                if (document.getElementById('report-spinner'))
-                                                    document.getElementById('report-spinner').remove();
+                                    totalPages,
+                                    report = v.report({
+                                        resource: vjsConfig.resourceDetails[resourceIndex].uri,
+                                        scale: 'width',
+                                        container: "#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container',
+                                        params: JSON.parse(params),
+                                        success: function () { console.log("success") },
+                                        error: function (err) {
+                                            document.getElementById('report-spinner').remove(); alert("Report draw failed: " + err)
+                                        },
+                                        events: {
+                                            reportCompleted: function (status) {
+                                                if (document.getElementById('btnDownload') != undefined)
+                                                    document.getElementById('btnDownload').removeAttribute("disabled");
+                                                if (status == 'ready') {
+                                                    if (document.getElementById('report-spinner'))
+                                                        document.getElementById('report-spinner').remove();
 
-                                                var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
-                                                $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                                    var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
+                                                    $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                                }
+                                            },
+                                            changePagesState: function (page) {
+                                                currentPage = page;
+                                                $("#btnPrevious").prop("disabled", currentPage === 1);
+                                                $("#btnNext").prop("disabled", currentPage === totalPages);
+                                            },
+                                            changeTotalPages: function (pages) {
+                                                totalPages = pages;
+                                                $("#btnPrevious").prop("disabled", currentPage === 1);
+                                                $("#btnNext").prop("disabled", currentPage === totalPages);
                                             }
-                                        },
-                                        changePagesState: function (page) {
-                                            currentPage = page;
-                                            $("#btnPrevious").prop("disabled", currentPage === 1);
-                                            $("#btnNext").prop("disabled", currentPage === totalPages);
-                                        },
-                                        changeTotalPages: function (pages) {
-                                            totalPages = pages;
-                                            $("#btnPrevious").prop("disabled", currentPage === 1);
-                                             $("#btnNext").prop("disabled", currentPage === totalPages);
                                         }
-                                    }
-                                });
+                                    });
 
                                 var exportTo = v.report({
                                     resource: vjsConfig.resourceDetails[resourceIndex].uri,
@@ -165,7 +166,7 @@ export class VJSComponent implements OnChanges {
                                             var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
                                             $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
                                         })
-                                        .fail(function (err) {  });
+                                        .fail(function (err) { });
                                 });
 
                                 $("#btnNext").click(function () {
@@ -181,11 +182,11 @@ export class VJSComponent implements OnChanges {
                                             var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
                                             $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
                                         })
-                                        .fail(function (err) {  });
+                                        .fail(function (err) { });
                                 });
 
-                               
-                               
+
+
                                 break;
                             }
 
@@ -211,7 +212,7 @@ export class VJSComponent implements OnChanges {
             }
         }, 100);
 
-        
+
     };
 
     private getObjectIndex(object: any, id: any): number {

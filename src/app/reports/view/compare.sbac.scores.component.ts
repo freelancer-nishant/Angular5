@@ -27,6 +27,7 @@ export class CompareSBACScoresComponent implements OnInit {
     schoolList: any = {};
     fullschoolList: School[];
     dialogVisible: boolean = false;
+    isRunReport: boolean = false;
 
     selectedComparative: any;
     selectedSchoolYear: any;
@@ -235,6 +236,7 @@ export class CompareSBACScoresComponent implements OnInit {
             });
             this.EditSchoolForScorecards = this.SchoolForScorecards;
             this.SchoolForScorecards = new SchoolListModel();
+            this.isRunReport = true;
         }
         else {
             alert('Please enter school label or select school year first.')
