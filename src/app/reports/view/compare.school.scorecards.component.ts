@@ -190,7 +190,7 @@ export class CompareSchoolScorecardsComponent implements OnInit {
                 school_label: school.name,
                 alias: school.label,
                 target_flag: 0,
-                school_code: school.state_school_code
+                school_code: school.code
             });
             //this.newSchool = new SchoolModel();
         }
@@ -231,7 +231,7 @@ export class CompareSchoolScorecardsComponent implements OnInit {
             });
             this.parameters = JSON.stringify({
                 "School_Code": schoolCodes,
-                "School_Year": [this.selectedSchoolYear]
+                "School_Year": [this.SchoolForScorecards.schoolyear]
             });
 
             this.EditSchoolForScorecards = this.SchoolForScorecards;
