@@ -246,7 +246,7 @@ $secondaryColor: #5898a6;
     overflow: auto;
 }
 
-#pagination-control , #export-report {
+#pagination-control, #export-report {
     .ui-button-icon-only {
         width: 2em !important;
     }
@@ -281,11 +281,42 @@ $secondaryColor: #5898a6;
     margin-top: -15px;
 }
 
+.goog-te-gadget-simple {
+    white-space: nowrap;
+    margin-top: -5px;
+    margin-right: -15px;
+}
+
+.goog-te-gadget-simple .goog-te-menu-value span, .goog-te-gadget-icon {
+    display: none;
+}
+
+.goog-te-gadget-simple .goog-te-menu-value i {
+    color: white;
+}
+
+.goog-te-gadget-simple {
+    background-color: $secondaryColor;
+    border: none;
+}
+
 body .ui-datagrid .ui-datagrid-header {
     padding: 0px;
 }
 
+body {
+    top: 0px !important;
+}
+
+body > div {
+    display: none !important;
+}
+
 @media (max-width: 1024px) {
+
+    .mobile-text-center {
+        text-align: center;
+    }
 }
 
 @media (min-width: 678px) {
@@ -322,8 +353,12 @@ body .ui-datagrid .ui-datagrid-header {
     .dashboard-card .icon-wrapper {
         height: 80px;
     }
-    .hidden-xs{
-        display:none;
+
+    .hidden-xs {
+        display: none;
+    }
+    .mobile-text-center {
+        text-align: center;
     }
 }
 
