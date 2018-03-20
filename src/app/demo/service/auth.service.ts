@@ -4,15 +4,18 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthService {
-    
+
     public isAuthenticated(): boolean {
-        
+
         let jwtHelper = new JwtHelperService({
             tokenGetter: () => {
-                return localStorage.getItem('token');
+                if (sessionStorage.getItem('isClientPage') == "true")
+                    return sessionStorage.getItem('token');
+                else
+                    return localStorage.getItem('token');
             }
         });
-        
+
         return jwtHelper.tokenGetter() != null && !jwtHelper.isTokenExpired();
     }
 
@@ -20,7 +23,10 @@ export class AuthService {
 
         let jwtHelper = new JwtHelperService({
             tokenGetter: () => {
-                return localStorage.getItem('token');
+                if (sessionStorage.getItem('isClientPage') == "true")
+                    return sessionStorage.getItem('token');
+                else
+                    return localStorage.getItem('token');
             }
         });
 

@@ -35,7 +35,7 @@ export class EmbeddedLoginComponent implements OnInit {
                     this.app.doLogin(this.loginResult,true);
                     if (this.app.isLoggedIn) {
                         this.app.isClientPage = true;
-                        localStorage.setItem("isClientPage", "true");
+                        sessionStorage.setItem("isClientPage", "true");
                     }
                 } else { this.msgError = "Invalid credentials"; }
             });

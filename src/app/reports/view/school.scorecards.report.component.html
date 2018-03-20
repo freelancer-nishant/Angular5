@@ -7,15 +7,15 @@
             </p-header>
             <div class="card card-w-title filter-pan">
                 <div class="ui-g form-group">
-                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
+                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="control-label" for="selectedSchool">Select a School</label>
                         <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false"></p-dropdown>
                     </div>
-                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-2">
+                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
                         <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false"></p-dropdown>
                     </div>
-                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1">
+                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-3">
                         <label class="control-label">&nbsp;</label>
                         <button pButton type="button" label="Go" (click)="submit()" style="width:auto;"></button>
                     </div>
