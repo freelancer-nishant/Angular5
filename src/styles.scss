@@ -246,7 +246,7 @@ $secondaryColor: #5898a6;
     overflow: auto;
 }
 
-#pagination-control , #export-report {
+#pagination-control, #export-report, #zoom-control {
     .ui-button-icon-only {
         width: 2em !important;
     }
@@ -330,5 +330,12 @@ body .ui-datagrid .ui-datagrid-header {
 @media only screen and (max-device-width : 480px) {
     .dashboard-card .icon-wrapper {
         height: 70px;
+    }
+}
+
+@media screen and (min-device-width: 250px) and (max-device-width : 364px) {
+    body, .dashboard-card .icon-wrapper {
+        height: 50px;
+        font-size: 12px !important;
     }
 }

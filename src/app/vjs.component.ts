@@ -87,6 +87,9 @@ export class VJSComponent implements OnChanges {
                             case "report": {
                                 var currentPage = 1,
                                     totalPages,
+                                    zoom = 0,
+                                    plus = document.getElementById("btnZoomIn"),
+                                    minus = document.getElementById("btnZoomOut"),
                                     report = v.report({
                                         resource: vjsConfig.resourceDetails[resourceIndex].uri,
                                         scale: 'width',
@@ -98,6 +101,12 @@ export class VJSComponent implements OnChanges {
                                         },
                                         events: {
                                             reportCompleted: function (status) {
+                                                if (document.getElementById('btnZoomIn') != undefined)
+                                                    document.getElementById('btnZoomIn').removeAttribute("disabled");
+
+                                                if (document.getElementById('btnZoomOut') != undefined)
+                                                    document.getElementById('btnZoomOut').removeAttribute("disabled");
+
                                                 if (document.getElementById('btnDownload') != undefined)
                                                     document.getElementById('btnDownload').removeAttribute("disabled");
                                                 if (status == 'ready') {
@@ -106,6 +115,16 @@ export class VJSComponent implements OnChanges {
 
                                                     var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
                                                     $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+
+                                                    //Check current zoom level
+                                                    var obj = $(".jrPage");
+                                                    var transformMatrix = obj.css("-webkit-transform") ||
+                                                        obj.css("-moz-transform") ||
+                                                        obj.css("-ms-transform") ||
+                                                        obj.css("-o-transform") ||
+                                                        obj.css("transform");
+                                                    var matrix = transformMatrix.replace(/[^0-9\-.,]/g, '').split(',');
+                                                    zoom = parseFloat(matrix[0])  // scaleX;
                                                 }
                                             },
                                             changePagesState: function (page) {
@@ -120,6 +139,18 @@ export class VJSComponent implements OnChanges {
                                             }
                                         }
                                     });
+
+                                plus.onclick = function () {
+                                    report
+                                        .scale(zoom += 0.1)
+                                        .render();
+                                }
+
+                                minus.onclick = function () {
+                                    report
+                                        .scale((zoom -= 0.1) > 0 ? zoom : zoom = 0.1)
+                                        .render();
+                                }
 
                                 var exportTo = v.report({
                                     resource: vjsConfig.resourceDetails[resourceIndex].uri,
