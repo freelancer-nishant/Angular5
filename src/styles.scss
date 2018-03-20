@@ -296,8 +296,8 @@ $secondaryColor: #5898a6;
 }
 
 .goog-te-gadget-simple {
-    background-color: $secondaryColor;
-    border: none;
+    background-color: $secondaryColor !important;
+    border: none !important;
 }
 
 body .ui-datagrid .ui-datagrid-header {

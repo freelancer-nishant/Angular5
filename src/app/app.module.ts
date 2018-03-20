@@ -134,6 +134,8 @@ import { AdminConfigurationComponent } from './admin/view/admin.configuration.co
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 
 import { VJSComponent } from './vjs.component'
+import { TranslateComponent } from './translate-component'
+
 
 import { VJSConfig } from './demo/service/vjsconfig.service';
 import { CarService } from './demo/service/carservice';
@@ -306,7 +308,8 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         AdminConfigurationComponent,
         SchoolComparisonListComponent,
 
-        VJSComponent
+        VJSComponent,
+        TranslateComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

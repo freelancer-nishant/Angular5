@@ -14,8 +14,8 @@
                 'client-topbar-active': isClientPage}">
 
     <!--topbar for non client users-->
-    <app-topbar *ngIf="!isClientPage"></app-topbar>    
-    <app-top-horizontal-menu *ngIf="!isClientPage"></app-top-horizontal-menu>    
+    <app-topbar *ngIf="!isClientPage"></app-topbar>
+    <app-top-horizontal-menu *ngIf="!isClientPage"></app-top-horizontal-menu>
 
     <!--topbar for the embedded client users-->
     <app-client-topbar *ngIf="isClientPage"></app-client-topbar>

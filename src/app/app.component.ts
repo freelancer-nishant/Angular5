@@ -75,10 +75,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
-
     constructor(public renderer: Renderer, private router: Router, private auth: AuthService) {
 
-        if (this.isClientPage || localStorage.getItem('isClientPage') == "true") {
+        if (this.isClientPage || sessionStorage.getItem('isClientPage') == "true") {
             this.isClientPage = true;
         }
     }
@@ -93,10 +92,14 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
         this.access_token = loginResult.access_token;
 
-        localStorage.setItem("token", loginResult.access_token);
+        if (isClientPage)
+            sessionStorage.setItem("token", loginResult.access_token);
+        else
+            localStorage.setItem("token", loginResult.access_token);
 
         this.isLoggedIn = true;
         this.issinglepage = false;
+
         if (isClientPage)
             this.router.navigate(['/dashboard']);
         else
@@ -105,7 +108,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     }
     doLogout() {
         localStorage.removeItem('token');
-        localStorage.removeItem('isClientPage');
         this.access_token = "";
 
         this.isLoggedIn = false;
@@ -147,7 +149,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         //    return false;
         //}
 
-        if (this.isClientPage || localStorage.getItem('isClientPage') == "true")
+        if (this.isClientPage || sessionStorage.getItem('isClientPage') == "true")
             return false;
 
         return true;
@@ -300,5 +302,4 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     ngOnDestroy() {
         jQuery(this.layoutMenuScroller).nanoScroller({ flash: true });
     }
-
 }
