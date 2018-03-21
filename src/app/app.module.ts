@@ -129,6 +129,7 @@ import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.co
 import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component'
 import { StudentScorecardsComponent } from './reports/view/student.scorecards.component'
 import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report.component'
+import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.schoolsurvey.report.component'
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
@@ -241,7 +242,10 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         , JwtModule.forRoot({
             config: {
                 tokenGetter: () => {
-                    return localStorage.getItem('token');
+                    if (sessionStorage.getItem('isClientPage') == "true")
+                        return sessionStorage.getItem('token');
+                    else
+                        return localStorage.getItem('token');
                 },
                 whitelistedDomains: ['devapi.charterforesight.com'],
                 skipWhenExpired: true
@@ -281,9 +285,9 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         EmbeddedLoginComponent,
         HomeComponent,
         DashboardComponent,
-        
+
         StudentInformationComponent,
-        EnrollmentOverviewComponent, 
+        EnrollmentOverviewComponent,
         AttendanceOverviewComponent,
         AssessmentsSBACOverviewComponent,
         AssessmentsSBACDetailComponent,
@@ -304,6 +308,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         TeacherScorecardsReportComponent,
         StudentScorecardsComponent,
         StudentScorecardsReportComponent,
+        VoiceOfTheSchoolSurveyReportComponent,
 
         AdminConfigurationComponent,
         SchoolComparisonListComponent,

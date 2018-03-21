@@ -35,7 +35,8 @@ export class AssessmentsSBACOverviewComponent implements OnInit {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
         app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
-        app.LeftMenuItems = app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
+        app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Assessment);
+
         this.sessionInfo = this.app.getSession();        
     }
 

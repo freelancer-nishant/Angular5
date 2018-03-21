@@ -12,6 +12,7 @@ export class AssessmentsComponent implements OnInit {
         app.displayLeftMenu(true);
         app.activeCategoryDropdown = true;
         app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
+        debugger;
         app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Assessment);
     }
 

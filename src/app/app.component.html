@@ -1,6 +1,7 @@
 <div *ngIf="issinglepage==true">
     <router-outlet></router-outlet>
     <spinner></spinner><!--Added-->
+    <translate-component class="hide"></translate-component>
 </div>
 <div *ngIf="issinglepage==false" class="layout-wrapper" (click)="onLayoutClick()"
      [ngClass]="{'menu-layout-static': !isOverlay(),

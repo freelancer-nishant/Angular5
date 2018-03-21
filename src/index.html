@@ -19,35 +19,6 @@
     <link id="layout-css" rel="stylesheet" type="text/css" href="assets/layout/css/layout-custom.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Google Translate JS load -->
-    <!--<script type="text/javascript" src="//translate.google.com/translate_a/element.js"></script>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true }, 'google_translate_element');
-        }
-
-        document.onreadystatechange = () => {
-            if (document.readyState === 'complete') {
-                let stateCheck = setInterval(() => {
-                    if (document.getElementsByClassName("goog-te-menu-value")[0] !== undefined && document.getElementsByClassName("goog-te-menu-value")[0].innerHTML !== undefined) {
-                        document.getElementsByClassName("goog-te-menu-value")[0].innerHTML = document.getElementsByClassName("goog-te-menu-value")[0].innerHTML + '<i class="topbar-icon material-icons">language</i>';
-                        clearInterval(stateCheck);
-                    }
-                }, 100);
-            }
-        };
-
-    </script>-->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            console.log('call')
-            console.log(document.getElementById("google_translate_element"))
-            console.log(google)
-            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true }, 'google_translate_element');
-        }
-    </script>
-
 </head>
 <body>
     <app-root>

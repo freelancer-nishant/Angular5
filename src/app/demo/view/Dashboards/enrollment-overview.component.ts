@@ -41,7 +41,8 @@ export class EnrollmentOverviewComponent implements OnInit {
         this.schools = [];        
         this.schoolYears = [];        
         this.grade = [];
-
+        console.log(sessionStorage.getItem('isClientPage'))
+        console.log(this.sessionInfo)
 
         let schoolResult: School[] = [];
         this.schoolService.get(this.sessionInfo.client_id).subscribe((result: any) => schoolResult = result.data,

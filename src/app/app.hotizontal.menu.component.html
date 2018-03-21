@@ -1,6 +1,6 @@
 <div class="menu-horizontal" [ngClass]="{'hide':app.hasHorizontalSubMenuAccess()==false}">
     <ul class="topbar-left client-home-icon">
-        <li><a href="#"> <i class="fa fa-home"></i></a></li>
+        <li><a href="#" style="padding-top: 5px;"> <i class="fa fa-home"></i></a></li>
     </ul>
     <ul class="pull-left">
         <li><a [ngClass]="{'active': selectedItem == 'dashboards'}" href="#/dashboard" (click)="onItemClick('dashboards')">Dashboards</a></li>

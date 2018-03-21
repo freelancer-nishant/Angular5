@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
     template: `
         <div class="topbar clearfix">
             <div class="topbar-left">
-                <img src="assets/layout/images/logo.png" class="topbar-logo" />
+                <img src="assets/layout/images/CharterForesightLogo-white.png" class="topbar-logo" />
             </div>
 
             <div class="topbar-right">

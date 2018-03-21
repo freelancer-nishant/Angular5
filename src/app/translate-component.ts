@@ -9,7 +9,7 @@ declare var $: any;
     selector: 'translate-component',
     template: `
             <div id="google_translate_element1"></div>   
-            <div id="google_translate_element"></div>   
+            <div id="google_translate_element"></div>
             <button id="loadTranslatElement" onclick="googleTranslateElementInit()" style="display:none;"></button>
             `,
 })
@@ -25,10 +25,8 @@ export class TranslateComponent {
         });
 
         var waitingForgoogleLoad = setInterval(function () {
-            if (typeof (google) != 'undefined' && typeof (google.translate.TranslateElement.InlineLayout) != 'undefined') {
+            if (typeof (google) != 'undefined' && typeof (google.translate.TranslateElement) != 'undefined' && typeof (google.translate.TranslateElement.InlineLayout) != 'undefined') {
                 clearInterval(waitingForgoogleLoad);
-
-                //$("#loadTranslatElement").trigger('click');
 
                 new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true }, 'google_translate_element');
                 $("#google_translate_element1").html(google.translate.TranslateElement().ia)
