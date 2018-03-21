@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges, Attribute } from '@angular/core';
+import { SpinnerVisibilityService } from 'ng-http-loader/services/spinner-visibility.service';
 import { VJSConfig } from './demo/service/vjsconfig.service';
 
 declare var visualize: any;
@@ -22,7 +23,7 @@ export class VJSComponent implements OnChanges {
     resourceIndex: number;
     selectedFormat: any;
 
-    constructor( @Attribute('id') id: string, public vjsConfig: VJSConfig) {
+    constructor( @Attribute('id') id: string, public vjsConfig: VJSConfig, private spinner: SpinnerVisibilityService) {
 
         this.loadAPI = new Promise((resolve) => {
             this.loadScript();
@@ -32,7 +33,7 @@ export class VJSComponent implements OnChanges {
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
 
-        this.drawResource(vjsConfig, this.resourceIndex, this.params);
+        this.drawResource(vjsConfig, spinner, this.resourceIndex, this.params);
     };
 
 
@@ -42,11 +43,10 @@ export class VJSComponent implements OnChanges {
         if (changes.params) {
             p = changes.params.currentValue;
         }
-        this.drawResource(this.vjsConfig, this.resourceIndex, p);
-
+        this.drawResource(this.vjsConfig, this.spinner, this.resourceIndex, p);
     }
 
-    public drawResource(vjsConfig, resourceIndex, params) {
+    public drawResource(vjsConfig, spinner, resourceIndex, params) {
 
         var waitingForVjsLoad = setInterval(function () {
             if (typeof (visualize) != 'undefined') {
@@ -59,25 +59,7 @@ export class VJSComponent implements OnChanges {
                     $('#pagination-control').css('display', 'none');
                 }
 
-                if (params != undefined) {
-                    let spinerDiv: HTMLElement = document.createElement("div");
-                    spinerDiv.id = 'report-spinner';
-                    spinerDiv.innerHTML = `
-                                     <div _ngcontent-c4="" class="sk-cube-grid colored">
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube1"></div>
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube2"></div>
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube3"></div>
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube4"></div>
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube5"></div>
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube6"></div>
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube7"></div>
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube8"></div>
-                                        <div _ngcontent-c4="" class="sk-cube sk-cube9"></div>
-                                    </div>`
-                    let element = document.getElementById(vjsConfig.resourceDetails[resourceIndex].id);
-                    element.getElementsByClassName('vjs-container')[0].innerHTML = '';
-                    element.getElementsByClassName('vjs-container')[0].appendChild(spinerDiv);
-                }
+                spinner.show();
 
                 visualize({
                     auth: vjsConfig.userAuth
@@ -97,7 +79,7 @@ export class VJSComponent implements OnChanges {
                                         params: JSON.parse(params),
                                         success: function () { console.log("success") },
                                         error: function (err) {
-                                            document.getElementById('report-spinner').remove(); alert("Report draw failed: " + err)
+                                            spinner.hide(); alert("Report draw failed: " + err)
                                         },
                                         events: {
                                             reportCompleted: function (status) {
@@ -110,8 +92,8 @@ export class VJSComponent implements OnChanges {
                                                 if (document.getElementById('btnDownload') != undefined)
                                                     document.getElementById('btnDownload').removeAttribute("disabled");
                                                 if (status == 'ready') {
-                                                    if (document.getElementById('report-spinner'))
-                                                        document.getElementById('report-spinner').remove();
+
+                                                    spinner.hide();
 
                                                     var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
                                                     $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
@@ -170,6 +152,9 @@ export class VJSComponent implements OnChanges {
 
                                     convertJSON.Stop_Transition = ["Yes"];
 
+                                    // loader
+                                    spinner.show();
+
                                     exportTo.params(convertJSON)
 
                                         .run()
@@ -177,9 +162,11 @@ export class VJSComponent implements OnChanges {
                                             exportTo.export({
                                                 outputFormat: format,
                                             }, function (link) {
+                                                spinner.hide();
                                                 var url = link.href ? link.href : link;
                                                 window.location.href = url;
-                                            }, function (error) {
+                                                }, function (error) {
+                                                    spinner.hide();
                                                 console.log(error)
                                             })
                                         });
