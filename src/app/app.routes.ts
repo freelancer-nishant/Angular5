@@ -47,6 +47,7 @@ import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.co
 import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component'
 import { StudentScorecardsComponent } from './reports/view/student.scorecards.component'
 import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report.component'
+import {VoiceOfTheSchoolSurveyReportComponent} from './reports/view/voice.schoolsurvey.report.component'
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
@@ -78,10 +79,12 @@ export const routes: Routes = [
     { path: 'comparison-schools', component: CompareSBACScoresComponent, canActivate: [AuthGuard] },
     { path: 'comparison-schools/sbac-scores', component: CompareSBACScoresComponent, canActivate: [AuthGuard] },    
     { path: 'comparison-schools/school-scorecards', component: CompareSchoolScorecardsComponent, canActivate: [AuthGuard] },
-    { path: 'teacher-scorecards', component: TeacherScorecardsComponent, canActivate: [AuthGuard] },
+    { path: 'teacher-scorecards', component: TeacherScorecardsReportComponent, canActivate: [AuthGuard] },
     { path: 'teacher-scorecards/report', component: TeacherScorecardsReportComponent, canActivate: [AuthGuard] },
-    { path: 'student-scorecards', component: StudentScorecardsComponent, canActivate: [AuthGuard] },
+    { path: 'student-scorecards', component: StudentScorecardsReportComponent, canActivate: [AuthGuard] },
     { path: 'student-scorecards/report', component: StudentScorecardsReportComponent, canActivate: [AuthGuard] },
+    { path: 'voice-schoolsurvey', component: VoiceOfTheSchoolSurveyReportComponent, canActivate: [AuthGuard] },
+    
 
     //Admin pages
     { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard] },

@@ -266,7 +266,7 @@ $secondaryColor: #5898a6;
 .client-home-icon {
     padding: 0;
     margin: 0;
-    font-size: 35px;
+    font-size: 24px;
 }
 
 .show_chartTypeSelector_wrapper {
@@ -310,6 +310,12 @@ body {
 
 body > div {
     display: none !important;
+}
+.layout-wrapper .topbar .topbar-left .topbar-logo{
+    height:50px;
+}
+.layout-wrapper .topbar .topbar-left{
+    padding:5px;
 }
 
 @media (max-width: 1024px) {

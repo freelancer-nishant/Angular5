@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges, Attribute } from '@angular/core';
 import { SpinnerVisibilityService } from 'ng-http-loader/services/spinner-visibility.service';
 import { VJSConfig } from './demo/service/vjsconfig.service';
+import { GlobalHelper } from './../app/shared/app.globals'
 
 declare var visualize: any;
 declare var jquery: any;
@@ -16,8 +17,6 @@ declare var $: any;
 
 export class VJSComponent implements OnChanges {
 
-    loadAPI: Promise<any>;
-
     @Input() params: {};
 
     resourceIndex: number;
@@ -25,10 +24,7 @@ export class VJSComponent implements OnChanges {
 
     constructor( @Attribute('id') id: string, public vjsConfig: VJSConfig, private spinner: SpinnerVisibilityService) {
 
-        this.loadAPI = new Promise((resolve) => {
-            this.loadScript();
-            resolve(true);
-        });
+        GlobalHelper.loadScript("visualize.js", "http://62.151.179.246:8080/jasperserver-pro/client/visualize.js?_opt=false&logLevel=debug");
 
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
@@ -236,28 +232,4 @@ export class VJSComponent implements OnChanges {
     private getObjectIndex(object: any, id: any): number {
         return object.map(function (x) { return x.id; }).indexOf(id);
     };
-
-    public loadScript() {
-        var isFound = false;
-        var scripts = document.getElementsByTagName("script")
-        for (var i = 0; i < scripts.length; ++i) {
-            if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes("visualize.js")) {
-                isFound = true;
-            }
-        }
-
-        if (!isFound) {
-            var dynamicScripts = ["http://62.151.179.246:8080/jasperserver-pro/client/visualize.js?_opt=false&logLevel=debug"];
-
-            for (var i = 0; i < dynamicScripts.length; i++) {
-                let node = document.createElement('script');
-                node.src = dynamicScripts[i];
-                node.type = 'text/javascript';
-                node.async = false;
-                node.charset = 'utf-8';
-                document.getElementsByTagName('head')[0].appendChild(node);
-            }
-
-        }
-    }
 }

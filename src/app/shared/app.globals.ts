@@ -24,6 +24,7 @@ export enum MenuType {
     ComparisonSchools,
     TeacherScorecards,
     StudentScorecards,
+    VoiceOfTheSchoolSurveys,
 
     SchoolComparisonList
 }
@@ -43,11 +44,13 @@ export class GlobalHelper {
             case MenuType.ComparisonSchools:    
             case MenuType.TeacherScorecards:
             case MenuType.StudentScorecards:
+            case MenuType.VoiceOfTheSchoolSurveys:
                 categories = [
                     { name: 'School Scorecards', route: "#/school-scorecards" },
                     { name: 'Comparison Schools', route: "#/comparison-schools" },
                     { name: 'Teacher Scorecards', route: "#/teacher-scorecards" },
                     { name: 'Students Scorecards', route: "#/student-scorecards" }
+                    { name: 'Voice of the School Surveys', route: "#/voice-schoolsurvey" }
                 ];
                 break;
             case MenuType.SchoolComparisonList:
@@ -101,7 +104,12 @@ export class GlobalHelper {
                     name: "Student Scorecards"
                 }
                 break;
-
+            case MenuType.VoiceOfTheSchoolSurveys:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/report/voice-survey.png',
+                    name: "Voice of the School Surveys"
+                }
+                break;
             case MenuType.SchoolComparisonList:
                 sideMenuInfo = {
                     icon: './assets/layout/images/admin/comparative-school-list.png',
@@ -189,8 +197,8 @@ export class GlobalHelper {
                     {
                         label: 'Comparison Schools', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Compare SBAC Scores', icon: 'fa fa-fw fa-columns', routerLink: ['/comparison-schools/sbac-scores'] },
-                            { label: 'Compare School Scorecards', icon: 'fa fa-fw fa-columns', routerLink: ['/comparison-schools/school-scorecards'] },
+                            { label: 'Compare SBAC Scores',  routerLink: ['/comparison-schools/sbac-scores'] },
+                            { label: 'Compare School Scorecards',  routerLink: ['/comparison-schools/school-scorecards'] },
                         ]
                     }
                 ];
@@ -215,7 +223,16 @@ export class GlobalHelper {
                     }
                 ];
                 break;
-
+            case MenuType.VoiceOfTheSchoolSurveys:
+                menuItems = [
+                    {
+                        label: 'Voice of the School Surveys', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Voice of the School Surveys', icon: '', routerLink: ['/voice-schoolsurvey'] },
+                        ]
+                    }
+                ];
+                break;
             case MenuType.SchoolComparisonList:
                 menuItems = [
                     {
