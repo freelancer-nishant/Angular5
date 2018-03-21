@@ -13,6 +13,11 @@ import { MenuItem } from 'primeng/primeng';
                 <span id="export-report" class="ui-panel-titlebar-icon">
                     <p-menu #menu popup="popup" [model]="exportFormats" id="btnExport"></p-menu>
                     <button type="button" pButton icon="fa fa-download" (click)="menu.toggle($event)" disabled id="btnDownload" class="ui-button-icon-only" title="Export"></button>
+                </span>
+
+                <span id="zoom-control" class="ui-panel-titlebar-icon">
+                    <button id="btnZoomIn" pButton type="button" icon="fa fa-search-plus" disabled title="Zoom In" class="ui-button-icon-only" title="Zoom In"></button>                    
+                    <button id="btnZoomOut" pButton type="button" icon="fa fa-search-minus" disabled title="Zoom Out" class="ui-button-icon-only" title="Zoom Out"></button>
                 </span>               
             `,
 })
