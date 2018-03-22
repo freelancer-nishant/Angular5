@@ -83,9 +83,9 @@ export class VJSComponent implements OnChanges {
                                             spinner.hide(); alert("Report draw failed: " + err)
                                         },
                                         events: {
-                                            beforeRender: function (el) {
-                                                spinner.show();
-                                            },
+                                            //beforeRender: function (el) {
+                                            //    spinner.show();
+                                            //},
                                             reportCompleted: function (status) {
                                                 if (document.getElementById('btnZoomIn') != undefined)
                                                     document.getElementById('btnZoomIn').removeAttribute("disabled");
