@@ -63,6 +63,11 @@ export class VJSComponent implements OnChanges {
                     function (v) {
                         switch (vjsConfig.resourceDetails[resourceIndex].type) {
                             case "report": {
+                                if (params == undefined) {
+                                    spinner.hide();
+                                    break;
+                                }
+
                                 var currentPage = 1,
                                     totalPages,
                                     zoom = 0,
@@ -78,6 +83,9 @@ export class VJSComponent implements OnChanges {
                                             spinner.hide(); alert("Report draw failed: " + err)
                                         },
                                         events: {
+                                            beforeRender: function (el) {
+                                                spinner.show();
+                                            },
                                             reportCompleted: function (status) {
                                                 if (document.getElementById('btnZoomIn') != undefined)
                                                     document.getElementById('btnZoomIn').removeAttribute("disabled");
@@ -161,8 +169,8 @@ export class VJSComponent implements OnChanges {
                                                 spinner.hide();
                                                 var url = link.href ? link.href : link;
                                                 window.location.href = url;
-                                                }, function (error) {
-                                                    spinner.hide();
+                                            }, function (error) {
+                                                spinner.hide();
                                                 console.log(error)
                                             })
                                         });
@@ -221,6 +229,7 @@ export class VJSComponent implements OnChanges {
                         };
                     },
                     function (err) {
+                        spinner.hide();
                         alert("Visualize.js could not authenticate user/password.");
                     });
             }

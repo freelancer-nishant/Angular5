@@ -100,6 +100,9 @@ import { AppComponent } from './app.component';
                             </li>                            
                         </ul>
                     </li>    
+                    <li class="charter-language">
+                        <translate-component></translate-component>
+                    </li>
                 </ul>
             </div>
         </div>        

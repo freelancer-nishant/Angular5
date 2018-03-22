@@ -10,7 +10,6 @@ declare var $: any;
     template: `
             <div id="google_translate_element1"></div>   
             <div id="google_translate_element"></div>
-            <button id="loadTranslatElement" onclick="googleTranslateElementInit()" style="display:none;"></button>
             `,
 })
 
@@ -28,11 +27,11 @@ export class TranslateComponent {
             if (typeof (google) != 'undefined' && typeof (google.translate.TranslateElement) != 'undefined' && typeof (google.translate.TranslateElement.InlineLayout) != 'undefined') {
                 clearInterval(waitingForgoogleLoad);
 
-                new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true }, 'google_translate_element');
+                new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true }, 'google_translate_element');
                 $("#google_translate_element1").html(google.translate.TranslateElement().ia)
 
                 if (document.getElementsByClassName("goog-te-menu-value")[0] !== undefined && document.getElementsByClassName("goog-te-menu-value")[0].innerHTML.indexOf('<i class="topbar-icon material-icons">language</i>') <= 0) {
-                    document.getElementsByClassName("goog-te-menu-value")[0].innerHTML = document.getElementsByClassName("goog-te-menu-value")[0].innerHTML + '<i class="topbar-icon material-icons">language</i>';
+                    document.getElementsByClassName("goog-te-menu-value")[0].innerHTML = document.getElementsByClassName("goog-te-menu-value")[0].innerHTML + '<i class="topbar-icon material-icons">language</i><span class="topbar-item-name">Language</span>';
                 }
             }
         }, 100);

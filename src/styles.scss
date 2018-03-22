@@ -296,8 +296,9 @@ $secondaryColor: #5898a6;
 }
 
 .goog-te-gadget-simple {
-    background-color: $secondaryColor !important;
+    background: none !important;
     border: none !important;
+    margin: -1px;
 }
 
 body .ui-datagrid .ui-datagrid-header {
@@ -311,25 +312,49 @@ body {
 body > div {
     display: none !important;
 }
-.layout-wrapper .topbar .topbar-left .topbar-logo{
-    height:50px;
-}
-.layout-wrapper .topbar .topbar-left{
-    padding:5px;
+
+.layout-wrapper .topbar .topbar-left .topbar-logo {
+    height: 50px;
 }
 
-@media (max-width: 1024px) {
-
-    .mobile-text-center {
-        text-align: center;
-    }
+.layout-wrapper .topbar .topbar-left {
+    padding: 5px;
 }
 
-@media (min-width: 678px) {
+@media (min-width: 1024px) {
     body .ui-dialog {
         width: 50% !important;
         left: 25% !important;
     }
+}
+
+@media (max-width: 1024px) {
+    body .ui-dialog {
+        width: 90% !important;
+        left: 5% !important;
+    }
+
+    .mobile-text-center {
+        text-align: center;
+    }
+
+    .charter-language .goog-te-gadget-simple .goog-te-menu-value i {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 12px;
+        font-size: 16px;
+        color: black;
+    }
+
+    .charter-language .goog-te-gadget-simple .goog-te-menu-value span.topbar-item-name {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 16px;
+        font-weight: initial;
+    }
+}
+
+@media (min-width: 678px) {
 
     .ui-widget-content .ui-md-1,
     .ui-widget-content .ui-md-2,
@@ -363,8 +388,24 @@ body > div {
     .hidden-xs {
         display: none;
     }
+
     .mobile-text-center {
         text-align: center;
+    }
+
+    .charter-language .goog-te-gadget-simple .goog-te-menu-value i {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 12px;
+        font-size: 16px;
+        color: black;
+    }
+
+    .charter-language .goog-te-gadget-simple .goog-te-menu-value span.topbar-item-name {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 16px;
+        font-weight: initial;
     }
 }
 

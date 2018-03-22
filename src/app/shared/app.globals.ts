@@ -49,7 +49,7 @@ export class GlobalHelper {
                     { name: 'School Scorecards', route: "#/school-scorecards" },
                     { name: 'Comparison Schools', route: "#/comparison-schools" },
                     { name: 'Teacher Scorecards', route: "#/teacher-scorecards" },
-                    { name: 'Students Scorecards', route: "#/student-scorecards" }
+                    { name: 'Students Scorecards', route: "#/student-scorecards" },
                     { name: 'Voice of the School Surveys', route: "#/voice-schoolsurvey" }
                 ];
                 break;
