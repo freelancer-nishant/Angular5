@@ -154,12 +154,12 @@ export class CompareSchoolScorecardsComponent implements OnInit {
         }
     }
 
-    submit() {debugger
+    submit() {
         if (this.selectedComparative != undefined && this.selectedSchoolYear != undefined) {
             let comparativeListItems: ComparativeListItem;
             this.comparativeListService.getById(this.selectedComparative, this.sessionInfo.client_id).subscribe((result: any) => comparativeListItems = result.data,
                 (error: any) => { },
-                () => {debugger
+                () => {
                     let schoolCodes = [];
                     comparativeListItems.items.forEach(function (value, index) {
                         schoolCodes.push(value.school_code)

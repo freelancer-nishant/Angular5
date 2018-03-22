@@ -374,6 +374,27 @@ body > div {
     }
 }
 
+@media screen and (min-device-width: 1025px) and (max-device-width : 1225px) {
+    body, .dashboard-card .icon-wrapper {
+        height: 50px;
+        font-size: 10px !important;
+    }
+}
+
+@media screen and (min-device-width: 769px) and (max-device-width : 825px) {
+    body, .dashboard-card .icon-wrapper {
+        height: 50px;
+        font-size: 11px !important;
+    }
+}
+
+@media screen and (min-device-width: 642px) and (max-device-width : 697px) {
+    body, .dashboard-card .icon-wrapper {
+        height: 50px;
+        font-size: 11px !important;
+    }
+}
+
 @media screen and (min-device-width: 250px) and (max-device-width : 364px) {
     body, .dashboard-card .icon-wrapper {
         height: 50px;
