@@ -27,7 +27,10 @@ export class EmbeddedLoginComponent implements OnInit {
         this.loginService.getTocket<LoginResult>(login)
             .subscribe((data: any) => this.loginResult = data,
             //error => () => { this.msgError = "Invalid credentials"; this.loginProcessing = false; },
-            (error: any) => { this.msgError = "Invalid credentials"; },
+            (error: any) => {
+            this.msgError = "Invalid credentials";
+                console.log(error);
+            },
             () => {
                 //console.log(this.loginResult);
 

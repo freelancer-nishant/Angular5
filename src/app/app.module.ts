@@ -246,8 +246,23 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         , JwtModule.forRoot({
             config: {
                 tokenGetter: () => {
-                    if (sessionStorage.getItem('isClientPage') == "true")                       
+                    let jwtHelper = new JwtHelperService({
+                        tokenGetter: () => {
+                            if (sessionStorage.getItem('isClientPage') == "true")
+                                return sessionStorage.getItem('token');
+                            else
+                                return localStorage.getItem('token');
+                        }
+                    });
+
+                    if (sessionStorage.getItem('isClientPage') == "true") {
+                        if (jwtHelper.isTokenExpired()) {
+                            console.log('call');
+                            //LoginService.getRefreshToken(sessionStorage.getItem('refreshtoken'))
+                        }
+
                         return sessionStorage.getItem('token');
+                    }
                     else
                         return localStorage.getItem('token');
                 },

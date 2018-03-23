@@ -8,4 +8,5 @@ export interface LoginResult {
     access_token;
     token_type;
     expires_in;
+    refresh_token;
 }

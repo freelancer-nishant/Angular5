@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ModuleWithProviders } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Login, LoginResult } from '../domain/login';
 
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 
 
 import { Observable } from 'rxjs/Observable';
@@ -17,10 +17,28 @@ const httpOptionsa = {
 };
 @Injectable()
 export class LoginService {
-
-    constructor(private http: HttpClient) { }    
+    constructor(private http: HttpClient) { }
     public getTocket<LoginResult>(login: Login): Observable<LoginResult> {
         return this.http.post<LoginResult>(GlobalConstants.API_BASE_URL + '/oauth/token', GlobalHelper.toHttpParams(login), httpOptionsa);
+    }
+    public getRefreshToken<LoginResult>(refresh_token: string): Observable<LoginResult> {
+        let params = new HttpParams();
+        params = params.append("grant_type", "refresh_token");
+        params = params.append("refresh_token", refresh_token);
+
+        let loginResult: any;
+        this.http.post<LoginResult>(GlobalConstants.API_BASE_URL + '/oauth/token', params, httpOptionsa).subscribe((data: any) => loginResult = data,
+            (error: any) => {
+                console.log(error);
+            },
+            () => {
+                console.log(loginResult)
+                if (loginResult.access_token != undefined) {
+                    sessionStorage.setItem("token", loginResult.access_token);
+                    sessionStorage.setItem("refreshtoken", loginResult.refresh_token);
+                }
+            });
+        return loginResult;
     }
 }
 
