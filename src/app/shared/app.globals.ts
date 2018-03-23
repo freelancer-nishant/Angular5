@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpParams } from '@angular/common/http';
+import { HttpParams} from '@angular/common/http';
 
 @Injectable()
 
@@ -26,14 +26,17 @@ export enum MenuType {
     StudentScorecards,
     VoiceOfTheSchoolSurveys,
 
+    SchoolInSchoolYear,
+    EnrollmentAndAttendance,
+    AdminAssessments,
+    AssessmentUploads,
     SchoolComparisonList
 }
-
 export class GlobalHelper {
     public static getCategories(menufor: MenuType): any[] {
-        let categories:any[] = []
+        let categories: any[] = []
         switch (menufor) {
-            case MenuType.StudentInformation:                
+            case MenuType.StudentInformation:
             case MenuType.Assessment:
                 categories = [
                     { name: 'Student Information', route: "#/student-information" },
@@ -41,21 +44,29 @@ export class GlobalHelper {
                 ];
                 break;
             case MenuType.SchoolScorecard:
-            case MenuType.ComparisonSchools:    
+            case MenuType.ComparisonSchools:
             case MenuType.TeacherScorecards:
             case MenuType.StudentScorecards:
             case MenuType.VoiceOfTheSchoolSurveys:
                 categories = [
-                    { name: 'School Scorecards', route: "#/school-scorecards" },
-                    { name: 'Comparison Schools', route: "#/comparison-schools" },
-                    { name: 'Teacher Scorecards', route: "#/teacher-scorecards" },
-                    { name: 'Students Scorecards', route: "#/student-scorecards" },
-                    { name: 'Voice of the School Surveys', route: "#/voice-schoolsurvey" }
+                    { name: 'School Scorecards Sample', route: "#/school-scorecards" },
+                    { name: 'Comparison Schools Sample', route: "#/comparison-schools" },
+                    { name: 'Teacher Scorecards Sample', route: "#/teacher-scorecards" },
+                    { name: 'Students Scorecards Sample', route: "#/student-scorecards" },
+                    { name: 'Voice of the School Surveys Sample', route: "#/voice-schoolsurvey" }
                 ];
                 break;
+            case MenuType.SchoolInSchoolYear:
+            case MenuType.EnrollmentAndAttendance:
+            case MenuType.AdminAssessments:
+            case MenuType.AssessmentUploads:
             case MenuType.SchoolComparisonList:
                 categories = [
-                    { name: 'School Comparison List', route: "#/school-comparison-list" },                    
+                    { name: 'School in School Year', route: "#/schoolin-schoolyear" },
+                    { name: 'Enrollment & Attendance', route: "#/enrollment-attendance" },
+                    { name: 'Assessments', route: "#/admin-assessments" },
+                    { name: 'Assessment Uploads', route: "#/admin-assessments-upload" },
+                    { name: 'School Comparison List', route: "#/school-comparison-list" },
                 ];
                 break;
             default:
@@ -71,7 +82,7 @@ export class GlobalHelper {
             case MenuType.StudentInformation:
                 sideMenuInfo = {
                     icon: './assets/layout/images/dashboard/student-information.png',
-                    name: "Student Information"                   
+                    name: "Student Information"
                 };
                 break;
             case MenuType.Assessment:
@@ -83,31 +94,55 @@ export class GlobalHelper {
             case MenuType.SchoolScorecard:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/school-scorecard.png',
-                    name: "School Scorecards"                    
+                    name: "School Scorecards Sample"
                 }
                 break;
             case MenuType.ComparisonSchools:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/comparison-schools.png',
-                    name: "Comparison Schools"
+                    name: "Comparison Schools Sample"
                 }
                 break;
             case MenuType.TeacherScorecards:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/school-scorecard.png',
-                    name: "Teacher Scorecards"                    
+                    name: "Teacher Scorecards Sample"
                 }
-                break;           
+                break;
             case MenuType.StudentScorecards:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/school-scorecard.png',
-                    name: "Student Scorecards"
+                    name: "Student Scorecards Sample"
                 }
                 break;
             case MenuType.VoiceOfTheSchoolSurveys:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/voice-survey.png',
-                    name: "Voice of the School Surveys"
+                    name: "Voice of the School Surveys Sample"
+                }
+                break;
+            case MenuType.SchoolInSchoolYear:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/calendar.png',
+                    name: "School in School Year"
+                }
+                break;
+            case MenuType.EnrollmentAndAttendance:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/studentinfo.png',
+                    name: "Enrollment & Attendance"
+                }
+                break;
+            case MenuType.AdminAssessments:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/assessment.png',
+                    name: "Assessments"
+                }
+                break;
+            case MenuType.AssessmentUploads:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/uploads.png',
+                    name: "Assessment Uploads"
                 }
                 break;
             case MenuType.SchoolComparisonList:
@@ -187,7 +222,7 @@ export class GlobalHelper {
                     {
                         label: 'School Scorecards', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'School Scorecards', icon: '', routerLink: ['/school-scorecards/report'] },                            
+                            { label: 'School Scorecards', icon: '', routerLink: ['/school-scorecards/report'] },
                         ]
                     }
                 ];
@@ -197,8 +232,8 @@ export class GlobalHelper {
                     {
                         label: 'Comparison Schools', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Compare SBAC Scores',  routerLink: ['/comparison-schools/sbac-scores'] },
-                            { label: 'Compare School Scorecards',  routerLink: ['/comparison-schools/school-scorecards'] },
+                            { label: 'Compare SBAC Scores', routerLink: ['/comparison-schools/sbac-scores'] },
+                            { label: 'Compare School Scorecards', routerLink: ['/comparison-schools/school-scorecards'] },
                         ]
                     }
                 ];
@@ -233,6 +268,34 @@ export class GlobalHelper {
                     }
                 ];
                 break;
+            case MenuType.SchoolInSchoolYear:
+                menuItems = [
+                    {
+                        label: 'School in School Year', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/schoolin-schoolyear']
+                    }
+                ];
+                break;
+            case MenuType.EnrollmentAndAttendance:
+                menuItems = [
+                    {
+                        label: 'Enrollment & Attendance', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/enrollment-attendance']
+                    }
+                ];
+                break;
+            case MenuType.AdminAssessments:
+                menuItems = [
+                    {
+                        label: 'Assessments', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/admin-assessments']
+                    }
+                ];
+                break;
+            case MenuType.AssessmentUploads:
+                menuItems = [
+                    {
+                        label: 'Assessment Uploads', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/admin-assessments-upload']
+                    }
+                ];
+                break;
             case MenuType.SchoolComparisonList:
                 menuItems = [
                     {
@@ -262,7 +325,7 @@ export class GlobalHelper {
         return params;
     }
 
-    public static loadScript(key:string,url:string) {
+    public static loadScript(key: string, url: string) {
         var isFound = false;
         var scripts = document.getElementsByTagName("script")
         for (var i = 0; i < scripts.length; ++i) {

@@ -132,6 +132,10 @@ import { StudentScorecardsReportComponent } from './reports/view/student.scoreca
 import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.schoolsurvey.report.component'
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
+import { SchoolinSchoolYearComponent } from './admin/view/schoolin-schoolyear.component'
+import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
+import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
+import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 
 import { VJSComponent } from './vjs.component'
@@ -242,7 +246,7 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         , JwtModule.forRoot({
             config: {
                 tokenGetter: () => {
-                    if (sessionStorage.getItem('isClientPage') == "true")
+                    if (sessionStorage.getItem('isClientPage') == "true")                       
                         return sessionStorage.getItem('token');
                     else
                         return localStorage.getItem('token');
@@ -311,6 +315,10 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         VoiceOfTheSchoolSurveyReportComponent,
 
         AdminConfigurationComponent,
+        SchoolinSchoolYearComponent,
+        EnrollmentAndAttendanceComponent,
+        AdminAssessmentsComponent,
+        AssessmentUploadsComponent,
         SchoolComparisonListComponent,
 
         VJSComponent,

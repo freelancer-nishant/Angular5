@@ -59,8 +59,8 @@ import { AppComponent } from './app.component';
                     </li>                   
                     <li #userinfo [ngClass]="{'active-top-menu':app.activeTopbarItem === userinfo}">
                         <a href="#" (click)="app.onTopbarItemClick($event,userinfo)"  title="User Settings">
-                            <i class="topbar-icon material-icons">perm_identity</i>
-                            <i class="topbar-icon material-icons">keyboard_arrow_down</i>
+                            <i class="topbar-icon material-icons">&#xE8A6;</i>
+                            <i class="topbar-icon material-icons">&#xE313;</i>
                             <span class="topbar-item-name">User Info</span>
                         </a>
                         <ul class="layout-menu fadeInDown">
@@ -74,7 +74,7 @@ import { AppComponent } from './app.component';
                     </li>
                     <li #help class="hide" [ngClass]="{'active-top-menu':app.activeTopbarItem === help}">
                         <a href="#" (click)="app.onTopbarItemClick($event,help)">                            
-                            <i class="topbar-icon material-icons">help_outline</i>
+                            <i class="topbar-icon material-icons">&#xE8FD;</i>
                             <span class="topbar-item-name">Help</span>
                         </a>
                         <ul class="layout-menu fadeInDown">
@@ -88,19 +88,19 @@ import { AppComponent } from './app.component';
                     </li>                    
                     <li #admin [ngClass]="{'active-top-menu':app.activeTopbarItem === admin, 'hide':app.hasAccess('ClientUser') !== true}">
                         <a href="#" (click)="app.onTopbarItemClick($event,admin)"  title="Admin">                                                        
-                            <i class="topbar-icon material-icons">settings</i>                            
+                            <i class="topbar-icon material-icons">&#xE8B8;</i>                            
                             <span class="topbar-item-name">Admin</span>
                         </a>
                         <ul class="layout-menu fadeInDown">
                            <li role="menuitem">
                                 <a href="#/admin-configuration">
                                     <!--<i class="fa fa-fw fa-question-circle-o"></i>-->
-                                    <span>Configuration</span>
+                                    <span>School Configuration</span>
                                 </a>
                             </li>                            
                         </ul>
                     </li>    
-                    <li class="charter-language">
+                    <li class="charter-language"  title="Translate">
                         <translate-component></translate-component>
                     </li>
                 </ul>

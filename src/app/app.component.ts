@@ -92,10 +92,14 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
         this.access_token = loginResult.access_token;
 
-        if (isClientPage)
+        if (isClientPage) {
             sessionStorage.setItem("token", loginResult.access_token);
-        else
+            sessionStorage.setItem("refreshtoken", loginResult.refresh_token);
+        }
+        else {
             localStorage.setItem("token", loginResult.access_token);
+            //localStorage.setItem("refreshtoken", loginResult.refresh_token);
+        }
 
         this.isLoggedIn = true;
         this.issinglepage = false;

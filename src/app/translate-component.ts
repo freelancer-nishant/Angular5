@@ -30,8 +30,8 @@ export class TranslateComponent {
                 new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true }, 'google_translate_element');
                 $("#google_translate_element1").html(google.translate.TranslateElement().ia)
 
-                if (document.getElementsByClassName("goog-te-menu-value")[0] !== undefined && document.getElementsByClassName("goog-te-menu-value")[0].innerHTML.indexOf('<i class="topbar-icon material-icons">language</i>') <= 0) {
-                    document.getElementsByClassName("goog-te-menu-value")[0].innerHTML = document.getElementsByClassName("goog-te-menu-value")[0].innerHTML + '<i class="topbar-icon material-icons">language</i><span class="topbar-item-name">Language</span>';
+                if (document.getElementsByClassName("goog-te-menu-value")[0] !== undefined && document.getElementsByClassName("goog-te-menu-value")[0].innerHTML.indexOf('LanguageIcon') <= 0) {
+                    document.getElementsByClassName("goog-te-menu-value")[0].innerHTML = document.getElementsByClassName("goog-te-menu-value")[0].innerHTML + '<i id="LanguageIcon" class="topbar-icon material-icons">&#xE894;</i><span class="topbar-item-name">Language</span>';
                 }
             }
         }, 100);

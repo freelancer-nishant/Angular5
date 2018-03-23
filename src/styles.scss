@@ -168,6 +168,7 @@ $secondaryColor: #5898a6;
     .card-image {
         display: table;
         width: 100%;
+        padding-top: 15%;
     }
 
     .icon-wrapper {
@@ -292,7 +293,12 @@ $secondaryColor: #5898a6;
 }
 
 .goog-te-gadget-simple .goog-te-menu-value i {
+    display: none;
+}
+
+#LanguageIcon {
     color: white;
+    display: inline-block;
 }
 
 .goog-te-gadget-simple {
@@ -321,6 +327,25 @@ body > div {
     padding: 5px;
 }
 
+.box-iconcard {
+    position: relative;
+}
+
+.box-iconcard:before {
+    content: "";
+    display: block;
+    padding-top: 100%; /* initial ratio of 1:1*/
+}
+
+.box-iconcard .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+}
+
 @media (min-width: 1024px) {
     body .ui-dialog {
         width: 50% !important;
@@ -332,6 +357,14 @@ body > div {
     body .ui-dialog {
         width: 90% !important;
         left: 5% !important;
+        height: 90% !important;
+        overflow: auto;
+    }
+
+    body .ui-dialog .ui-dialog-footer {
+        position: fixed;
+        bottom: 5%;
+        width: 100%;
     }
 
     .mobile-text-center {
@@ -381,6 +414,10 @@ body > div {
         margin: 0;
     }
 
+    .dashboard-card .card-image {
+        padding-top: 10%;
+    }
+
     .dashboard-card .icon-wrapper {
         height: 80px;
     }
@@ -410,19 +447,42 @@ body > div {
 }
 
 @media only screen and (max-device-width : 480px) {
+    .dashboard-card .card-image {
+        padding-top: 10%;
+    }
+
     .dashboard-card .icon-wrapper {
         height: 70px;
     }
 }
 
-@media screen and (min-device-width: 1025px) and (max-device-width : 1225px) {
+@media screen and (min-device-width: 1025px) and (max-device-width : 1351px) {
+    .dashboard-card .card-image {
+        padding-top: 10%;
+    }
+
     body, .dashboard-card .icon-wrapper {
-        height: 50px;
+        height: 65px;
         font-size: 10px !important;
     }
 }
 
+@media screen and (min-device-width: 825px) and (max-device-width : 900px) {
+    .dashboard-card .card-image {
+        padding-top: 10%;
+    }
+
+    body, .dashboard-card .icon-wrapper {
+        height: 65px;
+        font-size: 11px !important;
+    }
+}
+
 @media screen and (min-device-width: 769px) and (max-device-width : 825px) {
+    .dashboard-card .card-image {
+        padding-top: 10%;
+    }
+
     body, .dashboard-card .icon-wrapper {
         height: 50px;
         font-size: 11px !important;
@@ -430,6 +490,10 @@ body > div {
 }
 
 @media screen and (min-device-width: 642px) and (max-device-width : 697px) {
+    .dashboard-card .card-image {
+        padding-top: 10%;
+    }
+
     body, .dashboard-card .icon-wrapper {
         height: 50px;
         font-size: 11px !important;
@@ -437,6 +501,10 @@ body > div {
 }
 
 @media screen and (min-device-width: 250px) and (max-device-width : 364px) {
+    .dashboard-card .card-image {
+        padding-top: 10%;
+    }
+
     body, .dashboard-card .icon-wrapper {
         height: 50px;
         font-size: 12px !important;
