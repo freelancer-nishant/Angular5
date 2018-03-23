@@ -364,7 +364,7 @@ body > div {
     body .ui-dialog .ui-dialog-footer {
         position: fixed;
         bottom: 5%;
-        width: 100%;
+        width: 90%;
     }
 
     .mobile-text-center {
@@ -388,6 +388,12 @@ body > div {
 }
 
 @media (min-width: 678px) {
+    body .ui-dialog {
+        width: 90% !important;
+        left: 5% !important;
+        height: 90% !important;
+        overflow: auto;
+    }
 
     .ui-widget-content .ui-md-1,
     .ui-widget-content .ui-md-2,
