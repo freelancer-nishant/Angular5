@@ -58,7 +58,7 @@ import { AppComponent } from './app.component';
                         </ul>
                     </li>                   
                     <li #userinfo [ngClass]="{'active-top-menu':app.activeTopbarItem === userinfo}">
-                        <a href="#" (click)="app.onTopbarItemClick($event,userinfo)"  title="User Settings">
+                        <a href="#" (click)="app.onTopbarItemClick($event,userinfo)"  title="Login/Logout">
                             <i class="topbar-icon material-icons">&#xE8A6;</i>
                             <i class="topbar-icon material-icons">&#xE313;</i>
                             <span class="topbar-item-name">User Info</span>

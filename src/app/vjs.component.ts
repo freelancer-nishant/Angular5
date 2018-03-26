@@ -129,13 +129,21 @@ export class VJSComponent implements OnChanges {
                                 plus.onclick = function () {
                                     report
                                         .scale(zoom += 0.1)
-                                        .render();
+                                        .render()
+                                        .done(function () {
+                                            var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
+                                            $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                        });
                                 }
 
                                 minus.onclick = function () {
                                     report
                                         .scale((zoom -= 0.1) > 0 ? zoom : zoom = 0.1)
-                                        .render();
+                                        .render()
+                                        .done(function () {
+                                            var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
+                                            $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                        });
                                 }
 
                                 var exportTo = v.report({

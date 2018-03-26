@@ -49,11 +49,11 @@ export class GlobalHelper {
             case MenuType.StudentScorecards:
             case MenuType.VoiceOfTheSchoolSurveys:
                 categories = [
-                    { name: 'School Scorecards Sample', route: "#/school-scorecards" },
-                    { name: 'Comparison Schools Sample', route: "#/comparison-schools" },
-                    { name: 'Teacher Scorecards Sample', route: "#/teacher-scorecards" },
-                    { name: 'Students Scorecards Sample', route: "#/student-scorecards" },
-                    { name: 'Voice of the School Surveys Sample', route: "#/voice-schoolsurvey" }
+                    { name: 'School Scorecards (Sample)', route: "#/school-scorecards" },
+                    { name: 'Comparison Schools (Sample)', route: "#/comparison-schools" },
+                    { name: 'Teacher Scorecards (Sample)', route: "#/teacher-scorecards" },
+                    { name: 'Students Scorecards (Sample)', route: "#/student-scorecards" },
+                    { name: 'Voice of the School Surveys (Sample)', route: "#/voice-schoolsurvey" }
                 ];
                 break;
             case MenuType.SchoolInSchoolYear:
@@ -94,31 +94,31 @@ export class GlobalHelper {
             case MenuType.SchoolScorecard:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/school-scorecard.png',
-                    name: "School Scorecards Sample"
+                    name: "School Scorecards (Sample)"
                 }
                 break;
             case MenuType.ComparisonSchools:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/comparison-schools.png',
-                    name: "Comparison Schools Sample"
+                    name: "Comparison Schools (Sample)"
                 }
                 break;
             case MenuType.TeacherScorecards:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/school-scorecard.png',
-                    name: "Teacher Scorecards Sample"
+                    name: "Teacher Scorecards (Sample)"
                 }
                 break;
             case MenuType.StudentScorecards:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/school-scorecard.png',
-                    name: "Student Scorecards Sample"
+                    name: "Student Scorecards (Sample)"
                 }
                 break;
             case MenuType.VoiceOfTheSchoolSurveys:
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/voice-survey.png',
-                    name: "Voice of the School Surveys Sample"
+                    name: "Voice of the School Surveys (Sample)"
                 }
                 break;
             case MenuType.SchoolInSchoolYear:
