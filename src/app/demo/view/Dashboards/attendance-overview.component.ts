@@ -49,7 +49,7 @@ export class AttendanceOverviewComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.schools = [];
-                this.schools.push({ label: 'Select School', value: 0 })
+                //this.schools.push({ label: 'Select School', value: 0 })
                 schoolResult.map(o => { this.schools.push({ label: o.name, value: o.id }); });
             });
 
@@ -80,7 +80,7 @@ export class AttendanceOverviewComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.schoolYears = [];
-                this.schoolYears.push({ label: 'Select School Year', value: 0 })
+                //this.schoolYears.push({ label: 'Select School Year', value: 0 })
                 schollYears.map(o => { this.schoolYears.push({ label: o.school_year, value: o.school_year_id }); });
             });
 

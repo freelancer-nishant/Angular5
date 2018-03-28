@@ -42,7 +42,7 @@ export class SchoolScorecardsReportComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.schoolList = [];
-                this.schoolList.push({ label: '--Select--', value: 0 })
+                //this.schoolList.push({ label: '--Select--', value: 0 })
 
                 schoolListItems.map(o => { this.schoolList.push({ label: o.label, value: o.state_school_code }); });
             });
@@ -52,7 +52,7 @@ export class SchoolScorecardsReportComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.schoolYearList = [];
-                this.schoolYearList.push({ label: '--Select--', value: 0 })
+                //this.schoolYearList.push({ label: '--Select--', value: 0 })
                 schoolYearListItems.map(o => { this.schoolYearList.push({ label: o.school_year, value: o.id }); });
             });
     }

@@ -9,11 +9,11 @@
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
                         <label class="control-label" for="selectedSchool">School</label>
-                        <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" (onChange)="schoolChange($event)" [autoWidth]="false"></p-dropdown>
+                        <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" (onChange)="schoolChange($event)" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
                         <label class="control-label" for="selectedYear">School Year</label>
-                        <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" (onChange)="schoolYearChange($event)" [autoWidth]="false"></p-dropdown>
+                        <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" (onChange)="schoolYearChange($event)" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
                         <label class="control-label" for="selectedGrades">Grade</label>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
                         <label class="control-label" for="selectedTestVersion">Test Version</label>
-                        <p-dropdown [options]="testVersions" [(ngModel)]="selectedTestVersion" [autoWidth]="false"></p-dropdown>
+                        <p-dropdown [options]="testVersions" [(ngModel)]="selectedTestVersion" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
                         <label class="control-label">&nbsp;</label>

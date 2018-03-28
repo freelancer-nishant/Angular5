@@ -9,11 +9,11 @@
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="control-label" for="selectedComparative">Select a List</label>
-                        <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false"></p-dropdown>
+                        <p-dropdown [options]="comparativeList" [(ngModel)]="selectedComparative" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
-                        <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false"></p-dropdown>
+                        <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-1 mobile-text-center">
                         <label class="control-label hidden-xs">&nbsp;</label>
@@ -49,7 +49,7 @@
                     <label for="input">School Year :</label>
                 </div>
                 <div class="ui-g-12 ui-sm-12 ui-md-4">
-                    <p-dropdown [options]="schoolYearList" [(ngModel)]="SchoolForScorecards.schoolyear" [autoWidth]="false" tabindex="2"></p-dropdown>
+                    <p-dropdown [options]="schoolYearList" [(ngModel)]="SchoolForScorecards.schoolyear" [autoWidth]="false" tabindex="2" placeholder="--Select--"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-sm-12">
                     <h3 class="header">Add School To List</h3>
@@ -58,37 +58,37 @@
                     <label for="input">State :</label>
                 </div>
                 <div class="ui-g-12 ui-sm-12 ui-md-4">
-                    <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="stateChange($event)" [autoWidth]="false" tabindex="3"></p-dropdown>
+                    <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="stateChange($event)" [autoWidth]="false" tabindex="3" placeholder="Select State"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-2">
                     <label for="input">City :</label>
                 </div>
                 <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="cityList" [(ngModel)]="newSchool.city" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="6"></p-dropdown>
+                    <p-dropdown [options]="cityList" [(ngModel)]="newSchool.city" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="6" placeholder="Select City"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-2">
                     <label for="input">County :</label>
                 </div>
                 <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="countyList" [(ngModel)]="newSchool.county" (onChange)="countyChange($event)" [autoWidth]="false" tabindex="4"></p-dropdown>
+                    <p-dropdown [options]="countyList" [(ngModel)]="newSchool.county" (onChange)="countyChange($event)" [autoWidth]="false" tabindex="4" placeholder="Select County"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-2">
                     <label for="input">School Type :</label>
                 </div>
                 <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="schooltypeList" [(ngModel)]="newSchool.schooltype" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="7"></p-dropdown>
+                    <p-dropdown [options]="schooltypeList" [(ngModel)]="newSchool.schooltype" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="7" placeholder="Select School Type"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-2">
                     <label for="input">School Distinct :</label>
                 </div>
                 <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="districtList" [(ngModel)]="newSchool.district" (onChange)="districtChange($event)" [autoWidth]="false" tabindex="5"></p-dropdown>
+                    <p-dropdown [options]="districtList" [(ngModel)]="newSchool.district" (onChange)="districtChange($event)" [autoWidth]="false" tabindex="5" placeholder="Select District"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-2">
                     <label for="input">School :</label>
                 </div>
                 <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="schoolList" [(ngModel)]="newSchool.school" [autoWidth]="false" tabindex="8"></p-dropdown>
+                    <p-dropdown [options]="schoolList" [(ngModel)]="newSchool.school" [autoWidth]="false" tabindex="8" placeholder="Select School"></p-dropdown>
                 </div>
                 <div class="ui-g-12 ui-md-offset-5 ui-md-2">
                     <button pButton type="button" label="Add" (click)="addToList()"></button>
@@ -96,7 +96,7 @@
                 <div class="ui-g-12 text-center">
                     <h3 class="header">List of Schools</h3>
                 </div>
-                <div class="ui-g-12 ui-md-12">
+                <div class="ui-g-12 ui-md-12 paddin-bottom-50">
                     <p-dataGrid [value]="SchoolForScorecards.selectedschools" [immutable]="false" styleClass="scroll-grid">
                         <p-header class="form-group">
                             <div class="ui-g">

@@ -54,7 +54,7 @@ export class CompareSBACScoresComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.comparativeList = [];
-                this.comparativeList.push({ label: '--Select--', value: 0 })
+                //this.comparativeList.push({ label: '--Select--', value: 0 })
                 comparativeListItems.map(o => { this.comparativeList.push({ label: o.label, value: o.id }); });
             });
 
@@ -64,7 +64,7 @@ export class CompareSBACScoresComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.schoolYearList = [];
-                this.schoolYearList.push({ label: '--Select--', value: 0 })
+                //this.schoolYearList.push({ label: '--Select--', value: 0 })
                 schoolYearListItems.map(o => { this.schoolYearList.push({ label: o.school_year, value: o.id }); });
             });
 
@@ -76,7 +76,7 @@ export class CompareSBACScoresComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.stateList = [];
-                this.stateList.push({ label: 'Select State', value: 0 })
+                //this.stateList.push({ label: 'Select State', value: 0 })
                 this.stateList.push({ label: stateResult.name, value: stateResult.id });
                 //stateResult.map(o => { this.stateList.push({ label: o.name, value: o.id }); });
             });
@@ -86,7 +86,7 @@ export class CompareSBACScoresComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.schooltypeList = [];
-                this.schooltypeList.push({ label: 'Select School Type', value: 0 })
+                //this.schooltypeList.push({ label: 'Select School Type', value: 0 })
                 schoolTypeResult.map(o => { this.schooltypeList.push({ label: o.school_type_combined, value: o.school_type_combined_id }); });
             });
     }
@@ -98,7 +98,7 @@ export class CompareSBACScoresComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.countyList = [];
-                this.countyList.push({ label: 'Select County', value: 0 })
+                //this.countyList.push({ label: 'Select County', value: 0 })
                 stateResult.map(o => { this.countyList.push({ label: o.label, value: o.id }); });
 
                 this.districtList = [];
@@ -119,7 +119,7 @@ export class CompareSBACScoresComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.districtList = [];
-                this.districtList.push({ label: 'Select District', value: 0 })
+                //this.districtList.push({ label: 'Select District', value: 0 })
                 stateResult.map(o => { this.districtList.push({ label: o.label, value: o.id }); });
 
                 this.cityList = [];
@@ -138,7 +138,7 @@ export class CompareSBACScoresComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.cityList = [];
-                this.cityList.push({ label: 'Select City', value: 0 })
+                //this.cityList.push({ label: 'Select City', value: 0 })
                 stateResult.map(o => { this.cityList.push({ label: o.city, value: o.city }); });
             });
         this.schooltypeChange(e);
@@ -150,7 +150,7 @@ export class CompareSBACScoresComponent implements OnInit {
                 (error: any) => { },
                 () => {
                     this.schoolList = [];
-                    this.schoolList.push({ label: 'Select School', value: 0 })
+                    //this.schoolList.push({ label: 'Select School', value: 0 })
                     this.fullschoolList.map(o => { this.schoolList.push({ label: o.name, value: o.id }); });
                 });
         }

@@ -363,9 +363,8 @@ body > div {
     }
 
     body .ui-dialog .ui-dialog-footer {
-        position: fixed;
+        position: relative;
         bottom: 5%;
-        width: 90%;
     }
 
     .mobile-text-center {
@@ -431,6 +430,9 @@ body > div {
 
     .hidden-xs {
         display: none;
+    }
+    .paddin-bottom-50 {
+        padding-bottom: 50px !important;
     }
 
     .mobile-text-center {
