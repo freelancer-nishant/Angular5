@@ -1,8 +1,8 @@
 import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Spinkit } from 'ng-http-loader/spinkits';//Added
 import { Router } from '@angular/router';
-import { LoginResult } from './demo/domain/login'
-import { AuthService } from './demo/service/auth.service'
+import { LoginResult } from './shared/domain/login'
+import { AuthService } from './shared/services/auth.service'
 import { GlobalConstants } from './shared/app.globals'
 
 enum MenuOrientation {
@@ -180,9 +180,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
             if (this.isHorizontal() || this.isSlim()) {
                 this.resetMenu = true;
             }
-
             if (this.overlayMenuActive || this.staticMenuMobileActive) {
                 this.hideOverlayMenu();
+                this.rotateMenuButton = true;
             }
 
             this.menuHoverActive = false;

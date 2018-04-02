@@ -7,7 +7,7 @@ import { AppComponent } from '../../app.component';
 export class ReportsComponent implements OnInit {
 
     constructor(public app: AppComponent) {
-        app.displayLeftMenu(false);
+        this.app.displayLeftMenu(false);
     }
 
     ngOnInit() {

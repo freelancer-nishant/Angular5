@@ -3,18 +3,19 @@ import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 @Component({
-    templateUrl: './student.scorecards.component.html'
+    templateUrl: './assessments.component.html'   
 })
-export class StudentScorecardsComponent implements OnInit {
+
+export class AssessmentsComponent implements OnInit {
 
     constructor(public app: AppComponent) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
-        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.StudentScorecards);
-        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.StudentScorecards);
-
+        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessment);
+        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Assessment);
     }
 
     ngOnInit() {
+
     }
 }

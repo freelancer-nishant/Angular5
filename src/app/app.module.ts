@@ -81,42 +81,28 @@ import { AppFooterComponent } from './app.footer.component';
 import { ExportComponent } from './export.component';
 
 //import { AppProfileComponent } from './app.profile.component';
-import { DashboardDemoComponent } from './demo/view/dashboarddemo.component';
-import { SampleDemoComponent } from './demo/view/sampledemo.component';
-import { FormsDemoComponent } from './demo/view/formsdemo.component';
-import { DataDemoComponent } from './demo/view/datademo.component';
-import { PanelsDemoComponent } from './demo/view/panelsdemo.component';
-import { OverlaysDemoComponent } from './demo/view/overlaysdemo.component';
-import { MenusDemoComponent } from './demo/view/menusdemo.component';
-import { MessagesDemoComponent } from './demo/view/messagesdemo.component';
-import { MiscDemoComponent } from './demo/view/miscdemo.component';
-import { EmptyDemoComponent } from './demo/view/emptydemo.component';
-import { ChartsDemoComponent } from './demo/view/chartsdemo.component';
-import { FileDemoComponent } from './demo/view/filedemo.component';
-import { UtilsDemoComponent } from './demo/view/utilsdemo.component';
-import { DocumentationComponent } from './demo/view/documentation.component';
 
 
 import { AppPageProfileComponent } from './app.page-profile.component';
 import { AppHotizontalMenuComponent } from './app.hotizontal.menu.component';
 
 
-import { LoginComponent } from './demo/view/login.component';
-import { EmbeddedLoginComponent } from './demo/view/embedded.login.component';
+import { LoginComponent } from './dashboards/login.component';
+import { EmbeddedLoginComponent } from './dashboards/embedded.login.component';
 
-import { DashboardComponent } from './demo/view/dashboard.component'
-import { HomeComponent } from './demo/view/home.component'
-import { StudentInformationComponent } from './demo/view/Dashboards/student-information.component'
-import { EnrollmentOverviewComponent } from './demo/view/Dashboards/enrollment-overview.component'
-import { AttendanceOverviewComponent } from './demo/view/Dashboards/attendance-overview.component'
-import { AssessmentsComponent } from './demo/view/Dashboards/assessments.component'
-import { AssessmentsSBACOverviewComponent } from './demo/view/Dashboards/assessments-sbac-overview.component'
-import { AssessmentsSBACDetailComponent } from './demo/view/Dashboards/assessments-sbac-detail.component'
-import { AssessmentsPFTOverviewComponent } from './demo/view/Dashboards/assessments-pft-overview.component'
-import { AssessmentsCELDTOverviewComponent } from './demo/view/Dashboards/assessments-celdt-overview.component'
-import { AssessmentsNWEAOverviewComponent } from './demo/view/Dashboards/assessments-nwea-overview.component'
-import { AssessmentsDORAOverviewComponent } from './demo/view/Dashboards/assessments-dora-adam-overview.component'
-import { AssessmentsDOMAOverviewComponent } from './demo/view/Dashboards/assessments-doma-overview.component'
+import { DashboardComponent } from './dashboards/dashboard.component'
+import { HomeComponent } from './dashboards/home.component'
+import { StudentInformationComponent } from './dashboards/view/student-information.component'
+import { EnrollmentOverviewComponent } from './dashboards/view/enrollment-overview.component'
+import { AttendanceOverviewComponent } from './dashboards/view/attendance-overview.component'
+import { AssessmentsComponent } from './dashboards/view/assessments.component'
+import { AssessmentsSBACOverviewComponent } from './dashboards/view/assessments-sbac-overview.component'
+import { AssessmentsSBACDetailComponent } from './dashboards/view/assessments-sbac-detail.component'
+import { AssessmentsPFTOverviewComponent } from './dashboards/view/assessments-pft-overview.component'
+import { AssessmentsCELDTOverviewComponent } from './dashboards/view/assessments-celdt-overview.component'
+import { AssessmentsNWEAOverviewComponent } from './dashboards/view/assessments-nwea-overview.component'
+import { AssessmentsDORAOverviewComponent } from './dashboards/view/assessments-dora-adam-overview.component'
+import { AssessmentsDOMAOverviewComponent } from './dashboards/view/assessments-doma-overview.component'
 
 
 import { ReportsComponent } from './reports/view/reports.component'
@@ -142,30 +128,26 @@ import { VJSComponent } from './vjs.component'
 import { TranslateComponent } from './translate-component'
 
 
-import { VJSConfig } from './demo/service/vjsconfig.service';
-import { CarService } from './demo/service/carservice';
-import { CountryService } from './demo/service/countryservice';
-import { EventService } from './demo/service/eventservice';
-import { NodeService } from './demo/service/nodeservice';
+import { VJSConfig } from './shared/services/vjsconfig.service';
 
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';//Added
 
 //services
-import { LoginService } from './demo/service/loginservice';
-import { SchoolService } from './demo/service/school.service';
-import { SchoolYearService } from './demo/service/school.year.service';
-import { SchoolGradeService } from './demo/service/school.grade.service';
+import { LoginService } from './shared/services/loginservice';
+import { SchoolService } from './shared/services/school.service';
+import { SchoolYearService } from './shared/services/school.year.service';
+import { SchoolGradeService } from './shared/services/school.grade.service';
 import { ComparativeListService } from './shared/services/comparativelist.service'
 import { CommonService } from './shared/services/Common.service'
 
 
-import { TestService } from './demo/service/test.service'
-import { TestVersionService } from './demo/service/testversion.service'
+import { TestService } from './shared/services/test.service'
+import { TestVersionService } from './shared/services/testversion.service'
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
-import { AuthService } from './demo/service/auth.service';
-import { AuthGuardService } from './demo/service/auth-guard.service';
+import { AuthService } from './shared/services/auth.service';
+import { AuthGuardService } from './shared/services/auth-guard.service';
 
 
 @NgModule({
@@ -281,21 +263,6 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
         AppFooterComponent,
         ExportComponent,
         //AppProfileComponent,
-        DashboardDemoComponent,
-        SampleDemoComponent,
-        FormsDemoComponent,
-        DataDemoComponent,
-        PanelsDemoComponent,
-        OverlaysDemoComponent,
-        MenusDemoComponent,
-        MessagesDemoComponent,
-        MessagesDemoComponent,
-        MiscDemoComponent,
-        ChartsDemoComponent,
-        EmptyDemoComponent,
-        FileDemoComponent,
-        UtilsDemoComponent,
-        DocumentationComponent,
 
         AppPageProfileComponent,
         AppHotizontalMenuComponent,
@@ -341,7 +308,6 @@ import { AuthGuardService } from './demo/service/auth-guard.service';
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CarService, CountryService, EventService, NodeService,
         HttpClient,
         LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService,

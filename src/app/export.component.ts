@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { VJSConfig } from './demo/service/vjsconfig.service';
+import { VJSConfig } from './shared/services/vjsconfig.service';
 import { MenuItem } from 'primeng/primeng';
 
 @Component({

@@ -8,10 +8,10 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 export class ComparisonSchoolsComponent implements OnInit {
 
     constructor(public app: AppComponent) {
-        app.displayLeftMenu(true);
-        app.activeCategoryDropdown = true;        
-        app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.ComparisonSchools);
-        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.ComparisonSchools);
+        this.app.displayLeftMenu(true);
+        this.app.activeCategoryDropdown = true;        
+        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.ComparisonSchools);
+        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.ComparisonSchools);
 
     }
 

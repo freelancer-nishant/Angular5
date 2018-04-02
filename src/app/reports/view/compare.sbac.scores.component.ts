@@ -8,7 +8,7 @@ import { ComparativeListService } from './../../shared/services/comparativelist.
 import { CommonService } from './../../shared/services/Common.service'
 
 import { SchoolListModel, SchoolModel, SchoolYear, State, City, SchoolType } from './../../shared/domain/Common.model'
-import { School } from './../../demo/domain/school'
+import { School } from './../../shared/domain/school'
 
 @Component({
     templateUrl: './compare.sbac.scores.component.html'
@@ -39,10 +39,10 @@ export class CompareSBACScoresComponent implements OnInit {
         this.SchoolForScorecards = new SchoolListModel();
         this.newSchool = new SchoolModel();
         this.dialogVisible = false;
-        app.displayLeftMenu(true);
-        app.activeCategoryDropdown = true;
-        app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.ComparisonSchools);
-        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.ComparisonSchools);
+        this.app.displayLeftMenu(true);
+        this.app.activeCategoryDropdown = true;
+        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.ComparisonSchools);
+        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.ComparisonSchools);
         this.sessionInfo = this.app.getSession();
     }
 

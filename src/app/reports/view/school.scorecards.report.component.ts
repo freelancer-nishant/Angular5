@@ -5,9 +5,9 @@ import { SelectItem } from 'primeng/primeng';
 
 import { ComparativeListItem } from './../../shared/domain/comparative.list'
 import { SchoolYear } from './../../shared/domain/Common.model'
-import { School } from './../../demo/domain/school'
+import { School } from './../../shared/domain/school'
 import { CommonService } from './../../shared/services/Common.service'
-import { SchoolService } from './../../demo/service/school.service'
+import { SchoolService } from './../../shared/services/school.service'
 
 
 
@@ -26,10 +26,10 @@ export class SchoolScorecardsReportComponent implements OnInit {
     selectedSchoolYear: any;
 
     constructor(public app: AppComponent, private schoolService: SchoolService, private commonService: CommonService ) {
-        app.displayLeftMenu(true);
-        app.activeCategoryDropdown = true;
-        app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.SchoolScorecard);
-        app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.SchoolScorecard);
+        this.app.displayLeftMenu(true);
+        this.app.activeCategoryDropdown = true;
+        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.SchoolScorecard);
+        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.SchoolScorecard);
 
         this.sessionInfo = this.app.getSession();
 

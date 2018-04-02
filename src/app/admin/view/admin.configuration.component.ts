@@ -7,7 +7,7 @@ import { AppComponent } from '../../app.component';
 export class AdminConfigurationComponent implements OnInit {
 
     constructor(public app: AppComponent) {
-        app.displayLeftMenu(false);
+        this.app.displayLeftMenu(false);
     }
 
     ngOnInit() {

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, Attribute } from '@angular/core';
 import { SpinnerVisibilityService } from 'ng-http-loader/services/spinner-visibility.service';
-import { VJSConfig } from './demo/service/vjsconfig.service';
+import { VJSConfig } from './../app/shared/services/vjsconfig.service';
 import { GlobalHelper } from './../app/shared/app.globals'
 
 declare var visualize: any;
