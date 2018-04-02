@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../../app.component';
 import { LoginService } from '../service/loginservice';
 import { Login, LoginResult } from '../domain/login';
+import { GlobalConstants } from './../../shared/app.globals';
 
 
 @Component({
@@ -33,12 +34,14 @@ export class EmbeddedLoginComponent implements OnInit {
             },
             () => {
                 //console.log(this.loginResult);
-
                 if (this.loginResult.access_token != undefined) {
                     this.app.doLogin(this.loginResult,true);
                     if (this.app.isLoggedIn) {
                         this.app.isClientPage = true;
                         sessionStorage.setItem("isClientPage", "true");
+
+                        sessionStorage.setItem(window.btoa("usr"), window.btoa(login.username));
+                        sessionStorage.setItem(window.btoa("pwd"), window.btoa(login.password));
                     }
                 } else { this.msgError = "Invalid credentials"; }
             });

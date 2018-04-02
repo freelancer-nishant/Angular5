@@ -24,7 +24,7 @@ export class VJSComponent implements OnChanges {
 
     constructor( @Attribute('id') id: string, public vjsConfig: VJSConfig, private spinner: SpinnerVisibilityService) {
 
-        GlobalHelper.loadScript("visualize.js", "http://62.151.179.246:8080/jasperserver-pro/client/visualize.js?_opt=false&logLevel=debug");
+        GlobalHelper.loadScript("visualize.js", "http://62.151.179.246:8080/jasperserver-pro/client/visualize.js?_opt=true&logLevel=debug");
 
         this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
@@ -83,9 +83,6 @@ export class VJSComponent implements OnChanges {
                                             spinner.hide(); alert("Report draw failed: " + err)
                                         },
                                         events: {
-                                            //beforeRender: function (el) {
-                                            //    spinner.show();
-                                            //},
                                             reportCompleted: function (status) {
                                                 if (document.getElementById('btnZoomIn') != undefined)
                                                     document.getElementById('btnZoomIn').removeAttribute("disabled");

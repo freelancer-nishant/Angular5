@@ -12,7 +12,13 @@ export class AuthGuardService implements CanActivate {
         let hasClientAccess: boolean = route.data.hasClientAccess;
 
         if (!this.auth.isAuthenticated()) {
-            this.router.navigate(['/login']);
+            if (sessionStorage.getItem('isClientPage') == "true") {
+                setInterval(function () {
+                    location.href='/#/dashboard';
+                }, 500);
+            }
+            else
+                this.router.navigate(['/login']);
             return false;
         }
 
@@ -24,7 +30,7 @@ export class AuthGuardService implements CanActivate {
             }
         }
 
-        if (sessionStorage.getItem('isClientPage')=="true" && !hasClientAccess) {
+        if (sessionStorage.getItem('isClientPage') == "true" && !hasClientAccess) {
             this.router.navigate(['/login']);
             return false;
         }
