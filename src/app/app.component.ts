@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { Spinkit } from 'ng-http-loader/spinkits';//Added
 import { Router } from '@angular/router';
 import { LoginResult } from './shared/domain/login'
@@ -74,6 +74,15 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
+
+    @HostListener('window:resize') onResize() {
+        // guard against resize before view is rendered
+        //if (this.isDesktop()) {
+        //    this.rotateMenuButton = true;
+        //    this.overlayMenuActive = true;
+        //    this.staticMenuMobileActive = true;
+        //}
+    }
 
     constructor(public renderer: Renderer, private router: Router, private auth: AuthService) {
 
@@ -182,7 +191,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
             }
             if (this.overlayMenuActive || this.staticMenuMobileActive) {
                 this.hideOverlayMenu();
-                this.rotateMenuButton = true;
+                if (!this.isDesktop()) {
+                    this.rotateMenuButton = true;
+                }
             }
 
             this.menuHoverActive = false;
