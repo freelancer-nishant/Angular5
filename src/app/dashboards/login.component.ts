@@ -11,8 +11,8 @@ import { Login, LoginResult } from './../shared/domain/login';
 })
 export class LoginComponent implements OnInit {
     @Input() login: Login = {
-        username: 'user@cf.com',
-        password: 'user@123',
+        username: '',
+        password: '',
         grant_type: 'password'
     };
     loginResult: LoginResult;
