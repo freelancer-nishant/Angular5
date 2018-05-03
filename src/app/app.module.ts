@@ -72,6 +72,7 @@ import { ToolbarModule } from 'primeng/primeng';
 import { TooltipModule } from 'primeng/primeng';
 import { TreeModule } from 'primeng/primeng';
 import { TreeTableModule } from 'primeng/primeng';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 import { AppComponent } from './app.component';
 import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
@@ -224,9 +225,9 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         ToolbarModule,
         TooltipModule,
         TreeModule,
-        TreeTableModule
+        TreeTableModule,
 
-        , JwtModule.forRoot({
+        JwtModule.forRoot({
             config: {
                 tokenGetter: () => {
                     //let jwtHelper = new JwtHelperService({
@@ -313,6 +314,7 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         HttpClient,
         LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService,
+        MessageService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
     ],

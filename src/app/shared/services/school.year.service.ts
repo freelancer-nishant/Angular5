@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
-import { GlobalConstants } from './../app.globals';
+import { GlobalConstants, GlobalHelper } from './../app.globals';
 import { SchoolSchoolYear } from './../domain/school.schoolyear';
 
 const httpOptionsa = {
@@ -24,7 +24,7 @@ export class SchoolYearService {
     }
     update(schoolSchoolYear: SchoolSchoolYear): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/schoolschoolyear';
-        return this.http.put(url, schoolSchoolYear, httpOptionsa);
+        return this.http.put(url, GlobalHelper.toHttpParams(schoolSchoolYear), httpOptionsa);
     }
 }
 

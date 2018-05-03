@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
+import * as moment from 'moment';
 import { SelectItem } from 'primeng/primeng';
+import { Message } from 'primeng/components/common/api';
+import { MessageService } from 'primeng/components/common/messageservice';
 
-import { SchoolYear } from './../../shared/domain/Common.model'
+import { SchoolYear, ResponseResult } from './../../shared/domain/Common.model'
 import { School } from './../../shared/domain/school'
 import { SchoolSchoolYear } from './../../shared/domain/school.schoolyear'
 import { CommonService } from './../../shared/services/Common.service'
@@ -11,7 +14,8 @@ import { SchoolService } from './../../shared/services/school.service'
 import { SchoolYearService } from './../../shared/services/school.year.service'
 
 @Component({
-    templateUrl: './schoolyear-ofschool.component.html'
+    templateUrl: './schoolyear-ofschool.component.html',
+    providers: [MessageService]
 })
 export class SchoolYearOfSchoolComponent implements OnInit {
     sessionInfo: any = {}
@@ -22,8 +26,12 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     schoolList: SelectItem[];
     schoolYearList: SelectItem[];
     schoolDetailList: SchoolSchoolYear[];
+    msgs: Message[] = [];
 
-    constructor(public app: AppComponent, private schoolService: SchoolService, private commonService: CommonService, private schoolYearService: SchoolYearService) {
+    constructor(public app: AppComponent, private schoolService: SchoolService,
+        private commonService: CommonService, private schoolYearService: SchoolYearService,
+        private messageService: MessageService) {
+
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.SchoolInSchoolYear);
@@ -37,7 +45,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.schoolList = [];
-                schoolListItems.map(o => { this.schoolList.push({ label: o.label, value: o.state_school_code }); });
+                schoolListItems.map(o => { this.schoolList.push({ label: o.label, value: o.id }); });
             });
 
         let schoolYearListItems: SchoolYear[] = [];
@@ -62,15 +70,31 @@ export class SchoolYearOfSchoolComponent implements OnInit {
                 this.schoolDetailList = [];
                 schooldetailList.map(o => {
                     this.schoolDetailList.push({
-                        end_date: o.end_date,
+                        end_date: new Date(o.end_date),
                         id: o.id,
                         schoolyear_num: o.schoolyear_num,
                         school_id: o.school_id,
-                        school_year:o.school_year,
+                        school_year: o.school_year,
                         school_year_id: o.school_year_id,
-                        start_date:o.start_date
+                        start_date: new Date(o.start_date)
                     });
                 });
+                if (this.selectedSchoolYear != undefined) {
+                    this.schoolDetailList = this.schoolDetailList.filter(x => x.school_year_id === this.selectedSchoolYear);
+                }
+            });
+    }
+    editSchool(id) {
+        let updatedSchool = this.schoolDetailList.find(x => x.id === id);
+        updatedSchool.start_date = moment(updatedSchool.start_date,moment.defaultFormatUtc).format("MM/DD/YYYY");
+        updatedSchool.end_date = moment(updatedSchool.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+        let responseResult: ResponseResult;
+        this.schoolYearService.update(updatedSchool).subscribe((result: any) => responseResult = result,
+            (error: any) => {
+                this.msgs.push({ severity: 'success', detail: error.error.message });
+            },
+            () => {
+                this.msgs.push({ severity: 'success', detail: "School year updated successfully." });
             });
     }
 }

@@ -1,5 +1,16 @@
 ﻿import { ComparativeItem } from './../../shared/domain/comparative.list'
 
+export interface ResponseResult {
+    statusCode: number,
+    message: string,
+    data: string,
+    errors: ErrorModel[]       
+}
+export interface ErrorModel {
+    title: string,
+    message: string
+}
+
 export interface SchoolYear {
     id,
     school_year
