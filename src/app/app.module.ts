@@ -119,6 +119,7 @@ import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.scho
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
 import { SchoolinSchoolYearComponent } from './admin/view/schoolin-schoolyear.component'
+import { SchoolYearOfSchoolComponent } from './admin/view/schoolyear-ofschool.component'
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
@@ -298,6 +299,7 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
 
         AdminConfigurationComponent,
         SchoolinSchoolYearComponent,
+        SchoolYearOfSchoolComponent,
         EnrollmentAndAttendanceComponent,
         AdminAssessmentsComponent,
         AssessmentUploadsComponent,

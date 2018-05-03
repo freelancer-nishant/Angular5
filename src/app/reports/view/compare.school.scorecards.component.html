@@ -97,14 +97,17 @@
                     <h3 class="header">List of Schools</h3>
                 </div>
                 <div class="ui-g-12 ui-md-12">
-                    <p-dataGrid [value]="SchoolForScorecards.selectedschools" [immutable]="false" styleClass="scroll-grid">
+                    <p-dataGrid [value]="schoolDetailList" [immutable]="false" styleClass="scroll-grid">
                         <p-header class="form-group">
                             <div class="ui-g">
                                 <div class="ui-g-5 ui-md-5">
                                     <label>School</label>
                                 </div>
-                                <div class="ui-g-6 ui-md-6">
-                                    <label>Display Label</label>
+                                <div class="ui-g-6 ui-md-3">
+                                    <label>Start Date</label>
+                                </div>
+                                <div class="ui-g-6 ui-md-3">
+                                    <label>End Date</label>
                                 </div>
                                 <div class="ui-g-1 ui-md-1">
                                     <label>&nbsp;</label>

@@ -51,6 +51,7 @@ import {VoiceOfTheSchoolSurveyReportComponent} from './reports/view/voice.school
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
 import { SchoolinSchoolYearComponent } from './admin/view/schoolin-schoolyear.component'
+import { SchoolYearOfSchoolComponent } from './admin/view/schoolyear-ofschool.component'
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
@@ -92,7 +93,7 @@ export const routes: Routes = [
 
     //Admin pages
     { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard] },
-    { path: 'schoolin-schoolyear', component: SchoolinSchoolYearComponent, canActivate: [AuthGuard] },
+    { path: 'schoolin-schoolyear', component: SchoolYearOfSchoolComponent, canActivate: [AuthGuard] },
     { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponent, canActivate: [AuthGuard] },

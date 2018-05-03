@@ -271,7 +271,14 @@ export class GlobalHelper {
             case MenuType.SchoolInSchoolYear:
                 menuItems = [
                     {
-                        label: 'School in School Year', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/schoolin-schoolyear']
+                        label: 'School in School Year', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'School Year of School', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
+                            { label: 'Semester in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
+                            { label: 'Grades in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
+                            { label: 'Teachers in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
+                            { label: 'Days in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
+                        ]
                     }
                 ];
                 break;
