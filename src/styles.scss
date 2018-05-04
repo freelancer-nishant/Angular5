@@ -227,6 +227,10 @@ $secondaryColor: #5898a6;
     padding: 0 16px 16px 16px;
 }
 
+.card.card-w-title.content-card {
+    padding: 16px;
+}
+
 .ui-widget-content .ui-g-1,
 .ui-widget-content .ui-g-2,
 .ui-widget-content .ui-g-3,
@@ -321,7 +325,7 @@ body > div {
 
 .layout-wrapper .topbar .topbar-left .topbar-logo {
     height: 50px;
-    margin-left:15px;
+    margin-left: 15px;
 }
 
 .layout-wrapper .topbar .topbar-left {
@@ -345,6 +349,24 @@ body > div {
     bottom: 0;
     right: 0;
     text-align: center;
+}
+
+.header-box {
+    border: 1px solid #dddddd;
+    font-weight: bold;
+    padding: 5px;
+    margin-bottom: 10px;
+    color: #5898a6;
+}
+
+.header-box label {
+    font-size: 20px;
+    display: inline-block;
+    font-weight: 900;
+}
+.header-box span {
+    font-size: 16px;
+    font-weight: 700;
 }
 
 @media (min-width: 1024px) {
@@ -431,6 +453,7 @@ body > div {
     .hidden-xs {
         display: none;
     }
+
     .paddin-bottom-50 {
         padding-bottom: 50px !important;
     }

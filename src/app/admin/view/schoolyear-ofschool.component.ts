@@ -74,6 +74,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
                         id: o.id,
                         schoolyear_num: o.schoolyear_num,
                         school_id: o.school_id,
+                        school_name:o.school_name,
                         school_year: o.school_year,
                         school_year_id: o.school_year_id,
                         start_date: new Date(o.start_date)
