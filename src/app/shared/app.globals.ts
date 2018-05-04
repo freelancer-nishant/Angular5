@@ -26,6 +26,7 @@ export enum MenuType {
     StudentScorecards,
     VoiceOfTheSchoolSurveys,
 
+    SchoolConfiguration,
     SchoolInSchoolYear,
     EnrollmentAndAttendance,
     AdminAssessments,
@@ -62,7 +63,7 @@ export class GlobalHelper {
             case MenuType.AssessmentUploads:
             case MenuType.SchoolComparisonList:
                 categories = [
-                    { name: 'School in School Year', route: "#/schoolin-schoolyear" },
+                    { name: 'School in School Year', route: "#/schoolyear/school" },
                     { name: 'Enrollment & Attendance', route: "#/enrollment-attendance" },
                     { name: 'Assessments', route: "#/admin-assessments" },
                     { name: 'Assessment Uploads', route: "#/admin-assessments-upload" },
@@ -269,47 +270,54 @@ export class GlobalHelper {
                 ];
                 break;
             case MenuType.SchoolInSchoolYear:
+            case MenuType.EnrollmentAndAttendance:
+            case MenuType.AdminAssessments:
+            case MenuType.AssessmentUploads:
+            case MenuType.SchoolComparisonList:
                 menuItems = [
                     {
                         label: 'School in School Year', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'School Year of School', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
-                            { label: 'Semester in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
-                            { label: 'Grades in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
-                            { label: 'Teachers in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
-                            { label: 'Days in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/sbac-overview'] },
+                            { label: 'School Year of School', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
+                            { label: 'Semester in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
+                            { label: 'Grades in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/grades'] },
+                            { label: 'Teachers in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/teachers'] },
+                            { label: 'Days in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] }
                         ]
-                    }
-                ];
-                break;
-            case MenuType.EnrollmentAndAttendance:
-                menuItems = [
+                    },
                     {
-                        label: 'Enrollment & Attendance', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/enrollment-attendance']
-                    }
-                ];
-                break;
-            case MenuType.AdminAssessments:
-                menuItems = [
+                        label: 'Enrollment & Attendance', icon: 'fa fa-fw fa-bar-chart', 
+                        items: [
+                            { label: 'Students', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
+                            { label: '1st Period Teachers', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
+                            { label: 'Daily Attendance', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/grades'] }
+                        ]
+                    },
                     {
-                        label: 'Assessments', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/admin-assessments']
-                    }
-                ];
-                break;
-            case MenuType.AssessmentUploads:
-                menuItems = [
+                        label: 'Assessments', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Assessments of School', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
+                            { label: 'Assessments in School Year', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] }
+                        ]
+                    },
                     {
-                        label: 'Assessment Uploads', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/admin-assessments-upload']
-                    }
-                ];
-                break;
-            case MenuType.SchoolComparisonList:
-                menuItems = [
+                        label: 'Assessment Uploads', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'SBAC Summative', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
+                            { label: 'SBAC Interim', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
+                            { label: 'Physical Fitness Test', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/grades'] },
+                            { label: 'CELDT', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/teachers'] },
+                            { label: 'NWEA', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
+                            { label: 'LGL - ADAM', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
+                            { label: 'LGL - DORA', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
+                            { label: 'LGL - DOMA Algebra', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] }
+                        ]
+                    },
                     {
-                        label: 'Comparison School Lists', icon: 'fa fa-fw fa-bar-chart', routerLink: ['/school-comparison-list']
-                        //items: [
-                        //    { label: 'Add/Update Comparison School Lists', icon: '', routerLink: ['/school-comparison-list'] },
-                        //]
+                        label: 'Comparison School Lists', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Manage Comparison School Lists', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] }
+                        ]
                     }
                 ];
                 break;

@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
-import { GlobalConstants } from './../app.globals';
+import { GlobalConstants, GlobalHelper } from './../app.globals';
+import { SchoolGrade } from './../domain/school.schoolgrade';
 
 
 const httpOptionsa = {
@@ -21,6 +22,10 @@ export class SchoolGradeService {
             url = url + "&test_type_ids=" + test_type_ids;
         }
         return this.http.get(url);                    
+    }
+    insert(schoolGrade: SchoolGrade): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/schoolgrade';
+        return this.http.post(url, GlobalHelper.toHttpParams(schoolGrade), httpOptionsa);
     }
 }
 

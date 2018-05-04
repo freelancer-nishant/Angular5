@@ -14,7 +14,7 @@ import { SchoolService } from './../../shared/services/school.service'
 import { SchoolYearService } from './../../shared/services/school.year.service'
 
 @Component({
-    templateUrl: './schoolyear-ofschool.component.html',
+    templateUrl: './schoolyear-school.component.html',
     providers: [MessageService]
 })
 export class SchoolYearOfSchoolComponent implements OnInit {
@@ -92,7 +92,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
         let responseResult: ResponseResult;
         this.schoolYearService.update(updatedSchool).subscribe((result: any) => responseResult = result,
             (error: any) => {
-                this.msgs.push({ severity: 'success', detail: error.error.message });
+                this.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
                 this.msgs.push({ severity: 'success', detail: "School year updated successfully." });

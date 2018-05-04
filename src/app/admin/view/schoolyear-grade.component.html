@@ -1,0 +1,82 @@
+<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <p-panel [toggleable]="true">
+            <p-header>
+                <i class="material-icons">&#xE8CE;</i> School Year Start/End
+            </p-header>
+            <div class="card card-w-title filter-pan">
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
+                        <label class="control-label" for="selectedSchool">Select a School</label>
+                        <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false" placeholder="--Select School Name--"></p-dropdown>
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
+                        <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
+                        <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false" placeholder="--Select School Year--"></p-dropdown>
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-3">
+                        <label class="control-label">&nbsp;</label>
+                        <button pButton type="button" label="Go" (click)="getSchoolYearGrades()" style="width:auto;"></button>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+    <div class="ui-g-12">
+        <div class="card card-w-title content-card">
+            <div class="ui-g form-group header-box">
+                <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
+                    <label class="control-label" for="SchoolName">School  : </label> <span>{{school.SchoolName}}</span>
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
+                    <label class="control-label" for="SchoolYear">Year  : </label> <span>{{school.SchoolYear}}</span>
+                </div>
+            </div>
+            <p-growl [(value)]="msgs"></p-growl>
+            <div class="ui-g">
+                <div class="ui-g-3">
+                    <label class="control-label" for="SchoolGrade">Grade  : </label>
+                    <p-dropdown [options]="schoolGradeList" [(ngModel)]="selectedSchoolGrade" placeholder="-- Select --" [autoWidth]="false"  optionLabel="grade"></p-dropdown>
+                </div>
+                <div class="ui-g-1">
+                    <label class="control-label">&nbsp; </label>
+                    <button pButton type="button" label="Add" icon="fa fa-plus" (click)="addGrade()" style="width:auto;"></button>
+                </div>
+            </div>
+            <!--<p-dataGrid [value]="schoolDetailList" [immutable]="false">
+                <p-header class="form-group">
+                    <div class="ui-g">
+                        <div class="ui-g-7 ui-md-7 text-left">
+                            <label>School</label>
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+                            <label>Start Date</label>
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+                            <label>End Date</label>
+                        </div>
+                        <div class="ui-g-1 ui-md-1">
+                            <label>&nbsp;</label>
+                        </div>
+                    </div>
+                </p-header>
+                <ng-template let-school pTemplate="item">
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-7 ui-md-7">
+                            <label>{{school.school_name}}</label>
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+                            <p-calendar [(ngModel)]="school.start_date"></p-calendar>
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+                            <p-calendar [(ngModel)]="school.end_date"></p-calendar>
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center">
+                            <button pButton type="button" label="Update" icon="fa fa-edit" (click)="editSchool(school.id)" style="width:auto;"></button>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataGrid>-->
+        </div>
+    </div>
+</div>
