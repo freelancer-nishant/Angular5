@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpParams} from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 
@@ -26,7 +26,7 @@ export enum MenuType {
     StudentScorecards,
     VoiceOfTheSchoolSurveys,
 
-    SchoolConfiguration,
+    School,
     SchoolInSchoolYear,
     EnrollmentAndAttendance,
     AdminAssessments,
@@ -269,12 +269,20 @@ export class GlobalHelper {
                     }
                 ];
                 break;
+            case MenuType.School:
             case MenuType.SchoolInSchoolYear:
             case MenuType.EnrollmentAndAttendance:
             case MenuType.AdminAssessments:
             case MenuType.AssessmentUploads:
             case MenuType.SchoolComparisonList:
                 menuItems = [
+                    {
+                        label: 'School', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Teachers', icon: 'fa fa-fw fa-columns', routerLink: ['/school/teachers'] },
+                            { label: 'Courses', icon: 'fa fa-fw fa-columns', routerLink: ['/school/courses'] }
+                        ]
+                    },
                     {
                         label: 'School in School Year', icon: 'fa fa-fw fa-bar-chart',
                         items: [
@@ -286,7 +294,7 @@ export class GlobalHelper {
                         ]
                     },
                     {
-                        label: 'Enrollment & Attendance', icon: 'fa fa-fw fa-bar-chart', 
+                        label: 'Enrollment & Attendance', icon: 'fa fa-fw fa-bar-chart',
                         items: [
                             { label: 'Students', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
                             { label: '1st Period Teachers', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
