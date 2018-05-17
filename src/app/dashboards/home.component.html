@@ -1,7 +1,7 @@
 <div class="dashboard">
     <h1><i class="material-icons">&#xE88A;</i> Home</h1>
     <div class="ui-g">
-        <div class="ui-g-6 ui-md-3 ui-lg-2">
+        <!--<div class="ui-g-6 ui-md-3 ui-lg-2">
             <div class="box-iconcard dashboard-card">
                 <div class="content">
                     <a href="#/dashboard">
@@ -16,7 +16,7 @@
                     </a>
                 </div>
             </div>
-            </div>
+        </div>
 
         <div class="ui-g-6 ui-md-3 ui-lg-2">
             <div class="box-iconcard dashboard-card">
@@ -33,7 +33,25 @@
                     </a>
                 </div>
             </div>
+        </div>-->
+        <ng-template ngFor let-menu [ngForOf]="taxonomytypes">
+            <div class="ui-g-6 ui-md-3 ui-lg-2">
+                <div class="box-iconcard dashboard-card">
+                    <div class="content">
+                        <a href="#/dashboard/{{menu.id}}/{{menu.label}}" (click)="app.onItemClick(menu.label)">
+                            <div class="card-image">
+                                <div class="icon-wrapper">
+                                    <img class="img-responsive img-center" src="./assets/layout/images/home/dashboards.png" />
+                                </div>
+                            </div>
+                            <div class="card-label">
+                                <div class="label-inner">{{menu.label}}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
+        </ng-template>
 
     </div>
 </div>

@@ -71,6 +71,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     pageProfile: any = {}
     isClientPage: boolean = false;
+    selectedItem: any = {};
 
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
@@ -316,5 +317,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     ngOnDestroy() {
         jQuery(this.layoutMenuScroller).nanoScroller({ flash: true });
+    }
+
+    onItemClick(val) {
+        this.selectedItem = val;
     }
 }

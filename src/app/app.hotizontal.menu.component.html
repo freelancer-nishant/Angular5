@@ -2,8 +2,13 @@
     <ul class="topbar-left client-home-icon">
         <li title="Home"><a href="#" style="padding-top: 5px;"> <i class="material-icons">&#xE88A;</i></a></li>
     </ul>
-    <ul class="pull-left">
+    <!--<ul class="pull-left">
         <li><a [ngClass]="{'active': selectedItem == 'dashboards'}" href="#/dashboard" (click)="onItemClick('dashboards')">Dashboards</a></li>
         <li><a [ngClass]="{'active': selectedItem == 'reports'}" href="#/reports" (click)="onItemClick('reports')">Reports</a></li>
+    </ul>-->
+    <ul class="pull-left">
+        <ng-template ngFor let-menu [ngForOf]="taxonomytypes">
+            <li><a [ngClass]="{'active': app.selectedItem == menu.label}" href="#/dashboard/{{menu.id}}/{{menu.label}}" (click)="app.onItemClick(menu.label)">{{menu.label}}</a></li>
+        </ng-template>
     </ul>
 </div>

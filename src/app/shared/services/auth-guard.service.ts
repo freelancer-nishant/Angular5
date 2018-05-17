@@ -8,7 +8,7 @@ export class AuthGuardService implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot): boolean {
 
-        let expectedRole: string = route.data.expectedRole;
+        let expectedRoles: string[] = route.data.expectedRoles;
         let hasClientAccess: boolean = route.data.hasClientAccess;
 
         if (!this.auth.isAuthenticated()) {
@@ -23,8 +23,8 @@ export class AuthGuardService implements CanActivate {
         }
 
         let tokenPayload: any = this.auth.decodeToken();
-        if (expectedRole != undefined) {
-            if (tokenPayload.role !== expectedRole) {
+        if (expectedRoles !=undefined && expectedRoles.length>0) {
+            if (expectedRoles.indexOf(tokenPayload.role)<0) {
                 this.router.navigate(['/login']);
                 return false;
             }

@@ -1,5 +1,8 @@
-import { Component, OnInit} from '@angular/core';
-import {AppComponent} from './app.component';
+import { Component, OnInit } from '@angular/core';
+import { AppComponent } from './app.component';
+import { TaxonomyService } from './shared/services/taxonomy.service';
+import { TaxonomyType } from './shared/domain/taxonomy';
+
 
 @Component({
     selector: 'app-top-horizontal-menu',
@@ -7,15 +10,33 @@ import {AppComponent} from './app.component';
 })
 export class AppHotizontalMenuComponent implements OnInit {
 
-    
-    constructor(public app: AppComponent) { }
 
-    selectedItem: any = {};
+    constructor(public app: AppComponent, public taxonomyService: TaxonomyService) { }
 
-    ngOnInit() {        
-    }
+    sessionInfo: any = {}
+    taxonomytypes: TaxonomyType[] = [];
 
-    onItemClick(val) {        
-        this.selectedItem = val;
+    ngOnInit() {
+        try {
+            this.sessionInfo = this.app.getSession();
+
+            let taxonomytypes: TaxonomyType[] = [];
+            this.taxonomyService.getType(2, this.sessionInfo.role).subscribe((result: any) => taxonomytypes = result.data,
+                (error: any) => { },
+                () => {
+                    this.taxonomytypes = [];
+                    taxonomytypes.map(o => {
+                        this.taxonomytypes.push({
+                            id: o.id,
+                            name: o.name,
+                            icon: o.icon,
+                            label: o.label,
+                            mini_icon: o.mini_icon,
+                            small_icon: o.small_icon
+                        });
+                    });
+                });
+        }
+        catch (e) {}
     }
 }

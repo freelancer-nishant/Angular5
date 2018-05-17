@@ -1,8 +1,8 @@
 <div class="dashboard">
-    <h1><i class="material-icons">&#xE871;</i> Dashboards</h1>
+    <h1><i class="material-icons">&#xE871;</i> {{typeName}}</h1>
 
     <div class="ui-g">
-        <div class="ui-g-6 ui-md-3 ui-lg-2">
+        <!--<div class="ui-g-6 ui-md-3 ui-lg-2">
             <div class="box-iconcard dashboard-card">
                 <div class="content">
                     <a href="#/student-information">
@@ -34,6 +34,24 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div>-->
+        <ng-template ngFor let-category [ngForOf]="taxonomycategory">
+            <div class="ui-g-6 ui-md-3 ui-lg-2">
+                <div class="box-iconcard dashboard-card">
+                    <div class="content">
+                        <a href="#/assessments">
+                            <div class="card-image">
+                                <div class="icon-wrapper">
+                                    <img class="img-responsive img-center" src="./assets/layout/images/dashboard/assessments.png" />
+                                </div>
+                            </div>
+                            <div class="card-label">
+                                <div class="label-inner">{{category.label}}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
     </div>
 </div>
