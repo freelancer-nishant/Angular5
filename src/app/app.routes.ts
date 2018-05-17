@@ -25,6 +25,7 @@ import { LoginComponent } from './dashboards/login.component';
 import { EmbeddedLoginComponent } from './dashboards/embedded.login.component';
 import { HomeComponent } from './dashboards/home.component';
 import { DashboardComponent } from './dashboards/dashboard.component';
+import { CategoryPageComponent } from './dashboards/categorypage.component'
 import { StudentInformationComponent } from './dashboards/view/student-information.component'
 import { EnrollmentOverviewComponent } from './dashboards/view/enrollment-overview.component'
 import { AttendanceOverviewComponent } from './dashboards/view/attendance-overview.component'
@@ -65,6 +66,7 @@ export const routes: Routes = [
 
     //Dashboards
     { path: 'dashboard/:id/:name', component: DashboardComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_USER, GlobalConstants.ROLE_ADMIN, GlobalConstants.ROLE_CLIENT_ADMIN], hasClientAccess: true } },
+    { path: 'categorypage/:typeid/:id', component: CategoryPageComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'student-information', component: EnrollmentOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'enrollment-overview', component: EnrollmentOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'attendance-overview', component: AttendanceOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true }},

@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
     sessionInfo: any = {}
     taxonomycategory: TaxonomyType[] = [];
     typeName: string = ''
+    typeId: number = 0
     constructor(public app: AppComponent, private route: ActivatedRoute, public taxonomyService: TaxonomyService) {
         this.app.displayLeftMenu(false);
     }
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
     getCategory(typeId) {
         try {
             this.sessionInfo = this.app.getSession();
+            this.typeId = typeId;
             let taxonomycategory: TaxonomyType[] = [];
             this.taxonomyService.getCategory(typeId, this.sessionInfo.role, this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
                 (error: any) => { },

@@ -70,6 +70,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     LeftMenuItems: any[] = [];
 
     pageProfile: any = {}
+
     isClientPage: boolean = false;
     selectedItem: any = {};
 

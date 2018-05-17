@@ -93,6 +93,7 @@ import { EmbeddedLoginComponent } from './dashboards/embedded.login.component';
 
 import { DashboardComponent } from './dashboards/dashboard.component'
 import { HomeComponent } from './dashboards/home.component'
+import { CategoryPageComponent } from './dashboards/categorypage.component'
 import { StudentInformationComponent } from './dashboards/view/student-information.component'
 import { EnrollmentOverviewComponent } from './dashboards/view/enrollment-overview.component'
 import { AttendanceOverviewComponent } from './dashboards/view/attendance-overview.component'
@@ -275,6 +276,7 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         EmbeddedLoginComponent,
         HomeComponent,
         DashboardComponent,
+        CategoryPageComponent,
 
         StudentInformationComponent,
         EnrollmentOverviewComponent,
