@@ -116,7 +116,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.issinglepage = false;
 
         if (isClientPage)
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['']);
         else
             this.router.navigate(['']);
 

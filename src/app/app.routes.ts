@@ -62,7 +62,7 @@ import { SchoolComparisonListComponent } from './admin/view/school.comparison.li
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'embedded-report/:user/:pwd', component: EmbeddedLoginComponent},
-    { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_USER, GlobalConstants.ROLE_ADMIN, GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_USER, GlobalConstants.ROLE_ADMIN, GlobalConstants.ROLE_CLIENT_ADMIN], hasClientAccess: true } },
 
     //Dashboards
     { path: 'dashboard/:id/:name', component: DashboardComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_USER, GlobalConstants.ROLE_ADMIN, GlobalConstants.ROLE_CLIENT_ADMIN], hasClientAccess: true } },
