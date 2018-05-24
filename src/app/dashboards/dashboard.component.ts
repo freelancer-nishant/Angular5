@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
             this.sessionInfo = this.app.getSession();
             this.typeId = typeId;
             let taxonomycategory: TaxonomyType[] = [];
-            this.taxonomyService.getCategory(typeId, this.sessionInfo.role, this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
+            this.taxonomyService.getCategory(typeId, this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
                 (error: any) => { },
                 () => {
                     this.taxonomycategory = [];
@@ -39,10 +39,8 @@ export class DashboardComponent implements OnInit {
                         this.taxonomycategory.push({
                             id: o.id,
                             name: o.name,
-                            icon: o.icon,
-                            label: o.label,
-                            mini_icon: o.mini_icon,
-                            small_icon: o.small_icon
+                            icon: "//"+o.icon,
+                            label: o.label
                         });
                     });
                 });

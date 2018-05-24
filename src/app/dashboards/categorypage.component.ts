@@ -56,7 +56,7 @@ export class CategoryPageComponent implements OnInit {
             this.sessionInfo = this.app.getSession();
             let sideMenuInfo: any = {};
             let taxonomycategory: TaxonomyType[] = [];
-            this.taxonomyService.getCategory(typeid, this.sessionInfo.role, this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
+            this.taxonomyService.getCategory(typeid,this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
                 (error: any) => { },
                 () => {
                     this.taxonomyCategory = [];
@@ -65,21 +65,19 @@ export class CategoryPageComponent implements OnInit {
                             id: o.id,
                             name: o.name,
                             route:'#/categorypage/' + typeid + '/' + o.id,
-                            icon: o.icon,
-                            label: o.label,
-                            mini_icon: o.mini_icon,
-                            small_icon: o.small_icon
+                            icon: "//"+o.icon,
+                            label: o.label
                         });
                     });
                     let selectedcategory = this.taxonomyCategory.find(x => x.id === parseInt(categoryId));
                     this.app.pageProfile = {
-                        icon: './assets/layout/images/dashboard/student-information.png',
+                        icon: selectedcategory.icon,
                         name: selectedcategory.label,
                         categories: this.taxonomyCategory
                     };
                     
                 });
-            this.taxonomyService.getSubCategory(categoryId, this.sessionInfo.role, this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
+            this.taxonomyService.getSubCategory(categoryId, this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
                 (error: any) => { },
                 () => {
                     this.app.LeftMenuItems = [];
@@ -88,9 +86,7 @@ export class CategoryPageComponent implements OnInit {
                             id: o.id,
                             name: o.name,
                             icon: o.icon,
-                            label: o.label,
-                            mini_icon: o.mini_icon,
-                            small_icon: o.small_icon
+                            label: o.label
                         });
                     });
                 });
