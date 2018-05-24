@@ -128,6 +128,9 @@ import { AdminAssessmentsComponent } from './admin/view/admin-assessments.compon
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 
+import { SchoolYearGradeFilter } from './dashboards/filters/school-year-grade-filter';
+import { SchoolYearGradeTestFilter } from './dashboards/filters/school-year-grade-test-filter';
+
 import { VJSComponent } from './vjs.component'
 import { TranslateComponent } from './translate-component'
 
@@ -310,6 +313,9 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         AdminAssessmentsComponent,
         AssessmentUploadsComponent,
         SchoolComparisonListComponent,
+
+        SchoolYearGradeFilter,
+        SchoolYearGradeTestFilter,
 
         VJSComponent,
         TranslateComponent
