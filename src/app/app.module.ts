@@ -327,7 +327,7 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         HttpClient,
         LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService, TaxonomyService,
-        MessageService,
+        MessageService, 
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
     ],

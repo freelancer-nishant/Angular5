@@ -18,18 +18,20 @@ declare var $: any;
 export class VJSComponent implements OnChanges {
 
     @Input() params: {};
+    @Input() reportUrl: {};
+    @Input() reportType: {};
+    @Input() isPaging: {};
 
-    resourceIndex: number;
+    resourceIndex: string;
     selectedFormat: any;
 
     constructor( @Attribute('id') id: string, public vjsConfig: VJSConfig, private spinner: SpinnerVisibilityService) {
 
         GlobalHelper.loadScript("visualize.js", "http://62.151.179.246:8080/jasperserver-pro/client/visualize.js?_opt=true");
 
-        this.resourceIndex = this.getObjectIndex(vjsConfig.resourceDetails, id);
+        this.resourceIndex = id;
         //var resourceId: string = vjsConfig.resourceDetails[resourceIndex].id;
-
-        this.drawResource(vjsConfig, spinner, this.resourceIndex, this.params);
+        this.drawResource(vjsConfig, spinner, this.resourceIndex, this.params, this.isPaging, this.reportUrl, this.reportType);
     };
 
 
@@ -39,16 +41,18 @@ export class VJSComponent implements OnChanges {
         if (changes.params) {
             p = changes.params.currentValue;
         }
-        this.drawResource(this.vjsConfig, this.spinner, this.resourceIndex, p);
+        this.drawResource(this.vjsConfig, this.spinner, this.resourceIndex, p, this.isPaging, this.reportUrl, this.reportType);
     }
 
-    public drawResource(vjsConfig, spinner, resourceIndex, params) {
+    public drawResource(vjsConfig, spinner, resourceIndex, params, isPaging, reportUrl, reportType) {
+        if (reportType == undefined)
+            reportType = "report";
 
         var waitingForVjsLoad = setInterval(function () {
             if (typeof (visualize) != 'undefined') {
                 clearInterval(waitingForVjsLoad);
 
-                if (vjsConfig.resourceDetails[resourceIndex].paging) {
+                if (isPaging) {
                     $('#pagination-control').css('display', '');
                 }
                 else {
@@ -61,7 +65,7 @@ export class VJSComponent implements OnChanges {
                     auth: vjsConfig.userAuth
                 },
                     function (v) {
-                        switch (vjsConfig.resourceDetails[resourceIndex].type) {
+                        switch (reportType) {
                             case "report": {
                                 if (params == undefined) {
                                     spinner.hide();
@@ -74,9 +78,9 @@ export class VJSComponent implements OnChanges {
                                     plus = document.getElementById("btnZoomIn"),
                                     minus = document.getElementById("btnZoomOut"),
                                     report = v.report({
-                                        resource: vjsConfig.resourceDetails[resourceIndex].uri,
+                                        resource: reportUrl,
                                         scale: 'width',
-                                        container: "#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container',
+                                        container: "#" + resourceIndex + ' > .vjs-container',
                                         params: JSON.parse(params),
                                         success: function () { console.log("success") },
                                         error: function (err) {
@@ -97,7 +101,7 @@ export class VJSComponent implements OnChanges {
                                                     spinner.hide();
 
                                                     var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
-                                                    $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                                    $('#' + resourceIndex).parent().height(reportHeight);
 
                                                     //Check current zoom level
                                                     var obj = $(".jrPage");
@@ -129,7 +133,7 @@ export class VJSComponent implements OnChanges {
                                         .render()
                                         .done(function () {
                                             var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
-                                            $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                            $('#' + resourceIndex).parent().height(reportHeight);
                                         });
                                 }
 
@@ -139,12 +143,12 @@ export class VJSComponent implements OnChanges {
                                         .render()
                                         .done(function () {
                                             var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
-                                            $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                            $('#' + resourceIndex).parent().height(reportHeight);
                                         });
                                 }
 
                                 var exportTo = v.report({
-                                    resource: vjsConfig.resourceDetails[resourceIndex].uri,
+                                    resource: reportUrl,
                                     container: "#exportContainer",
                                     runImmediately: false,
                                     /* this is added because we do not want to add run this. */
@@ -191,7 +195,7 @@ export class VJSComponent implements OnChanges {
                                             $("#btnNext").prop("disabled", currentPage === totalPages);
 
                                             var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
-                                            $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                            $('#' + resourceIndex).parent().height(reportHeight);
                                         })
                                         .fail(function (err) { });
                                 });
@@ -207,7 +211,7 @@ export class VJSComponent implements OnChanges {
                                             $("#btnNext").prop("disabled", currentPage === totalPages);
 
                                             var reportHeight = $(".vjs-container .jrPage")[0].getBoundingClientRect().height;
-                                            $('#' + vjsConfig.resourceDetails[resourceIndex].id).parent().height(reportHeight);
+                                            $('#' + resourceIndex).parent().height(reportHeight);
                                         })
                                         .fail(function (err) { });
                                 });
@@ -218,8 +222,8 @@ export class VJSComponent implements OnChanges {
                             }
 
                             case "dashboard": {
-                                v("#" + vjsConfig.resourceDetails[resourceIndex].id + ' > .vjs-container').dashboard({
-                                    resource: vjsConfig.resourceDetails[resourceIndex].uri,
+                                v("#" + resourceIndex + ' > .vjs-container').dashboard({
+                                    resource: reportUrl,
                                     //params: vjsConfig.resourceDetails[resourceIndex].params,
                                     success: function () { console.log("success") },
                                     error: function (err) { alert("Dashboard draw failed: " + err) }

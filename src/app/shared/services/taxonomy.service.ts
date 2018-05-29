@@ -36,7 +36,7 @@ export class TaxonomyService {
         return this.http.get(url);
     }
     getItemDetail(subcategory_id: number, item_id: number, client_id: number): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/item/' + item_id+'?subcategory_id=' + subcategory_id + '&client_id=' + client_id;
+        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/item/' + item_id +'?subcategory_id=' + subcategory_id + '&client_id=' + client_id;
         return this.http.get(url);
     }
 }
