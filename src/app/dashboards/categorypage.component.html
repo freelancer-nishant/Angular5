@@ -1,3 +1,26 @@
-<div class="reports">
-    <h1 class="page-title" style="position: fixed;top: 50%;left: 50%;">Coming Soon</h1>
+<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <p-panel [toggleable]="true">
+            <p-header>
+                <i class="material-icons">&#xE7FB;</i> {{itemDetail.name}}
+                <export-component *ngIf="itemDetail.is_pagination"></export-component>
+            </p-header>
+            <div class="card card-w-title filter-pan">
+                <div *ngIf="itemDetail.component_name=='SchoolYearGradeFilter'">
+                    <school-year-grade-filter (submit)="submit()"></school-year-grade-filter>
+                </div>
+                <div *ngIf="itemDetail.component_name=='SchoolYearGradeTestFilter'">
+                    <school-year-grade-test-filter (submit)="submit()"></school-year-grade-test-filter>
+                </div>
+                <div *ngIf="itemDetail.component_name=='AssesmentSchoolYearGradeFilter'">
+                    <assesment-school-year-grade-filter (submit)="submit()"></assesment-school-year-grade-filter>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <vjs-component class="resource" id="report-view" [(reportUrl)]="itemDetail.report_path" [(reportType)]="report" [(isPaging)]="itemDetail.is_pagination" [(params)]="parameters"></vjs-component>
+        </div>
+    </div>
 </div>
