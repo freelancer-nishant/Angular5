@@ -21,7 +21,7 @@ export class AppHotizontalMenuComponent implements OnInit {
             this.sessionInfo = this.app.getSession();
 
             let taxonomytypes: TaxonomyType[] = [];
-            this.taxonomyService.getType(2, this.sessionInfo.role).subscribe((result: any) => taxonomytypes = result.data,
+            this.taxonomyService.getType(2).subscribe((result: any) => taxonomytypes = result.data,
                 (error: any) => { },
                 () => {
                     this.taxonomytypes = [];
@@ -30,9 +30,7 @@ export class AppHotizontalMenuComponent implements OnInit {
                             id: o.id,
                             name: o.name,
                             icon: o.icon,
-                            label: o.label,
-                            mini_icon: o.mini_icon,
-                            small_icon: o.small_icon
+                            label: o.label
                         });
                     });
                 });

@@ -531,3 +531,36 @@ body > div {
         font-size: 12px !important;
     }
 }
+
+.text-normal
+{
+    font-weight:normal;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-size
+{
+    font-size: 18px;
+}
+
+.text-color 
+{
+    color:black;
+}
+
+.div-center 
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-border {
+    border-bottom: 1px solid #5898a6;
+}

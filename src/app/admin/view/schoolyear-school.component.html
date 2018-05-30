@@ -2,21 +2,21 @@
     <div class="ui-g-12">
         <p-panel [toggleable]="true">
             <p-header>
-                <i class="material-icons">&#xE8CE;</i> School Year Start/End
+                School in School Year {{test}}
             </p-header>
             <div class="card card-w-title filter-pan">
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
-                        <label class="control-label" for="selectedSchool">Select a School</label>
-                        <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false" placeholder="--Select School Name--"></p-dropdown>
+                        <label class="control-label" for="selectedSchool">School</label>
+                        <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false" placeholder="--Select--" (onChange)="schoolChange($event)"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
-                        <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
-                        <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false" placeholder="--Select School Year--"></p-dropdown>
+                        <label class="control-label" for="selectedSchoolYear">School Year</label>
+                        <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-3">
                         <label class="control-label">&nbsp;</label>
-                        <button pButton type="button" label="Go" (click)="getSchoolYears()" style="width:auto;"></button>
+                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto;"></button>
                     </div>
                 </div>
             </div>
@@ -26,47 +26,260 @@
         <div class="card card-w-title content-card">
             <div class="ui-g form-group header-box">
                 <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
-                    <label class="control-label" for="SchoolName">School  : </label> <span>{{school.SchoolName}}</span>
+                    <label class="text-color text-normal" style="font-weight:normal; font-size:18px; color:black;" for="SchoolName">School  : </label> <span class="text-size text-color" style="font-size:18px; color:black;">{{school.SchoolName}}</span>
                 </div>
                 <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
-                    <label class="control-label" for="SchoolYear">Year  : </label> <span>{{school.SchoolYear}}</span>
+                    <label class="text-normal text-color" style="font-weight:normal; font-size:18px; color:black;" for="SchoolYear">School Year  : </label> <span class="text-size text-color" style="font-size:18px; color:black;">{{school.SchoolYear}}</span>
                 </div>
             </div>
-            <p-growl [(value)]="msgs"></p-growl>
-            <p-dataGrid [value]="schoolDetailList" [immutable]="false">
-                <p-header class="form-group">
-                    <div class="ui-g">
-                        <div class="ui-g-7 ui-md-7 text-left">
-                            <label>School</label>
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    School Year Start/End
+                </p-header>
+
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-7 ui-md-7">
+                            <label class="text-bold">School Name</label>
                         </div>
                         <div class="ui-g-2 ui-md-2">
-                            <label>Start Date</label>
+                            <label class="text-bold">Start Date</label>
                         </div>
                         <div class="ui-g-2 ui-md-2">
-                            <label>End Date</label>
+                            <label class="text-bold">End Date</label>
                         </div>
                         <div class="ui-g-1 ui-md-1">
                             <label>&nbsp;</label>
                         </div>
                     </div>
-                </p-header>
-                <ng-template let-school pTemplate="item">
                     <div class="ui-g-12 ui-md-12">
-                        <div class="ui-g-7 ui-md-7">
-                            <label>{{school.school_name}}</label>
+                        <p-dataGrid [value]="schoolDetailList" [immutable]="false">
+                            <ng-template let-school pTemplate="item">
+                                <div class="ui-g-12 ui-md-12">
+                                    <div class="ui-g-7 ui-md-7">
+                                        <label>{{school.school_name}}</label>
+                                    </div>
+                                    <div class="ui-g-2 ui-md-2">
+                                        <p-calendar [(ngModel)]="school.start_date"></p-calendar>
+                                    </div>
+                                    <div class="ui-g-2 ui-md-2">
+                                        <p-calendar [(ngModel)]="school.end_date"></p-calendar>
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1 text-center">
+                                        <button pButton type="button" label="Update" (click)="editSchool(school.id)" style="width:auto;"></button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-dataGrid>
+                    </div>
+                </div>
+            </p-panel>
+
+            <!--<p-dataGrid [value]="schoolDetailList" [immutable]="false">
+            <p-header class="form-group">
+                <div class="ui-g">
+                    <div class="ui-g-7 ui-md-7 text-left">
+                        <label>School</label>
+                    </div>
+                    <div class="ui-g-2 ui-md-2">
+                        <label>Start Date</label>
+                    </div>
+                    <div class="ui-g-2 ui-md-2">
+                        <label>End Date</label>
+                    </div>
+                    <div class="ui-g-1 ui-md-1">
+                        <label>&nbsp;</label>
+                    </div>
+                </div>
+            </p-header>
+            <ng-template let-school pTemplate="item">
+                <div class="ui-g-12 ui-md-12">
+                    <div class="ui-g-7 ui-md-7">
+                        <label>{{school.school_name}}</label>
+                    </div>
+                    <div class="ui-g-2 ui-md-2">
+                        <p-calendar [(ngModel)]="school.start_date"></p-calendar>
+                    </div>
+                    <div class="ui-g-2 ui-md-2">
+                        <p-calendar [(ngModel)]="school.end_date"></p-calendar>
+                    </div>
+                    <div class="ui-g-1 ui-md-1 text-center">
+                        <button pButton type="button" label="Update" icon="fa fa-edit" (click)="editSchool(school.id)" style="width:auto;"></button>
+                    </div>
+                </div>
+            </ng-template>-->
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Semesters in School Year
+                </p-header>
+                <p-growl [(value)]="msgs"></p-growl>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-12 div-border">
+                        <div class="ui-g-7 ui-md-7 text-left">
+                            <label class="text-bold">Semester</label><br />
                         </div>
                         <div class="ui-g-2 ui-md-2">
-                            <p-calendar [(ngModel)]="school.start_date"></p-calendar>
+                            <label class="text-bold">Start Date</label><br />
                         </div>
                         <div class="ui-g-2 ui-md-2">
-                            <p-calendar [(ngModel)]="school.end_date"></p-calendar>
-                        </div>
-                        <div class="ui-g-1 ui-md-1 text-center">
-                            <button pButton type="button" label="Update" icon="fa fa-edit" (click)="editSchool(school.id)" style="width:auto;"></button>
+                            <label class="text-bold">End Date</label><br />
                         </div>
                     </div>
-                </ng-template>
-            </p-dataGrid>
+                    <div class="ui-g-12 ui-md-12 div-border">
+                        <div class="ui-g-7 ui-md-7">
+                            <input type="text" size="35" [(ngModel)]="semesterAdded.label" />
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+                            <p-calendar [(ngModel)]="semesterAdded.start_date"></p-calendar>
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+                            <p-calendar [(ngModel)]="semesterAdded.end_date"></p-calendar>
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center">
+                            <button pButton type="button" label="Add" (click)="addSemester()"></button>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <p-dataGrid [value]="semesterDetailList" [immutable]="false">
+                            <ng-template let-school pTemplate="item">
+                                <div class="ui-g-12 ui-md-12 div-border">
+                                    <div class="ui-g-7 ui-md-7">
+                                        <label>{{school.label}}</label>
+                                    </div>
+                                    <div class="ui-g-2 ui-md-2">
+                                        <p-calendar [(ngModel)]="school.start_date"></p-calendar>
+                                    </div>
+                                    <div class="ui-g-2 ui-md-2">
+                                        <p-calendar [(ngModel)]="school.end_date"></p-calendar>
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1 text-center">
+                                        <button pButton type="button" label="Update" (click)="editSemester(school.id)" style="width:auto;"></button>
+                                        <button pButton type="button" icon="fa fa-trash" (click)="editSchool(school.id)" style="width:auto;"></button><br />
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-dataGrid>
+                    </div>
+                </div>
+            </p-panel>
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Grades in School Year
+                </p-header>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-12 div-border">
+                        <div class="ui-g-11 ui-md-11">
+                            <label class="control-label text-bold" for="SchoolGrade">Grade: </label>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12 div-border">
+                        <div class="ui-g-11 ui-md-11">
+                            <p-dropdown [options]="schoolGradeList" [(ngModel)]="selectedSchoolGrade" placeholder="Kindergarten" [autoWidth]="false" optionLabel="grade" class="ui-g-3 ui-md-3"></p-dropdown>
+                        </div>
+                        <div class="ui-g-1 ui-md-1">
+                            <button pButton type="button" label="Add" (click)="addGrade()"></button>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-g-11 ui-md-11">
+                                <label>Kindergarten</label>
+                            </div>
+                            <div class="ui-g-1 ui-md-1 text-center">
+                                <button pButton type="button" icon="fa fa-trash" (click)="deleteGrade(grade.id)" style="width:auto;"></button><br /><br />
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-g-11 ui-md-11">
+                                <label>1</label>
+                            </div>
+                            <div class="ui-g-1 ui-md-1 text-center">
+                                <button pButton type="button" icon="fa fa-trash" (click)="deleteGrade(grade.id)" style="width:auto;"></button><br /><br />
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-g-11 ui-md-11">
+                                <label>2</label>
+                            </div>
+                            <div class="ui-g-1 ui-md-1 text-center">
+                                <button pButton type="button" icon="fa fa-trash" (click)="deleteGrade(grade.id)" style="width:auto;"></button><br /><br />
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-g-11 ui-md-11">
+                                <label>3</label>
+                            </div>
+                            <div class="ui-g-1 ui-md-1 text-center">
+                                <button pButton type="button" icon="fa fa-trash" (click)="deleteGrade(grade.id)" style="width:auto;"></button><br /><br />
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-g-11 ui-md-11">
+                                <label>4</label>
+                            </div>
+                            <div class="ui-g-1 ui-md-1 text-center">
+                                <button pButton type="button" icon="fa fa-trash" (click)="deleteGrade(grade.id)" style="width:auto;"></button><br /><br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Teachers in School Year
+                </p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12 div-center">
+                        <label class="control-label text-bold">Upload File:</label>&nbsp;&nbsp;
+                        <input type="text" size="35" />&nbsp;&nbsp;
+                        <input id="fileupload" name="myfile" type="file" />
+                    </div>
+                    <div class="ui-g-12 div-center">
+                        <button pButton type="button" label="Upload" style="width:auto;"></button>
+                    </div>
+                </div>
+                <p-panel>
+                    <p-header class="text-bold">
+                        Progress
+                    </p-header>
+                    <div class="ui-g form-group">
+                        <div class="ui-g-12 ui-md-12">
+                            <label>Upload Started</label><br /><br />
+                            <label>Completd Successfully</label>
+                        </div>
+                    </div>
+                </p-panel>
+            </p-panel>
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Days in School Year
+                </p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12 div-center">
+                        <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
+                        <input type="text" size="35" />&nbsp;&nbsp;
+                        <input id="fileupload" name="myfile" type="file" />
+                    </div>
+                    <div class="ui-g-12 div-center">
+                        <button pButton type="button" label="Upload" style="width:auto;"></button>
+                    </div>
+                </div>
+                <p-panel>
+                    <p-header class="text-bold">
+                        Progress
+                    </p-header>
+                    <div class="ui-g form-group">
+                        <div class="ui-g-12 ui-md-12">
+                            <label>Upload Started</label><br /><br />
+                            <label>Completd Successfully</label>
+                        </div>
+                    </div>
+                </p-panel>
+            </p-panel>
         </div>
     </div>
 </div>
