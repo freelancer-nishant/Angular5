@@ -1,4 +1,4 @@
-<div class="ui-g ui-fluid seletor-panel">
+<div class="ui-g ui-fluid seletor-panel" *ngIf="isVisible">
     <div class="ui-g-12">
         <p-panel [toggleable]="true">
             <p-header>
@@ -14,6 +14,9 @@
                 </div>
                 <div *ngIf="itemDetail.component_name=='AssesmentSchoolYearGradeFilter'">
                     <assesment-school-year-grade-filter (submit)="submit()"></assesment-school-year-grade-filter>
+                </div>
+                <div *ngIf="itemDetail.component_name=='CompareSchoolYearFilter'">
+                    <compare-school-year-filter (submit)="submit()" (runReport)="runReport()"></compare-school-year-filter>
                 </div>
             </div>
         </p-panel>

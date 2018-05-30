@@ -68,6 +68,7 @@ export class VJSComponent implements OnChanges {
                         switch (reportType) {
                             case "report": {
                                 if (params == undefined) {
+                                    $("#" + resourceIndex + ' > .vjs-container').html('');
                                     spinner.hide();
                                     break;
                                 }
