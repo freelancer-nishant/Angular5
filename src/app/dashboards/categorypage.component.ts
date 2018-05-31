@@ -15,12 +15,14 @@ import { SchoolYearGradeFilter } from './filters/school-year-grade-filter';
 import { SchoolYearGradeTestFilter } from './filters/school-year-grade-test-filter';
 import { AssesmentSchoolYearGradeFilter } from './filters/assesment-school-year-grade-filter';
 import { CompareSchoolYearFilter } from './filters/compare.school.year.filter';
+import { SchoolYearFilter } from './filters/school-year-filter';
 
 @Component({
     templateUrl: './categorypage.component.html'
 })
 
 export class CategoryPageComponent implements OnInit {
+    @ViewChild(SchoolYearFilter) schoolyearfilter: SchoolYearFilter;
     @ViewChild(SchoolYearGradeFilter) schoolyeargradefilter: SchoolYearGradeFilter;
     @ViewChild(SchoolYearGradeTestFilter) schoolyeargradetestfilter: SchoolYearGradeTestFilter;
     @ViewChild(AssesmentSchoolYearGradeFilter) assesmentschoolyeargradefilter: AssesmentSchoolYearGradeFilter;
@@ -129,6 +131,19 @@ export class CategoryPageComponent implements OnInit {
     submit() {
         let params = {};
         switch (this.itemDetail.component_name) {
+            case "SchoolYearFilter":
+                this.itemDetail.vjsParam.map(p => {
+                    switch (p.component_out_param) {
+                        case "selectedSchool":
+                            params[p.report_param] = [this.schoolyearfilter.selectedSchool];
+                            break;
+                        case "selectedSchoolYear":
+                            params[p.report_param] = [this.schoolyearfilter.selectedSchoolYear];
+                            break;
+                        default:
+                    }
+                });
+                break;
             case "SchoolYearGradeFilter":
                 params["client_id"] = [this.schoolyeargradefilter.sessionInfo.client_id];
                 this.itemDetail.vjsParam.map(p => {

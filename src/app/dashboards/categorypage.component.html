@@ -6,6 +6,9 @@
                 <export-component *ngIf="itemDetail.is_pagination"></export-component>
             </p-header>
             <div class="card card-w-title filter-pan">
+                <div *ngIf="itemDetail.component_name=='SchoolYearFilter'">
+                    <school-year-filter (submit)="submit()"></school-year-filter>
+                </div>
                 <div *ngIf="itemDetail.component_name=='SchoolYearGradeFilter'">
                     <school-year-grade-filter (submit)="submit()"></school-year-grade-filter>
                 </div>
