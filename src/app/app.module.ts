@@ -248,7 +248,7 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
                     else
                         return localStorage.getItem('token');
                 },
-                whitelistedDomains: ['devapi.charterforesight.com'],
+                whitelistedDomains: ['api.charterforesight.com'],
                 skipWhenExpired: true
                 //,throwNoTokenError: true
             }

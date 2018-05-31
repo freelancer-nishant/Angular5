@@ -5,7 +5,7 @@ import { HttpParams} from '@angular/common/http';
 
 export class GlobalConstants {
 
-    public static API_BASE_URL: string = 'https://devapi.charterforesight.com';
+    public static API_BASE_URL: string = 'https://api.charterforesight.com';
 
     public static ROLE_ADMIN: string = 'Admin';
     public static ROLE_CLIENT_ADMIN: string = 'Client_Admin';
