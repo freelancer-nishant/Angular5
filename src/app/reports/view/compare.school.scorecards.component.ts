@@ -190,7 +190,8 @@ export class CompareSchoolScorecardsComponent implements OnInit {
                 school_label: school.name,
                 alias: school.label,
                 target_flag: 0,
-                school_code: school.code
+                school_code: school.code,
+                state_school_code:school.state_school_code
             });
             //this.newSchool = new SchoolModel();
         }

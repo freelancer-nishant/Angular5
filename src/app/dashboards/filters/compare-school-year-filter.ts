@@ -12,7 +12,7 @@ import { School } from './../../shared/domain/school'
 
 @Component({
     selector: 'compare-school-year-filter',
-    templateUrl: './compare.school.year.filter.html'
+    templateUrl: './compare-school-year-filter.html'
 })
 export class CompareSchoolYearFilter implements OnInit {
     @Output() submit = new EventEmitter();
@@ -37,6 +37,7 @@ export class CompareSchoolYearFilter implements OnInit {
     EditSchoolForScorecards: SchoolListModel;
     newSchool: SchoolModel;
     apiComparativeListItems: ComparativeListItem
+    schoolCodes:any = [];
 
     constructor(public app: AppComponent, private comparativeListService: ComparativeListService, private commonService: CommonService) {
         this.SchoolForScorecards = new SchoolListModel();
@@ -160,6 +161,11 @@ export class CompareSchoolYearFilter implements OnInit {
             this.comparativeListService.getById(this.selectedComparative, this.sessionInfo.client_id).subscribe((result: any) => this.apiComparativeListItems = result.data,
                 (error: any) => { },
                 () => {
+                    let tmpschoolCodes = [];
+                    this.apiComparativeListItems.items.forEach(function (value, index) {
+                        tmpschoolCodes.push(value.school_code)
+                    });
+                    this.schoolCodes = tmpschoolCodes;
                     this.submit.emit();
                     //this.parameters = JSON.stringify({
                     //    "test_id1": ['1'],
@@ -189,7 +195,8 @@ export class CompareSchoolYearFilter implements OnInit {
                 school_label: school.name,
                 alias: school.label,
                 target_flag: 0,
-                school_code: school.state_school_code
+                school_code: school.state_school_code,
+                state_school_code:school.code
             });
             //this.newSchool = new SchoolModel();
         }
@@ -223,9 +230,12 @@ export class CompareSchoolYearFilter implements OnInit {
         }
         if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined && this.SchoolForScorecards.selectedschools.length > 0) {
             this.dialogVisible = false;
+            let tmpschoolCodes = [];
             this.SchoolForScorecards.selectedschools.forEach(function (value, index) {
                 value.target_flag = value.target_flag == true ? 1 : 0;
+                tmpschoolCodes.push(value.state_school_code)
             });
+            this.schoolCodes = tmpschoolCodes;
             this.runReport.emit();
             //this.parameters = JSON.stringify({
             //    "test_id1": ['1'],

@@ -14,7 +14,7 @@ import { TaxonomyType, ItemDetail } from './../shared/domain/taxonomy';
 import { SchoolYearGradeFilter } from './filters/school-year-grade-filter';
 import { SchoolYearGradeTestFilter } from './filters/school-year-grade-test-filter';
 import { AssesmentSchoolYearGradeFilter } from './filters/assesment-school-year-grade-filter';
-import { CompareSchoolYearFilter } from './filters/compare.school.year.filter';
+import { CompareSchoolYearFilter } from './filters/compare-school-year-filter';
 import { SchoolYearFilter } from './filters/school-year-filter';
 
 @Component({
@@ -114,9 +114,21 @@ export class CategoryPageComponent implements OnInit {
                             });
                     });
                 });
+            //if (itemId == 0) {
+            //    if (this.app.LeftMenuItems[0] != undefined) {
+            //        if (this.app.LeftMenuItems[0].items!=undefined && this.app.LeftMenuItems[0].items.length > 0)
+            //            itemId = this.app.LeftMenuItems[0].items[0].id;
+            //        else
+            //            itemId = this.app.LeftMenuItems[0].id;
+            //    }
+            //}
             if (itemId > 0) {
-                this.taxonomyService.getItemDetail(subCategoryId, itemId, this.sessionInfo.client_id).subscribe((result: any) => this.itemDetail = result.data, (error: any) => { }, () => { });
-                this.isVisible = true;
+                this.taxonomyService.getItemDetail(subCategoryId, itemId, this.sessionInfo.client_id).subscribe((result: any) => this.itemDetail = result.data, (error: any) => { }, () => {
+                    if (this.itemDetail.id > 0)
+                        this.isVisible = true;
+                    else
+                        this.isVisible = false;
+                });
             }
             else {
                 this.isVisible = false;
@@ -204,6 +216,9 @@ export class CategoryPageComponent implements OnInit {
             case "CompareSchoolYearFilter":
                 this.itemDetail.vjsParam.map(p => {
                     switch (p.component_out_param) {
+                        case "schoolCodes":
+                            params[p.report_param] = this.compareschoolyearfilter.schoolCodes;
+                            break;
                         case "selectedSchoolYear":
                             params[p.report_param] = [this.compareschoolyearfilter.selectedSchoolYear];
                             break;
@@ -221,12 +236,22 @@ export class CategoryPageComponent implements OnInit {
     }
 
     runReport() {
-        this.parameters = JSON.stringify({
-            "test_id1": ['1'],
-            "schoolyear_id": [this.compareschoolyearfilter.SchoolForScorecards.schoolyear],
-            "comparative_list_items": [JSON.stringify(this.compareschoolyearfilter.SchoolForScorecards.selectedschools)],
-            "test_id2": ['2'],
-            "comparative_list_label": [this.compareschoolyearfilter.SchoolForScorecards.schoollabel]
-        });
+        switch (this.itemDetail.name) {
+            case "Compare SBAC Scores":
+                this.parameters = JSON.stringify({
+                    "test_id1": ['1'],
+                    "schoolyear_id": [this.compareschoolyearfilter.SchoolForScorecards.schoolyear],
+                    "comparative_list_items": [JSON.stringify(this.compareschoolyearfilter.SchoolForScorecards.selectedschools)],
+                    "test_id2": ['2'],
+                    "comparative_list_label": [this.compareschoolyearfilter.SchoolForScorecards.schoollabel]
+                });
+                break;
+            case "Compare School Scorecards":
+                this.parameters = JSON.stringify({
+                    "School_Code": this.compareschoolyearfilter.schoolCodes,
+                    "School_Year": [this.compareschoolyearfilter.SchoolForScorecards.schoolyear]
+                });
+                break;
+        }
     }
 }
