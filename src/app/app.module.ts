@@ -151,7 +151,8 @@ import { ComparativeListService } from './shared/services/comparativelist.servic
 import { CommonService } from './shared/services/Common.service'
 import { TaxonomyService } from './shared/services/taxonomy.service'
 import { SemesterInSchoolYearService } from './shared/services/semester.inschoolyear.service'
-
+import { GradeService } from './shared/services/grade.service'
+import { DaysInSchoolYearService } from './shared/services/days.inschoolyear.service'
 
 import { TestService } from './shared/services/test.service'
 import { TestVersionService } from './shared/services/testversion.service'
@@ -327,7 +328,7 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         HttpClient,
         LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
-        CommonService, TaxonomyService, SemesterInSchoolYearService,
+        CommonService, TaxonomyService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
         MessageService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig

@@ -12,8 +12,14 @@ import { SchoolSchoolYear } from './../../shared/domain/school.schoolyear'
 import { CommonService } from './../../shared/services/Common.service'
 import { SchoolService } from './../../shared/services/school.service'
 import { SchoolYearService } from './../../shared/services/school.year.service'
+import { SchoolGradeService } from './../../shared/services/school.grade.service'
+import { SchoolGrade } from './../../shared/domain/school.schoolgrade'
 import { SemesterInSchoolYearService } from './../../shared/services/semester.inschoolyear.service'
 import { SemesterInSchoolYear } from './../../shared/domain/semester.inschoolyear'
+import { GradeService } from './../../shared/services/grade.service'
+import { Grade } from './../../shared/domain/grade'
+import { DaysInSchoolYearService } from './../../shared/services/days.inschoolyear.service'
+import { DaysInSchoolYear } from './../../shared/domain/days.inschoolyear'
 
 @Component({
     templateUrl: './schoolyear-school.component.html',
@@ -22,7 +28,6 @@ import { SemesterInSchoolYear } from './../../shared/domain/semester.inschoolyea
 export class SchoolYearOfSchoolComponent implements OnInit {
     sessionInfo: any = {}
     school: any = {}
-    semester: any = {}
 
     schoolList: SelectItem[];
     selectedSchool: any;
@@ -31,14 +36,24 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     selectedSchoolYear: any;
 
     schoolDetailList: SchoolSchoolYear[];
+    gradeAdded: any;
 
     semesterDetailList: SemesterInSchoolYear[];
     semesterAdded: any;
+
+    schoolGradeList: SchoolGrade[];
+
+    gradeDetailList: SelectItem[];
+    schoolGradeAdded: any;
+    selectedSchoolGrade: any;
+
+    daysAdded: any;
+
     msgs: Message[] = [];
 
     constructor(public app: AppComponent, private schoolService: SchoolService,
-        private commonService: CommonService, private schoolYearService: SchoolYearService, private semesterInSchoolYearService: SemesterInSchoolYearService,
-        private messageService: MessageService) {
+        private commonService: CommonService, private schoolYearService: SchoolYearService, private semesterInSchoolYearService: SemesterInSchoolYearService, private gradeService: GradeService,
+        private schoolGradeService: SchoolGradeService, private daysInSchoolYearService: DaysInSchoolYearService, private messageService: MessageService) {
 
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
@@ -51,6 +66,8 @@ export class SchoolYearOfSchoolComponent implements OnInit {
         this.schoolList = [];
         this.schoolYearList = [];
         this.semesterAdded = {};
+        this.schoolGradeAdded = {};
+        this.daysAdded = {};
 
         let schoolListItems: School[] = [];
         this.schoolService.get(this.sessionInfo.client_id).subscribe((result: any) => schoolListItems = result.data,
@@ -65,7 +82,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             this.school.SchoolName = this.schoolList.find(x => x.value === this.selectedSchool).label;
         }
         if (this.selectedSchoolYear != undefined) {
-            this.school.SchoolYear = this.schoolYearList.find(x => x.value === this.selectedSchoolYear).label;
+            this.school.SchoolYear = this.schoolYearList.find(x => x.value === this.selectedSchoolYear).label
         }
         let schooldetailList: SchoolSchoolYear[] = [];
         this.schoolYearService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => schooldetailList = result.data,
@@ -94,20 +111,49 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             (error: any) => { },
             () => {
                 this.semesterDetailList = [];
-                semesterdetailList.map(s => {
+                semesterdetailList.map(o => {
                     this.semesterDetailList.push({
-                        end_date: new Date(s.end_date),
-                        id: s.id,
-                        schoolyear_num: s.schoolyear_num,
-                        label: s.label,
-                        school_year: s.school_year,
-                        school_year_id: s.school_year_id,
-                        start_date: new Date(s.start_date)
+                        end_date: new Date(o.end_date),
+                        id: o.id,
+                        schoolyear_num: o.schoolyear_num,
+                        label: o.label,
+                        school_year: o.school_year,
+                        school_year_id: o.school_year_id,
+                        start_date: new Date(o.start_date)
                     });
                 });
-                if (this.selectedSchoolYear != undefined) {
-                    this.semesterDetailList = this.semesterDetailList.filter(x => x.school_year_id === this.selectedSchoolYear);
-                }
+            });
+
+        this.loadSemesters();
+
+        let gradedetailList: Grade[] = [];
+        this.gradeService.get().subscribe((result: any) => gradedetailList = result.data,
+            (error: any) => { },
+            () => {
+                this.gradeDetailList = [];
+                gradedetailList.map(o => {
+                    this.gradeDetailList.push({
+                        value: o.id,
+                        label: o.label
+                    });
+                });
+            });
+
+        let schoolgradeList: SchoolGrade[] = [];
+        this.schoolGradeService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => schoolgradeList = result.data,
+            (error: any) => { },
+            () => {
+                this.schoolGradeList = [];
+                schoolgradeList.map(o => {
+                    this.schoolGradeList.push({
+                        client_id: o.client_id,
+                        grade: o.grade,
+                        grade_id: o.grade_id,
+                        grade_int: o.grade_int,
+                        id: o.id,
+                        school_id: o.school_id
+                    });
+                });
             });
     }
     editSchool(id) {
@@ -120,11 +166,103 @@ export class SchoolYearOfSchoolComponent implements OnInit {
                 this.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
+                this.loadSchools();
                 this.msgs.push({ severity: 'success', detail: "School year updated successfully." });
             });
     }
 
-    schoolChange(e) {
+    loadSchools() {
+        let schooldetailList: SchoolSchoolYear[] = [];
+        this.schoolYearService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => schooldetailList = result.data,
+            (error: any) => { },
+            () => {
+                this.schoolDetailList = [];
+                schooldetailList.map(o => {
+                    this.schoolDetailList.push({
+                        end_date: new Date(o.end_date),
+                        id: o.id,
+                        schoolyear_num: o.schoolyear_num,
+                        school_id: o.school_id,
+                        school_name: o.school_name,
+                        school_year: o.school_year,
+                        school_year_id: o.school_year_id,
+                        start_date: new Date(o.start_date)
+                    });
+                });
+                if (this.selectedSchoolYear != undefined) {
+                    this.schoolDetailList = this.schoolDetailList.filter(x => x.school_year_id === this.selectedSchoolYear);
+                }
+            });
+    }
+
+    loadSemesters() {
+
+        let semesterdetailList: SemesterInSchoolYear[] = [];
+        this.semesterInSchoolYearService.get(this.sessionInfo.client_id, this.selectedSchoolYear).subscribe((result: any) => semesterdetailList = result.data,
+            (error: any) => { },
+            () => {
+                this.semesterDetailList = [];
+                semesterdetailList.map(o => {
+                    this.semesterDetailList.push({
+                        end_date: new Date(o.end_date),
+                        id: o.id,
+                        schoolyear_num: o.schoolyear_num,
+                        label: o.label,
+                        school_year: o.school_year,
+                        school_year_id: o.school_year_id,
+                        start_date: new Date(o.start_date)
+                    });
+                });
+            });
+    }
+
+    loadSchoolGrades() {
+        let schoolgradeList: SchoolGrade[] = [];
+        this.schoolGradeService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => schoolgradeList = result.data,
+            (error: any) => { },
+            () => {
+                this.schoolGradeList = [];
+                schoolgradeList.map(o => {
+                    this.schoolGradeList.push({
+                        client_id: o.client_id,
+                        grade: o.grade,
+                        grade_id: o.grade_id,
+                        grade_int: o.grade_int,
+                        id: o.id,
+                        school_id: o.school_id
+                    });
+                });
+            });
+    }
+
+    editSemester(id) {
+        let updatedSemester = this.semesterDetailList.find(x => x.id === id);
+        updatedSemester.start_date = moment(updatedSemester.start_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+        updatedSemester.end_date = moment(updatedSemester.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+        let responseResult: ResponseResult;
+        this.semesterInSchoolYearService.update(updatedSemester).subscribe((result: any) => responseResult = result,
+            (error: any) => {
+                this.msgs.push({ severity: 'error', detail: error.error.message });
+            },
+            () => {
+                this.loadSemesters();
+                this.msgs.push({ severity: 'success', detail: "Semester year updated successfully." });
+            });
+    }
+
+    deleteSemester(id) {
+        let responseResult: ResponseResult;
+        this.semesterInSchoolYearService.delete(id, this.sessionInfo.client_id).subscribe((result: any) => responseResult = result.data,
+            (error: any) => {
+                this.msgs.push({ severity: 'error', detail: error.error.message });
+            },
+            () => {
+                this.loadSemesters();
+                this.msgs.push({ severity: 'success', detail: "Semester deleted successfully." });
+            });
+    }
+
+    schoolChange() {
         let schoolYearListItems: SchoolSchoolYear[] = [];
 
         this.schoolYearList = [];
@@ -141,14 +279,68 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     addSemester() {
         if (this.semesterAdded != undefined && this.semesterAdded != null) {
             let responseResult: ResponseResult;
+            this.semesterAdded.start_date = moment(this.semesterAdded.start_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+            this.semesterAdded.end_date = moment(this.semesterAdded.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+            this.semesterAdded.school_year_id = this.selectedSchoolYear;
             this.semesterInSchoolYearService.insert(this.semesterAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
-                    debugger
                     this.msgs.push({ severity: 'error', detail: error.error.message });
                 },
                 () => {
-                    debugger
+                    this.loadSemesters();
                     this.msgs.push({ severity: 'success', detail: "Semester In School Year added successfully." });
+                });
+        }
+        else {
+            this.msgs.push({ severity: 'error', detail: "Please input data to add." });
+        }
+    }
+
+    addSchoolGrade() {
+        if (this.schoolGradeAdded != undefined && this.schoolGradeAdded != null) {
+            let responseResult: ResponseResult;
+            this.schoolGradeAdded.client_id = this.sessionInfo.client_id;
+            this.schoolGradeAdded.school_id = this.selectedSchool;
+            this.schoolGradeAdded.grade_id = this.selectedSchoolGrade;
+            this.schoolGradeService.insert(this.schoolGradeAdded).subscribe((result: any) => responseResult = result,
+                (error: any) => {
+                    this.msgs.push({ severity: 'error', detail: error.error.message });
+                },
+                () => {
+                    this.loadSchoolGrades();
+                    this.msgs.push({ severity: 'success', detail: "School grade added successfully." });
+                });
+        }
+        else {
+            this.msgs.push({ severity: 'error', detail: "Please select grade to add." });
+        }
+    }
+
+    deleteSchoolGrade(id) {
+        let responseResult: ResponseResult;
+        this.schoolGradeService.delete(id, this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => responseResult = result.data,
+            (error: any) => {
+                this.msgs.push({ severity: 'error', detail: error.error.message });
+            },
+            () => {
+                this.loadSchoolGrades();
+                this.msgs.push({ severity: 'success', detail: "School grade deleted successfully." });
+            });
+    }
+
+    uploadDays() {
+        if (this.daysAdded != undefined && this.daysAdded != null) {
+            let responseResult: ResponseResult;
+            this.daysAdded.client_id = this.sessionInfo.client_id;
+            this.daysAdded.school_id = this.selectedSchool;
+            this.daysAdded.school_year_id = this.selectedSchoolYear;
+            this.daysInSchoolYearService.insert(this.daysAdded).subscribe((result: any) => responseResult = result,
+                (error: any) => {
+                    this.msgs.push({ severity: 'error', detail: error.error.message });
+                },
+                () => {
+                    this.loadSemesters();
+                    this.msgs.push({ severity: 'success', detail: "Days In School Year added successfully." });
                 });
         }
         else {

@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { catchError, map, tap } from 'rxjs/operators';
+import { GlobalConstants, GlobalHelper } from './../app.globals';
+import { SchoolGrade } from './../domain/school.schoolgrade';
+
+
+const httpOptionsa = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })    
+};
+
+@Injectable()
+export class GradeService {
+
+    constructor(private http: HttpClient) { }    
+    
+    get(): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/grade';
+        return this.http.get(url);                    
+    }
+}
+

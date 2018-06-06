@@ -16,10 +16,7 @@ export class SemesterInSchoolYearService {
     constructor(private http: HttpClient) { }
 
     get(clientId: any, schoolYearId?: any): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/semesterinschoolyear/schoolyearId?clientId=' + clientId + '&schoolYearId=' + schoolYearId;
-        //if (test_type_ids != null && test_type_ids != 'undefined') {
-        //    url = url + "&test_type_ids=" + test_type_ids;
-        //}
+        let url: string = GlobalConstants.API_BASE_URL + '/api/semesterinschoolyear/schoolyear/' + schoolYearId + '?clientId=' + clientId;
         return this.http.get(url);
     }
 
@@ -33,8 +30,8 @@ export class SemesterInSchoolYearService {
         return this.http.put(url, GlobalHelper.toHttpParams(semesterInSchoolYear), httpOptionsa);
     }
 
-    delete(id: any, clientId?: any): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/semesterinschoolyear?id =' + id + '&clientId=' + clientId;
+    delete(id: any, clientId?: any): Observable<any> { debugger
+        let url: string = GlobalConstants.API_BASE_URL + '/api/semesterinschoolyear?id=' + id + '&clientId=' + clientId;
         return this.http.delete(url);
     }
 }
