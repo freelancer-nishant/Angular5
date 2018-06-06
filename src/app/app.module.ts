@@ -131,6 +131,8 @@ import { SchoolComparisonListComponent } from './admin/view/school.comparison.li
 import { SchoolYearGradeFilter } from './dashboards/filters/school-year-grade-filter';
 import { SchoolYearGradeTestFilter } from './dashboards/filters/school-year-grade-test-filter';
 import { AssesmentSchoolYearGradeFilter } from './dashboards/filters/assesment-school-year-grade-filter';
+import { CompareSchoolYearFilter } from './dashboards/filters/compare-school-year-filter';
+import { SchoolYearFilter } from './dashboards/filters/school-year-filter';
 
 import { VJSComponent } from './vjs.component'
 import { TranslateComponent } from './translate-component'
@@ -320,6 +322,8 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         SchoolYearGradeFilter,
         SchoolYearGradeTestFilter,
         AssesmentSchoolYearGradeFilter,
+        CompareSchoolYearFilter,
+        SchoolYearFilter,
 
         VJSComponent,
         TranslateComponent

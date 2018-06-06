@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import { SelectItem } from 'primeng/primeng';
@@ -11,10 +11,12 @@ import { SchoolListModel, SchoolModel, SchoolYear, State, City, SchoolType } fro
 import { School } from './../../shared/domain/school'
 
 @Component({
-    templateUrl: './compare.sbac.scores.component.html'
+    selector: 'compare-school-year-filter',
+    templateUrl: './compare-school-year-filter.html'
 })
-export class CompareSBACScoresComponent implements OnInit {
-    parameters: any = {}
+export class CompareSchoolYearFilter implements OnInit {
+    @Output() submit = new EventEmitter();
+    @Output() runReport = new EventEmitter();
     sessionInfo: any = {}
 
     comparativeList: SelectItem[];
@@ -34,15 +36,13 @@ export class CompareSBACScoresComponent implements OnInit {
     SchoolForScorecards: SchoolListModel;
     EditSchoolForScorecards: SchoolListModel;
     newSchool: SchoolModel;
+    apiComparativeListItems: ComparativeListItem
+    schoolCodes:any = [];
 
     constructor(public app: AppComponent, private comparativeListService: ComparativeListService, private commonService: CommonService) {
         this.SchoolForScorecards = new SchoolListModel();
         this.newSchool = new SchoolModel();
         this.dialogVisible = false;
-        this.app.displayLeftMenu(true);
-        this.app.activeCategoryDropdown = true;
-        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.ComparisonSchools);
-        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.ComparisonSchools);
         this.sessionInfo = this.app.getSession();
     }
 
@@ -156,19 +156,24 @@ export class CompareSBACScoresComponent implements OnInit {
         }
     }
 
-    submit() {
+    myEvent() {
         if (this.selectedComparative != undefined && this.selectedSchoolYear != undefined) {
-            let comparativeListItems: ComparativeListItem;
-            this.comparativeListService.getById(this.selectedComparative, this.sessionInfo.client_id).subscribe((result: any) => comparativeListItems = result.data,
+            this.comparativeListService.getById(this.selectedComparative, this.sessionInfo.client_id).subscribe((result: any) => this.apiComparativeListItems = result.data,
                 (error: any) => { },
                 () => {
-                    this.parameters = JSON.stringify({
-                        "test_id1": ['1'],
-                        "schoolyear_id": [this.selectedSchoolYear],
-                        "comparative_list_items": [JSON.stringify(comparativeListItems.items)],
-                        "test_id2": ['2'],
-                        "comparative_list_label": [comparativeListItems.label]
+                    let tmpschoolCodes = [];
+                    this.apiComparativeListItems.items.forEach(function (value, index) {
+                        tmpschoolCodes.push(value.school_code)
                     });
+                    this.schoolCodes = tmpschoolCodes;
+                    this.submit.emit();
+                    //this.parameters = JSON.stringify({
+                    //    "test_id1": ['1'],
+                    //    "schoolyear_id": [this.selectedSchoolYear],
+                    //    "comparative_list_items": [JSON.stringify(this.apiComparativeListItems.items)],
+                    //    "test_id2": ['2'],
+                    //    "comparative_list_label": [this.apiComparativeListItems.label]
+                    //});
                 });
         }
     }
@@ -191,7 +196,7 @@ export class CompareSBACScoresComponent implements OnInit {
                 alias: school.label,
                 target_flag: 0,
                 school_code: school.state_school_code,
-                state_school_code:school.state_school_code
+                state_school_code:school.code
             });
             //this.newSchool = new SchoolModel();
         }
@@ -218,23 +223,27 @@ export class CompareSBACScoresComponent implements OnInit {
             this.SchoolForScorecards = this.EditSchoolForScorecards;
         this.dialogVisible = true;
     }
-    runReport() {
+    myRunReport() {
         if (this.SchoolForScorecards.selectedschools == undefined || this.SchoolForScorecards.selectedschools.length <= 0) {
             alert('Please select atleast one or more school.')
             return;
         }
         if (this.SchoolForScorecards.schoollabel != undefined && this.SchoolForScorecards.schoolyear != undefined && this.SchoolForScorecards.selectedschools.length > 0) {
             this.dialogVisible = false;
+            let tmpschoolCodes = [];
             this.SchoolForScorecards.selectedschools.forEach(function (value, index) {
                 value.target_flag = value.target_flag == true ? 1 : 0;
+                tmpschoolCodes.push(value.state_school_code)
             });
-            this.parameters = JSON.stringify({
-                "test_id1": ['1'],
-                "schoolyear_id": [this.SchoolForScorecards.schoolyear],
-                "comparative_list_items": [JSON.stringify(this.SchoolForScorecards.selectedschools)],
-                "test_id2": ['2'],
-                "comparative_list_label": [this.SchoolForScorecards.schoollabel]
-            });
+            this.schoolCodes = tmpschoolCodes;
+            this.runReport.emit();
+            //this.parameters = JSON.stringify({
+            //    "test_id1": ['1'],
+            //    "schoolyear_id": [this.SchoolForScorecards.schoolyear],
+            //    "comparative_list_items": [JSON.stringify(this.SchoolForScorecards.selectedschools)],
+            //    "test_id2": ['2'],
+            //    "comparative_list_label": [this.SchoolForScorecards.schoollabel]
+            //});
             this.EditSchoolForScorecards = this.SchoolForScorecards;
             this.SchoolForScorecards = new SchoolListModel();
             this.isRunReport = true;
