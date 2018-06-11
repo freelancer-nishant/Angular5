@@ -1,8 +1,13 @@
 ﻿export interface TaxonomyType {
     id,
+    context_id,
     name,
     label,
-    icon
+    icon,
+    all_clients_flag,
+    all_roles_flag,
+    client_ids,
+    role_ids
 }
 export interface ItemDetail {
     id: number,

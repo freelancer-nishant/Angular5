@@ -28,7 +28,8 @@ export enum MenuType {
     EnrollmentAndAttendance,
     AdminAssessments,
     AssessmentUploads,
-    SchoolComparisonList
+    SchoolComparisonList,
+    Taxonomy
 }
 export class GlobalHelper {
     public static getCategories(menufor: MenuType): any[] {
@@ -59,12 +60,14 @@ export class GlobalHelper {
             case MenuType.AdminAssessments:
             case MenuType.AssessmentUploads:
             case MenuType.SchoolComparisonList:
+            case MenuType.Taxonomy:
                 categories = [
                     { name: 'School in School Year', route: "#/schoolyear/school" },
                     { name: 'Enrollment & Attendance', route: "#/enrollment-attendance" },
                     { name: 'Assessments', route: "#/admin-assessments" },
                     { name: 'Assessment Uploads', route: "#/admin-assessments-upload" },
                     { name: 'School Comparison List', route: "#/school-comparison-list" },
+                    { name: 'Manage Taxonomy', route: "#/taxonomy/type" },
                 ];
                 break;
             default:
@@ -147,6 +150,12 @@ export class GlobalHelper {
                 sideMenuInfo = {
                     icon: './assets/layout/images/admin/comparative-school-list.png',
                     name: "School Comparison List"
+                }
+                break;
+            case MenuType.Taxonomy:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/comparative-school-list.png',
+                    name: "Manage Taxonomy"
                 }
                 break;
 
@@ -272,6 +281,7 @@ export class GlobalHelper {
             case MenuType.AdminAssessments:
             case MenuType.AssessmentUploads:
             case MenuType.SchoolComparisonList:
+            case MenuType.Taxonomy:
                 menuItems = [
                     {
                         label: 'School', icon: 'fa fa-fw fa-bar-chart',
@@ -322,6 +332,15 @@ export class GlobalHelper {
                         label: 'Comparison School Lists', icon: 'fa fa-fw fa-bar-chart',
                         items: [
                             { label: 'Manage Comparison School Lists', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] }
+                        ]
+                    },
+                    {
+                        label: 'Manage Taxonomy', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Types', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/type'] },
+                            { label: 'Category', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/category'] },
+                            { label: 'Sub Category', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/subcategory'] },
+                            { label: 'Items', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/items'] }
                         ]
                     }
                 ];

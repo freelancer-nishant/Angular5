@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TaxonomyService } from './shared/services/taxonomy.service';
-import { TaxonomyType } from './shared/domain/taxonomy';
-
 
 @Component({
     selector: 'app-top-horizontal-menu',
@@ -14,13 +12,13 @@ export class AppHotizontalMenuComponent implements OnInit {
     constructor(public app: AppComponent, public taxonomyService: TaxonomyService) { }
 
     sessionInfo: any = {}
-    taxonomytypes: TaxonomyType[] = [];
+    taxonomytypes: any[] = [];
 
     ngOnInit() {
         try {
             this.sessionInfo = this.app.getSession();
 
-            let taxonomytypes: TaxonomyType[] = [];
+            let taxonomytypes: any[] = [];
             this.taxonomyService.getType(2).subscribe((result: any) => taxonomytypes = result.data,
                 (error: any) => { },
                 () => {

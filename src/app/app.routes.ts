@@ -58,6 +58,7 @@ import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attend
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
+import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -102,6 +103,7 @@ export const routes: Routes = [
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponent, canActivate: [AuthGuard] },
     { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard] },
+    { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard] },
 
     //Theme routes
     //{ path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_ADMIN } },

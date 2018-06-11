@@ -1,0 +1,76 @@
+<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <p-panel *ngIf="dialogVisible">
+            <p-header>Manage Type</p-header>
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-sm-12 ui-md-4">
+                    <label for="input">Name :</label>
+                    <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.name" tabindex="1" />
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-4">
+                    <label for="input">Label :</label>
+                    <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.label" tabindex="2" />
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-4">
+                    <label for="input">Icon :</label>
+                    <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.icon" tabindex="3" />
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-4">
+                    <label for="input">Client Ids :</label>
+                    <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.client_ids" tabindex="6" />
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-4">
+                    <label for="input">Role Ids :</label>
+                    <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.role_ids" tabindex="7" />
+                </div>
+                <div class="ui-g-12 ui-sm-12 ui-md-4">
+                    <label for="input">&nbsp;</label><br />
+                    <p-checkbox [(ngModel)]="TaxonomyType.all_clients_flag" tabindex="4" value="1" label="All Clients"></p-checkbox>
+                    <label for="input">&nbsp;</label>
+                    <p-checkbox [(ngModel)]="TaxonomyType.all_roles_flag" tabindex="5" value="1" label="All Roles"></p-checkbox>
+                </div>
+            </div>
+            <p-footer>
+                <div class="ui-helper-clearfix text-center">
+                    <button type="button" label="Save" (click)="saveType()" pButton class="ui-button-primary" style="width:auto;"></button>
+                    <button type="button" label="Cancel" (click)="clearType(false)" pButton class="ui-button-secondary" style="width:auto;"></button>
+                </div>
+            </p-footer>
+        </p-panel>
+    </div>
+    <div class="ui-g-12">
+        <p-panel>
+            <p-header class="text-normal">
+                Taxonomy Types
+                <span class="pull-right">
+                    <button type="button" label="Add" (click)="clearType(true)" pButton class="ui-button-primary" style="width:auto;" icon="fa fa-plus"></button>
+                </span>
+            </p-header>
+            <p-growl [(value)]="msgs" [life]="10"></p-growl>
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-12">
+                    <p-dataTable [value]="TypeList" [paginator]="true" [rows]="10" [responsive]="true">
+                        <p-column field="name" header="Name" [sortable]="true"></p-column>
+                        <p-column field="label" header="Label" [sortable]="true"></p-column>
+                        <p-column field="client_ids" header="Clients" [sortable]="true"></p-column>
+                        <p-column field="role_ids" header="Roles" [sortable]="true"></p-column>
+                        <p-column [style]="{'width':'150px'}">
+                            <ng-template let-row="rowData" pTemplate="body">
+                                <span>
+                                    <button pButton type="button" label="Update" (click)="editType(row.id)" style="width:auto;" class="ui-button-primary" icon="fa fa-edit"></button>
+                                </span>
+                            </ng-template>
+                        </p-column>
+                        <p-column [style]="{'width':'150px'}">
+                            <ng-template let-row="rowData" pTemplate="body">
+                                <span>
+                                    <button pButton type="button" label="Delete" (click)="deleteType(row.id,row.context_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                </span>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>

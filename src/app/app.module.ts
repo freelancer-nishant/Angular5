@@ -161,6 +161,7 @@ import { TestVersionService } from './shared/services/testversion.service'
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuardService } from './shared/services/auth-guard.service';
+import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 
 
 @NgModule({
@@ -324,6 +325,7 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         AssesmentSchoolYearGradeFilter,
         CompareSchoolYearFilter,
         SchoolYearFilter,
+        TaxonomyTypeComponent,
 
         VJSComponent,
         TranslateComponent

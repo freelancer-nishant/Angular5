@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from './../app.component';
 import { TaxonomyService } from './../shared/services/taxonomy.service';
-import { TaxonomyType } from './../shared/domain/taxonomy';
 
 @Component({
     templateUrl: './dashboard.component.html'
@@ -10,7 +9,7 @@ import { TaxonomyType } from './../shared/domain/taxonomy';
 export class DashboardComponent implements OnInit {
 
     sessionInfo: any = {}
-    taxonomycategory: TaxonomyType[] = [];
+    taxonomycategory: any[] = [];
     typeName: string = ''
     typeId: number = 0
     constructor(public app: AppComponent, private route: ActivatedRoute, public taxonomyService: TaxonomyService) {
@@ -30,7 +29,7 @@ export class DashboardComponent implements OnInit {
         try {
             this.sessionInfo = this.app.getSession();
             this.typeId = typeId;
-            let taxonomycategory: TaxonomyType[] = [];
+            let taxonomycategory: any[] = [];
             this.taxonomyService.getCategory(typeId, this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
                 (error: any) => { },
                 () => {
