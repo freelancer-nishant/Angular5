@@ -1,40 +1,40 @@
 <div class="ui-g ui-fluid seletor-panel">
     <div class="ui-g-12">
-        <form id="frmType" #frmType="ngForm">
+        <form id="frmCategory" #frmCategory="ngForm">
             <p-panel *ngIf="dialogVisible">
-                <p-header>Manage Type</p-header>
+                <p-header>Manage Category</p-header>
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Name :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.name" name="name" tabindex="1" required />
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyCategory.name" name="name" tabindex="1" required />
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Label :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.label" name="label" tabindex="2" required />
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyCategory.label" name="label" tabindex="2" required />
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Icon :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.icon" name="icon" tabindex="3" required />
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyCategory.icon" name="icon" tabindex="3" required />
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Client Ids :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.client_ids" name="client ids" tabindex="4" />
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyCategory.client_ids" name="client ids" tabindex="4" />
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Role Ids :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.role_ids" name="role ids" tabindex="5" />
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyCategory.role_ids" name="role ids" tabindex="5" />
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">&nbsp;</label><br />
-                        <p-checkbox [(ngModel)]="TaxonomyType.all_clients_flag" tabindex="6" value="1" label="All Clients" name="All Clients"></p-checkbox>
+                        <p-checkbox [(ngModel)]="TaxonomyCategory.all_clients_flag" tabindex="6" value="1" label="All Clients" name="All Clients"></p-checkbox>
                         <label for="input">&nbsp;</label>
-                        <p-checkbox [(ngModel)]="TaxonomyType.all_roles_flag" tabindex="7" value="1" label="All Roles" name="All Roles"></p-checkbox>
+                        <p-checkbox [(ngModel)]="TaxonomyCategory.all_roles_flag" tabindex="7" value="1" label="All Roles" name="All Roles"></p-checkbox>
                     </div>
                 </div>
                 <p-footer>
                     <div class="ui-helper-clearfix text-center">
-                        <button type="submit" label="Save" (click)="saveType()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmType.form.valid"></button>
-                        <button type="button" label="Cancel" (click)="clearType(false)" pButton class="ui-button-secondary" style="width:auto;"></button>
+                        <button type="submit" label="Save" (click)="saveCategory()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmCategory.form.valid"></button>
+                        <button type="button" label="Cancel" (click)="clearCategory(false)" pButton class="ui-button-secondary" style="width:auto;"></button>
                     </div>
                 </p-footer>
             </p-panel>
@@ -43,15 +43,16 @@
     <div class="ui-g-12">
         <p-panel>
             <p-header class="text-normal">
-                Taxonomy Types
+                Taxonomy Categories
                 <span class="pull-right">
-                    <button type="button" label="Add" (click)="clearType(true)" pButton class="ui-button-primary" style="width:auto;" icon="fa fa-plus"></button>
+                    <button type="button" label="Add" (click)="clearCategory(true)" pButton class="ui-button-primary" style="width:auto;" icon="fa fa-plus"></button>
+                    <a pButton label="Back" style="width:auto;" class="ui-button-info" icon="fa fa-backward" href="#/taxonomy/type"></a>
                 </span>
             </p-header>
             <p-growl [(value)]="msgs" [life]="2000" [immutable]="false"></p-growl>
             <div class="ui-g form-group">
                 <div class="ui-g-12 ui-md-12">
-                    <p-dataTable [value]="TypeList" [paginator]="true" [rows]="10" [responsive]="true" [(selection)]="TaxonomyType" [immutable]="false">
+                    <p-dataTable [value]="CategoryList" [paginator]="true" [rows]="10" [responsive]="true" [(selection)]="TaxonomyCategory" [immutable]="false">
                         <p-column field="name" header="Name" [sortable]="true"></p-column>
                         <p-column field="label" header="Label" [sortable]="true"></p-column>
                         <p-column field="client_ids" header="Clients" [sortable]="true"></p-column>
@@ -59,21 +60,21 @@
                         <p-column [style]="{'width':'110px'}">
                             <ng-template let-row="rowData" pTemplate="body">
                                 <span>
-                                    <button pButton type="button" label="Update" (click)="editType(row.id)" style="width:auto;" class="ui-button-primary" icon="fa fa-edit"></button>
+                                    <button pButton type="button" label="Update" (click)="editCategory(row.id)" style="width:auto;" class="ui-button-primary" icon="fa fa-edit"></button>
                                 </span>
                             </ng-template>
                         </p-column>
                         <p-column [style]="{'width':'110px'}">
                             <ng-template let-row="rowData" pTemplate="body">
                                 <span>
-                                    <button pButton type="button" label="Delete" (click)="deleteType(row.id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                    <button pButton type="button" label="Delete" (click)="deleteCategory(row.id,row.user_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
                                 </span>
                             </ng-template>
                         </p-column>
-                        <p-column [style]="{'width':'150px'}">
+                        <p-column [style]="{'width':'180px'}">
                             <ng-template let-row="rowData" pTemplate="body">
                                 <span>
-                                    <a pButton label="Categories" style="width:auto;" class="ui-button-info" icon="fa fa-list" href="#/taxonomy/category/{{row.id}}"></a>
+                                    <a pButton label="Sub Categories" style="width:auto;" class="ui-button-info" icon="fa fa-list" href="#/taxonomy/subcategory/{{type_Id}}/{{row.id}}"></a>
                                 </span>
                             </ng-template>
                         </p-column>

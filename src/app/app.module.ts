@@ -162,6 +162,9 @@ import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
+import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
+import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
+import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
 
 
 @NgModule({
@@ -326,6 +329,9 @@ import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
         CompareSchoolYearFilter,
         SchoolYearFilter,
         TaxonomyTypeComponent,
+        TaxonomyCategoryComponent,
+        TaxonomySubCategoryComponent,
+        TaxonomyItemComponent,
 
         VJSComponent,
         TranslateComponent

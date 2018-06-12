@@ -337,10 +337,10 @@ export class GlobalHelper {
                     {
                         label: 'Manage Taxonomy', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Types', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/type'] },
-                            { label: 'Category', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/category'] },
-                            { label: 'Sub Category', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/subcategory'] },
-                            { label: 'Items', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/items'] }
+                            { label: 'Types', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/type'] }//,
+                            //{ label: 'Category', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/category'] },
+                            //{ label: 'Sub Category', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/subcategory'] },
+                            //{ label: 'Items', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/items'] }
                         ]
                     }
                 ];

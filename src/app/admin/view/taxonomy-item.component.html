@@ -1,0 +1,78 @@
+<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <form id="frmSubCategory" #frmSubCategory="ngForm">
+            <p-panel *ngIf="dialogVisible">
+                <p-header>Manage Sub Category</p-header>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-sm-12 ui-md-4">
+                        <label for="input">Name :</label>
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyItem.name" name="name" tabindex="1" required />
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-4">
+                        <label for="input">Label :</label>
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyItem.label" name="label" tabindex="2" required />
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-4">
+                        <label for="input">Icon :</label>
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyItem.icon" name="icon" tabindex="3" required />
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-4">
+                        <label for="input">Client Ids :</label>
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyItem.client_ids" name="client ids" tabindex="4" />
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-4">
+                        <label for="input">Role Ids :</label>
+                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyItem.role_ids" name="role ids" tabindex="5" />
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-4">
+                        <label for="input">&nbsp;</label><br />
+                        <p-checkbox [(ngModel)]="TaxonomyItem.all_clients_flag" tabindex="6" value="1" label="All Clients" name="All Clients"></p-checkbox>
+                        <label for="input">&nbsp;</label>
+                        <p-checkbox [(ngModel)]="TaxonomyItem.all_roles_flag" tabindex="7" value="1" label="All Roles" name="All Roles"></p-checkbox>
+                    </div>
+                </div>
+                <p-footer>
+                    <div class="ui-helper-clearfix text-center">
+                        <button type="submit" label="Save" (click)="saveItem()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmSubCategory.form.valid"></button>
+                        <button type="button" label="Cancel" (click)="clearItem(false)" pButton class="ui-button-secondary" style="width:auto;"></button>
+                    </div>
+                </p-footer>
+            </p-panel>
+        </form>
+    </div>
+    <div class="ui-g-12">
+        <p-panel>
+            <p-header class="text-normal">
+                Taxonomy Sub Categories
+                <span class="pull-right">
+                    <button type="button" label="Add" (click)="clearItem(true)" pButton class="ui-button-primary" style="width:auto;" icon="fa fa-plus"></button>
+                    <a pButton label="Back" style="width:auto;" class="ui-button-info" icon="fa fa-backward" href="#/taxonomy/category/{{type_Id}}"></a>
+                </span>
+            </p-header>
+            <p-growl [(value)]="msgs" [life]="2000" [immutable]="false"></p-growl>
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-12">
+                    <p-dataTable [value]="ItemList" [paginator]="true" [rows]="10" [responsive]="true" [(selection)]="TaxonomyItem" [immutable]="false">
+                        <p-column field="name" header="Name" [sortable]="true"></p-column>
+                        <p-column field="label" header="Label" [sortable]="true"></p-column>
+                        <p-column field="component_name" header="Component Name" [sortable]="true"></p-column>
+                        <p-column [style]="{'width':'110px'}">
+                            <ng-template let-row="rowData" pTemplate="body">
+                                <span>
+                                    <button pButton type="button" label="Update" (click)="editItem(row.id)" style="width:auto;" class="ui-button-primary" icon="fa fa-edit"></button>
+                                </span>
+                            </ng-template>
+                        </p-column>
+                        <p-column [style]="{'width':'110px'}">
+                            <ng-template let-row="rowData" pTemplate="body">
+                                <span>
+                                    <button pButton type="button" label="Delete" (click)="deleteItem(row.id,row.user_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                </span>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>

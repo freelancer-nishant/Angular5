@@ -364,6 +364,7 @@ body > div {
     display: inline-block;
     font-weight: 900;
 }
+
 .header-box span {
     font-size: 16px;
     font-weight: 700;
@@ -532,27 +533,23 @@ body > div {
     }
 }
 
-.text-normal
-{
-    font-weight:normal;
+.text-normal {
+    font-weight: normal;
 }
 
 .text-bold {
     font-weight: bold;
 }
 
-.text-size
-{
+.text-size {
     font-size: 18px;
 }
 
-.text-color 
-{
-    color:black;
+.text-color {
+    color: black;
 }
 
-.div-center 
-{
+.div-center {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -563,4 +560,11 @@ body > div {
 
 .div-border {
     border-bottom: 1px solid #5898a6;
+}
+
+body .ui-datatable .ui-datatable-data tr.ui-datatable-even.ui-state-highlight ,
+body .ui-datatable .ui-datatable-data tr.ui-datatable-odd.ui-state-highlight {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border-color: #a3d48e;
 }

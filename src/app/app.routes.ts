@@ -59,6 +59,9 @@ import { AdminAssessmentsComponent } from './admin/view/admin-assessments.compon
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
+import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
+import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
+import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -104,6 +107,9 @@ export const routes: Routes = [
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponent, canActivate: [AuthGuard] },
     { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard] },
     { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard] },
+    { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard] },
+    { path: 'taxonomy/subcategory/:typeid/:catid', component: TaxonomySubCategoryComponent, canActivate: [AuthGuard] },
+    { path: 'taxonomy/item/:typeid/:catid/:subcatid', component: TaxonomyItemComponent, canActivate: [AuthGuard] },
 
     //Theme routes
     //{ path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_ADMIN } },
