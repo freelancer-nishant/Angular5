@@ -3,25 +3,21 @@ import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/primeng';
-import { Message } from 'primeng/components/common/api';
-import { MessageService } from 'primeng/components/common/messageservice';
 
 import { TaxonomyService } from './../../shared/services/taxonomy.service';
 import { ResponseResult } from '../../shared/domain/Common.model';
 import { TaxonomyType } from '../../shared/domain/taxonomy';
 
 @Component({
-    templateUrl: './taxonomy-type.component.html',
-    providers: [MessageService]
+    templateUrl: './taxonomy-type.component.html'
 })
 export class TaxonomyTypeComponent implements OnInit {
-    msgs: Message[] = [];
     TypeList: TaxonomyType[] = [];
     dialogVisible: boolean = false;
     context_Id: number = 2;
     TaxonomyType: TaxonomyType;
 
-    constructor(public app: AppComponent, private messageService: MessageService, private taxonomyService: TaxonomyService) {
+    constructor(public app: AppComponent,  private taxonomyService: TaxonomyService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Taxonomy);
@@ -60,16 +56,21 @@ export class TaxonomyTypeComponent implements OnInit {
     }
 
     deleteType(id) {
-        let responseResult: ResponseResult;
-        this.taxonomyService.deleteType(id, this.context_Id).subscribe((result: any) => responseResult = result,
-            (error: any) => {
-                this.msgs.push({ severity: 'error', detail: error.error.message });
-            },
-            () => {
-                this.clearType(false);
-                this.getTypeList();
-                this.msgs.push({ severity: 'success', detail: "Type deleted successfully." });
-            });
+        this.app.confirmationService.confirm({
+            message: 'Are you sure that you want to delete this Type?',
+            accept: () => {
+                let responseResult: ResponseResult;
+                this.taxonomyService.deleteType(id, this.context_Id).subscribe((result: any) => responseResult = result,
+                    (error: any) => {
+                        this.app.msgs.push({ severity: 'error', detail: error.error.message });
+                    },
+                    () => {
+                        this.clearType(false);
+                        this.getTypeList();
+                        this.app.msgs.push({ severity: 'success', detail: "Type deleted successfully." });
+                    });
+            }
+        });
     }
 
     saveType() {
@@ -77,12 +78,12 @@ export class TaxonomyTypeComponent implements OnInit {
         let responseResult: ResponseResult;
         this.taxonomyService.saveType(this.TaxonomyType).subscribe((result: any) => responseResult = result,
             (error: any) => {
-                this.msgs.push({ severity: 'error', detail: error.error.message });
+                this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
                 this.clearType(false);
                 this.getTypeList();
-                this.msgs.push({ severity: 'success', detail: "Type updated successfully." });
+                this.app.msgs.push({ severity: 'success', detail: "Type updated successfully." });
             });
     }
 

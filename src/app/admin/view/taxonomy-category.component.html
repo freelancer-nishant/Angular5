@@ -49,7 +49,6 @@
                     <a pButton label="Back" style="width:auto;" class="ui-button-info" icon="fa fa-backward" href="#/taxonomy/type"></a>
                 </span>
             </p-header>
-            <p-growl [(value)]="msgs" [life]="2000" [immutable]="false"></p-growl>
             <div class="ui-g form-group">
                 <div class="ui-g-12 ui-md-12">
                     <p-dataTable [value]="CategoryList" [paginator]="true" [rows]="10" [responsive]="true" [(selection)]="TaxonomyCategory" [immutable]="false">
@@ -67,7 +66,7 @@
                         <p-column [style]="{'width':'110px'}">
                             <ng-template let-row="rowData" pTemplate="body">
                                 <span>
-                                    <button pButton type="button" label="Delete" (click)="deleteCategory(row.id,row.user_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                    <button pButton type="button" label="Delete" (click)="deleteCategory(row.id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
                                 </span>
                             </ng-template>
                         </p-column>

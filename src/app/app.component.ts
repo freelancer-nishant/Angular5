@@ -1,9 +1,12 @@
 import { Component, AfterViewInit, ElementRef, Renderer, ViewChild, OnDestroy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { Spinkit } from 'ng-http-loader/spinkits';//Added
+import { Message } from 'primeng/components/common/api';
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Router } from '@angular/router';
 import { LoginResult } from './shared/domain/login'
 import { AuthService } from './shared/services/auth.service'
 import { GlobalConstants } from './shared/app.globals'
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 enum MenuOrientation {
     STATIC,
@@ -17,9 +20,11 @@ declare var jQuery: any;
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    providers: [MessageService]
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
+    msgs: Message[] = [];
 
     spinkit = Spinkit; //Added
 
@@ -73,7 +78,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     isClientPage: boolean = false;
     selectedItem: any = {};
-
+    confirmationService: ConfirmationService;
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
@@ -86,8 +91,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         //}
     }
 
-    constructor(public renderer: Renderer, private router: Router, private auth: AuthService) {
-
+    constructor(public renderer: Renderer, private router: Router, private auth: AuthService, private _confirmationService: ConfirmationService) {
+        this.confirmationService = _confirmationService;
         if (this.isClientPage || sessionStorage.getItem('isClientPage') == "true") {
             this.isClientPage = true;
         }

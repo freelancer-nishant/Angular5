@@ -3,8 +3,6 @@ import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/primeng';
-import { Message } from 'primeng/components/common/api';
-import { MessageService } from 'primeng/components/common/messageservice';
 
 import { TaxonomyService } from './../../shared/services/taxonomy.service';
 import { ResponseResult } from '../../shared/domain/Common.model';
@@ -12,19 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 import { TaxonomyCategory } from '../../shared/domain/taxonomy';
 
 @Component({
-    templateUrl: './taxonomy-subcategory.component.html',
-    providers: [MessageService]
+    templateUrl: './taxonomy-subcategory.component.html'
 })
 export class TaxonomySubCategoryComponent implements OnInit {
     sessionInfo: any = {}
-    msgs: Message[] = [];
     CategoryList: TaxonomyCategory[] = [];
     TaxonomyCategory: any = {};
     dialogVisible: boolean = false;
     category_Id: number;
     type_Id: number;
 
-    constructor(public app: AppComponent, private messageService: MessageService, private route: ActivatedRoute, private taxonomyService: TaxonomyService) {
+    constructor(public app: AppComponent, private route: ActivatedRoute, private taxonomyService: TaxonomyService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Taxonomy);
@@ -71,17 +67,22 @@ export class TaxonomySubCategoryComponent implements OnInit {
         this.TaxonomyCategory = this.CategoryList.find(x => x.id === id);
     }
 
-    deleteSubCategory(id,user_id) {
-        let responseResult: ResponseResult;
-        this.taxonomyService.deleteSubCategory(id, this.category_Id, this.sessionInfo.client_id,user_id).subscribe((result: any) => responseResult = result,
-            (error: any) => {
-                this.msgs.push({ severity: 'error', detail: error.error.message });
-            },
-            () => {
-                this.clearSubCategory(false);
-                this.getSubCategoryList();
-                this.msgs.push({ severity: 'success', detail: "Sub Category deleted successfully." });
-            });
+    deleteSubCategory(id) {
+        this.app.confirmationService.confirm({
+            message: 'Are you sure that you want to delete this Sub Category?',
+            accept: () => {
+                let responseResult: ResponseResult;
+                this.taxonomyService.deleteSubCategory(id).subscribe((result: any) => responseResult = result,
+                    (error: any) => {
+                        this.app.msgs.push({ severity: 'error', detail: error.error.message });
+                    },
+                    () => {
+                        this.clearSubCategory(false);
+                        this.getSubCategoryList();
+                        this.app.msgs.push({ severity: 'success', detail: "Sub Category deleted successfully." });
+                    });
+            }
+        });
     }
 
     saveSubCategory() {
@@ -90,12 +91,12 @@ export class TaxonomySubCategoryComponent implements OnInit {
         let responseResult: ResponseResult;
         this.taxonomyService.saveSubCategory(this.TaxonomyCategory).subscribe((result: any) => responseResult = result,
             (error: any) => {
-                this.msgs.push({ severity: 'error', detail: error.error.message });
+                this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
                 this.clearSubCategory(false);
                 this.getSubCategoryList();
-                this.msgs.push({ severity: 'success', detail: "Sub Category updated successfully." });
+                this.app.msgs.push({ severity: 'success', detail: "Sub Category updated successfully." });
             });
     }
 

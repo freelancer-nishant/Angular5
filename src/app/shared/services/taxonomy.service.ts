@@ -39,8 +39,8 @@ export class TaxonomyService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/category?type_id=' + type_id + '&client_id=' + client_id;
         return this.http.get(url);
     }
-    deleteCategory(id: number, type_id: number, client_id: number, user_id: number): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/category?id=' + id + '&type_id=' + type_id + '&client_id=' + client_id + '&user_id=' + user_id;
+    deleteCategory(id: number): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/category?id=' + id ;
         return this.http.delete(url);
     }
     saveCategory<ResponseResult>(category: any): Observable<any> {
@@ -55,8 +55,8 @@ export class TaxonomyService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/subcategory?category_id=' + category_id + '&client_id=' + client_id;
         return this.http.get(url);
     }
-    deleteSubCategory(id: number, category_id: number, client_id: number, user_id: number): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/subcategory?id=' + id + '&category_id=' + category_id + '&client_id=' + client_id + '&user_id=' + user_id;
+    deleteSubCategory(id: number): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/subcategory?id=' + id;
         return this.http.delete(url);
     }
     saveSubCategory<ResponseResult>(subcategory: any): Observable<any> {
@@ -71,6 +71,18 @@ export class TaxonomyService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/item?subcategory_id=' + subcategory_id + '&client_id=' + client_id;
         return this.http.get(url);
     }
+    deleteItem(id: number): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/item?id=' + id ;
+        return this.http.delete(url);
+    }
+    saveItem<ResponseResult>(item: any): Observable<any> {
+        if (item.id == undefined || item.id == 0) {
+            return this.http.post<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomy/item', GlobalHelper.toHttpParams(item), httpOptionsa);
+        } else {
+            return this.http.put<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomy/item', GlobalHelper.toHttpParams(item), httpOptionsa);
+        }
+    }
+
     getItemDetail(subcategory_id: number, item_id: number, client_id: number): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomy/item/' + item_id + '?subcategory_id=' + subcategory_id + '&client_id=' + client_id;
         return this.http.get(url);

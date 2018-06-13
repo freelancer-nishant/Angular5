@@ -48,7 +48,6 @@
                     <button type="button" label="Add" (click)="clearType(true)" pButton class="ui-button-primary" style="width:auto;" icon="fa fa-plus"></button>
                 </span>
             </p-header>
-            <p-growl [(value)]="msgs" [life]="2000" [immutable]="false"></p-growl>
             <div class="ui-g form-group">
                 <div class="ui-g-12 ui-md-12">
                     <p-dataTable [value]="TypeList" [paginator]="true" [rows]="10" [responsive]="true" [(selection)]="TaxonomyType" [immutable]="false">

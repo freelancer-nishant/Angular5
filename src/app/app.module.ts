@@ -73,6 +73,8 @@ import { TooltipModule } from 'primeng/primeng';
 import { TreeModule } from 'primeng/primeng';
 import { TreeTableModule } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+//import { ConfirmationService } from 'primeng/components/common/api';
 
 import { AppComponent } from './app.component';
 import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
@@ -341,7 +343,7 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         HttpClient,
         LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService, TaxonomyService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
-        MessageService,
+        MessageService, ConfirmationService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
     ],

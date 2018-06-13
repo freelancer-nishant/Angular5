@@ -371,21 +371,21 @@ body > div {
 }
 
 @media (min-width: 1024px) {
-    body .ui-dialog {
+    body .school-list .ui-dialog {
         width: 50% !important;
         left: 25% !important;
     }
 }
 
 @media (max-width: 1024px) {
-    body .ui-dialog {
+    body .school-list .ui-dialog {
         width: 90% !important;
         left: 5% !important;
         height: 90% !important;
         overflow: auto;
     }
 
-    body .ui-dialog .ui-dialog-footer {
+    body .school-list .ui-dialog .ui-dialog-footer {
         position: relative;
         bottom: 5%;
     }
@@ -411,7 +411,7 @@ body > div {
 }
 
 @media (min-width: 678px) {
-    body .ui-dialog {
+    body .school-list .ui-dialog {
         width: 90% !important;
         left: 5% !important;
         height: 90% !important;
