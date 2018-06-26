@@ -154,9 +154,12 @@ import { SchoolGradeService } from './shared/services/school.grade.service';
 import { ComparativeListService } from './shared/services/comparativelist.service'
 import { CommonService } from './shared/services/Common.service'
 import { TaxonomyService } from './shared/services/taxonomy.service'
+import { TaxonomyConfigurationService } from './shared/services/taxonomyconfiguration.service';
 import { SemesterInSchoolYearService } from './shared/services/semester.inschoolyear.service'
 import { GradeService } from './shared/services/grade.service'
 import { DaysInSchoolYearService } from './shared/services/days.inschoolyear.service'
+import { ClientService } from './shared/services/client.service';
+import { RoleService } from './shared/services/role.service';
 
 import { TestService } from './shared/services/test.service'
 import { TestVersionService } from './shared/services/testversion.service'
@@ -342,7 +345,8 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         HttpClient,
         LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
-        CommonService, TaxonomyService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
+        CommonService, TaxonomyService, TaxonomyConfigurationService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
+        ClientService, RoleService,
         MessageService, ConfirmationService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig

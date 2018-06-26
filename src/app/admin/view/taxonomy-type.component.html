@@ -18,17 +18,17 @@
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Client Ids :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.client_ids" name="client ids" tabindex="4" />
+                        <p-multiSelect [options]="clients" [(ngModel)]="TaxonomyType.client_ids" [filter]="false" name="client ids" tabindex="4" [disabled]="TaxonomyType.all_clients_flag==1"></p-multiSelect>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Role Ids :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyType.role_ids" name="role ids" tabindex="5" />
+                        <p-multiSelect [options]="clients" [(ngModel)]="TaxonomyType.role_ids" [filter]="false" name="role ids" tabindex="5" [disabled]="TaxonomyType.all_roles_flag==1"></p-multiSelect>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">&nbsp;</label><br />
-                        <p-checkbox [(ngModel)]="TaxonomyType.all_clients_flag" tabindex="6" value="1" label="All Clients" name="All Clients"></p-checkbox>
+                        <p-checkbox [(ngModel)]="TaxonomyType.all_clients_flag" tabindex="6" value="{{1}}" binary="true" label="All Clients" name="All Clients"></p-checkbox>
                         <label for="input">&nbsp;</label>
-                        <p-checkbox [(ngModel)]="TaxonomyType.all_roles_flag" tabindex="7" value="1" label="All Roles" name="All Roles"></p-checkbox>
+                        <p-checkbox [(ngModel)]="TaxonomyType.all_roles_flag" tabindex="7" value="{{1}}" binary="true" label="All Roles" name="All Roles"></p-checkbox>
                     </div>
                 </div>
                 <p-footer>
@@ -37,6 +37,33 @@
                         <button type="button" label="Cancel" (click)="clearType(false)" pButton class="ui-button-secondary" style="width:auto;"></button>
                     </div>
                 </p-footer>
+            </p-panel>
+        </form>
+        <form id="frmTypeOfClient" #frmTypeOfClient="ngForm">
+            <p-panel *ngIf="dialogVisible">
+                <p-header>Manage Type Of Client</p-header>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-sm-12 ui-md-4">
+                        <label for="input">Select Clients :</label>
+                        <p-multiSelect [options]="clients" [(ngModel)]="client_ids" [filter]="false" name="client_ids" required></p-multiSelect>
+                    </div>
+                    <div class="ui-helper-clearfix text-center"><br />
+                        <button type="submit" label="Save" (click)="saveTypeOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmTypeOfClient.form.valid"></button>
+                        <button type="button" label="Cancel" (click)="clearTypeOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <p-dataTable [value]="TypeOfClientList" [paginator]="true" [rows]="10" [responsive]="true" [immutable]="false">
+                            <p-column field="client_id" header="client_id" [sortable]="true"></p-column>
+                            <p-column [style]="{'width':'110px'}">
+                                <ng-template let-row="rowData" pTemplate="body">
+                                    <span>
+                                        <button pButton type="button" label="Delete" (click)="deleteTypeOfClient(row.type_id,row.client_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                    </span>
+                                </ng-template>
+                            </p-column>
+                        </p-dataTable>
+                    </div>
+                </div>
             </p-panel>
         </form>
     </div>

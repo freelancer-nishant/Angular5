@@ -4,7 +4,9 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/primeng';
 
-import { TaxonomyService } from './../../shared/services/taxonomy.service';
+import { TaxonomyConfigurationService } from './../../shared/services/taxonomyconfiguration.service';
+import { ClientService } from './../../shared/services/client.service';
+import { RoleService } from './../../shared/services/role.service';
 import { ResponseResult } from '../../shared/domain/Common.model';
 import { TaxonomyType } from '../../shared/domain/taxonomy';
 
@@ -16,8 +18,12 @@ export class TaxonomyTypeComponent implements OnInit {
     dialogVisible: boolean = false;
     context_Id: number = 2;
     TaxonomyType: TaxonomyType;
+    clients: SelectItem[];
+    roles: SelectItem[];
+    TypeOfClientList: any[] = [];
+    client_ids: string[];
 
-    constructor(public app: AppComponent,  private taxonomyService: TaxonomyService) {
+    constructor(public app: AppComponent, private taxonomyConfigurationService: TaxonomyConfigurationService, private clientService: ClientService, private roleService: RoleService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Taxonomy);
@@ -27,10 +33,26 @@ export class TaxonomyTypeComponent implements OnInit {
 
     ngOnInit() {
         this.getTypeList();
+
+        let clients: any[] = [];
+        this.clientService.get().subscribe((result: any) => clients = result.data,
+            (error: any) => { },
+            () => {
+                this.clients = [];
+                clients.map(o => { this.clients.push({ label: o.name, value: o.id }); });
+            });
+
+        let roles: any[] = [];
+        this.roleService.get().subscribe((result: any) => roles = result,
+            (error: any) => { },
+            () => {
+                this.roles = [];
+                roles.map(o => { this.roles.push({ label: o.name, value: o.id }); });
+            });
     }
     getTypeList() {
         let typeList: any[] = [];
-        this.taxonomyService.getType(this.context_Id).subscribe((result: any) => typeList = result.data,
+        this.taxonomyConfigurationService.getType(this.context_Id, undefined).subscribe((result: any) => typeList = result.data,
             (error: any) => { },
             () => {
                 this.TypeList = [];
@@ -53,6 +75,10 @@ export class TaxonomyTypeComponent implements OnInit {
     editType(id) {
         this.dialogVisible = true;
         this.TaxonomyType = this.TypeList.find(x => x.id === id);
+        this.TaxonomyType.client_ids = (this.TaxonomyType.all_clients_flag == 1 ? undefined : this.TaxonomyType.client_ids);
+        this.TaxonomyType.role_ids = (this.TaxonomyType.all_roles_flag == 1 ? undefined : this.TaxonomyType.role_ids);
+
+        this.getTypeOfClientList(id);
     }
 
     deleteType(id) {
@@ -60,7 +86,7 @@ export class TaxonomyTypeComponent implements OnInit {
             message: 'Are you sure that you want to delete this Type?',
             accept: () => {
                 let responseResult: ResponseResult;
-                this.taxonomyService.deleteType(id, this.context_Id).subscribe((result: any) => responseResult = result,
+                this.taxonomyConfigurationService.deleteType(id).subscribe((result: any) => responseResult = result,
                     (error: any) => {
                         this.app.msgs.push({ severity: 'error', detail: error.error.message });
                     },
@@ -75,8 +101,13 @@ export class TaxonomyTypeComponent implements OnInit {
 
     saveType() {
         this.TaxonomyType.context_id = this.context_Id;
+        this.TaxonomyType.client_ids = (this.TaxonomyType.all_clients_flag == 1 ? undefined : this.TaxonomyType.client_ids);
+        this.TaxonomyType.role_ids = (this.TaxonomyType.all_roles_flag == 1 ? undefined : this.TaxonomyType.role_ids);
+        this.TaxonomyType.all_clients_flag = (this.TaxonomyType.all_clients_flag == true ? 1 : 0);
+        this.TaxonomyType.all_roles_flag = (this.TaxonomyType.all_roles_flag == true ? 1 : 0);
+
         let responseResult: ResponseResult;
-        this.taxonomyService.saveType(this.TaxonomyType).subscribe((result: any) => responseResult = result,
+        this.taxonomyConfigurationService.saveType(this.TaxonomyType).subscribe((result: any) => responseResult = result,
             (error: any) => {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
@@ -90,5 +121,48 @@ export class TaxonomyTypeComponent implements OnInit {
     clearType(visible) {
         this.TaxonomyType = { id: 0, all_clients_flag: 0, all_roles_flag: 0, client_ids: null, context_id: this.context_Id, icon: null, label: null, name: null, role_ids: null };
         this.dialogVisible = visible;
+    }
+    getTypeOfClientList(id) {
+        let typeOfClientList: any[] = [];
+        this.taxonomyConfigurationService.getTypeOfClient(id).subscribe((result: any) => typeOfClientList = result.data,
+            (error: any) => { },
+            () => {
+                typeOfClientList.map(o => {
+                    this.TypeOfClientList.push({
+                        type_id: o.type_id,
+                        client_id: o.client_id
+                    });
+                });
+            });
+    }
+    deleteTypeOfClient(id, client_id) {
+        this.app.confirmationService.confirm({
+            message: 'Are you sure that you want to delete this Type Of Client?',
+            accept: () => {
+                let responseResult: ResponseResult;
+                this.taxonomyConfigurationService.deleteTypeOfClient(id, client_id).subscribe((result: any) => responseResult = result,
+                    (error: any) => {
+                        this.app.msgs.push({ severity: 'error', detail: error.error.message });
+                    },
+                    () => {
+                        this.getTypeOfClientList(this.TaxonomyType.id);
+                        this.app.msgs.push({ severity: 'success', detail: "Type Of Client deleted successfully." });
+                    });
+            }
+        });
+    }
+    saveTypeOfClient() {
+        let responseResult: ResponseResult;
+        this.taxonomyConfigurationService.saveTypeOfClient({ type_id: this.TaxonomyType.id, client_ids: this.client_ids.join(',') }).subscribe((result: any) => responseResult = result,
+            (error: any) => {
+                this.app.msgs.push({ severity: 'error', detail: error.error.message });
+            },
+            () => {
+                this.getTypeOfClientList(this.TaxonomyType.id);
+                this.app.msgs.push({ severity: 'success', detail: "Type Of Client added successfully." });
+            });
+    }
+    clearTypeOfClient() {
+        this.client_ids = [];
     }
 }

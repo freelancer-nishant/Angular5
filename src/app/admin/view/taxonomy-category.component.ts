@@ -4,7 +4,7 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/primeng';
 
-import { TaxonomyService } from './../../shared/services/taxonomy.service';
+import { TaxonomyConfigurationService } from './../../shared/services/taxonomyconfiguration.service';
 import { ResponseResult } from '../../shared/domain/Common.model';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,7 +18,7 @@ export class TaxonomyCategoryComponent implements OnInit {
     dialogVisible: boolean = false;
     type_Id: number;
 
-    constructor(public app: AppComponent, private route: ActivatedRoute, private taxonomyService: TaxonomyService) {
+    constructor(public app: AppComponent, private route: ActivatedRoute, private taxonomyConfigurationService: TaxonomyConfigurationService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Taxonomy);
@@ -38,7 +38,7 @@ export class TaxonomyCategoryComponent implements OnInit {
     }
     getCategoryList() {
         let typeList: any[] = [];
-        this.taxonomyService.getCategory(this.type_Id, this.sessionInfo.client_id).subscribe((result: any) => typeList = result.data,
+        this.taxonomyConfigurationService.getCategory(this.type_Id, this.sessionInfo.client_id).subscribe((result: any) => typeList = result.data,
             (error: any) => { },
             () => {
                 this.CategoryList = [];
@@ -69,7 +69,7 @@ export class TaxonomyCategoryComponent implements OnInit {
             message: 'Are you sure that you want to delete this Category?',
             accept: () => {
                 let responseResult: ResponseResult;
-                this.taxonomyService.deleteCategory(id).subscribe((result: any) => responseResult = result,
+                this.taxonomyConfigurationService.deleteCategory(id).subscribe((result: any) => responseResult = result,
                     (error: any) => {
                         this.app.msgs.push({ severity: 'error', detail: error.error.message });
                     },
@@ -85,7 +85,7 @@ export class TaxonomyCategoryComponent implements OnInit {
     saveCategory() {
         this.TaxonomyCategory.type_id = this.type_Id;
         let responseResult: ResponseResult;
-        this.taxonomyService.saveCategory(this.TaxonomyCategory).subscribe((result: any) => responseResult = result,
+        this.taxonomyConfigurationService.saveCategory(this.TaxonomyCategory).subscribe((result: any) => responseResult = result,
             (error: any) => {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
