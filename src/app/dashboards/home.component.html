@@ -52,7 +52,7 @@
                 </div>
             </div>
         </ng-template>
-        <div class="ui-g-6 ui-md-3 ui-lg-2" *ngIf="app.isAdmin">
+        <div class="ui-g-6 ui-md-3 ui-lg-2" *ngIf="app.isAdmin()">
             <div class="box-iconcard dashboard-card">
                 <div class="content">
                     <a href="#/taxonomy/type" (click)="app.onItemClick('Manage Taxonomy')">
