@@ -22,7 +22,7 @@
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Role Ids :</label>
-                        <p-multiSelect [options]="clients" [(ngModel)]="TaxonomyType.role_ids" [filter]="false" name="role ids" tabindex="5" [disabled]="TaxonomyType.all_roles_flag==1"></p-multiSelect>
+                        <p-multiSelect [options]="roles" [(ngModel)]="TaxonomyType.role_ids" [filter]="false" name="role ids" tabindex="5" [disabled]="TaxonomyType.all_roles_flag==1"></p-multiSelect>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">&nbsp;</label><br />
@@ -38,34 +38,69 @@
                     </div>
                 </p-footer>
             </p-panel>
-        </form>
-        <form id="frmTypeOfClient" #frmTypeOfClient="ngForm">
-            <p-panel *ngIf="dialogVisible">
-                <p-header>Manage Type Of Client</p-header>
-                <div class="ui-g form-group">
-                    <div class="ui-g-12 ui-sm-12 ui-md-4">
-                        <label for="input">Select Clients :</label>
-                        <p-multiSelect [options]="clients" [(ngModel)]="client_ids" [filter]="false" name="client_ids" required></p-multiSelect>
-                    </div>
-                    <div class="ui-helper-clearfix text-center"><br />
-                        <button type="submit" label="Save" (click)="saveTypeOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmTypeOfClient.form.valid"></button>
-                        <button type="button" label="Cancel" (click)="clearTypeOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
-                    </div>
-                    <div class="ui-g-12 ui-md-12">
-                        <p-dataTable [value]="TypeOfClientList" [paginator]="true" [rows]="10" [responsive]="true" [immutable]="false">
-                            <p-column field="client_id" header="client_id" [sortable]="true"></p-column>
-                            <p-column [style]="{'width':'110px'}">
-                                <ng-template let-row="rowData" pTemplate="body">
-                                    <span>
-                                        <button pButton type="button" label="Delete" (click)="deleteTypeOfClient(row.type_id,row.client_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
-                                    </span>
-                                </ng-template>
-                            </p-column>
-                        </p-dataTable>
-                    </div>
-                </div>
-            </p-panel>
-        </form>
+        </form><br />
+        <div class="ui-g form-group">
+            <div class="ui-g-12 ui-sm-12 ui-md-6">
+                <form id="frmTypeOfClient" #frmTypeOfClient="ngForm">
+                    <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                        <p-header>Manage Type Of Client</p-header>
+                        <div class="ui-g form-group">
+                            <div class="ui-g-12 ui-sm-12 ui-md-6">
+                                <label for="input">Select Clients :</label>
+                                <p-multiSelect [options]="clients" [(ngModel)]="client_ids" [filter]="false" name="client_ids" required></p-multiSelect>
+                            </div>
+                            <div class="ui-helper-clearfix text-center">
+                                <br />
+                                <button type="submit" label="Save" (click)="saveTypeOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmTypeOfClient.form.valid"></button>
+                                <button type="button" label="Cancel" (click)="clearTypeOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
+                            </div>
+                            <div class="ui-g-12 ui-md-12">
+                                <p-dataTable [value]="TypeOfClientList" [paginator]="true" [rows]="10" [responsive]="true" [immutable]="false">
+                                    <p-column field="name" header="Client Name" [sortable]="true"></p-column>
+                                    <p-column [style]="{'width':'110px'}">
+                                        <ng-template let-row="rowData" pTemplate="body">
+                                            <span>
+                                                <button pButton type="button" label="Delete" (click)="deleteTypeOfClient(row.type_id,row.client_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                            </span>
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable>
+                            </div>
+                        </div>
+                    </p-panel>
+                </form>
+            </div>
+            <div class="ui-g-12 ui-sm-12 ui-md-6">
+                <form id="frmTypeInRole" #frmTypeInRole="ngForm">
+                    <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                        <p-header>Manage Type In Role</p-header>
+                        <div class="ui-g form-group">
+                            <div class="ui-g-12 ui-sm-12 ui-md-6">
+                                <label for="input">Select Roles :</label>
+                                <p-multiSelect [options]="roles" [(ngModel)]="role_ids" [filter]="false" name="role_ids" required></p-multiSelect>
+                            </div>
+                            <div class="ui-helper-clearfix text-center">
+                                <br />
+                                <button type="submit" label="Save" (click)="saveTypeInRole()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmTypeInRole.form.valid"></button>
+                                <button type="button" label="Cancel" (click)="clearTypeInRole()" pButton class="ui-button-secondary" style="width:auto;"></button>
+                            </div>
+                            <div class="ui-g-12 ui-md-12">
+                                <p-dataTable [value]="TypeInRoleList" [paginator]="true" [rows]="10" [responsive]="true" [immutable]="false">
+                                    <p-column field="name" header="Role Name" [sortable]="true"></p-column>
+                                    <p-column [style]="{'width':'110px'}">
+                                        <ng-template let-row="rowData" pTemplate="body">
+                                            <span>
+                                                <button pButton type="button" label="Delete" (click)="deleteTypeInRole(row.type_id,row.role_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                            </span>
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable>
+                            </div>
+                        </div>
+                    </p-panel>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="ui-g-12">
         <p-panel>

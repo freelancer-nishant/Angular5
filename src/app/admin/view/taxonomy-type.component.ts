@@ -21,7 +21,9 @@ export class TaxonomyTypeComponent implements OnInit {
     clients: SelectItem[];
     roles: SelectItem[];
     TypeOfClientList: any[] = [];
+    TypeInRoleList: any[] = [];
     client_ids: string[];
+    role_ids: string[];
 
     constructor(public app: AppComponent, private taxonomyConfigurationService: TaxonomyConfigurationService, private clientService: ClientService, private roleService: RoleService) {
         this.app.displayLeftMenu(true);
@@ -79,6 +81,7 @@ export class TaxonomyTypeComponent implements OnInit {
         this.TaxonomyType.role_ids = (this.TaxonomyType.all_roles_flag == 1 ? undefined : this.TaxonomyType.role_ids);
 
         this.getTypeOfClientList(id);
+        this.getTypeInRoleList(id);
     }
 
     deleteType(id) {
@@ -121,16 +124,20 @@ export class TaxonomyTypeComponent implements OnInit {
     clearType(visible) {
         this.TaxonomyType = { id: 0, all_clients_flag: 0, all_roles_flag: 0, client_ids: null, context_id: this.context_Id, icon: null, label: null, name: null, role_ids: null };
         this.dialogVisible = visible;
+        this.TypeOfClientList = [];
+        this.TypeInRoleList = [];
     }
     getTypeOfClientList(id) {
         let typeOfClientList: any[] = [];
         this.taxonomyConfigurationService.getTypeOfClient(id).subscribe((result: any) => typeOfClientList = result.data,
             (error: any) => { },
             () => {
+                this.TypeOfClientList = [];
                 typeOfClientList.map(o => {
                     this.TypeOfClientList.push({
                         type_id: o.type_id,
-                        client_id: o.client_id
+                        client_id: o.client_id,
+                        name: o.name
                     });
                 });
             });
@@ -164,5 +171,50 @@ export class TaxonomyTypeComponent implements OnInit {
     }
     clearTypeOfClient() {
         this.client_ids = [];
+    }
+    getTypeInRoleList(id) {
+        let typeInRoleList: any[] = [];
+        this.taxonomyConfigurationService.getTypeInRole(id).subscribe((result: any) => typeInRoleList = result.data,
+            (error: any) => { },
+            () => {
+                this.TypeInRoleList = [];
+                typeInRoleList.map(o => {
+                    this.TypeInRoleList.push({
+                        type_id: o.type_id,
+                        role_id: o.role_id,
+                        name: o.name
+                    });
+                });
+            });
+    }
+    deleteTypeInRole(id, role_id) {
+        this.app.confirmationService.confirm({
+            message: 'Are you sure that you want to delete this Type In Role?',
+            accept: () => {
+                let responseResult: ResponseResult;
+                this.taxonomyConfigurationService.deleteTypeInRole(id, role_id).subscribe((result: any) => responseResult = result,
+                    (error: any) => {
+                        this.app.msgs.push({ severity: 'error', detail: error.error.message });
+                    },
+                    () => {
+                        this.getTypeInRoleList(this.TaxonomyType.id);
+                        this.app.msgs.push({ severity: 'success', detail: "Type In Role deleted successfully." });
+                    });
+            }
+        });
+    }
+    saveTypeInRole() {
+        let responseResult: ResponseResult;
+        this.taxonomyConfigurationService.saveTypeInRole({ type_id: this.TaxonomyType.id, role_ids: this.role_ids.join(',') }).subscribe((result: any) => responseResult = result,
+            (error: any) => {
+                this.app.msgs.push({ severity: 'error', detail: error.error.message });
+            },
+            () => {
+                this.getTypeInRoleList(this.TaxonomyType.id);
+                this.app.msgs.push({ severity: 'success', detail: "Type In Role added successfully." });
+            });
+    }
+    clearTypeInRole() {
+        this.role_ids = [];
     }
 }
