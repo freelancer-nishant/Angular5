@@ -18,17 +18,17 @@
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Client Ids :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyCategory.client_ids" name="client ids" tabindex="4" />
+                        <p-multiSelect [options]="clients" [(ngModel)]="TaxonomyCategory.client_ids" [filter]="false" name="client ids" tabindex="4" [disabled]="TaxonomyCategory.all_clients_flag==1"></p-multiSelect>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Role Ids :</label>
-                        <input id="input" type="text" pInputText [(ngModel)]="TaxonomyCategory.role_ids" name="role ids" tabindex="5" />
+                        <p-multiSelect [options]="roles" [(ngModel)]="TaxonomyCategory.role_ids" [filter]="false" name="role ids" tabindex="5" [disabled]="TaxonomyCategory.all_roles_flag==1"></p-multiSelect>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">&nbsp;</label><br />
-                        <p-checkbox [(ngModel)]="TaxonomyCategory.all_clients_flag" tabindex="6" value="1" label="All Clients" name="All Clients"></p-checkbox>
+                        <p-checkbox [(ngModel)]="TaxonomyCategory.all_clients_flag" tabindex="6" value="{{1}}" binary="true" label="All Clients" name="All Clients"></p-checkbox>
                         <label for="input">&nbsp;</label>
-                        <p-checkbox [(ngModel)]="TaxonomyCategory.all_roles_flag" tabindex="7" value="1" label="All Roles" name="All Roles"></p-checkbox>
+                        <p-checkbox [(ngModel)]="TaxonomyCategory.all_roles_flag" tabindex="7" value="{{1}}" binary="true" label="All Roles" name="All Roles"></p-checkbox>
                     </div>
                 </div>
                 <p-footer>
@@ -38,7 +38,69 @@
                     </div>
                 </p-footer>
             </p-panel>
-        </form>
+        </form><br />
+        <div class="ui-g form-group">
+            <div class="ui-g-12 ui-sm-12 ui-md-6">
+                <form id="frmSubCategoryOfClient" #frmSubCategoryOfClient="ngForm">
+                    <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                        <p-header>Manage Sub Category Of Client</p-header>
+                        <div class="ui-g form-group">
+                            <div class="ui-g-12 ui-sm-12 ui-md-6">
+                                <label for="input">Select Clients :</label>
+                                <p-multiSelect [options]="clients" [(ngModel)]="client_ids" [filter]="false" name="client_ids" required></p-multiSelect>
+                            </div>
+                            <div class="ui-helper-clearfix text-center">
+                                <br />
+                                <button type="submit" label="Save" (click)="saveSubCategoryOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmSubCategoryOfClient.form.valid"></button>
+                                <button type="button" label="Cancel" (click)="clearSubCategoryOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
+                            </div>
+                            <div class="ui-g-12 ui-md-12">
+                                <p-dataTable [value]="SubCategoryOfClientList" [paginator]="true" [rows]="10" [responsive]="true" [immutable]="false">
+                                    <p-column field="name" header="Client Name" [sortable]="true"></p-column>
+                                    <p-column [style]="{'width':'110px'}">
+                                        <ng-template let-row="rowData" pTemplate="body">
+                                            <span>
+                                                <button pButton type="button" label="Delete" (click)="deleteSubCategoryOfClient(row.subcategory_id,row.client_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                            </span>
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable>
+                            </div>
+                        </div>
+                    </p-panel>
+                </form>
+            </div>
+            <div class="ui-g-12 ui-sm-12 ui-md-6">
+                <form id="frmSubCategoryInRole" #frmSubCategoryInRole="ngForm">
+                    <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                        <p-header>Manage Sub Category In Role</p-header>
+                        <div class="ui-g form-group">
+                            <div class="ui-g-12 ui-sm-12 ui-md-6">
+                                <label for="input">Select Roles :</label>
+                                <p-multiSelect [options]="roles" [(ngModel)]="role_ids" [filter]="false" name="role_ids" required></p-multiSelect>
+                            </div>
+                            <div class="ui-helper-clearfix text-center">
+                                <br />
+                                <button type="submit" label="Save" (click)="saveSubCategoryInRole()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmSubCategoryInRole.form.valid"></button>
+                                <button type="button" label="Cancel" (click)="clearSubCategoryInRole()" pButton class="ui-button-secondary" style="width:auto;"></button>
+                            </div>
+                            <div class="ui-g-12 ui-md-12">
+                                <p-dataTable [value]="SubCategoryInRoleList" [paginator]="true" [rows]="10" [responsive]="true" [immutable]="false">
+                                    <p-column field="name" header="Role Name" [sortable]="true"></p-column>
+                                    <p-column [style]="{'width':'110px'}">
+                                        <ng-template let-row="rowData" pTemplate="body">
+                                            <span>
+                                                <button pButton type="button" label="Delete" (click)="deleteSubCategoryInRole(row.subcategory_id,row.role_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                            </span>
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable>
+                            </div>
+                        </div>
+                    </p-panel>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="ui-g-12">
         <p-panel>

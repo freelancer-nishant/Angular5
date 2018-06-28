@@ -215,7 +215,7 @@ export class TaxonomyConfigurationService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/iteminsubcategory?item_id=' + item_id;
         return this.http.get(url);
     }
-    deleteItemInSubCategory(item_id: number, subcategory_id: string): Observable<any> {
+    deleteItemInSubCategory(item_id: number, subcategory_id: number): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/iteminsubcategory?item_id=' + item_id + '&subcategory_id=' + subcategory_id;
         return this.http.delete(url);
     }
@@ -231,7 +231,7 @@ export class TaxonomyConfigurationService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemvjsparam?id=' + id + '&item_id=' + item_id;
         return this.http.get(url);
     }
-    deleteItemVJSParam(id: number, subcategory_id: string): Observable<any> {
+    deleteItemVJSParam(id: number): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemvjsparam?id=' + id;
         return this.http.delete(url);
     }
