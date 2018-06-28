@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid seletor-panel">
-    <div class="ui-g-12">
+    <div class="ui-g-12" *ngIf="dialogVisible">
         <form id="frmSubCategory" #frmSubCategory="ngForm">
-            <p-panel *ngIf="dialogVisible">
+            <p-panel>
                 <p-header>Manage Sub Category</p-header>
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
@@ -42,7 +42,7 @@
         <div class="ui-g form-group">
             <div class="ui-g-12 ui-sm-12 ui-md-6">
                 <form id="frmSubCategoryOfClient" #frmSubCategoryOfClient="ngForm">
-                    <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                    <p-panel [toggleable]="true" [collapsed]="true">
                         <p-header>Manage Sub Category Of Client</p-header>
                         <div class="ui-g form-group">
                             <div class="ui-g-12 ui-sm-12 ui-md-6">
@@ -72,7 +72,7 @@
             </div>
             <div class="ui-g-12 ui-sm-12 ui-md-6">
                 <form id="frmSubCategoryInRole" #frmSubCategoryInRole="ngForm">
-                    <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                    <p-panel [toggleable]="true" [collapsed]="true">
                         <p-header>Manage Sub Category In Role</p-header>
                         <div class="ui-g form-group">
                             <div class="ui-g-12 ui-sm-12 ui-md-6">

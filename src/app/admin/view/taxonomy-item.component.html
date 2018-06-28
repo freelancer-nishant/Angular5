@@ -1,8 +1,8 @@
 <div class="ui-g ui-fluid seletor-panel">
-    <div class="ui-g-12">
+    <div class="ui-g-12" *ngIf="dialogVisible">
         <form id="frmSubCategory" #frmSubCategory="ngForm">
-            <p-panel *ngIf="dialogVisible">
-                <p-header>Manage Sub Category</p-header>
+            <p-panel>
+                <p-header>Manage Item</p-header>
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-12 ui-md-4">
                         <label for="input">Name :</label>
@@ -54,7 +54,7 @@
                <div class="ui-g form-group">
                    <div class="ui-g-12 ui-sm-12 ui-md-12">
                        <form id="frmItemParams" #frmItemParams="ngForm">
-                           <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                           <p-panel [toggleable]="true" [collapsed]="true">
                                <p-header>Manage VJS Params Of Item</p-header>
                                <div class="ui-g form-group">
                                    <div class="ui-g-12 ui-sm-12 ui-md-4">
@@ -63,7 +63,7 @@
                                    </div>
                                    <div class="ui-g-12 ui-sm-12 ui-md-4">
                                        <label for="input">Report Param :</label>
-                                       <input id="input" type="text" pInputText [(ngModel)]="ItemParam.report_param" name="name" required />
+                                       <input id="input" type="text" pInputText [(ngModel)]="ItemParam.report_param" name="Report" required />
                                    </div>
                                    <div class="ui-helper-clearfix text-center">
                                        <br />
@@ -96,7 +96,7 @@
                    </div>
                    <div class="ui-g-12 ui-sm-12 ui-md-6">
                        <form id="frmItemOfClient" #frmItemOfClient="ngForm">
-                           <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                           <p-panel [toggleable]="true" [collapsed]="true">
                                <p-header>Manage Item Of Client</p-header>
                                <div class="ui-g form-group">
                                    <div class="ui-g-12 ui-sm-12 ui-md-6">
@@ -126,7 +126,7 @@
                    </div>
                    <div class="ui-g-12 ui-sm-12 ui-md-6">
                        <form id="frmItemInRole" #frmItemInRole="ngForm">
-                           <p-panel *ngIf="dialogVisible" [toggleable]="true" [collapsed]="true">
+                           <p-panel [toggleable]="true" [collapsed]="true">
                                <p-header>Manage Item In Role</p-header>
                                <div class="ui-g form-group">
                                    <div class="ui-g-12 ui-sm-12 ui-md-6">
@@ -159,7 +159,7 @@
     <div class="ui-g-12">
         <p-panel>
             <p-header class="text-normal">
-                Taxonomy Sub Categories
+                Taxonomy Items
                 <span class="pull-right">
                     <button type="button" label="Add" (click)="clearItem(true)" pButton class="ui-button-primary" style="width:auto;" icon="fa fa-plus"></button>
                     <a pButton label="Back" style="width:auto;" class="ui-button-info" icon="fa fa-backward" href="#/taxonomy/subcategory/{{type_Id}}/{{category_Id}}"></a>

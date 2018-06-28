@@ -68,11 +68,10 @@ export class TaxonomyItemComponent implements OnInit {
 
     getItemList() {
         let itemList: any[] = [];
-        this.taxonomyConfigurationService.getItem(28).subscribe((result: any) => itemList = result.data,
+        this.taxonomyConfigurationService.getItemListBySubCategory(this.subcategory_Id).subscribe((result: any) => itemList = result.data,
             (error: any) => { },
             () => {
                 this.ItemList = [];
-                //itemList = itemList.filter(f => f.subcategory_id === this.subcategory_Id);
                 itemList.map(o => {
                     this.ItemList.push({
                         id: o.id,
@@ -185,6 +184,7 @@ export class TaxonomyItemComponent implements OnInit {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
+                this.clearItemOfClient();
                 this.getItemOfClientList(this.TaxonomyItem.id);
                 this.app.msgs.push({ severity: 'success', detail: "Item Of Client added successfully." });
             });
@@ -231,6 +231,7 @@ export class TaxonomyItemComponent implements OnInit {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
+                this.clearItemInRole();
                 this.getItemInRoleList(this.TaxonomyItem.id);
                 this.app.msgs.push({ severity: 'success', detail: "Item In Role added successfully." });
             });
@@ -277,11 +278,12 @@ export class TaxonomyItemComponent implements OnInit {
     saveItemParam() {
         this.ItemParam.item_id = this.TaxonomyItem.id;
         let responseResult: ResponseResult;
-        this.taxonomyConfigurationService.saveItemInRole(this.ItemParam).subscribe((result: any) => responseResult = result,
+        this.taxonomyConfigurationService.saveItemVJSParam(this.ItemParam).subscribe((result: any) => responseResult = result,
             (error: any) => {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
+                this.clearItemParam();
                 this.getItemParamList(this.TaxonomyItem.id);
                 this.app.msgs.push({ severity: 'success', detail: "Item Param updated successfully." });
             });

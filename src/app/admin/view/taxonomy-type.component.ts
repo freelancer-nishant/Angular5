@@ -165,6 +165,7 @@ export class TaxonomyTypeComponent implements OnInit {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
+                this.clearTypeOfClient();
                 this.getTypeOfClientList(this.TaxonomyType.id);
                 this.app.msgs.push({ severity: 'success', detail: "Type Of Client added successfully." });
             });
@@ -210,6 +211,7 @@ export class TaxonomyTypeComponent implements OnInit {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
+                this.clearTypeInRole();
                 this.getTypeInRoleList(this.TaxonomyType.id);
                 this.app.msgs.push({ severity: 'success', detail: "Type In Role added successfully." });
             });

@@ -178,6 +178,7 @@ export class TaxonomySubCategoryComponent implements OnInit {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
+                this.clearSubCategoryOfClient();
                 this.getSubCategoryOfClientList(this.TaxonomyCategory.id);
                 this.app.msgs.push({ severity: 'success', detail: "Sub Category Of Client added successfully." });
             });
@@ -223,6 +224,7 @@ export class TaxonomySubCategoryComponent implements OnInit {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
+                this.clearSubCategoryInRole();
                 this.getSubCategoryInRoleList(this.TaxonomyCategory.id);
                 this.app.msgs.push({ severity: 'success', detail: "Sub Category In Role added successfully." });
             });

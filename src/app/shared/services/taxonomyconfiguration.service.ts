@@ -242,4 +242,9 @@ export class TaxonomyConfigurationService {
             return this.http.put<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemvjsparam', GlobalHelper.toHttpParams(itemvjsparam), httpOptionsa);
         }
     }
+
+    getItemListBySubCategory(subcategory_id: number): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemlistbysubcategory?subcategory_id=' + subcategory_id ;
+        return this.http.get(url);
+    }
 }
