@@ -59,6 +59,8 @@ import { AdminAssessmentsComponent } from './admin/view/admin-assessments.compon
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 
+import { SchoolComponent } from './configurations/view/school.component'
+
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'embedded-report/:user/:pwd', component: EmbeddedLoginComponent},
@@ -102,6 +104,12 @@ export const routes: Routes = [
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponent, canActivate: [AuthGuard] },
     { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard] },
+
+
+    //Configuration pages
+
+    { path: 'configurations/school', component: SchoolComponent, canActivate: [AuthGuard] },
+
 
     //Theme routes
     //{ path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_ADMIN } },

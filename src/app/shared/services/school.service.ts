@@ -9,9 +9,8 @@ import { of } from 'rxjs/observable/of';
 //import 'rxjs/add/operator/catch';
 
 import { catchError, map, tap } from 'rxjs/operators';
-
-import { GlobalConstants } from './../app.globals';
-
+import { GlobalConstants, GlobalHelper } from './../app.globals';
+import { School } from './../../shared/domain/school'
 
 const httpOptionsa = {
     headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
@@ -27,10 +26,23 @@ export class SchoolService {
         if (test_type_ids != null && test_type_ids != 'undefined') {
             url = url + "&test_type_ids=" + test_type_ids;
         }
-        return this.http.get(url);
-            //.map((response: Response) => <any>response.json())
-            // .do(data => console.log("All: " + JSON.stringify(data)))
-            //.catch();            
+        return this.http.get(url);                     
+    }
+
+    insert(schoolDetail: School): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/school';
+        return this.http.post(url, GlobalHelper.toHttpParams(schoolDetail), httpOptionsa);
+    }
+
+    update(schoolDetail: School): Observable<any> {
+        debugger
+        let url: string = GlobalConstants.API_BASE_URL + '/api/school';
+        return this.http.put(url, GlobalHelper.toHttpParams(schoolDetail), httpOptionsa);
+    }
+
+    delete(id: any): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/school?id=' + id;
+        return this.http.delete(url);
     }
 }
 

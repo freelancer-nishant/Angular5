@@ -78,10 +78,12 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             });
     }
     onGoClick() {
-        if (this.onGoClick != undefined) {
+        if (this.onGoClick != undefined && this.selectedSchool != undefined) {
             this.school.SchoolName = this.schoolList.find(x => x.value === this.selectedSchool).label;
         }
-        if (this.selectedSchoolYear != undefined) {
+
+        if (this.selectedSchoolYear != undefined)
+        {
             this.school.SchoolYear = this.schoolYearList.find(x => x.value === this.selectedSchoolYear).label
         }
         let schooldetailList: SchoolSchoolYear[] = [];
@@ -158,17 +160,29 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     }
     editSchool(id) {
         let updatedSchool = this.schoolDetailList.find(x => x.id === id);
-        updatedSchool.start_date = moment(updatedSchool.start_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
-        updatedSchool.end_date = moment(updatedSchool.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
-        let responseResult: ResponseResult;
-        this.schoolYearService.update(updatedSchool).subscribe((result: any) => responseResult = result,
-            (error: any) => {
-                this.msgs.push({ severity: 'error', detail: error.error.message });
-            },
-            () => {
-                this.loadSchools();
-                this.msgs.push({ severity: 'success', detail: "School year updated successfully." });
-            });
+
+        if (this.validateStartEndDate(updatedSchool.start_date, updatedSchool.end_date)) {
+            updatedSchool.start_date = moment(updatedSchool.start_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+            updatedSchool.end_date = moment(updatedSchool.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+            let responseResult: ResponseResult;
+            this.schoolYearService.update(updatedSchool).subscribe((result: any) => responseResult = result,
+                (error: any) => {
+                    this.msgs.push({ severity: 'error', detail: error.error.message });
+                },
+                () => {
+                    this.loadSchools();
+                    this.msgs.push({ severity: 'success', detail: "School year updated successfully." });
+                });
+        }
+
+    }
+
+    validateStartEndDate(startDate, endDate) {
+        if (new Date(startDate) > new Date(endDate)) {
+            this.msgs.push({ severity: 'error', detail: "End Date should be greater than start date" });
+            return false;
+        }
+        return true;
     }
 
     loadSchools() {
@@ -237,17 +251,21 @@ export class SchoolYearOfSchoolComponent implements OnInit {
 
     editSemester(id) {
         let updatedSemester = this.semesterDetailList.find(x => x.id === id);
-        updatedSemester.start_date = moment(updatedSemester.start_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
-        updatedSemester.end_date = moment(updatedSemester.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
-        let responseResult: ResponseResult;
-        this.semesterInSchoolYearService.update(updatedSemester).subscribe((result: any) => responseResult = result,
-            (error: any) => {
-                this.msgs.push({ severity: 'error', detail: error.error.message });
-            },
-            () => {
-                this.loadSemesters();
-                this.msgs.push({ severity: 'success', detail: "Semester year updated successfully." });
-            });
+
+        if (this.validateStartEndDate(updatedSemester.start_date, updatedSemester.end_date)) {
+
+            updatedSemester.start_date = moment(updatedSemester.start_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+            updatedSemester.end_date = moment(updatedSemester.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+            let responseResult: ResponseResult;
+            this.semesterInSchoolYearService.update(updatedSemester).subscribe((result: any) => responseResult = result,
+                (error: any) => {
+                    this.msgs.push({ severity: 'error', detail: error.error.message });
+                },
+                () => {
+                    this.loadSemesters();
+                    this.msgs.push({ severity: 'success', detail: "Semester year updated successfully." });
+                });
+        }
     }
 
     deleteSemester(id) {
@@ -262,7 +280,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             });
     }
 
-    schoolChange() {
+    schoolChange(event) {
         let schoolYearListItems: SchoolSchoolYear[] = [];
 
         this.schoolYearList = [];
@@ -278,26 +296,29 @@ export class SchoolYearOfSchoolComponent implements OnInit {
 
     addSemester() {
         if (this.semesterAdded != undefined && this.semesterAdded != null) {
-            let responseResult: ResponseResult;
-            this.semesterAdded.start_date = moment(this.semesterAdded.start_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
-            this.semesterAdded.end_date = moment(this.semesterAdded.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
-            this.semesterAdded.school_year_id = this.selectedSchoolYear;
-            this.semesterInSchoolYearService.insert(this.semesterAdded).subscribe((result: any) => responseResult = result,
-                (error: any) => {
-                    this.msgs.push({ severity: 'error', detail: error.error.message });
-                },
-                () => {
-                    this.loadSemesters();
-                    this.msgs.push({ severity: 'success', detail: "Semester In School Year added successfully." });
-                });
+            if (this.validateStartEndDate(this.semesterAdded.start_date, this.semesterAdded.end_date)) {
+                let responseResult: ResponseResult;
+                this.semesterAdded.start_date = moment(this.semesterAdded.start_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+                this.semesterAdded.end_date = moment(this.semesterAdded.end_date, moment.defaultFormatUtc).format("MM/DD/YYYY");
+                this.semesterAdded.school_year_id = this.selectedSchoolYear;
+
+                this.semesterInSchoolYearService.insert(this.semesterAdded).subscribe((result: any) => responseResult = result,
+                    (error: any) => {
+                        this.msgs.push({ severity: 'error', detail: error.error.message });
+                    },
+                    () => {
+                        this.loadSemesters();
+                        this.msgs.push({ severity: 'success', detail: "Semester In School Year added successfully." });
+                    });
+            }
         }
         else {
             this.msgs.push({ severity: 'error', detail: "Please input data to add." });
         }
     }
 
-    addSchoolGrade() {
-        if (this.schoolGradeAdded != undefined && this.schoolGradeAdded != null) {
+    addSchoolGrade() {  
+        if (this.selectedSchoolGrade != undefined && this.selectedSchoolGrade != null) {
             let responseResult: ResponseResult;
             this.schoolGradeAdded.client_id = this.sessionInfo.client_id;
             this.schoolGradeAdded.school_id = this.selectedSchool;
@@ -329,7 +350,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     }
 
     uploadDays() {
-        if (this.daysAdded != undefined && this.daysAdded != null) {
+      if (this.daysAdded != undefined && this.daysAdded != null) {
             let responseResult: ResponseResult;
             this.daysAdded.client_id = this.sessionInfo.client_id;
             this.daysAdded.school_id = this.selectedSchool;
