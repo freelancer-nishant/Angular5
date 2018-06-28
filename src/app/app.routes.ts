@@ -48,7 +48,7 @@ import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.co
 import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component'
 import { StudentScorecardsComponent } from './reports/view/student.scorecards.component'
 import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report.component'
-import {VoiceOfTheSchoolSurveyReportComponent} from './reports/view/voice.schoolsurvey.report.component'
+import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.schoolsurvey.report.component'
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
 import { SchoolinSchoolYearComponent } from './admin/view/schoolin-schoolyear.component'
@@ -58,12 +58,16 @@ import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attend
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
+import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
+import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
+import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
+import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
 
 import { SchoolComponent } from './configurations/view/school.component'
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'embedded-report/:user/:pwd', component: EmbeddedLoginComponent},
+    { path: 'embedded-report/:user/:pwd', component: EmbeddedLoginComponent },
     { path: '', component: HomeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_USER, GlobalConstants.ROLE_ADMIN, GlobalConstants.ROLE_CLIENT_ADMIN], hasClientAccess: true } },
 
     //Dashboards
@@ -71,14 +75,14 @@ export const routes: Routes = [
     { path: 'categorypage/:typeid/:id/:subid/:itemid', component: CategoryPageComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'student-information', component: EnrollmentOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'enrollment-overview', component: EnrollmentOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
-    { path: 'attendance-overview', component: AttendanceOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true }},
+    { path: 'attendance-overview', component: AttendanceOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments', component: AssessmentsSBACOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments/sbac-overview', component: AssessmentsSBACOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments/sbac-detail', component: AssessmentsSBACDetailComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments/pft-overview', component: AssessmentsPFTOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments/celdt-overview', component: AssessmentsCELDTOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
-    { path: 'assessments/nwea-overview', component: AssessmentsNWEAOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true }},
-    { path: 'assessments/dora-adam-overview', component: AssessmentsDORAOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true }},
+    { path: 'assessments/nwea-overview', component: AssessmentsNWEAOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
+    { path: 'assessments/dora-adam-overview', component: AssessmentsDORAOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
     { path: 'assessments/doma-overview', component: AssessmentsDOMAOverviewComponent, canActivate: [AuthGuard], data: { hasClientAccess: true } },
 
     //Reports
@@ -87,14 +91,14 @@ export const routes: Routes = [
     { path: 'school-scorecards/report', component: SchoolScorecardsReportComponent, canActivate: [AuthGuard] },
 
     { path: 'comparison-schools', component: CompareSBACScoresComponent, canActivate: [AuthGuard] },
-    { path: 'comparison-schools/sbac-scores', component: CompareSBACScoresComponent, canActivate: [AuthGuard] },    
+    { path: 'comparison-schools/sbac-scores', component: CompareSBACScoresComponent, canActivate: [AuthGuard] },
     { path: 'comparison-schools/school-scorecards', component: CompareSchoolScorecardsComponent, canActivate: [AuthGuard] },
     { path: 'teacher-scorecards', component: TeacherScorecardsReportComponent, canActivate: [AuthGuard] },
     { path: 'teacher-scorecards/report', component: TeacherScorecardsReportComponent, canActivate: [AuthGuard] },
     { path: 'student-scorecards', component: StudentScorecardsReportComponent, canActivate: [AuthGuard] },
     { path: 'student-scorecards/report', component: StudentScorecardsReportComponent, canActivate: [AuthGuard] },
     { path: 'voice-schoolsurvey', component: VoiceOfTheSchoolSurveyReportComponent, canActivate: [AuthGuard] },
-    
+
 
     //Admin pages
     { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard] },
@@ -104,6 +108,10 @@ export const routes: Routes = [
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponent, canActivate: [AuthGuard] },
     { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard] },
+    { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
+    { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
+    { path: 'taxonomy/subcategory/:typeid/:catid', component: TaxonomySubCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
+    { path: 'taxonomy/item/:typeid/:catid/:subcatid', component: TaxonomyItemComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
 
 
     //Configuration pages

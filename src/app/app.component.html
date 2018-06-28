@@ -33,6 +33,8 @@
 
     <div class="layout-main">
         <spinner></spinner><!--Added-->
+        <p-growl [(value)]="msgs" [life]="2000" [immutable]="false"></p-growl>
+        <p-confirmDialog header="Confirmation" icon="fa fa-exclamation-triangle"></p-confirmDialog>
         <router-outlet></router-outlet>
     </div>
 

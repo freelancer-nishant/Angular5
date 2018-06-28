@@ -73,6 +73,8 @@ import { TooltipModule } from 'primeng/primeng';
 import { TreeModule } from 'primeng/primeng';
 import { TreeTableModule } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+//import { ConfirmationService } from 'primeng/components/common/api';
 
 import { AppComponent } from './app.component';
 import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
@@ -155,15 +157,22 @@ import { SchoolGradeService } from './shared/services/school.grade.service';
 import { ComparativeListService } from './shared/services/comparativelist.service'
 import { CommonService } from './shared/services/Common.service'
 import { TaxonomyService } from './shared/services/taxonomy.service'
+import { TaxonomyConfigurationService } from './shared/services/taxonomyconfiguration.service';
 import { SemesterInSchoolYearService } from './shared/services/semester.inschoolyear.service'
 import { GradeService } from './shared/services/grade.service'
 import { DaysInSchoolYearService } from './shared/services/days.inschoolyear.service'
+import { ClientService } from './shared/services/client.service';
+import { RoleService } from './shared/services/role.service';
 
 import { TestService } from './shared/services/test.service'
 import { TestVersionService } from './shared/services/testversion.service'
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './shared/services/auth.service';
 import { AuthGuardService } from './shared/services/auth-guard.service';
+import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
+import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
+import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
+import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
 
 
 @NgModule({
@@ -328,6 +337,10 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         CompareSchoolYearFilter,
         SchoolYearFilter,
         SchoolComponent,
+        TaxonomyTypeComponent,
+        TaxonomyCategoryComponent,
+        TaxonomySubCategoryComponent,
+        TaxonomyItemComponent,
         VJSComponent,
         TranslateComponent
     ],
@@ -335,8 +348,9 @@ import { AuthGuardService } from './shared/services/auth-guard.service';
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         HttpClient,
         LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
-        CommonService, TaxonomyService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
-        MessageService,
+        CommonService, TaxonomyService, TaxonomyConfigurationService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
+        ClientService, RoleService,
+        MessageService, ConfirmationService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
     ],

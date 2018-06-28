@@ -10,7 +10,7 @@ import { School } from './../shared/domain/school';
 import { SchoolSchoolYear } from './../shared/domain/school.schoolyear';
 import { SchoolGrade } from './../shared/domain/school.schoolgrade';
 import { TaxonomyService } from './../shared/services/taxonomy.service';
-import { TaxonomyType, ItemDetail } from './../shared/domain/taxonomy';
+import {  ItemDetail } from './../shared/domain/taxonomy';
 import { SchoolYearGradeFilter } from './filters/school-year-grade-filter';
 import { SchoolYearGradeTestFilter } from './filters/school-year-grade-test-filter';
 import { AssesmentSchoolYearGradeFilter } from './filters/assesment-school-year-grade-filter';
@@ -62,7 +62,7 @@ export class CategoryPageComponent implements OnInit {
         try {
             this.sessionInfo = this.app.getSession();
             let sideMenuInfo: any = {};
-            let taxonomycategory: TaxonomyType[] = [];
+            let taxonomycategory: any[] = [];
             this.taxonomyService.getCategory(typeid, this.sessionInfo.client_id).subscribe((result: any) => taxonomycategory = result.data,
                 (error: any) => { },
                 () => {
