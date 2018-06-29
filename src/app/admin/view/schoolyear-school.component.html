@@ -8,15 +8,15 @@
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="control-label" for="selectedSchool">School</label>
-                        <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false" placeholder="--Select--" (onChange)="schoolChange()"></p-dropdown>
+                        <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false" placeholder="--Select--" (onChange)="schoolChange(this)"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="control-label" for="selectedSchoolYear">School Year</label>
-                        <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
+                        <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false" placeholder="--Select--" required></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-3">
                         <label class="control-label">&nbsp;</label>
-                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto;"></button>
+                        <button pButton type="button" label="Go" (click)="onGoClick()" [disabled]="selectedSchool == null || selectedSchoolYear == null" style="width:auto;"></button>
                     </div>
                 </div>
             </div>
@@ -61,10 +61,10 @@
                                             <label>{{school.school_name}}</label>
                                         </div>
                                         <div class="ui-g-2 ui-md-2">
-                                            <p-calendar [(ngModel)]="school.start_date"></p-calendar>
+                                            <p-calendar readonlyInput="true" [(ngModel)]="school.start_date"></p-calendar>
                                         </div>
                                         <div class="ui-g-2 ui-md-2">
-                                            <p-calendar [(ngModel)]="school.end_date"></p-calendar>
+                                            <p-calendar readonlyInput="true" [(ngModel)]="school.end_date"></p-calendar>
                                         </div>
                                         <div class="ui-g-1 ui-md-1 text-center">
                                             <button pButton type="button" label="Update" (click)="editSchool(school.id)" style="width:auto;"></button>
@@ -129,18 +129,16 @@
                         </div>
                         <div class="ui-g-12 ui-md-12">
                             <div class="ui-g-7 ui-md-7">
-                                <input type="text" size="35" [(ngModel)]="semesterAdded.label" />
+                                <input type="text" pInputText [(ngModel)]="semesterAdded.label" />
                             </div>
                             <div class="ui-g-2 ui-md-2">
-                                <p-calendar [(ngModel)]="semesterAdded.start_date"></p-calendar>
-                                <div *ngIf="semesterAdded.start_date < semesterAdded.end_date" style="color: red">Invalid Date</div>
+                                <p-calendar readonlyInput="true" [(ngModel)]="semesterAdded.start_date"></p-calendar>
                             </div>
                             <div class="ui-g-2 ui-md-2">
-                                <p-calendar [(ngModel)]="semesterAdded.end_date"></p-calendar>
-                                <div *ngIf="semesterAdded.end_date > semesterAdded.start_date" style="color: red">Invalid Date</div>
+                                <p-calendar readonlyInput="true" [(ngModel)]="semesterAdded.end_date"></p-calendar>
                             </div>
                             <div class="ui-g-1 ui-md-1 text-center">
-                                <button pButton type="button" label="Add" (click)="addSemester()"></button>
+                                <button pButton type="button" label="Add" (click)="addSemester()" [disabled]="semesterAdded.label == null || semesterAdded.label == '' ||semesterAdded.start_date == null || semesterAdded.end_date == null"></button>
                             </div>
                         </div>
                         <div class="ui-g-12 ui-md-12">
@@ -151,10 +149,10 @@
                                             <label>{{semester.label}}</label>
                                         </div>
                                         <div class="ui-g-2 ui-md-2">
-                                            <p-calendar [(ngModel)]="semester.start_date"></p-calendar>
+                                            <p-calendar readonlyInput="true" [(ngModel)]="semester.start_date"></p-calendar>
                                         </div>
                                         <div class="ui-g-2 ui-md-2">
-                                            <p-calendar [(ngModel)]="semester.end_date"></p-calendar>
+                                            <p-calendar readonlyInput="true" [(ngModel)]="semester.end_date"></p-calendar>
                                         </div>
                                         <div class="ui-g-1 ui-md-1 text-center">
                                             <button pButton type="button" label="Update" (click)="editSemester(semester.id)" style="width:auto;"></button>
@@ -182,7 +180,7 @@
                                 <p-dropdown [options]="gradeDetailList" [(ngModel)]="selectedSchoolGrade" placeholder="--Select--" [autoWidth]="false" class="ui-g-3 ui-md-3"></p-dropdown>
                             </div>
                             <div class="ui-g-1 ui-md-1">
-                                <button pButton type="button" label="Add" (click)="addSchoolGrade()"></button>
+                                <button pButton type="button" label="Add" [disabled]="selectedSchoolGrade == null" (click)="addSchoolGrade()"></button>
                             </div>
                         </div>
                         <div class="ui-g-12 ui-md-12">

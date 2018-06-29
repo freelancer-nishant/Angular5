@@ -130,6 +130,9 @@ import { AdminAssessmentsComponent } from './admin/view/admin-assessments.compon
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 
+import { SchoolComponent } from './configurations/view/school.component'
+
+
 import { SchoolYearGradeFilter } from './dashboards/filters/school-year-grade-filter';
 import { SchoolYearGradeTestFilter } from './dashboards/filters/school-year-grade-test-filter';
 import { AssesmentSchoolYearGradeFilter } from './dashboards/filters/assesment-school-year-grade-filter';
@@ -333,11 +336,11 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         AssesmentSchoolYearGradeFilter,
         CompareSchoolYearFilter,
         SchoolYearFilter,
+        SchoolComponent,
         TaxonomyTypeComponent,
         TaxonomyCategoryComponent,
         TaxonomySubCategoryComponent,
         TaxonomyItemComponent,
-
         VJSComponent,
         TranslateComponent
     ],

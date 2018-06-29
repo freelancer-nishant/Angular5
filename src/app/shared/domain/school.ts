@@ -1,5 +1,6 @@
 export interface School {
     id,
+    client_id,
     code,
     name,
     abbrev,

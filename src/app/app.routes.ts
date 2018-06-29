@@ -63,6 +63,8 @@ import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.compon
 import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
 import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
 
+import { SchoolComponent } from './configurations/view/school.component'
+
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'embedded-report/:user/:pwd', component: EmbeddedLoginComponent },
@@ -110,6 +112,12 @@ export const routes: Routes = [
     { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/subcategory/:typeid/:catid', component: TaxonomySubCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/item/:typeid/:catid/:subcatid', component: TaxonomyItemComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
+
+
+    //Configuration pages
+
+    { path: 'configurations/school', component: SchoolComponent, canActivate: [AuthGuard] },
+
 
     //Theme routes
     //{ path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_ADMIN } },
