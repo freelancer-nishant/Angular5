@@ -29,19 +29,20 @@ export class EmbeddedLoginComponent implements OnInit {
             .subscribe((data: any) => this.loginResult = data,
             //error => () => { this.msgError = "Invalid credentials"; this.loginProcessing = false; },
             (error: any) => {
-            this.msgError = "Invalid credentials";
+                this.msgError = "Invalid credentials";
                 console.log(error);
             },
             () => {
                 //console.log(this.loginResult);
                 if (this.loginResult.access_token != undefined) {
-                    this.app.doLogin(this.loginResult,true);
+                    this.app.doLogin(this.loginResult, true);
                     if (this.app.isLoggedIn) {
                         this.app.isClientPage = true;
                         sessionStorage.setItem("isClientPage", "true");
 
                         sessionStorage.setItem(window.btoa("usr"), window.btoa(login.username));
                         sessionStorage.setItem(window.btoa("pwd"), window.btoa(login.password));
+                        this.app.role = this.app.getSession().role;
                     }
                 } else { this.msgError = "Invalid credentials"; }
             });

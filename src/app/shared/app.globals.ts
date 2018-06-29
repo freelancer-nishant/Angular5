@@ -55,18 +55,23 @@ export class GlobalHelper {
                     { name: 'Voice of the School Surveys (Sample)', route: "#/voice-schoolsurvey" }
                 ];
                 break;
+            case MenuType.School:
             case MenuType.SchoolInSchoolYear:
             case MenuType.EnrollmentAndAttendance:
             case MenuType.AdminAssessments:
             case MenuType.AssessmentUploads:
             case MenuType.SchoolComparisonList:
-            case MenuType.Taxonomy:
                 categories = [
+                    { name: 'School', route: "#/school/teachers" },
                     { name: 'School in School Year', route: "#/schoolyear/school" },
                     { name: 'Enrollment & Attendance', route: "#/enrollment-attendance" },
                     { name: 'Assessments', route: "#/admin-assessments" },
                     { name: 'Assessment Uploads', route: "#/admin-assessments-upload" },
                     { name: 'School Comparison List', route: "#/school-comparison-list" },
+                ];
+                break;
+            case MenuType.Taxonomy:
+                categories = [
                     { name: 'Manage Taxonomy', route: "#/taxonomy/type" },
                 ];
                 break;
@@ -120,6 +125,12 @@ export class GlobalHelper {
                 sideMenuInfo = {
                     icon: './assets/layout/images/report/voice-survey.png',
                     name: "Voice of the School Surveys (Sample)"
+                }
+                break;
+            case MenuType.School:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/report/school-scorecard.png',
+                    name: "School"
                 }
                 break;
             case MenuType.SchoolInSchoolYear:
@@ -281,7 +292,6 @@ export class GlobalHelper {
             case MenuType.AdminAssessments:
             case MenuType.AssessmentUploads:
             case MenuType.SchoolComparisonList:
-            case MenuType.Taxonomy:
                 menuItems = [
                     {
                         label: 'School', icon: 'fa fa-fw fa-bar-chart',
@@ -333,14 +343,15 @@ export class GlobalHelper {
                         items: [
                             { label: 'Manage Comparison School Lists', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] }
                         ]
-                    },
+                    }
+                ];
+                break;
+            case MenuType.Taxonomy:
+                menuItems = [
                     {
                         label: 'Manage Taxonomy', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Types', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/type'] }//,
-                            //{ label: 'Category', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/category'] },
-                            //{ label: 'Sub Category', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/subcategory'] },
-                            //{ label: 'Items', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/items'] }
+                            { label: 'Types', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/type'] }
                         ]
                     }
                 ];
