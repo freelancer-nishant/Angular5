@@ -234,11 +234,12 @@
                     <div class="ui-g">
                         <div class="ui-g-12 div-center">
                             <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <input type="text" size="35" />&nbsp;&nbsp;
-                            <input id="fileupload" name="myfile" type="file" />
+                            <!--<input type="text" size="35" />&nbsp;&nbsp;
+                            <input id="fileupload" name="myfile" type="file" />-->
+                            <fileUpload [(fileData)]="DaysInSchool" (change)="DaysInSchool=$event"></fileUpload>
                         </div>
                         <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" style="width:auto;"></button>
+                            <button pButton type="button" label="Upload" (click)="uploadDaysInSchool()" style="width:auto;"></button>
                         </div>
                     </div>
                     <p-panel>

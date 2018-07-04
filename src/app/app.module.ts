@@ -141,7 +141,7 @@ import { SchoolYearFilter } from './dashboards/filters/school-year-filter';
 
 import { VJSComponent } from './vjs.component'
 import { TranslateComponent } from './translate-component'
-
+import { FileUploadComponent } from './fileupload.component';
 
 import { VJSConfig } from './shared/services/vjsconfig.service';
 
@@ -342,7 +342,8 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         TaxonomySubCategoryComponent,
         TaxonomyItemComponent,
         VJSComponent,
-        TranslateComponent
+        TranslateComponent,
+        FileUploadComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
