@@ -374,11 +374,12 @@ export class SchoolYearOfSchoolComponent implements OnInit {
         if (this.DaysInSchool != "" && this.DaysInSchool != undefined) {
             let responseResult: ResponseResult;
             this.daysAdded.client_id = this.sessionInfo.client_id;
+            this.daysAdded.school_id = this.selectedSchool;
             this.daysAdded.school_year_id = this.selectedSchoolYear;
             this.daysAdded.skip_first_row = true;
             this.daysAdded.file_data = this.DaysInSchool;
 
-            this.daysInSchoolYearService.attendance(this.daysAdded).subscribe((result: any) => responseResult = result,
+            this.daysInSchoolYearService.insert(this.daysAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
                     this.msgs.push({ severity: 'error', detail: error.error.message });
                 },

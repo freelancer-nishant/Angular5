@@ -27,7 +27,7 @@ export class FileUploadComponent {
             var myReader: FileReader = new FileReader();
 
             myReader.onloadend = (e) => {
-                this.change.emit(myReader.result.split(',')[1]);
+                this.change.emit(myReader.result.substr(myReader.result.indexOf(',')+1, myReader.result.length));
             }
             myReader.readAsDataURL(file);
         }
