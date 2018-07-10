@@ -1,0 +1,106 @@
+﻿<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <div class="card card-w-title content-card">
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Add / Update List Items
+                </p-header>
+                <p-growl [(value)]="msgs"></p-growl>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-12 ui-md-12 text-left">
+                            <label>{{comparativeSchoolListLabel}}</label><br />
+                        </div>
+                        <div class="ui-g-5 ui-md-5 text-left">
+                            <button pButton type="button" label="Add New" style="width:auto;" (click)="addUpdateListItem()"></button>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-3 ui-md-3 text-left">
+                            <label class="text-bold">School</label>
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <label class="text-bold">Display Label</label>
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <label class="text-bold">Highlight In List</label>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12">
+                        <p-dataGrid [value]="comparativeItem" [immutable]="false">
+                            <ng-template let-comparativeItemSchool pTemplate="item">
+                                <div class="ui-g-12 ui-md-12">
+                                    <div class="ui-g-3 ui-md-3 text-left">
+                                        <label>{{comparativeItemSchool.school_label}}</label><br />
+                                    </div>
+                                    <div class="ui-g-3 ui-md-3">
+                                        <input type="text" pInputText />
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1">
+                                        <label style="display: block;"><input type="checkbox" /></label>
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1">
+                                        <button pButton type="button" icon="fa fa-trash" (click)="deleteComparativeItemFromList(comparativeItemSchool.id)" style="width:auto;"></button><br />
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-dataGrid>
+
+                        <div class="ui-g-5 ui-md-5 text-left">
+                            <button pButton type="button" label="Save" style="width:auto;" (click)="saveComparativeItemList()"></button><br />
+                        </div>
+
+                    </div>
+                </div>
+            </p-panel>
+            &nbsp;
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <p-dialog header="Add Update List Item" [resizable]="false" responsive="true" [(visible)]="dialogVisible" modal="true" height="700">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-2">
+                    <label for="input">State :</label>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="stateChange($event)" [autoWidth]="false" tabindex="3" placeholder="Select State"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <label for="input">City :</label>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="cityList" [(ngModel)]="newSchool.city" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="6" placeholder="Select City"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <label for="input">County :</label>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="countyList" [(ngModel)]="newSchool.county" (onChange)="countyChange($event)" [autoWidth]="false" tabindex="4" placeholder="Select County"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <label for="input">School Type :</label>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="schooltypeList" [(ngModel)]="newSchool.schooltype" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="7" placeholder="Select School Type"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <label for="input">School Distinct :</label>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="districtList" [(ngModel)]="newSchool.district" (onChange)="districtChange($event)" [autoWidth]="false" tabindex="5" placeholder="Select District"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <label for="input">School :</label>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="schoolList" [(ngModel)]="newSchool.school" [autoWidth]="false" tabindex="8" placeholder="Select School"></p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-12 text-center">
+                <button pButton type="button" label="save" style="width:auto;" (click)="saveListItemFromPopup()"></button>
+            </div>
+        </p-dialog>
+    </div>
+</div>

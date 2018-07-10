@@ -129,9 +129,10 @@ import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attend
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
-
 import { SchoolComponent } from './configurations/view/school.component'
-
+import { SchoolYearComponent } from './configurations/view/schoolyear.component'
+import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component'
+import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component'
 
 import { SchoolYearGradeFilter } from './dashboards/filters/school-year-grade-filter';
 import { SchoolYearGradeTestFilter } from './dashboards/filters/school-year-grade-test-filter';
@@ -153,6 +154,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';//Adde
 import { LoginService } from './shared/services/loginservice';
 import { SchoolService } from './shared/services/school.service';
 import { SchoolYearService } from './shared/services/school.year.service';
+import { YearService } from './shared/services/year.service';
 import { SchoolGradeService } from './shared/services/school.grade.service';
 import { ComparativeListService } from './shared/services/comparativelist.service'
 import { CommonService } from './shared/services/Common.service'
@@ -337,6 +339,9 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         CompareSchoolYearFilter,
         SchoolYearFilter,
         SchoolComponent,
+        SchoolYearComponent,
+        ComparativeSchoolListComponent,
+        ComparativeSchoolListItemComponent,
         TaxonomyTypeComponent,
         TaxonomyCategoryComponent,
         TaxonomySubCategoryComponent,
@@ -347,7 +352,7 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         HttpClient,
-        LoginService, SchoolService, SchoolYearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
+        LoginService, SchoolService, SchoolYearService, YearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService, TaxonomyService, TaxonomyConfigurationService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
         ClientService, RoleService,
         MessageService, ConfirmationService,

@@ -30,7 +30,7 @@ export class SemesterInSchoolYearService {
         return this.http.put(url, GlobalHelper.toHttpParams(semesterInSchoolYear), httpOptionsa);
     }
 
-    delete(id: any, clientId?: any): Observable<any> { debugger
+    delete(id: any, clientId?: any): Observable<any> { 
         let url: string = GlobalConstants.API_BASE_URL + '/api/semesterinschoolyear?id=' + id + '&clientId=' + clientId;
         return this.http.delete(url);
     }

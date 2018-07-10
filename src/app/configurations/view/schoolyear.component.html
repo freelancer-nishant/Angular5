@@ -1,0 +1,52 @@
+﻿<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <div class="card card-w-title content-card">
+                &nbsp;
+                <p-panel [toggleable]="true">
+                    <p-header class="text-normal">
+                        School Years
+                    </p-header>
+                    <p-growl [(value)]="msgs"></p-growl>
+                    <div class="ui-g form-group">
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-g-5 ui-md-5 text-left">
+                                <label class="text-bold">School Year Label</label><br />
+                            </div>
+                            <div class="ui-g-2 ui-md-2">
+                                <label class="text-bold">Start year</label><br />
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-g-5 ui-md-5">
+                                <input type="text" pInputText [(ngModel)]="schoolYearAdded.school_year"/>
+                            </div> 
+                            <div class="ui-g-3 ui-md-3">
+                                <input type="text" pInputText [(ngModel)]="schoolYearAdded.schoolyear_num"/>
+                            </div>
+                            <div class="ui-g-3 ui-md-3 text-center">
+                                <label style="display: block;"><input type="checkbox" checked="checked" />Make copy of all schools from previous year</label>
+                            </div>
+                            <div class="ui-g-1 ui-md-1 text-center">
+                                <button pButton type="button" label="Add"  (click)="addSchoolYear()" [disabled]="schoolYearAdded.school_year == null || schoolYearAdded.school_year == '' || schoolYearAdded.schoolyear_num == null || schoolYearAdded.schoolyear_num =='' "></button>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <p-dataGrid [value]="schoolYearList" [immutable]="false">
+                                <ng-template let-year pTemplate="item">
+                                    <div class="ui-g-12 ui-md-12">
+                                        <div class="ui-g-5 ui-md-5">
+                                            <label>{{year.school_year}}</label>
+                                        </div>
+                                        <div class="ui-g-3 ui-md-3">
+                                            <label>{{year.schoolyear_num}}</label>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-dataGrid>
+                        </div>
+                    </div>
+                </p-panel>
+                &nbsp;
+        </div>
+    </div>
+</div>

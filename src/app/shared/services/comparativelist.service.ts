@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-//import { of } from 'rxjs/observable/of';
-//import 'rxjs/add/operator/map';
-//import 'rxjs/add/operator/catch';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 import { catchError, map, tap } from 'rxjs/operators';
-
-import { GlobalConstants } from './../app.globals';
+import { GlobalConstants, GlobalHelper } from './../app.globals';
+import { ComparativeListItem } from './../../shared/domain/comparative.list'
 
 
 const httpOptionsa = {
@@ -29,4 +29,24 @@ export class ComparativeListService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelist/' + id + '?clientId=' + client_id;
         return this.http.get(url);
     }
+
+    insert(comparativeSchoolDetail: ComparativeListItem): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelist';
+        return this.http.post(url, GlobalHelper.toHttpParams(comparativeSchoolDetail), httpOptionsa);
+    }
+
+    delete(id: any, client_id: any): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelist?id=' + id + '&client_Id=' + client_id;
+        return this.http.delete(url);
+    }   
+
+    update(comparativeSchoolDetail: ComparativeListItem): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelist';
+        return this.http.put(url, GlobalHelper.toHttpParams(comparativeSchoolDetail), httpOptionsa);
+    }
+
+    //insert(comparativeSchoolDetail: ComparativeListItem): Observable<any> {
+    //    let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelistitem';
+    //    return this.http.post(url, GlobalHelper.toHttpParams(comparativeSchoolDetail), httpOptionsa);
+    //}
 }

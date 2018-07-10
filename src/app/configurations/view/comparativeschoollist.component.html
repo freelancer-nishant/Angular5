@@ -1,0 +1,102 @@
+﻿<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <div class="card card-w-title content-card">
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Comparative School Lists
+                </p-header>
+                <p-growl [(value)]="msgs"></p-growl>
+                <div class="ui-g form-group">
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-5 ui-md-5 text-left">
+                            <button pButton type="button" label="Add New" style="width:auto;" (click)="addNewComparativeSchools()"></button>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-3 ui-md-3 text-left">
+                            <label class="text-bold">Name</label><br />
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <label class="text-bold">Display Label</label><br />
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <label class="text-bold">Description</label><br />
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+                            <label class="text-bold">Base School</label><br />
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12">
+                        <p-dataGrid [value]="comparativeSchoolList" [immutable]="false">
+                            <ng-template let-school pTemplate="item">
+                                <div class="ui-g-12 ui-md-12">
+                                    <!--<div class="ui-g-5 ui-md-5">
+                                        <label>School Name</label>
+                                    </div>-->
+                                    <div class="ui-g-3 ui-md-3">
+                                        <label><a href="#/configurations/comparativeschoollistitem/{{school.id}}">{{school.name}}</a></label>
+                                        <!--<a [href]="#/configurations/comparativeschoollistitem/school.name">{{school.name}}</a>-->
+                                    </div>
+                                    <div class="ui-g-3 ui-md-3">
+                                        <label>{{school.label}}</label>
+                                        <!--<input type="text" pInputText [(ngModel)]="school.label" />-->
+                                    </div>
+                                    <div class="ui-g-3 ui-md-3">
+                                        <label>{{school.desc}}</label>
+                                        <!--<input type="text" pInputText [(ngModel)]="school.desc" />-->
+                                    </div>
+                                    <div class="ui-g-2 ui-md-2">
+                                        <label>{{school.base_school_name}}</label>
+                                        <!--<input type="text" pInputText [(ngModel)]="school.base_school_name" />-->
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1 text-center">
+                                        <button pButton type="button" icon="fa fa-edit" (click)="updateComparativeSchools(school.id, school.name, school.label, school.desc,school.base_school_name)" style="width:auto;"></button>
+                                        <button pButton type="button" icon="fa fa-trash" (click)="deleteComparativeSchool(school.id)" style="width:auto;"></button><br />
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-dataGrid>
+                    </div>
+                </div>
+            </p-panel>
+            &nbsp;
+        </div>
+
+        <p-dialog header="Add Comparative School List" [resizable]="true" responsive="true" [(visible)]="dialogVisible" modal="true" width="700">
+            <div class="ui-g-4 ui-md-4 text-right">
+                <label for="input">List Name :</label>
+            </div>
+            <div class="ui-g-8 ui-md-8">
+                <input id="input" type="text" pInputText tabindex="1" [(ngModel)]="comparativeSchoolSelected.name" />
+            </div>
+
+            <div class="ui-g-4 ui-md-4 text-right">
+                <label for="input">Display Label :</label>
+            </div>
+            <div class="ui-g-8 ui-md-8">
+                <input id="input" type="text" pInputText tabindex="2" [(ngModel)]="comparativeSchoolSelected.label" />
+            </div>
+
+            <div class="ui-g-4 ui-md-4 text-right">
+                <label for="input">Description :</label>
+            </div>
+            <div class="ui-g-8 ui-md-8">
+                <textarea id="input" pInputText tabindex="3" [(ngModel)]="comparativeSchoolSelected.desc"></textarea>
+            </div>
+
+            <div class="ui-g-4 ui-md-4 text-right">
+                <label for="input">Base School (Optional) :</label>
+            </div>
+            <div class="ui-g-8 ui-md-8">
+                <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false" tabindex="4" placeholder="None"></p-dropdown>
+            </div>
+
+            <div class="ui-g-12 ui-md-12 text-center">
+                <button pButton type="button" label="save" style="width:auto;" (click)="addComparativeSchool()" [disabled]="comparativeSchoolSelected.name == null || comparativeSchoolSelected.name == '' || comparativeSchoolSelected.label == null || comparativeSchoolSelected.label =='' || comparativeSchoolSelected.desc == null || comparativeSchoolSelected.desc =='' "></button>
+                <!--<button pButton type="button" label="update" style="width:auto;" (click)="editComparativeSchool()" [disabled]="comparativeSchoolSelected.name == null || comparativeSchoolSelected.name == '' || comparativeSchoolSelected.label == null || comparativeSchoolSelected.label =='' || comparativeSchoolSelected.desc == null || comparativeSchoolSelected.desc =='' "></button>-->
+            </div>
+        </p-dialog>
+    </div>
+</div>

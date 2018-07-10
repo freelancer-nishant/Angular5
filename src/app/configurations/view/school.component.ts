@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
+import { ActivatedRoute } from '@angular/router';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import * as moment from 'moment';
 import { SelectItem } from 'primeng/primeng';
@@ -77,6 +78,11 @@ export class SchoolComponent implements OnInit
                     () => {
                         this.loadSchools();
                         this.msgs.push({ severity: 'success', detail: "School added successfully." });
+                        this.schoolAdded.name = null;
+                        this.schoolAdded.label = null;
+                        this.schoolAdded.code = null;
+                        this.schoolAdded.abbrev_ps = null;
+                        this.schoolAdded.abbrev = null;
                     });
         }
         else {

@@ -12,6 +12,9 @@ export interface ComparativeListItem {
     name,
     label,
     desc,
+    school_id,
+    base_school_id,
+    base_school_name,
     items: ComparativeItem[]
 }
 export interface ComparativeItem {

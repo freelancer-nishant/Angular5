@@ -62,8 +62,10 @@ import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
 import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
 import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
-
 import { SchoolComponent } from './configurations/view/school.component'
+import { SchoolYearComponent } from './configurations/view/schoolyear.component'
+import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component'
+import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component'
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -117,7 +119,9 @@ export const routes: Routes = [
     //Configuration pages
 
     { path: 'configurations/school', component: SchoolComponent, canActivate: [AuthGuard] },
-
+    { path: 'configurations/schoolyear', component: SchoolYearComponent, canActivate: [AuthGuard] },
+    { path: 'configurations/comparativeschoollist', component: ComparativeSchoolListComponent, canActivate: [AuthGuard] },
+    { path: 'configurations/comparativeschoollistitem/:id', component: ComparativeSchoolListItemComponent, canActivate: [AuthGuard] },
 
     //Theme routes
     //{ path: 'dashboard-theme', component: DashboardDemoComponent, canActivate: [AuthGuard], data: { expectedRole: GlobalConstants.ROLE_ADMIN } },
