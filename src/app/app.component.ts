@@ -123,7 +123,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
         this.isLoggedIn = true;
         this.issinglepage = false;
-        this.role = this.getSession().role;
 
         if (isClientPage)
             this.router.navigate(['']);

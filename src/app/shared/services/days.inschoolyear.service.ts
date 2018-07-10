@@ -20,5 +20,9 @@ export class DaysInSchoolYearService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/attendancedate';
         return this.http.post(url, GlobalHelper.toHttpParams(daysInSchoolYear), httpOptionsa);
     }
+    attendance(daysInSchoolYear: DaysInSchoolYear): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/attendance';
+        return this.http.post(url, GlobalHelper.toHttpParams(daysInSchoolYear), httpOptionsa);
+    }
 }
 

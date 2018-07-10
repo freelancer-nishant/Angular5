@@ -20,6 +20,7 @@ import { GradeService } from './../../shared/services/grade.service'
 import { Grade } from './../../shared/domain/grade'
 import { DaysInSchoolYearService } from './../../shared/services/days.inschoolyear.service'
 import { DaysInSchoolYear } from './../../shared/domain/days.inschoolyear'
+declare var $: any;
 
 @Component({
     templateUrl: './schoolyear-school.component.html',
@@ -48,6 +49,8 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     selectedSchoolGrade: any;
 
     daysAdded: any;
+
+    DaysInSchool: string;
 
     msgs: Message[] = [];
 
@@ -82,8 +85,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             this.school.SchoolName = this.schoolList.find(x => x.value === this.selectedSchool).label;
         }
 
-        if (this.selectedSchoolYear != undefined)
-        {
+        if (this.selectedSchoolYear != undefined) {
             this.school.SchoolYear = this.schoolYearList.find(x => x.value === this.selectedSchoolYear).label
         }
         let schooldetailList: SchoolSchoolYear[] = [];
@@ -320,7 +322,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
         }
     }
 
-    addSchoolGrade() {  
+    addSchoolGrade() {
         if (this.selectedSchoolGrade != undefined && this.selectedSchoolGrade != null) {
             let responseResult: ResponseResult;
             this.schoolGradeAdded.client_id = this.sessionInfo.client_id;
@@ -353,11 +355,33 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     }
 
     uploadDays() {
-      if (this.daysAdded != undefined && this.daysAdded != null) {
+        if (this.daysAdded != undefined && this.daysAdded != null) {
             let responseResult: ResponseResult;
             this.daysAdded.client_id = this.sessionInfo.client_id;
             this.daysAdded.school_id = this.selectedSchool;
             this.daysAdded.school_year_id = this.selectedSchoolYear;
+            this.daysInSchoolYearService.insert(this.daysAdded).subscribe((result: any) => responseResult = result,
+                (error: any) => {
+                    this.msgs.push({ severity: 'error', detail: error.error.message });
+                },
+                () => {
+                    this.loadSemesters();
+                    this.msgs.push({ severity: 'success', detail: "Days In School Year added successfully." });
+                });
+        }
+        else {
+            this.msgs.push({ severity: 'error', detail: "Please input data to add." });
+        }
+    }
+    uploadDaysInSchool() {
+        if (this.DaysInSchool != "" && this.DaysInSchool != undefined) {
+            let responseResult: ResponseResult;
+            this.daysAdded.client_id = this.sessionInfo.client_id;
+            this.daysAdded.school_id = this.selectedSchool;
+            this.daysAdded.school_year_id = this.selectedSchoolYear;
+            this.daysAdded.skip_first_row = true;
+            this.daysAdded.file_data = this.DaysInSchool;
+
             this.daysInSchoolYearService.insert(this.daysAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
                     this.msgs.push({ severity: 'error', detail: error.error.message });
