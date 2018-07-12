@@ -7,35 +7,25 @@ declare var $: any;
 @Component({
     selector: 'fileUpload',
     template: `
-            <p-fileUpload mode="basic" customUpload="true" (uploadHandler)="fnUploadFile($event)" auto="auto" multiple="multiple" (onSelect)="fnOnSelect()" (onError)="fnOnError()"></p-fileUpload>
-            <label *ngIf="UploadStarted">Upload Started</label><br/>
-            <label *ngIf="UploadCompletd">Completd Successfully</label>
-            <label *ngIf="UploadError">An Error accure while uploading file.</label>
+                <div class="ui-g form-group">
+                <div class="ui-g-12 ui-sm-12 ui-md-7"><input id="input" type="text" pInputText [(ngModel)]="FileName" name="icon" tabindex="1" required /></div>
+                <div class="ui-g-12 ui-sm-12 ui-md-5"><p-fileUpload mode="basic" customUpload="true" (uploadHandler)="fnUploadFile($event)" auto="auto" multiple="multiple" chooseLabel="Choose File"></p-fileUpload></div>
+                </div>
             `,
 })
 export class FileUploadComponent {
     @Input() fileData;
     @Output() change: EventEmitter<string> = new EventEmitter<string>();
-    UploadStarted: boolean = false;
-    UploadCompletd: boolean = false;
-    UploadError: boolean = false;
-
+    FileName: string = "";
     fnUploadFile(event) {
-        this.UploadCompletd = true;
-
         for (let file of event.files) {
             var myReader: FileReader = new FileReader();
 
             myReader.onloadend = (e) => {
                 this.change.emit(myReader.result.substr(myReader.result.indexOf(',')+1, myReader.result.length));
             }
+            this.FileName = file.name;
             myReader.readAsDataURL(file);
         }
-    }
-    fnOnSelect() {
-        this.UploadStarted = true;
-    }
-    fnOnError() {
-        this.UploadError = true;
     }
 }

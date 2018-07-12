@@ -51,6 +51,8 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     daysAdded: any;
 
     DaysInSchool: string;
+    DaysInSchoolUploadMsgs = [];
+    DaysInSchoolUploadErrorMsgs = [];
 
     msgs: Message[] = [];
 
@@ -375,6 +377,8 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     }
     uploadDaysInSchool() {
         if (this.DaysInSchool != "" && this.DaysInSchool != undefined) {
+            this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
+
             let responseResult: ResponseResult;
             this.daysAdded.client_id = this.sessionInfo.client_id;
             this.daysAdded.school_id = this.selectedSchool;
@@ -384,11 +388,11 @@ export class SchoolYearOfSchoolComponent implements OnInit {
 
             this.daysInSchoolYearService.insert(this.daysAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
-                    this.msgs.push({ severity: 'error', detail: error.error.message });
+                    this.DaysInSchoolUploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
                 },
                 () => {
                     this.loadSemesters();
-                    this.msgs.push({ severity: 'success', detail: "Days In School Year added successfully." });
+                    this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
                 });
         }
         else {
