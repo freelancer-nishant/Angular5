@@ -9,7 +9,7 @@
                     <p-growl [(value)]="msgs"></p-growl>
                     <div class="ui-g form-group">
                         <div class="ui-g-12 ui-md-12">
-                            <div class="ui-g-7 ui-md-7 text-left">
+                            <div class="ui-g-5 ui-md-5 text-left">
                                 <label class="text-bold">School Name</label><br />
                             </div>
                             <div class="ui-g-2 ui-md-2">
@@ -18,9 +18,12 @@
                             <div class="ui-g-2 ui-md-2">
                                 <label class="text-bold">Power School Abbreviation</label><br />
                             </div>
+                            <div class="ui-g-2 ui-md-2">
+                                <label class="text-bold">Abbreviation</label><br />
+                            </div>
                         </div>
                         <div class="ui-g-12 ui-md-12">
-                            <div class="ui-g-7 ui-md-7">
+                            <div class="ui-g-5 ui-md-5">
                                 <input type="text" pInputText [(ngModel)]="schoolAdded.name" />
                             </div> 
                             <div class="ui-g-2 ui-md-2">
@@ -29,15 +32,18 @@
                             <div class="ui-g-2 ui-md-2">
                                 <input type="text" pInputText [(ngModel)]="schoolAdded.abbrev_ps" />
                             </div>
+                            <div class="ui-g-2 ui-md-2">
+                                <input type="text" pInputText [(ngModel)]="schoolAdded.abbrev" />
+                            </div>
                             <div class="ui-g-1 ui-md-1 text-center">
-                                <button pButton type="button" label="Add" (click)="addSchool()" [disabled]="schoolAdded.name == null || schoolAdded.name == '' || schoolAdded.code == null || schoolAdded.code =='' || schoolAdded.abbrev_ps == null || schoolAdded.abbrev_ps == ''"></button>
+                                <button pButton type="button" label="Add" (click)="addSchool()" [disabled]="schoolAdded.name == null || schoolAdded.name == '' || schoolAdded.code == null || schoolAdded.code =='' || schoolAdded.abbrev_ps == null || schoolAdded.abbrev_ps == '' || schoolAdded.abbrev == null || schoolAdded.abbrev == ''"></button>
                             </div>
                         </div>
                         <div class="ui-g-12 ui-md-12">
                             <p-dataGrid [value]="schoolDetailList" [immutable]="false">
                                 <ng-template let-school pTemplate="item">
                                     <div class="ui-g-12 ui-md-12">
-                                        <div class="ui-g-7 ui-md-7">
+                                        <div class="ui-g-5 ui-md-5">
                                             <label>{{school.name}}</label>
                                         </div>
                                         <div class="ui-g-2 ui-md-2">
@@ -45,6 +51,9 @@
                                         </div>
                                         <div class="ui-g-2 ui-md-2">
                                             <input type="text" pInputText [(ngModel)]="school.abbrev_ps" />
+                                        </div>
+                                        <div class="ui-g-2 ui-md-2">
+                                            <input type="text" pInputText [(ngModel)]="school.abbrev" />
                                         </div>
                                         <div class="ui-g-1 ui-md-1 text-center">
                                             <button pButton type="button" label="Update" [disabled]="school.code == null || school.code == '' || school.abbrev_ps == null || school.abbrev_ps == ''" (click)="editSchool(school.id)" style="width:auto;"></button>

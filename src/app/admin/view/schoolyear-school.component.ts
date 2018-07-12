@@ -275,7 +275,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     deleteSemester(id) {
         let responseResult: ResponseResult;
         this.semesterInSchoolYearService.delete(id, this.sessionInfo.client_id).subscribe((result: any) => responseResult = result.data,
-            (error: any) => {
+            (error: any) => {   
                 this.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
@@ -313,6 +313,9 @@ export class SchoolYearOfSchoolComponent implements OnInit {
                     () => {
                         this.loadSemesters();
                         this.msgs.push({ severity: 'success', detail: "Semester In School Year added successfully." });
+                        this.semesterAdded.label = null;
+                        this.semesterAdded.start_date = null;
+                        this.semesterAdded.end_date = null;
                     });
             }
         }

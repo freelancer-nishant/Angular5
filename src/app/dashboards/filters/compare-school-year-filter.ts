@@ -21,7 +21,7 @@ export class CompareSchoolYearFilter implements OnInit {
 
     comparativeList: SelectItem[];
     schoolYearList: SelectItem[];
-    stateList: SelectItem[];
+    stateList: SelectItem[]; //
     countyList: any = {};
     districtList: any = {};
     cityList: any = {};
@@ -35,7 +35,7 @@ export class CompareSchoolYearFilter implements OnInit {
     selectedSchoolYear: any;
     SchoolForScorecards: SchoolListModel;
     EditSchoolForScorecards: SchoolListModel;
-    newSchool: SchoolModel;
+    newSchool: SchoolModel;//
     apiComparativeListItems: ComparativeListItem
     schoolCodes:any = [];
 
