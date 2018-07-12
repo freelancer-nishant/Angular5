@@ -52,7 +52,7 @@
                                         <!--<input type="text" pInputText [(ngModel)]="school.base_school_name" />-->
                                     </div>
                                     <div class="ui-g-1 ui-md-1 text-center">
-                                        <button pButton type="button" icon="fa fa-edit" (click)="updateComparativeSchools(school.id, school.name, school.label, school.desc,school.base_school_name)" style="width:auto;"></button>
+                                        <button pButton type="button" icon="fa fa-edit" (click)="updateComparativeSchools(school.id, school.name, school.label, school.desc,school.base_school_name, school.base_school_id)" style="width:auto;"></button>
                                         <button pButton type="button" icon="fa fa-trash" (click)="deleteComparativeSchool(school.id)" style="width:auto;"></button><br />
                                     </div>
                                 </div>
@@ -63,40 +63,42 @@
             </p-panel>
             &nbsp;
         </div>
+        <p-dialog header="Add/Update Comparative School List" [resizable]="true" responsive="true" [(visible)]="dialogVisible" modal="true" width="700">
+            
+            <div style="height:480px;">
+                <div class="ui-g-4 ui-md-4 text-right">
+                    <label for="input">List Name :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" pInputText tabindex="1" [(ngModel)]="comparativeSchoolSelected.name" />
+                </div>
 
-        <p-dialog header="Add Comparative School List" [resizable]="true" responsive="true" [(visible)]="dialogVisible" modal="true" width="700">
-            <div class="ui-g-4 ui-md-4 text-right">
-                <label for="input">List Name :</label>
-            </div>
-            <div class="ui-g-8 ui-md-8">
-                <input id="input" type="text" pInputText tabindex="1" [(ngModel)]="comparativeSchoolSelected.name" />
-            </div>
+                <div class="ui-g-4 ui-md-4 text-right">
+                    <label for="input">Display Label :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" pInputText tabindex="2" [(ngModel)]="comparativeSchoolSelected.label" />
+                </div>
 
-            <div class="ui-g-4 ui-md-4 text-right">
-                <label for="input">Display Label :</label>
-            </div>
-            <div class="ui-g-8 ui-md-8">
-                <input id="input" type="text" pInputText tabindex="2" [(ngModel)]="comparativeSchoolSelected.label" />
-            </div>
+                <div class="ui-g-4 ui-md-4 text-right">
+                    <label for="input">Description :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <textarea id="input" pInputText tabindex="3" [(ngModel)]="comparativeSchoolSelected.desc"></textarea>
+                </div>
 
-            <div class="ui-g-4 ui-md-4 text-right">
-                <label for="input">Description :</label>
-            </div>
-            <div class="ui-g-8 ui-md-8">
-                <textarea id="input" pInputText tabindex="3" [(ngModel)]="comparativeSchoolSelected.desc"></textarea>
-            </div>
+                <div class="ui-g-4 ui-md-4 text-right">
+                    <label for="input">Base School (Optional) :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8 dropup">
+                    <p-dropdown [options]="schoolDetailList" [(ngModel)]="selectedSchool" [autoWidth]="false" tabindex="4" placeholder="None"></p-dropdown>
+                </div>
 
-            <div class="ui-g-4 ui-md-4 text-right">
-                <label for="input">Base School (Optional) :</label>
-            </div>
-            <div class="ui-g-8 ui-md-8">
-                <p-dropdown [options]="schoolList" [(ngModel)]="selectedSchool" [autoWidth]="false" tabindex="4" placeholder="None"></p-dropdown>
-            </div>
-
-            <div class="ui-g-12 ui-md-12 text-center">
-                <button pButton type="button" label="save" style="width:auto;" (click)="addComparativeSchool()" [disabled]="comparativeSchoolSelected.name == null || comparativeSchoolSelected.name == '' || comparativeSchoolSelected.label == null || comparativeSchoolSelected.label =='' || comparativeSchoolSelected.desc == null || comparativeSchoolSelected.desc =='' "></button>
-                <!--<button pButton type="button" label="update" style="width:auto;" (click)="editComparativeSchool()" [disabled]="comparativeSchoolSelected.name == null || comparativeSchoolSelected.name == '' || comparativeSchoolSelected.label == null || comparativeSchoolSelected.label =='' || comparativeSchoolSelected.desc == null || comparativeSchoolSelected.desc =='' "></button>-->
-            </div>
-        </p-dialog>
+                <div class="ui-g-12 ui-md-12 text-center">
+                    <button pButton type="button" label="save" style="width:auto;" (click)="addComparativeSchool()" [disabled]="comparativeSchoolSelected.name == null || comparativeSchoolSelected.name == '' || comparativeSchoolSelected.label == null || comparativeSchoolSelected.label =='' || comparativeSchoolSelected.desc == null || comparativeSchoolSelected.desc =='' "></button>
+                    <!--<button pButton type="button" label="update" style="width:auto;" (click)="editComparativeSchool()" [disabled]="comparativeSchoolSelected.name == null || comparativeSchoolSelected.name == '' || comparativeSchoolSelected.label == null || comparativeSchoolSelected.label =='' || comparativeSchoolSelected.desc == null || comparativeSchoolSelected.desc =='' "></button>-->
+                </div>
+                </div>
+</p-dialog>
     </div>
 </div>

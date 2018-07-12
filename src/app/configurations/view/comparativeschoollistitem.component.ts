@@ -7,7 +7,7 @@ import { SelectItem } from 'primeng/primeng';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 
-import { ComparativeListItem, ComparativeItem } from './../../shared/domain/comparative.list'
+import { ComparativeListItem, ComparativeItem, ComparativeList } from './../../shared/domain/comparative.list'
 import { ComparativeListService } from './../../shared/services/comparativelist.service'
 import { CommonService } from './../../shared/services/Common.service'
 import { ResponseResult } from './../../shared/domain/Common.model'
@@ -21,7 +21,7 @@ import { School } from './../../shared/domain/school'
 export class ComparativeSchoolListItemComponent implements OnInit {
     sessionInfo: any = {}
     msgs: Message[] = [];
-    
+
     comparativeSchoolForUpdate: any = {};
     comparativeSchool: ComparativeListItem;
     stateList: SelectItem[];
@@ -32,7 +32,7 @@ export class ComparativeSchoolListItemComponent implements OnInit {
     schooltypeList: any = {};
     schoolList: any = {};
     fullschoolList: School[];
-    comparativeItem: ComparativeItem[];
+    comparativeItem: ComparativeList[];
     comparativeItemAdded: any;
 
     dialogVisible: boolean = false;
@@ -166,12 +166,12 @@ export class ComparativeSchoolListItemComponent implements OnInit {
             if (this.comparativeItem == undefined) {
                 this.comparativeItem = [];
             }
-            
+
             //Check is school already exist if yes then return without adding school into list
-            //let isSchoolExist = this.comparativeItem.find(x => x.id === this.newSchool.school);
-            //if (isSchoolExist != undefined)
-            //    return;
-            
+            let isSchoolExist = this.comparativeItem.find(x => x.id === this.newSchool.school);
+            if (isSchoolExist != undefined)
+                return;
+
             let school: School = this.fullschoolList.find(x => x.id === this.newSchool.school);
             this.comparativeItem.push({
                 id: school.id,
@@ -180,34 +180,42 @@ export class ComparativeSchoolListItemComponent implements OnInit {
                 alias: school.label,
                 target_flag: 0,
                 school_code: school.state_school_code,
-                state_school_code: school.code
+                state_school_code: school.code,
+                comarative_list_id: this.comparativeListId
             });
         }
     }
 
     deleteComparativeItemFromList(id) {
-        let findschool: ComparativeItem = this.comparativeItem.find(x => x.id === id);
+        let findschool: ComparativeList = this.comparativeItem.find(x => x.id === id);
         let index: number = this.comparativeItem.indexOf(findschool);
         this.comparativeItem.splice(index, 1);
     }
 
-    saveComparativeItemList()   {
-    //    if (this.comparativeItemSchool != undefined || this.comparativeItemSchool != null) {
-    //        let responseResult: ResponseResult;
-    
-    //    this.comparativeListService.insert(this.comparativeItemSchool).subscribe((result: any) => responseResult = result,
-    //        (error: any) => {
-    //            debugger
-    //            this.msgs.push({ severity: 'error', detail: error.error.message });
-    //        },
-    //        () => {
-    //            this.msgs.push({ severity: 'success', detail: "Comparative Item List added successfully." });
-    //            this.dialogVisible = false;
-    //        });
+    saveComparativeItemList() {
+        if (this.comparativeItem != undefined || this.comparativeItem != null) {
+            if (this.comparativeItem.length <= 0) {
+                alert('Please select school from list.');
+                return;
+            }
 
-    //}
-    //    else {
-    //        alert('Please select school from list.')
-    //    }
+            let responseResult: ResponseResult;
+
+            this.comparativeItem.forEach(function (value, index) {
+                value.target_flag = value.target_flag == true ? 1 : 0;
+            });
+
+            this.comparativeListService.insertListItems(this.comparativeItem).subscribe((result: any) => responseResult = result,
+                (error: any) => {
+                    this.msgs.push({ severity: 'error', detail: error.error.message });
+                },
+                () => {
+                    this.msgs.push({ severity: 'success', detail: "Comparative Item List added successfully." });
+                    this.dialogVisible = false;
+                });
+        }
+        else {
+            alert('Please select school from list.')
+        }
     }
 }

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 
 import { catchError, map, tap } from 'rxjs/operators';
 import { GlobalConstants, GlobalHelper } from './../app.globals';
-import { ComparativeListItem } from './../../shared/domain/comparative.list'
+import { ComparativeListItem, ComparativeItem, ComparativeList } from './../../shared/domain/comparative.list'
 
 
 const httpOptionsa = {
@@ -38,15 +38,19 @@ export class ComparativeListService {
     delete(id: any, client_id: any): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelist?id=' + id + '&client_Id=' + client_id;
         return this.http.delete(url);
-    }   
+    }
 
     update(comparativeSchoolDetail: ComparativeListItem): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelist';
         return this.http.put(url, GlobalHelper.toHttpParams(comparativeSchoolDetail), httpOptionsa);
     }
 
-    //insert(comparativeSchoolDetail: ComparativeListItem): Observable<any> {
-    //    let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelistitem';
-    //    return this.http.post(url, GlobalHelper.toHttpParams(comparativeSchoolDetail), httpOptionsa);
-    //}
+    insertListItems(comparativeSchoolDetail: ComparativeList[]): Observable<any> {        
+        var httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        var list = JSON.stringify(comparativeSchoolDetail);
+        let url: string = GlobalConstants.API_BASE_URL + '/api/comparativelistitem/postcomparativelistitems';
+        return this.http.post(url, list, httpOptions);
+    }
 }
