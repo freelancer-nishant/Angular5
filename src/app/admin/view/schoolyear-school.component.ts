@@ -6,20 +6,20 @@ import { SelectItem } from 'primeng/primeng';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 
-import { SchoolYear, ResponseResult } from './../../shared/domain/Common.model'
-import { School } from './../../shared/domain/school'
-import { SchoolSchoolYear } from './../../shared/domain/school.schoolyear'
-import { CommonService } from './../../shared/services/Common.service'
-import { SchoolService } from './../../shared/services/school.service'
-import { SchoolYearService } from './../../shared/services/school.year.service'
-import { SchoolGradeService } from './../../shared/services/school.grade.service'
-import { SchoolGrade } from './../../shared/domain/school.schoolgrade'
-import { SemesterInSchoolYearService } from './../../shared/services/semester.inschoolyear.service'
-import { SemesterInSchoolYear } from './../../shared/domain/semester.inschoolyear'
-import { GradeService } from './../../shared/services/grade.service'
-import { Grade } from './../../shared/domain/grade'
-import { DaysInSchoolYearService } from './../../shared/services/days.inschoolyear.service'
-import { DaysInSchoolYear } from './../../shared/domain/days.inschoolyear'
+import { SchoolYear, ResponseResult } from './../../shared/domain/Common.model';
+import { School } from './../../shared/domain/school';
+import { SchoolSchoolYear } from './../../shared/domain/school.schoolyear';
+import { CommonService } from './../../shared/services/Common.service';
+import { SchoolService } from './../../shared/services/school.service';
+import { SchoolYearService } from './../../shared/services/school.year.service';
+import { SchoolGradeService } from './../../shared/services/school.grade.service';
+import { SchoolGrade } from './../../shared/domain/school.schoolgrade';
+import { SemesterInSchoolYearService } from './../../shared/services/semester.inschoolyear.service';
+import { SemesterInSchoolYear } from './../../shared/domain/semester.inschoolyear';
+import { GradeService } from './../../shared/services/grade.service';
+import { Grade } from './../../shared/domain/grade';
+import { DaysInSchoolYearService } from './../../shared/services/days.inschoolyear.service';
+import { DaysInSchoolYear } from './../../shared/domain/days.inschoolyear';
 declare var $: any;
 
 @Component({
@@ -54,11 +54,17 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     DaysInSchoolUploadMsgs = [];
     DaysInSchoolUploadErrorMsgs = [];
 
+    TeacherInSchoolUploadMsgs = [];
+    TeacherInSchoolUploadErrorMsgs = [];
+
     msgs: Message[] = [];
 
     constructor(public app: AppComponent, private schoolService: SchoolService,
-        private commonService: CommonService, private schoolYearService: SchoolYearService, private semesterInSchoolYearService: SemesterInSchoolYearService, private gradeService: GradeService,
-        private schoolGradeService: SchoolGradeService, private daysInSchoolYearService: DaysInSchoolYearService, private messageService: MessageService) {
+        private commonService: CommonService, private schoolYearService: SchoolYearService,
+            private semesterInSchoolYearService: SemesterInSchoolYearService, private gradeService: GradeService,
+
+        private schoolGradeService: SchoolGradeService,
+            private daysInSchoolYearService: DaysInSchoolYearService, private messageService: MessageService) {
 
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
@@ -82,16 +88,18 @@ export class SchoolYearOfSchoolComponent implements OnInit {
                 schoolListItems.map(o => { this.schoolList.push({ label: o.label, value: o.id }); });
             });
     }
+    
     onGoClick() {
-        if (this.onGoClick != undefined && this.selectedSchool != undefined) {
+        if (this.onGoClick !== undefined && this.selectedSchool !== undefined) {
             this.school.SchoolName = this.schoolList.find(x => x.value === this.selectedSchool).label;
         }
 
-        if (this.selectedSchoolYear != undefined) {
-            this.school.SchoolYear = this.schoolYearList.find(x => x.value === this.selectedSchoolYear).label
+        if (this.selectedSchoolYear !== undefined) {
+            this.school.SchoolYear = this.schoolYearList.find(x => x.value === this.selectedSchoolYear).label;
         }
         let schooldetailList: SchoolSchoolYear[] = [];
-        this.schoolYearService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => schooldetailList = result.data,
+        this.schoolYearService.get(this.sessionInfo.client_id,
+            this.selectedSchool).subscribe((result: any) => schooldetailList = result.data,
             (error: any) => { },
             () => {
                 this.schoolDetailList = [];
@@ -375,10 +383,10 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             this.msgs.push({ severity: 'error', detail: "Please input data to add." });
         }
     }
+// change api data dayinschool to teacherinschool
     uploadDaysInSchool() {
         if (this.DaysInSchool != "" && this.DaysInSchool != undefined) {
-            this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
-
+            // this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
             this.daysAdded.client_id = this.sessionInfo.client_id;
             this.daysAdded.school_id = this.selectedSchool;
@@ -393,6 +401,30 @@ export class SchoolYearOfSchoolComponent implements OnInit {
                 () => {
                     this.loadSemesters();
                     this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
+                });
+        }
+        else {
+            this.msgs.push({ severity: 'error', detail: "Please input data to add." });
+        }
+    }
+    uploadTeacherInSchool() {
+        if (this.DaysInSchool != "" && this.DaysInSchool != undefined) {
+            this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
+
+            let responseResult: ResponseResult;
+            this.daysAdded.client_id = this.sessionInfo.client_id;
+            this.daysAdded.school_id = this.selectedSchool;
+            this.daysAdded.school_year_id = this.selectedSchoolYear;
+            this.daysAdded.skip_first_row = true;
+            this.daysAdded.file_data = this.DaysInSchool;
+
+            this.daysInSchoolYearService.insert(this.daysAdded).subscribe((result: any) => responseResult = result,
+                (error: any) => {
+                    this.TeacherInSchoolUploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
+                },
+                () => {
+                    this.loadSemesters();
+                    this.TeacherInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Teacher In School Year added successfully." });
                 });
         }
         else {

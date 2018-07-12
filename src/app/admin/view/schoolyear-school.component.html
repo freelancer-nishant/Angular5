@@ -206,12 +206,11 @@
                     </p-header>
                     <div class="ui-g">
                         <div class="ui-g-12 div-center">
-                            <label class="control-label text-bold">Upload File:</label>&nbsp;&nbsp;
-                            <input type="text" size="35" />&nbsp;&nbsp;
-                            <input id="fileupload" name="myfile" type="file" />
+                            <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
+                            <fileUpload [(fileData)]="TeachersInSchool" (change)="TeachersInSchool=$event"></fileUpload>
                         </div>
                         <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" style="width:auto;"></button>
+                            <button pButton type="button" label="Upload" (click)="uploadTeacherInSchool()" style="width:auto;"></button>
                         </div>
                     </div>
                     <p-panel>
@@ -220,8 +219,8 @@
                         </p-header>
                         <div class="ui-g form-group">
                             <div class="ui-g-12 ui-md-12">
-                                <label>Upload Started</label><br /><br />
-                                <label>Completd Successfully</label>
+                                <p-messages [(value)]="TeacherInSchoolUploadMsgs"></p-messages>
+                                <p-messages [(value)]="TeacherInSchoolUploadErrorMsgs"></p-messages>
                             </div>
                         </div>
                     </p-panel>

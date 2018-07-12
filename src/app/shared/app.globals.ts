@@ -330,7 +330,7 @@ export class GlobalHelper {
                         items: [
                             { label: 'SBAC Summative', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
                             { label: 'SBAC Interim', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
-                            { label: 'Physical Fitness Test', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/grades'] },
+                            { label: 'Physical Fitness Test', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload'] },
                             { label: 'CELDT', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/teachers'] },
                             { label: 'NWEA', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
                             { label: 'LGL - ADAM', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
