@@ -82,7 +82,7 @@ export class AssessmentUploadsComponent implements OnInit {
         this.selectedYear = null;
         this.testVersions = [];
         this.selectedTestVersion = null;
-        this.schoolYearService.get(this.sessionInfo.client_id, this.selectedSchool, this.test_type_id).subscribe((result: any) => schollYears = result.data,
+        this.schoolYearService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => schollYears = result.data,
             (error: any) => { },
             () => {
                 this.schoolYears = [];
@@ -94,7 +94,7 @@ export class AssessmentUploadsComponent implements OnInit {
         let versions: TestVersion[] = [];
         this.testVersions = [];
         this.selectedTestVersion = null;
-        this.testVersionService.get(this.selectedSchool, this.selectedYear, this.test_type_id).subscribe((result: any) => versions = result.data,
+        this.testVersionService.get(this.selectedSchool, this.selectedYear).subscribe((result: any) => versions = result.data,
             (error: any) => { },
             () => {
                 this.testVersions = [];
