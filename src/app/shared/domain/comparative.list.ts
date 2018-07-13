@@ -26,3 +26,13 @@ export interface ComparativeItem {
     school_code,
     state_school_code
 }
+export interface ComparativeList {
+    id,
+    us_school_id,
+    school_label,
+    alias,
+    target_flag,
+    school_code,
+    state_school_code,
+    comarative_list_id
+}

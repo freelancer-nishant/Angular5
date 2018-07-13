@@ -23,7 +23,7 @@ export class ComparativeSchoolListComponent implements OnInit {
     msgs: Message[] = [];
     school: any = {};
     comparativeSchoolSelected: any = {};
-    schoolDetailList: School[];
+    schoolDetailList: SelectItem[];
     comparativeSchoolList: ComparativeListItem[];
     schoolList: SelectItem[];
 
@@ -46,6 +46,7 @@ export class ComparativeSchoolListComponent implements OnInit {
 
     ngOnInit() {
         this.loadComparativeSchools();
+        this.loadBaseSchools();
     }
  
     loadComparativeSchools() {
@@ -67,25 +68,36 @@ export class ComparativeSchoolListComponent implements OnInit {
                         base_school_name: o.base_school_name,
                         school_id: o.school_id
                     });
-
-                    this.schoolList.push({
-                        label: o.base_school_name,
-                        value: o.school_id
-                    });
-
+                    
                 });
 
             });
     }
 
+    loadBaseSchools() {
+        let schoolDetailList: School[] = [];
+        this.schoolService.get(this.sessionInfo.client_id).subscribe((result: any) => schoolDetailList = result.data,
+            (error: any) => { },
+            () => {
+                this.schoolDetailList = [];
+                schoolDetailList.map(o => {
+                    this.schoolDetailList.push({
+                        label: o.name,
+                        value: o.id
+                    });
+                });
+            });
+    }
+
     addNewComparativeSchools() {
         this.comparativeSchoolSelected = {};
+        this.selectedSchool = {};
         this.dialogVisible = true;
         this.saveVisible = true;
         this.updateVisible = false;
     }
 
-    updateComparativeSchools(id, name, label, desc, base_school_name) {
+    updateComparativeSchools(id, name, label, desc, base_school_name, base_school_id) {
         this.dialogVisible = true;
         this.saveVisible = false;
         this.updateVisible = true;
@@ -95,6 +107,8 @@ export class ComparativeSchoolListComponent implements OnInit {
         this.comparativeSchoolSelected.label = label;
         this.comparativeSchoolSelected.desc = desc;
         this.comparativeSchoolSelected.base_school_name = base_school_name;
+
+        this.selectedSchool = base_school_id;
     }
 
     addComparativeSchool() {
@@ -139,7 +153,7 @@ export class ComparativeSchoolListComponent implements OnInit {
     editComparativeSchool() {
         if (this.selectedSchool != undefined && this.selectedSchool != null) {
             let responseResult: ResponseResult;
-
+            
             this.comparativeSchoolSelected.school_id = this.selectedSchool;
             this.comparativeSchoolSelected.client_id = this.sessionInfo.client_id;
             this.comparativeListService.update(this.comparativeSchoolSelected).subscribe((result: any) => responseResult = result,

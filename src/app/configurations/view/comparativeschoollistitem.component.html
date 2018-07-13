@@ -36,10 +36,10 @@
                                         <label>{{comparativeItemSchool.school_label}}</label><br />
                                     </div>
                                     <div class="ui-g-3 ui-md-3">
-                                        <input type="text" pInputText />
+                                        <input type="text" pInputText [(ngModel)]="comparativeItemSchool.alias" />
                                     </div>
                                     <div class="ui-g-1 ui-md-1">
-                                        <label style="display: block;"><input type="checkbox" /></label>
+                                        <label style="display: block;"><input type="checkbox" [(ngModel)]="comparativeItemSchool.target_flag" /></label>
                                     </div>
                                     <div class="ui-g-1 ui-md-1">
                                         <button pButton type="button" icon="fa fa-trash" (click)="deleteComparativeItemFromList(comparativeItemSchool.id)" style="width:auto;"></button><br />
@@ -59,8 +59,9 @@
         </div>
     </div>
     <div class="ui-g-12">
-        <p-dialog header="Add Update List Item" [resizable]="false" responsive="true" [(visible)]="dialogVisible" modal="true" height="700">
-            <div class="ui-g">
+        <p-dialog header="Add Update List Item" [resizable]="false" responsive="true" [(visible)]="dialogVisible" modal="true">
+            <div style="height:280px;">
+                <!--<div class="ui-g">-->
                 <div class="ui-g-12 ui-md-2">
                     <label for="input">State :</label>
                 </div>
@@ -97,9 +98,10 @@
                 <div class="ui-g-12 ui-md-4">
                     <p-dropdown [options]="schoolList" [(ngModel)]="newSchool.school" [autoWidth]="false" tabindex="8" placeholder="Select School"></p-dropdown>
                 </div>
-            </div>
-            <div class="ui-g-12 ui-md-12 text-center">
-                <button pButton type="button" label="save" style="width:auto;" (click)="saveListItemFromPopup()"></button>
+                <!--</div>-->
+                <div class="ui-g-12 ui-md-12 text-center">
+                    <button pButton type="button" label="save" style="width:auto;" (click)="saveListItemFromPopup()"></button>
+                </div>
             </div>
         </p-dialog>
     </div>
