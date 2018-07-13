@@ -17,11 +17,11 @@
                     </div>
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
                         <label class="control-label" for="selectedTestVersion">Test Version</label>
-                        <p-dropdown [options]="testVersions" [(ngModel)]="selectedTestVersion" [autoWidth]="false" (onChange)="schoolYearChange($event)" placeholder="--Select--"></p-dropdown>
+                        <p-dropdown [options]="testVersions" [(ngModel)]="selectedTestVersion" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
                         <label class="control-label">&nbsp;</label>
-                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto"></button>
+                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto" [disabled]="selectedSchool == null || selectedYear == null || selectedTestVersion == null" ></button>
                     </div>
                 </div>
             </div>
@@ -29,17 +29,19 @@
     </div>
     <div class="ui-g-12">
         <div class="card card-w-title content-card">
-            <!--Add condition for the test version-->
-            <div *ngIf="isPanelVisible">
-            <!-- <div *ngIf="schoolDetailList != null && schoolDetailList.length > 0">  -->
+            <div *ngIf="isPanelVisible && selectedSchool != null && selectedYear != null && selectedTestVersion != null">
                 <div class="ui-g form-group header-box">
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="text-color text-normal" style="font-weight:normal; font-size:18px; color:black;" for="SchoolName">School : </label>
-                        <span class="text-size text-color" style="font-size:18px; color:black;"></span>
+                        <span class="text-size text-color" style="font-size:18px; color:black;">{{school.SchoolName}}</span>
                     </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="text-normal text-color" style="font-weight:normal; font-size:18px; color:black;" for="SchoolYear">School Year : </label>
-                        <span class="text-size text-color" style="font-size:18px; color:black;"></span>
+                        <span class="text-size text-color" style="font-size:18px; color:black;">{{school.SchoolYear}}</span>
+                    </div>
+                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
+                        <label class="text-normal text-color" style="font-weight:normal; font-size:18px; color:black;" for="SchoolYear">Test Version : </label>
+                        <span class="text-size text-color" style="font-size:18px; color:black;">{{testVersions.TestVersion}}</span>
                     </div>
                 </div>
                 <p-panel [toggleable]="true">

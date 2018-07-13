@@ -26,28 +26,20 @@ import { TestVersion } from './../../shared/domain/testversion';
     templateUrl: './assessments-upload.component.html'
 })
 export class AssessmentUploadsComponent implements OnInit {
-
-
+    testVersions: any = {};
+    school: any = {};
     sessionInfo: any = {};
-
     schools: SelectItem[];
     selectedSchool: any;
-
     schoolYears: SelectItem[];
     selectedYear: any;
-
-    testVersions: SelectItem[];
+    // testVersions: SelectItem[];
     selectedTestVersion: any;
-
-    DaysInSchool: string;
-
     isPanelVisible: boolean = false;
-
-    btnEvent: any;
+    test_type_ids: any = 1;
 
     constructor(public app: AppComponent, private schoolService: SchoolService,
         private schoolYearService: SchoolYearService,
-        private schoolGradeService: SchoolGradeService,
         private testVersionService: TestVersionService) {
         this.sessionInfo = this.app.getSession();
         this.app.displayLeftMenu(true);
@@ -69,19 +61,31 @@ export class AssessmentUploadsComponent implements OnInit {
                 this.schools = [];
                 schoolResult.map(o => { this.schools.push({ label: o.name, value: o.id }); });
             });
+
+        let testVersionResult: TestVersion[] = [];
+        this.testVersionService.get(this.selectedSchool, this.selectedYear,
+            this.selectedTestVersion).subscribe((result: any) => testVersionResult = result.data,
+                (error: any) => { },
+                () => {
+                    this.testVersions = [];
+                    testVersionResult.map(o => { this.testVersions.push({ label: o.version_number, value: o.version_label }); });
+                });
+
     }
 
 
     onGoClick() {
         this.isPanelVisible = true;
+        this.school.SchoolName = this.schools.find(x => x.value === this.selectedSchool).label;
+        this.school.SchoolYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
+        this.testVersions.TestVersion = this.testVersions.find(x => x.value === this.selectedTestVersion).label;
     }
 
     schoolChange(e) {
+        this.isPanelVisible = false;
         let schollYears: SchoolSchoolYear[] = [];
         this.schoolYears = [];
         this.selectedYear = null;
-        this.testVersions = [];
-        this.selectedTestVersion = null;
         this.schoolYearService.get(this.sessionInfo.client_id, this.selectedSchool).subscribe((result: any) => schollYears = result.data,
             (error: any) => { },
             () => {
@@ -91,6 +95,7 @@ export class AssessmentUploadsComponent implements OnInit {
     }
 
     schoolYearChange(e) {
+        this.isPanelVisible = false;
         let versions: TestVersion[] = [];
         this.testVersions = [];
         this.selectedTestVersion = null;
@@ -101,4 +106,5 @@ export class AssessmentUploadsComponent implements OnInit {
                 versions.map(o => { this.testVersions.push({ label: o.version_label, value: o.version_number }); });
             });
     }
+
 }
