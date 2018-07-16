@@ -328,14 +328,14 @@ export class GlobalHelper {
                     {
                         label: 'Assessment Uploads', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'SBAC Summative', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
-                            { label: 'SBAC Interim', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
-                            { label: 'Physical Fitness Test', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload'] },
-                            { label: 'CELDT', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/teachers'] },
-                            { label: 'NWEA', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
-                            { label: 'LGL - ADAM', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
-                            { label: 'LGL - DORA', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
-                            { label: 'LGL - DOMA Algebra', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] }
+                            { label: 'SBAC Summative', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/SBACS'] },
+                            { label: 'SBAC Interim', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/SBACI'] },
+                            { label: 'Physical Fitness Test', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/PFT'] },
+                            { label: 'CELDT', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/CELDT'] },
+                            { label: 'NWEA', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/NWEA'] },
+                            { label: 'LGL - ADAM', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/ADAM'] },
+                            { label: 'LGL - DORA', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/DORA'] },
+                            { label: 'LGL - DOMA Algebra', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/DOMA'] }
                         ]
                     },
                     {

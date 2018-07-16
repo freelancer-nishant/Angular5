@@ -165,6 +165,7 @@ import { GradeService } from './shared/services/grade.service'
 import { DaysInSchoolYearService } from './shared/services/days.inschoolyear.service'
 import { ClientService } from './shared/services/client.service';
 import { RoleService } from './shared/services/role.service';
+import { AssessmentUploadService } from './shared/services/assessment-upload.services';
 
 import { TestService } from './shared/services/test.service'
 import { TestVersionService } from './shared/services/testversion.service'
@@ -175,6 +176,15 @@ import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
 import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
 import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
+
+import { AssessmentUploadsComponentSbacs } from './admin/view/assessments-upload.component.sbacs';
+import { AssessmentUploadsComponentSbaci } from './admin/view/assessments-upload.component.sbaci';
+import { AssessmentUploadsComponentPft } from './admin/view/assessments-upload.component.pft';
+import { AssessmentUploadsComponentCeldt } from './admin/view/assessments-upload.component.celdt';
+import { AssessmentUploadsComponentNwea } from './admin/view/assessments-upload.component.nwea';
+import { AssessmentUploadsComponentAdam } from './admin/view/assessments-upload.component.adam';
+import { AssessmentUploadsComponentDora } from './admin/view/assessments-upload.component.dora';
+import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.component.doma';
 
 
 @NgModule({
@@ -348,7 +358,15 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         TaxonomyItemComponent,
         VJSComponent,
         TranslateComponent,
-        FileUploadComponent
+        FileUploadComponent,
+        AssessmentUploadsComponentSbacs,
+        AssessmentUploadsComponentSbaci,
+        AssessmentUploadsComponentPft,
+        AssessmentUploadsComponentCeldt,
+        AssessmentUploadsComponentNwea,
+        AssessmentUploadsComponentDora,
+        AssessmentUploadsComponentDoma,
+        AssessmentUploadsComponentAdam,
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
@@ -358,7 +376,7 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         ClientService, RoleService,
         MessageService, ConfirmationService,
         JwtHelperService, AuthService, AuthGuardService,
-        VJSConfig
+        VJSConfig,
     ],
     bootstrap: [AppComponent]
 })

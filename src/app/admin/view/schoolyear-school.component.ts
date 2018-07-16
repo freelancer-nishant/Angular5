@@ -61,10 +61,9 @@ export class SchoolYearOfSchoolComponent implements OnInit {
 
     constructor(public app: AppComponent, private schoolService: SchoolService,
         private commonService: CommonService, private schoolYearService: SchoolYearService,
-            private semesterInSchoolYearService: SemesterInSchoolYearService, private gradeService: GradeService,
-
+        private semesterInSchoolYearService: SemesterInSchoolYearService, private gradeService: GradeService,
         private schoolGradeService: SchoolGradeService,
-            private daysInSchoolYearService: DaysInSchoolYearService, private messageService: MessageService) {
+        private daysInSchoolYearService: DaysInSchoolYearService, private messageService: MessageService) {
 
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
@@ -88,7 +87,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
                 schoolListItems.map(o => { this.schoolList.push({ label: o.label, value: o.id }); });
             });
     }
-    
+
     onGoClick() {
         if (this.onGoClick !== undefined && this.selectedSchool !== undefined) {
             this.school.SchoolName = this.schoolList.find(x => x.value === this.selectedSchool).label;
@@ -100,25 +99,25 @@ export class SchoolYearOfSchoolComponent implements OnInit {
         let schooldetailList: SchoolSchoolYear[] = [];
         this.schoolYearService.get(this.sessionInfo.client_id,
             this.selectedSchool).subscribe((result: any) => schooldetailList = result.data,
-            (error: any) => { },
-            () => {
-                this.schoolDetailList = [];
-                schooldetailList.map(o => {
-                    this.schoolDetailList.push({
-                        end_date: new Date(o.end_date),
-                        id: o.id,
-                        schoolyear_num: o.schoolyear_num,
-                        school_id: o.school_id,
-                        school_name: o.school_name,
-                        school_year: o.school_year,
-                        school_year_id: o.school_year_id,
-                        start_date: new Date(o.start_date)
+                (error: any) => { },
+                () => {
+                    this.schoolDetailList = [];
+                    schooldetailList.map(o => {
+                        this.schoolDetailList.push({
+                            end_date: new Date(o.end_date),
+                            id: o.id,
+                            schoolyear_num: o.schoolyear_num,
+                            school_id: o.school_id,
+                            school_name: o.school_name,
+                            school_year: o.school_year,
+                            school_year_id: o.school_year_id,
+                            start_date: new Date(o.start_date)
+                        });
                     });
+                    if (this.selectedSchoolYear != undefined) {
+                        this.schoolDetailList = this.schoolDetailList.filter(x => x.school_year_id === this.selectedSchoolYear);
+                    }
                 });
-                if (this.selectedSchoolYear != undefined) {
-                    this.schoolDetailList = this.schoolDetailList.filter(x => x.school_year_id === this.selectedSchoolYear);
-                }
-            });
 
         let semesterdetailList: SemesterInSchoolYear[] = [];
         this.semesterInSchoolYearService.get(this.sessionInfo.client_id, this.selectedSchoolYear).subscribe((result: any) => semesterdetailList = result.data,
@@ -283,7 +282,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
     deleteSemester(id) {
         let responseResult: ResponseResult;
         this.semesterInSchoolYearService.delete(id, this.sessionInfo.client_id).subscribe((result: any) => responseResult = result.data,
-            (error: any) => {   
+            (error: any) => {
                 this.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
@@ -383,10 +382,10 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             this.msgs.push({ severity: 'error', detail: "Please input data to add." });
         }
     }
-// change api data dayinschool to teacherinschool
+    // change api data dayinschool to teacherinschool
     uploadDaysInSchool() {
         if (this.DaysInSchool != "" && this.DaysInSchool != undefined) {
-            // this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
+            this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
             this.daysAdded.client_id = this.sessionInfo.client_id;
             this.daysAdded.school_id = this.selectedSchool;
@@ -407,6 +406,7 @@ export class SchoolYearOfSchoolComponent implements OnInit {
             this.msgs.push({ severity: 'error', detail: "Please input data to add." });
         }
     }
+    /*
     uploadTeacherInSchool() {
         if (this.DaysInSchool != "" && this.DaysInSchool != undefined) {
             this.DaysInSchoolUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
@@ -430,5 +430,5 @@ export class SchoolYearOfSchoolComponent implements OnInit {
         else {
             this.msgs.push({ severity: 'error', detail: "Please input data to add." });
         }
-    }
+    }*/
 }

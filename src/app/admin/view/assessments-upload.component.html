@@ -2,7 +2,7 @@
     <div class="ui-g-12">
         <p-panel [toggleable]="true">
             <p-header>
-                Physical Fitness Overview
+                {{selectedOption}}
             </p-header>
             <div class="card card-w-title filter-pan">
                 <div class="ui-g form-group">
@@ -21,8 +21,9 @@
                     </div>
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
                         <label class="control-label">&nbsp;</label>
-                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto" [disabled]="selectedSchool == null || selectedYear == null || selectedTestVersion == null" ></button>
+                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto" [disabled]="selectedSchool == null || selectedYear == null || selectedTestVersion == null"></button>
                     </div>
+                    <p-growl [(value)]="errorMsgs"></p-growl>
                 </div>
             </div>
         </p-panel>
@@ -46,15 +47,15 @@
                 </div>
                 <p-panel [toggleable]="true">
                     <p-header class="text-normal">
-                        SBAC interim
+                        {{selectedOption}}
                     </p-header>
                     <div class="ui-g">
                         <div class="ui-g-12 div-center">
                             <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <fileUpload [(fileData)]="SBACinterim" (change)="SBACinterim=$event"></fileUpload>
+                            <fileUpload [(fileData)]="SBACSummative" (change)="SBACSummative=$event"></fileUpload>
                         </div>
                         <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" (click)="uploadSBACinterim()" style="width:auto;"></button>
+                            <button pButton type="button" label="Upload" (click)="uploadSBACSummative()" style="width:auto;"></button>
                         </div>
                     </div>
                     <p-panel>
@@ -63,164 +64,8 @@
                         </p-header>
                         <div class="ui-g form-group">
                             <div class="ui-g-12 ui-md-12">
-                                <p-messages [(value)]="SBACinterimUploadMsgs"></p-messages>
-                                <p-messages [(value)]="SBACinterimUploadErrorMsgs"></p-messages>
-                            </div>
-                        </div>
-                    </p-panel>
-                </p-panel>
-                &nbsp;
-                <p-panel [toggleable]="true">
-                    <p-header class="text-normal">
-                        Physical Fitness Test
-                    </p-header>
-                    <div class="ui-g">
-                        <div class="ui-g-12 div-center">
-                            <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <fileUpload [(fileData)]="Pft" (change)="Pft=$event"></fileUpload>
-                        </div>
-                        <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" (click)="uploadPFT()" style="width:auto;"></button>
-                        </div>
-                    </div>
-                    <p-panel>
-                        <p-header class="text-bold">
-                            Progress
-                        </p-header>
-                        <div class="ui-g form-group">
-                            <div class="ui-g-12 ui-md-12">
-                                <p-messages [(value)]="PFTUploadMsgs"></p-messages>
-                                <p-messages [(value)]="PFTUploadErrorMsgs"></p-messages>
-                            </div>
-                        </div>
-                    </p-panel>
-                </p-panel>
-                &nbsp;
-                <p-panel [toggleable]="true">
-                    <p-header class="text-normal">
-                        CELDT
-                    </p-header>
-                    <div class="ui-g">
-                        <div class="ui-g-12 div-center">
-                            <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <fileUpload [(fileData)]="Celdt" (change)="Celdt=$event"></fileUpload>
-                        </div>
-                        <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" (click)="uploadCELDT()" style="width:auto;"></button>
-                        </div>
-                    </div>
-                    <p-panel>
-                        <p-header class="text-bold">
-                            Progress
-                        </p-header>
-                        <div class="ui-g form-group">
-                            <div class="ui-g-12 ui-md-12">
-                                <p-messages [(value)]="CELDTUploadMsgs"></p-messages>
-                                <p-messages [(value)]="CELDTUploadErrorMsgs"></p-messages>
-                            </div>
-                        </div>
-                    </p-panel>
-                </p-panel>
-                &nbsp;
-                <p-panel [toggleable]="true">
-                    <p-header class="text-normal">
-                        NWEA
-                    </p-header>
-                    <div class="ui-g">
-                        <div class="ui-g-12 div-center">
-                            <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <fileUpload [(fileData)]="Nwea" (change)="Nwea=$event"></fileUpload>
-                        </div>
-                        <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" (click)="uploadNWEA()" style="width:auto;"></button>
-                        </div>
-                    </div>
-                    <p-panel>
-                        <p-header class="text-bold">
-                            Progress
-                        </p-header>
-                        <div class="ui-g form-group">
-                            <div class="ui-g-12 ui-md-12">
-                                <p-messages [(value)]="NWEAUploadMsgs"></p-messages>
-                                <p-messages [(value)]="NWEAUploadErrorMsgs"></p-messages>
-                            </div>
-                        </div>
-                    </p-panel>
-                </p-panel>
-                &nbsp;
-                <p-panel [toggleable]="true">
-                    <p-header class="text-normal">
-                        LGL - ADAM
-                    </p-header>
-                    <div class="ui-g">
-                        <div class="ui-g-12 div-center">
-                            <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <fileUpload [(fileData)]="LGLAdam" (change)="LGLAdam=$event"></fileUpload>
-                        </div>
-                        <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" (click)="uploadLGLAdam()" style="width:auto;"></button>
-                        </div>
-                    </div>
-                    <p-panel>
-                        <p-header class="text-bold">
-                            Progress
-                        </p-header>
-                        <div class="ui-g form-group">
-                            <div class="ui-g-12 ui-md-12">
-                                <p-messages [(value)]="LGLAdamUploadMsgs"></p-messages>
-                                <p-messages [(value)]="LGLAdamUploadErrorMsgs"></p-messages>
-                            </div>
-                        </div>
-                    </p-panel>
-                </p-panel>
-                &nbsp;
-                <p-panel [toggleable]="true">
-                    <p-header class="text-normal">
-                        LGL - DORA
-                    </p-header>
-                    <div class="ui-g">
-                        <div class="ui-g-12 div-center">
-                            <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <fileUpload [(fileData)]="LGLDora" (change)="LGLDora=$event"></fileUpload>
-                        </div>
-                        <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" (click)="uploadLGLDora()" style="width:auto;"></button>
-                        </div>
-                    </div>
-                    <p-panel>
-                        <p-header class="text-bold">
-                            Progress
-                        </p-header>
-                        <div class="ui-g form-group">
-                            <div class="ui-g-12 ui-md-12">
-                                <p-messages [(value)]="LGLDORAUploadMsgs"></p-messages>
-                                <p-messages [(value)]="LGLDORAUploadErrorMsgs"></p-messages>
-                            </div>
-                        </div>
-                    </p-panel>
-                </p-panel>
-                &nbsp;
-                <p-panel [toggleable]="true">
-                    <p-header class="text-normal">
-                        LGL - DOMA algebra
-                    </p-header>
-                    <div class="ui-g">
-                        <div class="ui-g-12 div-center">
-                            <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <fileUpload [(fileData)]="LGLDOMAAlgebra" (change)="LGLDOMAAlgebra=$event"></fileUpload>
-                        </div>
-                        <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" (click)="uploadLGLDOMAAlgebra()" style="width:auto;"></button>
-                        </div>
-                    </div>
-                    <p-panel>
-                        <p-header class="text-bold">
-                            Progress
-                        </p-header>
-                        <div class="ui-g form-group">
-                            <div class="ui-g-12 ui-md-12">
-                                <p-messages [(value)]="LGLDOMAAlgebraUploadMsgs"></p-messages>
-                                <p-messages [(value)]="LGLDOMAAlgebraUploadErrorMsgs"></p-messages>
+                                <p-messages [(value)]="SBACSummativeUploadMsgs"></p-messages>
+                                <p-messages [(value)]="SBACSummativeUploadErrorMsgs"></p-messages>
                             </div>
                         </div>
                     </p-panel>
