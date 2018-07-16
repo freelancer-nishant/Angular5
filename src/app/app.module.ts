@@ -139,6 +139,7 @@ import { SchoolYearGradeTestFilter } from './dashboards/filters/school-year-grad
 import { AssesmentSchoolYearGradeFilter } from './dashboards/filters/assesment-school-year-grade-filter';
 import { CompareSchoolYearFilter } from './dashboards/filters/compare-school-year-filter';
 import { SchoolYearFilter } from './dashboards/filters/school-year-filter';
+import { SelectSchoolYearGradeFilter } from './dashboards/filters/selectschool-year-grade-filter';
 
 import { VJSComponent } from './vjs.component'
 import { TranslateComponent } from './translate-component'
@@ -348,6 +349,7 @@ import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.
         AssesmentSchoolYearGradeFilter,
         CompareSchoolYearFilter,
         SchoolYearFilter,
+        SelectSchoolYearGradeFilter,
         SchoolComponent,
         SchoolYearComponent,
         ComparativeSchoolListComponent,

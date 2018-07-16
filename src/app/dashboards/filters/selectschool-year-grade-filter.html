@@ -1,0 +1,42 @@
+
+<div class="ui-g form-group">
+    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-8">
+        <div class="ui-g-12 ui-sm-12 ui-md-6">
+            <label for="input">State :</label>
+            <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="stateChange($event)" [autoWidth]="false" tabindex="3" placeholder="Select State"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+            <label for="input">County :</label>
+            <p-dropdown [options]="countyList" [(ngModel)]="newSchool.county" (onChange)="countyChange($event)" [autoWidth]="false" tabindex="4" placeholder="Select County"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+            <label for="input">School Distinct :</label>
+            <p-dropdown [options]="districtList" [(ngModel)]="newSchool.district" (onChange)="districtChange($event)" [autoWidth]="false" tabindex="5" placeholder="Select District"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+            <label for="input">City :</label>
+            <p-dropdown [options]="cityList" [(ngModel)]="newSchool.city" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="6" placeholder="Select City"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+            <label for="input">School Type :</label>
+            <p-dropdown [options]="schooltypeList" [(ngModel)]="newSchool.schooltype" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="7" placeholder="Select School Type"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-6">
+            <label for="input">School :</label>
+            <p-dropdown [options]="schoolList" [(ngModel)]="newSchool.school" (onChange)="schoolChange($event)" [autoWidth]="false" tabindex="8" placeholder="Select School"></p-dropdown>
+        </div>
+    </div>
+    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-4">
+        <div class="ui-g-12 ui-md-12">
+            <label class="control-label" for="selectedSchoolYear">Select a School Year</label>
+            <p-dropdown [options]="schoolYearList" [(ngModel)]="selectedSchoolYear" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+            <label class="control-label" for="selectedGrades">Grade</label>
+            <p-multiSelect [options]="grade" [(ngModel)]="selectedGrades" [filter]="false"></p-multiSelect>
+        </div>
+        <div class="ui-g-12 ui-sm-12 ui-md-12 mobile-text-center">
+            <button pButton type="button" label="Go" (click)="myEvent()" style="width:auto;"></button>
+        </div>
+    </div>
+</div>
