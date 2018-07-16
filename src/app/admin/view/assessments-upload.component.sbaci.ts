@@ -108,7 +108,6 @@ export class AssessmentUploadsComponentSbaci implements OnInit {
     }
     // SBAC 2016-2017
     uploadFile() {
-        console.log('SBACI');
         if (this.fileData != "" && this.fileData != undefined) {
             this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;

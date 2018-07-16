@@ -106,7 +106,6 @@ export class AssessmentUploadsComponentDora implements OnInit {
             });
     }
     uploadFile() {
-        console.log('DORA');
         if (this.fileData != "" && this.fileData != undefined) {
             this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;

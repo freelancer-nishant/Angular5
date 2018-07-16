@@ -107,7 +107,6 @@ export class AssessmentUploadsComponentDoma implements OnInit {
             });
     }
     uploadFile() {
-        console.log('DOMA');
         if (this.fileData != "" && this.fileData != undefined) {
             this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;

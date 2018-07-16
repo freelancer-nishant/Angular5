@@ -105,7 +105,6 @@ export class AssessmentUploadsComponentAdam implements OnInit {
     }
 
     uploadFile() {
-        console.log('ADAM');
         if (this.fileData != "" && this.fileData != undefined) {
             this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
