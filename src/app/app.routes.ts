@@ -63,14 +63,13 @@ import { SchoolComponent } from './configurations/view/school.component';
 import { SchoolYearComponent } from './configurations/view/schoolyear.component';
 import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component';
 import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component';
-import { AssessmentUploadsComponentSbacs } from './admin/view/assessments-upload.component.sbacs';
+import { AssessmentUploadsComponentSbac } from './admin/view/assessments-upload.component.sbac';
 import { AssessmentUploadsComponentPft } from './admin/view/assessments-upload.component.pft';
 import { AssessmentUploadsComponentCeldt } from './admin/view/assessments-upload.component.celdt';
 import { AssessmentUploadsComponentNwea } from './admin/view/assessments-upload.component.nwea';
 import { AssessmentUploadsComponentAdam } from './admin/view/assessments-upload.component.adam';
 import { AssessmentUploadsComponentDora } from './admin/view/assessments-upload.component.dora';
 import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.component.doma';
-import { AssessmentUploadsComponentSbaci } from './admin/view/assessments-upload.component.sbaci';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -113,9 +112,8 @@ export const routes: Routes = [
     { path: 'schoolyear/grades', component: GradeInSchoolYearComponent, canActivate: [AuthGuard] },
     { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload', component: AssessmentUploadsComponent, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/SBACS', component: AssessmentUploadsComponentSbacs, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/SBACI', component: AssessmentUploadsComponentSbaci, canActivate: [AuthGuard] },
+    { path: 'admin-assessments-upload', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard] },
+    { path: 'admin-assessments-upload/SBAC', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload/PFT', component: AssessmentUploadsComponentPft, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload/CELDT', component: AssessmentUploadsComponentCeldt, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload/NWEA', component: AssessmentUploadsComponentNwea, canActivate: [AuthGuard] },

@@ -328,8 +328,7 @@ export class GlobalHelper {
                     {
                         label: 'Assessment Uploads', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'SBAC Summative', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/SBACS'] },
-                            { label: 'SBAC Interim', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/SBACI'] },
+                            { label: 'SBAC Summative', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/SBAC'] },
                             { label: 'Physical Fitness Test', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/PFT'] },
                             { label: 'CELDT', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/CELDT'] },
                             { label: 'NWEA', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/NWEA'] },

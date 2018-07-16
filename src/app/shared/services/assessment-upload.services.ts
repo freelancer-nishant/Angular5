@@ -37,11 +37,11 @@ export class AssessmentUploadService {
         return this.http.post(GlobalConstants.API_BASE_URL + '/api/pft', GlobalHelper.toHttpParams(pft), httpOptionsa);
     }
     // SBAC 2015-2016
-    saveSBACSummative(sbacsummative: SBACSummative): Observable<any> {
+    saveSBAC201516(sbacsummative: SBACSummative): Observable<any> {
         return this.http.post(GlobalConstants.API_BASE_URL + '/api/sbac201516', GlobalHelper.toHttpParams(sbacsummative), httpOptionsa);
     }
     // SBAC 2016-2017
-    saveSBACInterim(sbacinterim: SBACInterim): Observable<any> {
+    saveSBAC201617(sbacinterim: SBACInterim): Observable<any> {
         return this.http.post(GlobalConstants.API_BASE_URL + '/api/sbac201617', GlobalHelper.toHttpParams(sbacinterim), httpOptionsa);
     }
     saveNWEA(newa: NWEA): Observable<any> {

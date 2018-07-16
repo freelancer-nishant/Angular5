@@ -9,7 +9,8 @@ import { AssessmentUploadsComponent } from './assessments-upload.component';
 @Component({
     template: '<assessments-upload-component (submit)="submit()"></assessments-upload-component>',
 })
-export class AssessmentUploadsComponentPft implements OnInit {
+
+export class AssessmentUploadsComponentSbac implements OnInit {
     @ViewChild(AssessmentUploadsComponent) assessmentUploadsComponent: AssessmentUploadsComponent;
     sessionInfo: any = {};
 
@@ -22,17 +23,29 @@ export class AssessmentUploadsComponentPft implements OnInit {
     }
 
     ngOnInit() {
-        this.assessmentUploadsComponent.selectedOption = 'Physical Fitness Test';
+        this.assessmentUploadsComponent.selectedOption = 'SBAC Summative/Interim';
+        this.assessmentUploadsComponent.IsSBACYear = true;
     }
 
     submit() {
-            let responseResult: ResponseResult;
-            this.assessmentService.savePFT(this.assessmentUploadsComponent.filesAdded).subscribe((result: any) => responseResult = result,
+        let responseResult: ResponseResult;
+        if (this.assessmentUploadsComponent.selectedSBACYear == 1) {
+            this.assessmentService.saveSBAC201516(this.assessmentUploadsComponent.filesAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
                     this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
                 },
                 () => {
-                    this.assessmentUploadsComponent.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "PFT added successfully." });
+                    this.assessmentUploadsComponent.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "SBAC 2015-16 added successfully." });
                 });
+        }
+        else if (this.assessmentUploadsComponent.selectedSBACYear == 2) {
+            this.assessmentService.saveSBAC201617(this.assessmentUploadsComponent.filesAdded).subscribe((result: any) => responseResult = result,
+                (error: any) => {
+                    this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
+                },
+                () => {
+                    this.assessmentUploadsComponent.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "SBAC 2016-17 added successfully." });
+                });
+        }
     }
 }

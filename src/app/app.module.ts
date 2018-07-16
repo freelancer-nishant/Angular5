@@ -176,8 +176,7 @@ import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.compon
 import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
 import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
-import { AssessmentUploadsComponentSbacs } from './admin/view/assessments-upload.component.sbacs';
-import { AssessmentUploadsComponentSbaci } from './admin/view/assessments-upload.component.sbaci';
+import { AssessmentUploadsComponentSbac } from './admin/view/assessments-upload.component.sbac';
 import { AssessmentUploadsComponentPft } from './admin/view/assessments-upload.component.pft';
 import { AssessmentUploadsComponentCeldt } from './admin/view/assessments-upload.component.celdt';
 import { AssessmentUploadsComponentNwea } from './admin/view/assessments-upload.component.nwea';
@@ -358,8 +357,7 @@ import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.
         VJSComponent,
         TranslateComponent,
         FileUploadComponent,
-        AssessmentUploadsComponentSbacs,
-        AssessmentUploadsComponentSbaci,
+        AssessmentUploadsComponentSbac,
         AssessmentUploadsComponentPft,
         AssessmentUploadsComponentCeldt,
         AssessmentUploadsComponentNwea,
