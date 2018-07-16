@@ -4,7 +4,6 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 import { SelectItem } from 'primeng/primeng';
 import { Message } from 'primeng/components/common/api';
-
 import { ResponseResult } from './../../shared/domain/Common.model';
 import { AssessmentUploadService } from './../../shared/services/assessment-upload.services';
 import { SchoolService } from './../../shared/services/school.service';
@@ -18,6 +17,7 @@ import { TestVersion } from './../../shared/domain/testversion';
     templateUrl: './assessments-upload.component.html',
 })
 export class AssessmentUploadsComponentDora implements OnInit {
+    @Output() submitDora = new EventEmitter();
     selectedOption: any;
     testVersions: any = {};
     school: any = {};
@@ -29,9 +29,9 @@ export class AssessmentUploadsComponentDora implements OnInit {
     selectedTestVersion: any;
     isPanelVisible: boolean = false;
     test_type_ids: any = 1;
-    LGLDora: string;
-    LGLDORAUploadMsgs = [];
-    LGLDORAUploadErrorMsgs = [];
+    fileData: string;
+    UploadMsgs = [];
+    UploadErrorMsgs = [];
     errorMsgs: Message[] = [];
     filesAdded: any;
     constructor(public app: AppComponent, private schoolService: SchoolService,
@@ -46,7 +46,6 @@ export class AssessmentUploadsComponentDora implements OnInit {
     }
 
     ngOnInit() {
-
         this.selectedOption = 'LGL - DORA';
         this.schools = [];
         this.schoolYears = [];
@@ -74,6 +73,7 @@ export class AssessmentUploadsComponentDora implements OnInit {
 
 
     onGoClick() {
+        this.submitDora.emit();
         this.isPanelVisible = true;
         this.school.SchoolName = this.schools.find(x => x.value === this.selectedSchool).label;
         this.school.SchoolYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
@@ -105,9 +105,10 @@ export class AssessmentUploadsComponentDora implements OnInit {
                 versions.map(o => { this.testVersions.push({ label: o.version_label, value: o.version_number }); });
             });
     }
-    uploadLGLDora() {
-        if (this.LGLDora != "" && this.LGLDora != undefined) {
-            this.LGLDORAUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
+    uploadFile() {
+        console.log('DORA');
+        if (this.fileData != "" && this.fileData != undefined) {
+            this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
             this.filesAdded.client_id = this.sessionInfo.client_id;
             this.filesAdded.school_id = this.selectedSchool;
@@ -116,10 +117,10 @@ export class AssessmentUploadsComponentDora implements OnInit {
             this.filesAdded.skip_first_row = true;
             this.assessmentService.saveDORA(this.filesAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
-                    this.LGLDORAUploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
+                    this.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
                 },
                 () => {
-                    this.LGLDORAUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
+                    this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
                 });
         }
         else {

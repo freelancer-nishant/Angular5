@@ -52,10 +52,10 @@
                     <div class="ui-g">
                         <div class="ui-g-12 div-center">
                             <label class="control-label text-bold">Upload File: </label>&nbsp;&nbsp;
-                            <fileUpload [(fileData)]="SBACSummative" (change)="SBACSummative=$event"></fileUpload>
+                            <fileUpload [(fileData)]="fileData" (change)="fileData=$event"></fileUpload>
                         </div>
                         <div class="ui-g-12 div-center">
-                            <button pButton type="button" label="Upload" (click)="uploadSBACSummative()" style="width:auto;"></button>
+                            <button pButton type="button" label="Upload" (click)="uploadFile()" style="width:auto;"></button>
                         </div>
                     </div>
                     <p-panel>
@@ -64,8 +64,8 @@
                         </p-header>
                         <div class="ui-g form-group">
                             <div class="ui-g-12 ui-md-12">
-                                <p-messages [(value)]="SBACSummativeUploadMsgs"></p-messages>
-                                <p-messages [(value)]="SBACSummativeUploadErrorMsgs"></p-messages>
+                                <p-messages [(value)]="UploadMsgs"></p-messages>
+                                <p-messages [(value)]="UploadErrorMsgs"></p-messages>
                             </div>
                         </div>
                     </p-panel>

@@ -127,7 +127,6 @@ import { SchoolYearOfSchoolComponent } from './admin/view/schoolyear-school.comp
 import { GradeInSchoolYearComponent } from './admin/view/schoolyear-grade.component'
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
-import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 import { SchoolComponent } from './configurations/view/school.component'
 import { SchoolYearComponent } from './configurations/view/schoolyear.component'
@@ -176,7 +175,7 @@ import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
 import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
 import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
-
+import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { AssessmentUploadsComponentSbacs } from './admin/view/assessments-upload.component.sbacs';
 import { AssessmentUploadsComponentSbaci } from './admin/view/assessments-upload.component.sbaci';
 import { AssessmentUploadsComponentPft } from './admin/view/assessments-upload.component.pft';

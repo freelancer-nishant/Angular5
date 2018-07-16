@@ -1,10 +1,8 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
-
 import { SelectItem } from 'primeng/primeng';
 import { Message } from 'primeng/components/common/api';
-
 import { ResponseResult } from './../../shared/domain/Common.model';
 import { AssessmentUploadService } from './../../shared/services/assessment-upload.services';
 import { SchoolService } from './../../shared/services/school.service';
@@ -18,6 +16,7 @@ import { TestVersion } from './../../shared/domain/testversion';
     templateUrl: './assessments-upload.component.html',
 })
 export class AssessmentUploadsComponentAdam implements OnInit {
+    @Output() submitAdam = new EventEmitter();
     selectedOption: any;
     testVersions: any = {};
     school: any = {};
@@ -26,22 +25,14 @@ export class AssessmentUploadsComponentAdam implements OnInit {
     selectedSchool: any;
     schoolYears: SelectItem[];
     selectedYear: any;
-    // testVersions: SelectItem[];
     selectedTestVersion: any;
     isPanelVisible: boolean = false;
     test_type_ids: any = 1;
-
-
-    LGLAdam: string;
-    LGLAdamUploadMsgs = [];
-    LGLAdamUploadErrorMsgs = [];
-
+    fileData: string;
+    UploadMsgs = [];
+    UploadErrorMsgs = [];
     errorMsgs: Message[] = [];
-
     filesAdded: any;
-
-    /* ************************************************* */
-
     constructor(public app: AppComponent, private schoolService: SchoolService,
         private schoolYearService: SchoolYearService,
         private testVersionService: TestVersionService,
@@ -54,10 +45,7 @@ export class AssessmentUploadsComponentAdam implements OnInit {
     }
 
     ngOnInit() {
-
-        // console.log(this.errorMsgs);
         this.selectedOption = 'LGL - ADAM';
-        console.log(this.selectedOption);
         this.schools = [];
         this.schoolYears = [];
         this.testVersions = [];
@@ -82,8 +70,8 @@ export class AssessmentUploadsComponentAdam implements OnInit {
 
     }
 
-
     onGoClick() {
+        this.submitAdam.emit();
         this.isPanelVisible = true;
         this.school.SchoolName = this.schools.find(x => x.value === this.selectedSchool).label;
         this.school.SchoolYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
@@ -116,9 +104,10 @@ export class AssessmentUploadsComponentAdam implements OnInit {
             });
     }
 
-    uploadLGLAdam() {
-        if (this.LGLAdam != "" && this.LGLAdam != undefined) {
-            this.LGLAdamUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
+    uploadFile() {
+        console.log('ADAM');
+        if (this.fileData != "" && this.fileData != undefined) {
+            this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
             this.filesAdded.client_id = this.sessionInfo.client_id;
             this.filesAdded.school_id = this.selectedSchool;
@@ -127,10 +116,10 @@ export class AssessmentUploadsComponentAdam implements OnInit {
             this.filesAdded.skip_first_row = true;
             this.assessmentService.saveADAM(this.filesAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
-                    this.LGLAdamUploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
+                    this.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
                 },
                 () => {
-                    this.LGLAdamUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
+                    this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
                 });
         }
         else {

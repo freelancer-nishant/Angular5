@@ -4,15 +4,6 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 import { SelectItem } from 'primeng/primeng';
 import { Message } from 'primeng/components/common/api';
-/* import { MessageService } from 'primeng/components/common/messageservice';
-import { SBACSummative } from './../../shared/domain/sbac.summative';
-import { SBACInterim } from './../../shared/domain/sbac.interim';
-import { PFT } from './../../shared/domain/pft';
-import { CELDT } from './../../shared/domain/celdt';
-import { NWEA } from './../../shared/domain/nwea';
-import { LGLAdam } from './../../shared/domain/lgl.adam';
-import { LGLDora } from './../../shared/domain/lgl.dora';
-import { LGLDomaAlgebra } from './../../shared/domain/lgl.doma.algebra'; */
 
 import { ResponseResult } from './../../shared/domain/Common.model';
 import { AssessmentUploadService } from './../../shared/services/assessment-upload.services';
@@ -34,12 +25,9 @@ export class AssessmentUploadsComponent implements OnInit {
     selectedSchool: any;
     schoolYears: SelectItem[];
     selectedYear: any;
-    // testVersions: SelectItem[];
     selectedTestVersion: any;
     isPanelVisible: boolean = false;
     test_type_ids: any = 1;
-
-    /* ************************************************** */
 
     SBACSummative: string;
     SBACSummativeUploadMsgs = [];
@@ -76,8 +64,6 @@ export class AssessmentUploadsComponent implements OnInit {
     errorMsgs: Message[] = [];
 
     filesAdded: any;
-
-    /* ************************************************* */
 
     constructor(public app: AppComponent, private schoolService: SchoolService,
         private schoolYearService: SchoolYearService,
@@ -118,7 +104,6 @@ export class AssessmentUploadsComponent implements OnInit {
 
     }
 
-
     onGoClick() {
         this.isPanelVisible = true;
         this.school.SchoolName = this.schools.find(x => x.value === this.selectedSchool).label;
@@ -151,8 +136,6 @@ export class AssessmentUploadsComponent implements OnInit {
                 versions.map(o => { this.testVersions.push({ label: o.version_label, value: o.version_number }); });
             });
     }
-
-
 
     // SBAC 2015-2016
     uploadSBACSummative() {

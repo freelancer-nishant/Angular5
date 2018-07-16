@@ -4,15 +4,6 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 import { SelectItem } from 'primeng/primeng';
 import { Message } from 'primeng/components/common/api';
-/* import { MessageService } from 'primeng/components/common/messageservice';
-import { SBACSummative } from './../../shared/domain/sbac.summative';
-import { SBACInterim } from './../../shared/domain/sbac.interim';
-import { PFT } from './../../shared/domain/pft';
-import { CELDT } from './../../shared/domain/celdt';
-import { NWEA } from './../../shared/domain/nwea';
-import { LGLAdam } from './../../shared/domain/lgl.adam';
-import { LGLDora } from './../../shared/domain/lgl.dora';
-import { LGLDomaAlgebra } from './../../shared/domain/lgl.doma.algebra'; */
 
 import { ResponseResult } from './../../shared/domain/Common.model';
 import { AssessmentUploadService } from './../../shared/services/assessment-upload.services';
@@ -27,6 +18,7 @@ import { TestVersion } from './../../shared/domain/testversion';
     templateUrl: './assessments-upload.component.html',
 })
 export class AssessmentUploadsComponentSbaci implements OnInit {
+    @Output() submitSbaci = new EventEmitter();
     selectedOption: any;
     testVersions: any = {};
     school: any = {};
@@ -38,9 +30,9 @@ export class AssessmentUploadsComponentSbaci implements OnInit {
     selectedTestVersion: any;
     isPanelVisible: boolean = false;
     test_type_ids: any = 1;
-    SBACinterim: string;
-    SBACinterimUploadMsgs = [];
-    SBACinterimUploadErrorMsgs = [];
+    fileData: string;
+    UploadMsgs = [];
+    UploadErrorMsgs = [];
     errorMsgs: Message[] = [];
     filesAdded: any;
     constructor(public app: AppComponent, private schoolService: SchoolService,
@@ -82,6 +74,7 @@ export class AssessmentUploadsComponentSbaci implements OnInit {
 
 
     onGoClick() {
+        this.submitSbaci.emit();
         this.isPanelVisible = true;
         this.school.SchoolName = this.schools.find(x => x.value === this.selectedSchool).label;
         this.school.SchoolYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
@@ -114,9 +107,10 @@ export class AssessmentUploadsComponentSbaci implements OnInit {
             });
     }
     // SBAC 2016-2017
-    uploadSBACinterim() {
-        if (this.SBACinterim != "" && this.SBACinterim != undefined) {
-            this.SBACinterimUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
+    uploadFile() {
+        console.log('SBACI');
+        if (this.fileData != "" && this.fileData != undefined) {
+            this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
             this.filesAdded.client_id = this.sessionInfo.client_id;
             this.filesAdded.school_id = this.selectedSchool;
@@ -125,10 +119,10 @@ export class AssessmentUploadsComponentSbaci implements OnInit {
             this.filesAdded.skip_first_row = true;
             this.assessmentService.saveSBACInterim(this.filesAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
-                    this.SBACinterimUploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
+                    this.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
                 },
                 () => {
-                    this.SBACinterimUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
+                    this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
                 });
         }
         else {

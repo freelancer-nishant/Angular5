@@ -4,15 +4,6 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 import { SelectItem } from 'primeng/primeng';
 import { Message } from 'primeng/components/common/api';
-/* import { MessageService } from 'primeng/components/common/messageservice';
-import { SBACSummative } from './../../shared/domain/sbac.summative';
-import { SBACInterim } from './../../shared/domain/sbac.interim';
-import { PFT } from './../../shared/domain/pft';
-import { CELDT } from './../../shared/domain/celdt';
-import { NWEA } from './../../shared/domain/nwea';
-import { LGLAdam } from './../../shared/domain/lgl.adam';
-import { LGLDora } from './../../shared/domain/lgl.dora';
-import { LGLDomaAlgebra } from './../../shared/domain/lgl.doma.algebra'; */
 
 import { ResponseResult } from './../../shared/domain/Common.model';
 import { AssessmentUploadService } from './../../shared/services/assessment-upload.services';
@@ -27,6 +18,7 @@ import { TestVersion } from './../../shared/domain/testversion';
     templateUrl: './assessments-upload.component.html',
 })
 export class AssessmentUploadsComponentDoma implements OnInit {
+    @Output() submitDoma = new EventEmitter();
     selectedOption: any;
     testVersions: any = {};
     school: any = {};
@@ -38,9 +30,9 @@ export class AssessmentUploadsComponentDoma implements OnInit {
     selectedTestVersion: any;
     isPanelVisible: boolean = false;
     test_type_ids: any = 1;
-    LGLDOMAAlgebra: string;
-    LGLDOMAAlgebraUploadMsgs = [];
-    LGLDOMAAlgebraUploadErrorMsgs = [];
+    fileData: string;
+    UploadMsgs = [];
+    UploadErrorMsgs = [];
     errorMsgs: Message[] = [];
     filesAdded: any;
     constructor(public app: AppComponent, private schoolService: SchoolService,
@@ -81,8 +73,8 @@ export class AssessmentUploadsComponentDoma implements OnInit {
 
     }
 
-
     onGoClick() {
+        this.submitDoma.emit();
         this.isPanelVisible = true;
         this.school.SchoolName = this.schools.find(x => x.value === this.selectedSchool).label;
         this.school.SchoolYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
@@ -114,9 +106,10 @@ export class AssessmentUploadsComponentDoma implements OnInit {
                 versions.map(o => { this.testVersions.push({ label: o.version_label, value: o.version_number }); });
             });
     }
-    uploadLGLDOMAAlgebra() {
-        if (this.LGLDOMAAlgebra != "" && this.LGLDOMAAlgebra != undefined) {
-            this.LGLDOMAAlgebraUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
+    uploadFile() {
+        console.log('DOMA');
+        if (this.fileData != "" && this.fileData != undefined) {
+            this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
             this.filesAdded.client_id = this.sessionInfo.client_id;
             this.filesAdded.school_id = this.selectedSchool;
@@ -125,10 +118,10 @@ export class AssessmentUploadsComponentDoma implements OnInit {
             this.filesAdded.skip_first_row = true;
             this.assessmentService.saveDOMAAlgebra(this.filesAdded).subscribe((result: any) => responseResult = result,
                 (error: any) => {
-                    this.LGLDOMAAlgebraUploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
+                    this.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
                 },
                 () => {
-                    this.LGLDOMAAlgebraUploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
+                    this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "Days In School Year added successfully." });
                 });
         }
         else {
