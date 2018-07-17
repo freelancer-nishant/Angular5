@@ -313,9 +313,9 @@ export class GlobalHelper {
                     {
                         label: 'Enrollment & Attendance', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Students', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
-                            { label: '1st Period Teachers', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
-                            { label: 'Daily Attendance', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/grades'] }
+                            { label: 'Students', icon: 'fa fa-fw fa-columns', routerLink: ['/enrollment-attendance/students'] },
+                            { label: '1st Period Teachers', icon: 'fa fa-fw fa-columns', routerLink: ['/enrollment-attendance/1st-period-teachers'] },
+                            { label: 'Daily Attendance', icon: 'fa fa-fw fa-columns', routerLink: ['/enrollment-attendance/attendance'] },
                         ]
                     },
                     {

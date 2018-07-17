@@ -70,6 +70,9 @@ import { AssessmentUploadsComponentNwea } from './admin/view/assessments-upload.
 import { AssessmentUploadsComponentAdam } from './admin/view/assessments-upload.component.adam';
 import { AssessmentUploadsComponentDora } from './admin/view/assessments-upload.component.dora';
 import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.component.doma';
+import { EnrollmentAndAttendanceComponentStudent } from './admin/view/enrollment-attendance.component.student';
+import { EnrollmentAndAttendanceComponentPeriodTeacher } from './admin/view/enrollment-attendance.component.period-teacher';
+import { EnrollmentAndAttendanceComponentDailyAttendance } from './admin/view/enrollment-attendance.component.daily-attendance';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -121,6 +124,9 @@ export const routes: Routes = [
     { path: 'admin-assessments-upload/DORA', component: AssessmentUploadsComponentDora, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload/DOMA', component: AssessmentUploadsComponentDoma, canActivate: [AuthGuard] },
     { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard] },
+    { path: 'enrollment-attendance/students', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard] },
+    { path: 'enrollment-attendance/1st-period-teachers', component: EnrollmentAndAttendanceComponentPeriodTeacher, canActivate: [AuthGuard] },
+    { path: 'enrollment-attendance/attendance', component: EnrollmentAndAttendanceComponentDailyAttendance, canActivate: [AuthGuard] },
     { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/subcategory/:typeid/:catid', component: TaxonomySubCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },

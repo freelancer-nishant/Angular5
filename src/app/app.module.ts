@@ -132,7 +132,9 @@ import { SchoolComponent } from './configurations/view/school.component'
 import { SchoolYearComponent } from './configurations/view/schoolyear.component'
 import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component'
 import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component'
-
+import { EnrollmentAndAttendanceComponentStudent } from './admin/view/enrollment-attendance.component.student';
+import { EnrollmentAndAttendanceComponentDailyAttendance } from './admin/view/enrollment-attendance.component.daily-attendance';
+import { EnrollmentAndAttendanceComponentPeriodTeacher } from './admin/view/enrollment-attendance.component.period-teacher';
 import { SchoolYearGradeFilter } from './dashboards/filters/school-year-grade-filter';
 import { SchoolYearGradeTestFilter } from './dashboards/filters/school-year-grade-test-filter';
 import { AssesmentSchoolYearGradeFilter } from './dashboards/filters/assesment-school-year-grade-filter';
@@ -337,6 +339,9 @@ import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.
         SchoolYearOfSchoolComponent,
         GradeInSchoolYearComponent,
         EnrollmentAndAttendanceComponent,
+        EnrollmentAndAttendanceComponentStudent,
+        EnrollmentAndAttendanceComponentPeriodTeacher,
+        EnrollmentAndAttendanceComponentDailyAttendance,
         AdminAssessmentsComponent,
         AssessmentUploadsComponent,
         SchoolComparisonListComponent,

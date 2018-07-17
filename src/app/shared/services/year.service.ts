@@ -20,6 +20,11 @@ export class YearService {
         return this.http.get(url);
     }
 
+    /* getisForReport(): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/schoolyear?isForReport=false'
+        return this.http.get(url);
+    } */
+
     insert(schoolYear: Year): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/schoolyear';
         return this.http.post(url, GlobalHelper.toHttpParams(schoolYear), httpOptionsa);

@@ -3,9 +3,9 @@ import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 
 @Component({
-    templateUrl: './enrollment-attendance.component.temp.html'
+    templateUrl: './enrollment-attendance.component.html'
 })
-export class EnrollmentAndAttendanceComponent implements OnInit {
+export class EnrollmentAndAttendanceComponentPeriodTeacher implements OnInit {
 
     selectedOption: any;
     constructor(public app: AppComponent) {
@@ -17,5 +17,7 @@ export class EnrollmentAndAttendanceComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.selectedOption = '1st Period Teacher';
+        console.log('enrollment attendance');
     }
 }
