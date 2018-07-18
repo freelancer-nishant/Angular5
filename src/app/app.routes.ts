@@ -113,7 +113,7 @@ export const routes: Routes = [
     { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard] },
     { path: 'schoolyear/school', component: SchoolYearOfSchoolComponent, canActivate: [AuthGuard] },
     { path: 'schoolyear/grades', component: GradeInSchoolYearComponent, canActivate: [AuthGuard] },
-    { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponent, canActivate: [AuthGuard] },
+    { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard] },
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload/SBAC', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard] },

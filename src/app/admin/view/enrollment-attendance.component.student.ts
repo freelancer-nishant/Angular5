@@ -1,69 +1,45 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
-
-import { SelectItem } from 'primeng/primeng';
-import { Message } from 'primeng/components/common/api';
-
 import { ResponseResult } from './../../shared/domain/Common.model';
 import { YearService } from './../../shared/services/year.service';
-import { Year } from './../../shared/domain/year';
+import { EnrollmentAndAttendanceComponent } from './enrollment-attendance.component';
+import { EnrollmentAndAttendanceService } from './../../shared/services/enrollment-attendance.services';
+
 @Component({
-    templateUrl: './enrollment-attendance.component.html'
+    template: '<enrollment-attendance-component (submit)="submit()"></enrollment-attendance-component>',
 })
 export class EnrollmentAndAttendanceComponentStudent implements OnInit {
-    @Output() submit = new EventEmitter();
-    selectedOption: any;
-    isPanelVisible: any;
-    year: any = {};
-    years: SelectItem[];
-    selectedYear: any;
+    @ViewChild(EnrollmentAndAttendanceComponent) enrollmentAttendanceComponent: EnrollmentAndAttendanceComponent;
     sessionInfo: any = {};
-    fileData: string;
-    UploadMsgs = [];
-    UploadErrorMsgs = [];
-    errorMsgs: Message[] = [];
-    filesAdded: any;
 
-    constructor(public app: AppComponent, private yearService: YearService) {
+    constructor(public app: AppComponent,
+        private enrollmentAttendanceService: EnrollmentAndAttendanceService,
+        private year: YearService) {
+        this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.EnrollmentAndAttendance);
         this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.EnrollmentAndAttendance);
-        this.sessionInfo = this.app.getSession();
     }
 
     ngOnInit() {
-        this.selectedOption = 'Student';
-        this.years = [];
-        let yearResult: Year[] = [];
-        this.yearService.get().subscribe((result: any) => yearResult = result.data,
-            (error: any) => { },
+        this.enrollmentAttendanceComponent.selectedOption = 'Student';
+    }
+
+    submit() {
+        console.log('into the child components fun');
+        let responseResult: ResponseResult;
+        this.enrollmentAttendanceService.saveStudent(this.enrollmentAttendanceComponent.filesAdded).subscribe(
+            (result: any) => responseResult = result,
+            (error: any) => {
+                console.log(this.enrollmentAttendanceComponent.filesAdded);
+                this.enrollmentAttendanceComponent.UploadErrorMsgs.push
+                ({ severity: 'error', summary: 'error Message', detail: error.error.message });
+            },
             () => {
-                this.years = [];
-                yearResult.map(o => { this.years.push({ label: o.school_year, value: o.id }); });
-            });
-    }
-
-    schoolYearChange(e) {
-        this.selectedYear = null;
-        this.isPanelVisible = true;
-        // this.year.selectYear = this.years.find(x => x.value === this.selectedYear).label;
-        console.log(this.selectedYear);
-    }
-
-
-
-    uploadFile() {
-        if (this.fileData != "" && this.fileData != undefined) {
-            this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
-            let responseResult: ResponseResult;
-            this.filesAdded.client_id = this.sessionInfo.client_id;
-            this.filesAdded.school_year_id = this.selectedYear;
-            this.filesAdded.skip_first_row = true;
-            this.submit.emit();
-        }
-        else {
-            this.errorMsgs.push({ severity: 'error', detail: 'Please input data to add.' });
-        }
+                this.enrollmentAttendanceComponent.UploadErrorMsgs.push
+                ({ severity: 'success', summary: 'success Message', detail: "Student added successfully." });
+            }
+        );
     }
 }

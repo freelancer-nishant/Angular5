@@ -167,7 +167,7 @@ import { DaysInSchoolYearService } from './shared/services/days.inschoolyear.ser
 import { ClientService } from './shared/services/client.service';
 import { RoleService } from './shared/services/role.service';
 import { AssessmentUploadService } from './shared/services/assessment-upload.services';
-
+import { EnrollmentAndAttendanceService } from './shared/services/enrollment-attendance.services';
 import { TestService } from './shared/services/test.service'
 import { TestVersionService } from './shared/services/testversion.service'
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
@@ -373,12 +373,13 @@ import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         HttpClient,
-        LoginService, SchoolService, SchoolYearService, YearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
+        LoginService, SchoolService,
+        SchoolYearService, YearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService, TaxonomyService, TaxonomyConfigurationService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
         ClientService, RoleService, AssessmentUploadService,
         MessageService, ConfirmationService,
         JwtHelperService, AuthService, AuthGuardService,
-        VJSConfig,
+        VJSConfig, EnrollmentAndAttendanceService
     ],
     bootstrap: [AppComponent]
 })

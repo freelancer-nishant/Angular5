@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
-
 import { ResponseResult } from './../../shared/domain/Common.model';
 import { AssessmentUploadService } from './../../shared/services/assessment-upload.services';
 import { AssessmentUploadsComponent } from './assessments-upload.component';
@@ -26,13 +25,13 @@ export class AssessmentUploadsComponentPft implements OnInit {
     }
 
     submit() {
-            let responseResult: ResponseResult;
-            this.assessmentService.savePFT(this.assessmentUploadsComponent.filesAdded).subscribe((result: any) => responseResult = result,
-                (error: any) => {
-                    this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
-                },
-                () => {
-                    this.assessmentUploadsComponent.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "PFT added successfully." });
-                });
+        let responseResult: ResponseResult;
+        this.assessmentService.savePFT(this.assessmentUploadsComponent.filesAdded).subscribe((result: any) => responseResult = result,
+            (error: any) => {
+                this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
+            },
+            () => {
+                this.assessmentUploadsComponent.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "PFT added successfully." });
+            });
     }
 }
