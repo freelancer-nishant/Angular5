@@ -31,7 +31,7 @@ export class AssessmentUploadsComponentCeldt implements OnInit {
                 this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
             },
             () => {
-                this.assessmentUploadsComponent.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "CELDT added successfully." });
+                this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'success', summary: 'success Message', detail: "CELDT added successfully." });
             });
 
     }

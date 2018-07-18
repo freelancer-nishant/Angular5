@@ -52,6 +52,10 @@ export class EnrollmentAndAttendanceComponent implements OnInit {
 
     onGoClick() {
         this.isPanelVisible = true;
+        this.UploadMsgs = [];
+        this.UploadErrorMsgs = [];
+        this.errorMsgs = [];
+
         this.selectedYearName = this.schoolYears.find(x => x.value === this.selectedYear).label;
     }
 
@@ -62,6 +66,7 @@ export class EnrollmentAndAttendanceComponent implements OnInit {
     uploadFile() {
         if (this.fileData != "" && this.fileData != undefined) {
             let responseResult: ResponseResult;
+            this.filesAdded.file_data = this.fileData;
             this.filesAdded.client_id = this.sessionInfo.client_id;
             this.filesAdded.school_year_id = this.selectedYear;
             this.filesAdded.skip_first_row = true;

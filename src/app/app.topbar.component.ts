@@ -86,7 +86,7 @@ import { AppComponent } from './app.component';
                             </li>                            
                         </ul>
                     </li>                    
-                    <li #admin [ngClass]="{'active-top-menu':app.activeTopbarItem === admin, 'hide':app.hasAccess('ClientUser') !== true}">
+                    <li #admin [ngClass]="{'active-top-menu':app.activeTopbarItem === admin, 'hide':app.hasAccess('ClientAdmin') !== true}">
                         <a href="#" (click)="app.onTopbarItemClick($event,admin)"  title="Admin">                                                        
                             <i class="topbar-icon material-icons">&#xE8B8;</i>                            
                             <span class="topbar-item-name">Admin</span>

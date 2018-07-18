@@ -116,26 +116,28 @@ export const routes: Routes = [
 
 
     //Admin pages
-    { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard] },
-    { path: 'schoolyear/school', component: SchoolYearOfSchoolComponent, canActivate: [AuthGuard] },
-    { path: 'schoolyear/grades', component: GradeInSchoolYearComponent, canActivate: [AuthGuard] },
+    { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
 
-    { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard] },
-    { path: 'enrollment-attendance/students', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard] },
-    { path: 'enrollment-attendance/1st-period-teachers', component: EnrollmentAndAttendanceComponentPeriodTeacher, canActivate: [AuthGuard] },
-    { path: 'enrollment-attendance/attendance', component: EnrollmentAndAttendanceComponentDailyAttendance, canActivate: [AuthGuard] },
+    { path: 'schoolyear/school', component: SchoolYearOfSchoolComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'schoolyear/grades', component: GradeInSchoolYearComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
 
-    { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/SBAC', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/PFT', component: AssessmentUploadsComponentPft, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/CELDT', component: AssessmentUploadsComponentCeldt, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/NWEA', component: AssessmentUploadsComponentNwea, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/ADAM', component: AssessmentUploadsComponentAdam, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/DORA', component: AssessmentUploadsComponentDora, canActivate: [AuthGuard] },
-    { path: 'admin-assessments-upload/DOMA', component: AssessmentUploadsComponentDoma, canActivate: [AuthGuard] },
+    { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'enrollment-attendance/students', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'enrollment-attendance/1st-period-teachers', component: EnrollmentAndAttendanceComponentPeriodTeacher, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'enrollment-attendance/attendance', component: EnrollmentAndAttendanceComponentDailyAttendance, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
 
-    { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard] },
+    { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+
+    { path: 'admin-assessments-upload', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'admin-assessments-upload/SBAC', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'admin-assessments-upload/PFT', component: AssessmentUploadsComponentPft, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'admin-assessments-upload/CELDT', component: AssessmentUploadsComponentCeldt, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'admin-assessments-upload/NWEA', component: AssessmentUploadsComponentNwea, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'admin-assessments-upload/ADAM', component: AssessmentUploadsComponentAdam, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'admin-assessments-upload/DORA', component: AssessmentUploadsComponentDora, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'admin-assessments-upload/DOMA', component: AssessmentUploadsComponentDoma, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+
+    { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
 
     { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },

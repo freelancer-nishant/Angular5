@@ -79,6 +79,10 @@ export class AssessmentUploadsComponent implements OnInit {
 
     onGoClick() {
         this.isPanelVisible = true;
+        this.UploadMsgs = [];
+        this.UploadErrorMsgs = [];
+        this.errorMsgs = [];
+
         this.school.SchoolName = this.schools.find(x => x.value === this.selectedSchool).label;
         this.school.SchoolYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
         this.testVersions.TestVersion = this.testVersions.find(x => x.value === this.selectedTestVersion).label;
@@ -116,6 +120,7 @@ export class AssessmentUploadsComponent implements OnInit {
         if (this.fileData != "" && this.fileData != undefined) {
             this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
+            this.filesAdded.file_data = this.fileData;
             this.filesAdded.client_id = this.sessionInfo.client_id;
             this.filesAdded.school_id = this.selectedSchool;
             this.filesAdded.school_year_id = this.selectedYear;

@@ -35,7 +35,7 @@ export class AssessmentUploadsComponentSbac implements OnInit {
                     this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
                 },
                 () => {
-                    this.assessmentUploadsComponent.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "SBAC 2015-16 added successfully." });
+                    this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'success', summary: 'success Message', detail: "SBAC 2015-16 added successfully." });
                 });
         }
         else if (this.assessmentUploadsComponent.selectedSBACYear == 2) {
@@ -44,7 +44,7 @@ export class AssessmentUploadsComponentSbac implements OnInit {
                     this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'error', summary: 'error Message', detail: error.error.message });
                 },
                 () => {
-                    this.assessmentUploadsComponent.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: "SBAC 2016-17 added successfully." });
+                    this.assessmentUploadsComponent.UploadErrorMsgs.push({ severity: 'success', summary: 'success Message', detail: "SBAC 2016-17 added successfully." });
                 });
         }
     }

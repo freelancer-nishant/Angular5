@@ -35,7 +35,7 @@ export class EnrollmentAndAttendanceComponentPeriodTeacher implements OnInit {
             },
             () => {
                 this.enrollmentAttendanceComponent.UploadErrorMsgs.push
-                ({ severity: 'success', summary: 'success Message', detail: "Student added successfully." });
+                    ({ severity: 'success', summary: 'success Message', detail: "1st Period Teacher added successfully." });
             }
     );
 

@@ -31,11 +31,11 @@ export class EnrollmentAndAttendanceComponentDailyAttendance implements OnInit {
             (result: any) => responseResult = result,
             (error: any) => {
                 this.enrollmentAttendanceComponent.UploadErrorMsgs.push
-                ({ severity: 'error', summary: 'error Message', detail: error.error.message });
+                    ({ severity: 'error', summary: 'error Message', detail: error.error.message });
             },
             () => {
                 this.enrollmentAttendanceComponent.UploadErrorMsgs.push
-                ({ severity: 'success', summary: 'success Message', detail: "Student added successfully." });
+                    ({ severity: 'success', summary: 'success Message', detail: "Daily Attendance added successfully." });
             }
         );
     }
