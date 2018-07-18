@@ -9,16 +9,13 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import { Year } from './../../shared/domain/year';
 import { Student } from './../../shared/domain/student';
 
-
-
-
 @Component({
     selector: 'enrollment-attendance-component',
     templateUrl: './enrollment-attendance.component.html'
 })
 export class EnrollmentAndAttendanceComponent implements OnInit {
     @Output() submit = new EventEmitter();
-    year: any = {};
+    selectedYearName: string;
     selectedOption: any;
     sessionInfo: any = {};
     isPanelVisible: any;
@@ -55,19 +52,11 @@ export class EnrollmentAndAttendanceComponent implements OnInit {
 
     onGoClick() {
         this.isPanelVisible = true;
-        this.year.selectedYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
+        this.selectedYearName = this.schoolYears.find(x => x.value === this.selectedYear).label;
     }
 
     schoolYearChange(e) {
         this.isPanelVisible = false;
-        let yearResult: Year[] = [];
-        this.yearService.get().subscribe((result: any) => yearResult = result.data,
-            (error: any) => { },
-            () => {
-                this.schoolYears = [];
-                yearResult.map(o => { this.schoolYears.push({ label: o.school_year, value: o.id }); });
-            });
-
     }
 
     uploadFile() {

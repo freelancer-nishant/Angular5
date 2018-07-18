@@ -51,18 +51,15 @@ import { AdminConfigurationComponent } from './admin/view/admin.configuration.co
 import { SchoolinSchoolYearComponent } from './admin/view/schoolin-schoolyear.component';
 import { SchoolYearOfSchoolComponent } from './admin/view/schoolyear-school.component';
 import { GradeInSchoolYearComponent } from './admin/view/schoolyear-grade.component';
+
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component';
+import { EnrollmentAndAttendanceComponentStudent } from './admin/view/enrollment-attendance.component.student';
+import { EnrollmentAndAttendanceComponentPeriodTeacher } from './admin/view/enrollment-attendance.component.period-teacher';
+import { EnrollmentAndAttendanceComponentDailyAttendance } from './admin/view/enrollment-attendance.component.daily-attendance';
+
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component';
+
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component';
-import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component';
-import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
-import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
-import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
-import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
-import { SchoolComponent } from './configurations/view/school.component';
-import { SchoolYearComponent } from './configurations/view/schoolyear.component';
-import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component';
-import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component';
 import { AssessmentUploadsComponentSbac } from './admin/view/assessments-upload.component.sbac';
 import { AssessmentUploadsComponentPft } from './admin/view/assessments-upload.component.pft';
 import { AssessmentUploadsComponentCeldt } from './admin/view/assessments-upload.component.celdt';
@@ -70,9 +67,18 @@ import { AssessmentUploadsComponentNwea } from './admin/view/assessments-upload.
 import { AssessmentUploadsComponentAdam } from './admin/view/assessments-upload.component.adam';
 import { AssessmentUploadsComponentDora } from './admin/view/assessments-upload.component.dora';
 import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.component.doma';
-import { EnrollmentAndAttendanceComponentStudent } from './admin/view/enrollment-attendance.component.student';
-import { EnrollmentAndAttendanceComponentPeriodTeacher } from './admin/view/enrollment-attendance.component.period-teacher';
-import { EnrollmentAndAttendanceComponentDailyAttendance } from './admin/view/enrollment-attendance.component.daily-attendance';
+
+import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component';
+
+import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
+import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
+import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
+import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
+
+import { SchoolComponent } from './configurations/view/school.component';
+import { SchoolYearComponent } from './configurations/view/schoolyear.component';
+import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component';
+import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -113,7 +119,12 @@ export const routes: Routes = [
     { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard] },
     { path: 'schoolyear/school', component: SchoolYearOfSchoolComponent, canActivate: [AuthGuard] },
     { path: 'schoolyear/grades', component: GradeInSchoolYearComponent, canActivate: [AuthGuard] },
+
     { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard] },
+    { path: 'enrollment-attendance/students', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard] },
+    { path: 'enrollment-attendance/1st-period-teachers', component: EnrollmentAndAttendanceComponentPeriodTeacher, canActivate: [AuthGuard] },
+    { path: 'enrollment-attendance/attendance', component: EnrollmentAndAttendanceComponentDailyAttendance, canActivate: [AuthGuard] },
+
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload/SBAC', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard] },
@@ -123,10 +134,9 @@ export const routes: Routes = [
     { path: 'admin-assessments-upload/ADAM', component: AssessmentUploadsComponentAdam, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload/DORA', component: AssessmentUploadsComponentDora, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload/DOMA', component: AssessmentUploadsComponentDoma, canActivate: [AuthGuard] },
+
     { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard] },
-    { path: 'enrollment-attendance/students', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard] },
-    { path: 'enrollment-attendance/1st-period-teachers', component: EnrollmentAndAttendanceComponentPeriodTeacher, canActivate: [AuthGuard] },
-    { path: 'enrollment-attendance/attendance', component: EnrollmentAndAttendanceComponentDailyAttendance, canActivate: [AuthGuard] },
+
     { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/subcategory/:typeid/:catid', component: TaxonomySubCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
