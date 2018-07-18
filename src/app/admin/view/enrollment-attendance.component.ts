@@ -53,8 +53,13 @@ export class EnrollmentAndAttendanceComponent implements OnInit {
             });
     }
 
-    schoolYearChange(e) {
+    onGoClick() {
         this.isPanelVisible = true;
+        this.year.selectedYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
+    }
+
+    schoolYearChange(e) {
+        this.isPanelVisible = false;
         let yearResult: Year[] = [];
         this.yearService.get().subscribe((result: any) => yearResult = result.data,
             (error: any) => { },
@@ -62,7 +67,7 @@ export class EnrollmentAndAttendanceComponent implements OnInit {
                 this.schoolYears = [];
                 yearResult.map(o => { this.schoolYears.push({ label: o.school_year, value: o.id }); });
             });
-        this.year.selectedYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
+
     }
 
     uploadFile() {

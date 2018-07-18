@@ -11,6 +11,10 @@
                         <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" (onChange)="schoolYearChange($event)" [autoWidth]="false"
                                     placeholder="--Select--"></p-dropdown>
                     </div>
+                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
+                        <label class="control-label">&nbsp;</label>
+                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto" [disabled]="selectedYear === null"></button>
+                    </div>
                     <p-growl [(value)]="errorMsgs"></p-growl>
                 </div>
             </div>

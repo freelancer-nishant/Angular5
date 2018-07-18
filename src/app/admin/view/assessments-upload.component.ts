@@ -34,8 +34,6 @@ export class AssessmentUploadsComponent implements OnInit {
     sbacYears: SelectItem[];
     selectedSBACYear: any;
     selectedOption: string;
-    /* ************************************************** */
-
     fileData: string;
     UploadMsgs = [];
     UploadErrorMsgs = [];
@@ -43,8 +41,6 @@ export class AssessmentUploadsComponent implements OnInit {
     errorMsgs: Message[] = [];
 
     filesAdded: any;
-
-    /* ************************************************* */
 
     constructor(public app: AppComponent, private schoolService: SchoolService,
         private schoolYearService: SchoolYearService,
@@ -74,14 +70,12 @@ export class AssessmentUploadsComponent implements OnInit {
         let testVersionResult: TestVersion[] = [];
         this.testVersionService.get(this.selectedSchool, this.selectedYear,
             this.selectedTestVersion).subscribe((result: any) => testVersionResult = result.data,
-            (error: any) => { },
-            () => {
-                this.testVersions = [];
-                testVersionResult.map(o => { this.testVersions.push({ label: o.version_number, value: o.version_label }); });
-            });
-
+                (error: any) => { },
+                () => {
+                    this.testVersions = [];
+                    testVersionResult.map(o => { this.testVersions.push({ label: o.version_number, value: o.version_label }); });
+                });
     }
-
 
     onGoClick() {
         this.isPanelVisible = true;
