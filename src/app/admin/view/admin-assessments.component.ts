@@ -22,8 +22,8 @@ export class AdminAssessmentsComponent implements OnInit {
     constructor(public app: AppComponent, private assessmentService: AssessmentService, private messageService: MessageService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;        
-        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.AdminAssessments);
-        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.AdminAssessments);
+        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Assessments);
+        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessments);
 
     }
 

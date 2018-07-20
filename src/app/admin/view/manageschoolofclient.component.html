@@ -18,8 +18,8 @@
                         <div class="ui-g-3 ui-md-3">
                             <p-dropdown [options]="clientList" [(ngModel)]="newSchool.client_id" [autoWidth]="false" placeholder="Select Client"></p-dropdown>
                         </div>
-                        <div class="ui-g-1 ui-md-1 text-center">
-                            <button pButton type="button" label="GO" (click)="loadSchools()"></button>
+                        <div class="ui-g-1 ui-md-1">
+                            <button pButton type="button" label="GO" (click)="loadSchools()" style="width:auto;"></button>
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-12">

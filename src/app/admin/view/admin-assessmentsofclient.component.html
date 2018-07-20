@@ -27,8 +27,8 @@
                             <p-dropdown [options]="assessmentList" [(ngModel)]="newAssessment.id" [autoWidth]="false" placeholder="Select Assessment"></p-dropdown>
                         </div>
 
-                        <div class="ui-g-1 ui-md-1 text-center">
-                            <button pButton type="button" label="GO" (click)="loadAssessmentsOfClient()"></button>
+                        <div class="ui-g-1 ui-md-1">
+                            <button pButton type="button" label="GO" (click)="loadAssessmentsOfClient()" style="width:auto;"></button>
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-12">
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="ui-g-12 ui-md-12 fa-border" style="padding:-10px;">
-                        <div class="ui-g-2 ui-md-2 text-left">
+                        <div class="ui-g-1 ui-md-1 text-left">
                             <label class="text-bold">Assessment</label><br />
                         </div>
                         <div class="ui-g-3 ui-md-3">
@@ -56,7 +56,7 @@
                         <p-dataGrid [value]="assessmentOfClientList" [immutable]="false">
                             <ng-template let-assessmentOfClient pTemplate="item">
                                 <div class="ui-g-12 ui-md-12 fa-border">
-                                    <div class="ui-g-2 ui-md-2">
+                                    <div class="ui-g-1 ui-md-1">
                                         <label>{{assessmentOfClient.assessment_name}}</label>
                                     </div>
                                     <div class="ui-g-3 ui-md-3">
@@ -66,7 +66,7 @@
                                         <label>{{assessmentOfClient.desc}}</label>
                                     </div>
                                     <div class="ui-g-1 ui-md-1">
-                                        <button pButton type="button" icon="fa fa-edit" style="width:auto;"></button>
+                                        <!--<button pButton type="button" icon="fa fa-edit" style="width:auto;"></button>-->
                                         <button pButton type="button" icon="fa fa-trash" (click)="deleteAssessmentOfClient(assessmentOfClient.id)" style="width:auto;"></button><br />
                                     </div>
                                 </div>

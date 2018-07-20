@@ -129,7 +129,6 @@ import { GradeInSchoolYearComponent } from './admin/view/schoolyear-grade.compon
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AdminAssessmentsOfClientComponent } from './admin/view/admin-assessmentsofclient.component'
-import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 import { ManageRolesComponent } from './admin/view/manageroles.component'
 import { ManageClientsComponent } from './admin/view/manageclients.component'
@@ -139,7 +138,9 @@ import { SchoolComponent } from './configurations/view/school.component'
 import { SchoolYearComponent } from './configurations/view/schoolyear.component'
 import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component'
 import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component'
-
+import { EnrollmentAndAttendanceComponentStudent } from './admin/view/enrollment-attendance.component.student';
+import { EnrollmentAndAttendanceComponentDailyAttendance } from './admin/view/enrollment-attendance.component.daily-attendance';
+import { EnrollmentAndAttendanceComponentPeriodTeacher } from './admin/view/enrollment-attendance.component.period-teacher';
 import { SchoolYearGradeFilter } from './dashboards/filters/school-year-grade-filter';
 import { SchoolYearGradeTestFilter } from './dashboards/filters/school-year-grade-test-filter';
 import { AssesmentSchoolYearGradeFilter } from './dashboards/filters/assesment-school-year-grade-filter';
@@ -171,6 +172,8 @@ import { GradeService } from './shared/services/grade.service'
 import { DaysInSchoolYearService } from './shared/services/days.inschoolyear.service'
 import { ClientService } from './shared/services/client.service';
 import { RoleService } from './shared/services/role.service';
+import { AssessmentUploadService } from './shared/services/assessment-upload.services';
+import { EnrollmentAndAttendanceService } from './shared/services/enrollment-attendance.services';
 import { AssessmentService } from './shared/services/assessment.service ';
 
 import { TestService } from './shared/services/test.service'
@@ -182,6 +185,14 @@ import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
 import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
 import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
+import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
+import { AssessmentUploadsComponentSbac } from './admin/view/assessments-upload.component.sbac';
+import { AssessmentUploadsComponentPft } from './admin/view/assessments-upload.component.pft';
+import { AssessmentUploadsComponentCeldt } from './admin/view/assessments-upload.component.celdt';
+import { AssessmentUploadsComponentNwea } from './admin/view/assessments-upload.component.nwea';
+import { AssessmentUploadsComponentAdam } from './admin/view/assessments-upload.component.adam';
+import { AssessmentUploadsComponentDora } from './admin/view/assessments-upload.component.dora';
+import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.component.doma';
 import { UserService } from "./shared/services/users.service";
 
 
@@ -342,6 +353,9 @@ import { UserService } from "./shared/services/users.service";
         SchoolYearOfSchoolComponent,
         GradeInSchoolYearComponent,
         EnrollmentAndAttendanceComponent,
+        EnrollmentAndAttendanceComponentStudent,
+        EnrollmentAndAttendanceComponentPeriodTeacher,
+        EnrollmentAndAttendanceComponentDailyAttendance,
         AdminAssessmentsComponent,
         AdminAssessmentsOfClientComponent,
         AssessmentUploadsComponent,
@@ -362,17 +376,25 @@ import { UserService } from "./shared/services/users.service";
         TaxonomyItemComponent,
         VJSComponent,
         TranslateComponent,
-        FileUploadComponent
+        FileUploadComponent,
+        AssessmentUploadsComponentSbac,
+        AssessmentUploadsComponentPft,
+        AssessmentUploadsComponentCeldt,
+        AssessmentUploadsComponentNwea,
+        AssessmentUploadsComponentDora,
+        AssessmentUploadsComponentDoma,
+        AssessmentUploadsComponentAdam,
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         HttpClient,
-        LoginService, SchoolService, SchoolYearService, YearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
+        LoginService, SchoolService,
+        SchoolYearService, YearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService, TaxonomyService, TaxonomyConfigurationService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
-        ClientService, RoleService, UserService, AssessmentService,
+        ClientService, RoleService, UserService, AssessmentService, AssessmentUploadService,
         MessageService, ConfirmationService,
         JwtHelperService, AuthService, AuthGuardService,
-        VJSConfig
+        VJSConfig, EnrollmentAndAttendanceService
     ],
     bootstrap: [AppComponent]
 })

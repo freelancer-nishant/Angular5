@@ -32,7 +32,6 @@ export class SchoolService {
     }
 
     update(schoolDetail: School): Observable<any> {
-        debugger
         let url: string = GlobalConstants.API_BASE_URL + '/api/school';
         return this.http.put(url, GlobalHelper.toHttpParams(schoolDetail), httpOptionsa);
     }

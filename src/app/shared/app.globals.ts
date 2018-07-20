@@ -33,7 +33,8 @@ export enum MenuType {
 
     UserRoles,
     Clients,
-    Users
+    Users,
+    Assessments
 }
 export class GlobalHelper {
     public static getCategories(menufor: MenuType): any[] {
@@ -82,10 +83,12 @@ export class GlobalHelper {
             case MenuType.UserRoles:
             case MenuType.Clients:
             case MenuType.Users:
+            case  MenuType.Assessments:
                 categories = [
                     { name: 'User Roles', route: "#/admin/manageroles" },
                     { name: 'Clients', route: "#/admin/manageclients" },
                     { name: 'Manage Users', route: "#/admin/manageusers" },
+                    { name: 'Manage Assessments', route: "#/admin-assessments" },
                 ];
                 break;
             default:
@@ -198,6 +201,11 @@ export class GlobalHelper {
                 sideMenuInfo = {
                     icon: './assets/layout/images/admin/comparative-school-list.png',
                     name: "Users"
+                }
+            case MenuType.Assessments:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/comparative-school-list.png',
+                    name: "Assessments"
                 }
                 break;
 
@@ -344,9 +352,9 @@ export class GlobalHelper {
                     {
                         label: 'Enrollment & Attendance', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Students', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
-                            { label: '1st Period Teachers', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
-                            { label: 'Daily Attendance', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/grades'] }
+                            { label: 'Students', icon: 'fa fa-fw fa-columns', routerLink: ['/enrollment-attendance/students'] },
+                            { label: '1st Period Teachers', icon: 'fa fa-fw fa-columns', routerLink: ['/enrollment-attendance/1st-period-teachers'] },
+                            { label: 'Daily Attendance', icon: 'fa fa-fw fa-columns', routerLink: ['/enrollment-attendance/attendance'] },
                         ]
                     },
                     {
@@ -359,14 +367,13 @@ export class GlobalHelper {
                     {
                         label: 'Assessment Uploads', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'SBAC Summative', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] },
-                            { label: 'SBAC Interim', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/semester'] },
-                            { label: 'Physical Fitness Test', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/grades'] },
-                            { label: 'CELDT', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/teachers'] },
-                            { label: 'NWEA', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
-                            { label: 'LGL - ADAM', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
-                            { label: 'LGL - DORA', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] },
-                            { label: 'LGL - DOMA Algebra', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/days'] }
+                            { label: 'SBAC Summative', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/SBAC'] },
+                            { label: 'Physical Fitness Test', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/PFT'] },
+                            { label: 'CELDT', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/CELDT'] },
+                            { label: 'NWEA', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/NWEA'] },
+                            { label: 'LGL - ADAM', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/ADAM'] },
+                            { label: 'LGL - DORA', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/DORA'] },
+                            { label: 'LGL - DOMA Algebra', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments-upload/DOMA'] }
                         ]
                     },
                     {
@@ -390,6 +397,7 @@ export class GlobalHelper {
             case MenuType.UserRoles:
             case MenuType.Clients:
             case MenuType.Users:
+            case MenuType.Assessments:
                 menuItems = [
                     {
                         label: 'User Roles', icon: 'fa fa-fw fa-bar-chart',
@@ -408,6 +416,13 @@ export class GlobalHelper {
                         label: 'Users', icon: 'fa fa-fw fa-bar-chart',
                         items: [
                             { label: 'Manage Users', icon: 'fa fa-fw fa-columns', routerLink: ['/admin/manageusers'] }
+                        ]
+                    },
+                    {
+                        label: 'Assessments', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Manage Assessments', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments'] },
+                            { label: 'Assessments Of Client', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessmentsofclient'] }
                         ]
                     }
                 ];

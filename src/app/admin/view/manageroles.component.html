@@ -15,7 +15,7 @@
                         <div class="ui-g-1 ui-md-1 text-left">
                             <label class="text-bold">Role Name</label><br />
                         </div>
-                        <div class="ui-g-3 ui-md-3">
+                        <div class="ui-g-2 ui-md-2">
                             <input type="text" pInputText [(ngModel)]="roleAdded.name" />
                         </div>
                         <div class="ui-g-1 ui-md-1 text-center">
@@ -26,8 +26,10 @@
                         <p-dataGrid [value]="roleList" [immutable]="false">
                             <ng-template let-role pTemplate="item">
                                 <div class="ui-g-12 ui-md-12 fa-border">
-                                    <div class="ui-g-4 ui-md-4">
-                                        <!--<label>{{role.name}}</label>-->
+                                    <div class="ui-g-3 ui-md-3">
+                                        <input type="text" pInputText [(ngModel)]="role.id" disabled />
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1">
                                         <input type="text" pInputText [(ngModel)]="role.name" />
                                     </div>
                                     <div class="ui-g-1 ui-md-1 text-center">

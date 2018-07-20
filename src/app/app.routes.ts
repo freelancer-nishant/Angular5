@@ -15,9 +15,6 @@ import { ModuleWithProviders } from '@angular/core';
 //import { UtilsDemoComponent } from './demo/view/utilsdemo.component';
 //import { DocumentationComponent } from './demo/view/documentation.component';
 
-
-
-
 import { AuthGuardService as AuthGuard } from './shared/services/auth-guard.service';
 import { GlobalConstants } from './shared/app.globals'
 
@@ -38,17 +35,29 @@ import { AssessmentsNWEAOverviewComponent } from './dashboards/view/assessments-
 import { AssessmentsDORAOverviewComponent } from './dashboards/view/assessments-dora-adam-overview.component'
 import { AssessmentsDOMAOverviewComponent } from './dashboards/view/assessments-doma-overview.component'
 
-import { ReportsComponent } from './reports/view/reports.component'
-import { SchoolScorecardsComponent } from './reports/view/school.scorecards.component'
-import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report.component'
-import { ComparisonSchoolsComponent } from './reports/view/comparison.schools.component'
-import { CompareSBACScoresComponent } from './reports/view/compare.sbac.scores.component'
-import { CompareSchoolScorecardsComponent } from './reports/view/compare.school.scorecards.component'
-import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.component'
-import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component'
-import { StudentScorecardsComponent } from './reports/view/student.scorecards.component'
-import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report.component'
-import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.schoolsurvey.report.component'
+import { ReportsComponent } from './reports/view/reports.component';
+import { SchoolScorecardsComponent } from './reports/view/school.scorecards.component';
+import { SchoolScorecardsReportComponent } from './reports/view/school.scorecards.report.component';
+import { ComparisonSchoolsComponent } from './reports/view/comparison.schools.component';
+import { CompareSBACScoresComponent } from './reports/view/compare.sbac.scores.component';
+import { CompareSchoolScorecardsComponent } from './reports/view/compare.school.scorecards.component';
+import { TeacherScorecardsComponent } from './reports/view/teacher.scorecards.component';
+import { TeacherScorecardsReportComponent } from './reports/view/teacher.scorecards.report.component';
+import { StudentScorecardsComponent } from './reports/view/student.scorecards.component';
+import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report.component';
+import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.schoolsurvey.report.component';
+
+import { EnrollmentAndAttendanceComponentStudent } from './admin/view/enrollment-attendance.component.student';
+import { EnrollmentAndAttendanceComponentPeriodTeacher } from './admin/view/enrollment-attendance.component.period-teacher';
+import { EnrollmentAndAttendanceComponentDailyAttendance } from './admin/view/enrollment-attendance.component.daily-attendance';
+
+import { AssessmentUploadsComponentSbac } from './admin/view/assessments-upload.component.sbac';
+import { AssessmentUploadsComponentPft } from './admin/view/assessments-upload.component.pft';
+import { AssessmentUploadsComponentCeldt } from './admin/view/assessments-upload.component.celdt';
+import { AssessmentUploadsComponentNwea } from './admin/view/assessments-upload.component.nwea';
+import { AssessmentUploadsComponentAdam } from './admin/view/assessments-upload.component.adam';
+import { AssessmentUploadsComponentDora } from './admin/view/assessments-upload.component.dora';
+import { AssessmentUploadsComponentDoma } from './admin/view/assessments-upload.component.doma';
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
 import { AdminComponent } from './admin/view/admin.component'
@@ -68,10 +77,11 @@ import { ManageRolesComponent } from './admin/view/manageroles.component';
 import { ManageClientsComponent } from './admin/view/manageclients.component';
 import { ManageUsersComponent } from './admin/view/manageusers.component';
 import { ManageSchoolOfClientComponent } from './admin/view/manageschoolofclient.component';
-import { SchoolComponent } from './configurations/view/school.component'
-import { SchoolYearComponent } from './configurations/view/schoolyear.component'
-import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component'
-import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component'
+
+import { SchoolComponent } from './configurations/view/school.component';
+import { SchoolYearComponent } from './configurations/view/schoolyear.component';
+import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component';
+import { ComparativeSchoolListItemComponent } from './configurations/view/comparativeschoollistitem.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -109,6 +119,29 @@ export const routes: Routes = [
 
 
     //Admin pages
+    { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+
+    { path: 'schoolyear/school', component: SchoolYearOfSchoolComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'schoolyear/grades', component: GradeInSchoolYearComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+
+    { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'enrollment-attendance/students', component: EnrollmentAndAttendanceComponentStudent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'enrollment-attendance/1st-period-teachers', component: EnrollmentAndAttendanceComponentPeriodTeacher, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'enrollment-attendance/attendance', component: EnrollmentAndAttendanceComponentDailyAttendance, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+
+    //{ path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+
+    { path: 'admin-assessments-upload', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'admin-assessments-upload/SBAC', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'admin-assessments-upload/PFT', component: AssessmentUploadsComponentPft, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'admin-assessments-upload/CELDT', component: AssessmentUploadsComponentCeldt, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'admin-assessments-upload/NWEA', component: AssessmentUploadsComponentNwea, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+    { path: 'admin-assessments-upload/ADAM', component: AssessmentUploadsComponentAdam, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'admin-assessments-upload/DORA', component: AssessmentUploadsComponentDora, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+    { path: 'admin-assessments-upload/DOMA', component: AssessmentUploadsComponentDoma, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
+
+    { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] }},
+
     { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard] },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
     { path: 'schoolyear/school', component: SchoolYearOfSchoolComponent, canActivate: [AuthGuard] },
