@@ -1,3 +1,60 @@
-<div class="reports">
-    <h1 class="page-title" style="position: fixed;top: 50%;left: 50%;">Coming Soon</h1>
+<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <div class="card card-w-title content-card">
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Manage Assessments
+                </p-header>
+                <p-growl [(value)]="msgs"></p-growl>
+                <div class="ui-g form-group">
+
+                    <div class="ui-g-12 ui-md-12 fa-border" style="padding:-10px;">
+                        <div class="ui-g-2 ui-md-2">
+                            <label class="text-bold">Test Type</label>
+                        </div>
+                        <div class="ui-g-4 ui-md-4">
+                            <label class="text-bold">Description</label>
+                        </div>
+                    </div>
+                   
+                    <div class="ui-g-12 ui-md-12 fa-border">
+                        <div class="ui-g-2 ui-md-2">
+                            <input type="text" pInputText [(ngModel)]="addAssessment.name" />
+                        </div>
+                        <div class="ui-g-4 ui-md-4">
+                            <input type="text" pInputText [(ngModel)]="addAssessment.desc" />
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center">
+                            <button pButton type="button" label="ADD" (click)="submitNewAssessment()" [disabled]="addAssessment.name == null || addAssessment.name == '' || addAssessment.desc == null || addAssessment.desc == '' "></button>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12">
+                        <p-dataGrid [value]="assessmentList" [immutable]="false">
+                            <ng-template let-assessment pTemplate="item">
+                                <div class="ui-g-12 ui-md-12 fa-border">
+                                    <div class="ui-g-2 ui-md-2">
+                                        <input type="text" pInputText [(ngModel)]="assessment.name" />
+                                    </div>
+                                    <div class="ui-g-4 ui-md-4">
+                                        <input type="text" pInputText [(ngModel)]="assessment.desc" />
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1 text-center">
+                                        <button pButton type="button" icon="fa fa-edit" (click)="submitUpdateAssessment(assessment.id,assessment.assessment_id, assessment.name, assessment.desc)" [disabled]="assessment.name == null || assessment.name == '' || assessment.desc == null || assessment.desc == '' "></button>
+                                        <button pButton type="button" icon="fa fa-trash" (click)="deleteAssessment(assessment.id)" style="width:auto;"></button><br />
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1">
+
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-dataGrid>
+                    </div>
+                </div>
+            </p-panel>
+            &nbsp;
+        </div>
+
+    </div>
 </div>

@@ -29,7 +29,11 @@ export enum MenuType {
     AdminAssessments,
     AssessmentUploads,
     SchoolComparisonList,
-    Taxonomy
+    Taxonomy,
+
+    UserRoles,
+    Clients,
+    Users
 }
 export class GlobalHelper {
     public static getCategories(menufor: MenuType): any[] {
@@ -73,6 +77,15 @@ export class GlobalHelper {
             case MenuType.Taxonomy:
                 categories = [
                     { name: 'Manage Taxonomy', route: "#/taxonomy/type" },
+                ];
+                break;
+            case MenuType.UserRoles:
+            case MenuType.Clients:
+            case MenuType.Users:
+                categories = [
+                    { name: 'User Roles', route: "#/admin/manageroles" },
+                    { name: 'Clients', route: "#/admin/manageclients" },
+                    { name: 'Manage Users', route: "#/admin/manageusers" },
                 ];
                 break;
             default:
@@ -167,6 +180,24 @@ export class GlobalHelper {
                 sideMenuInfo = {
                     icon: './assets/layout/images/admin/comparative-school-list.png',
                     name: "Manage Taxonomy"
+                }
+                break;
+            case MenuType.UserRoles:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/comparative-school-list.png',
+                    name: "User Roles"
+                }
+                break;
+            case MenuType.Clients:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/comparative-school-list.png',
+                    name: "Clients"
+                }
+                break;
+            case MenuType.Users:
+                sideMenuInfo = {
+                    icon: './assets/layout/images/admin/comparative-school-list.png',
+                    name: "Users"
                 }
                 break;
 
@@ -341,7 +372,7 @@ export class GlobalHelper {
                     {
                         label: 'Comparison School Lists', icon: 'fa fa-fw fa-bar-chart',
                         items: [
-                            { label: 'Manage Comparison School Lists', icon: 'fa fa-fw fa-columns', routerLink: ['/schoolyear/school'] }
+                            { label: 'Manage Comparison School Lists', icon: 'fa fa-fw fa-columns', routerLink: ['configurations/comparativeschoollist'] }
                         ]
                     }
                 ];
@@ -352,6 +383,31 @@ export class GlobalHelper {
                         label: 'Manage Taxonomy', icon: 'fa fa-fw fa-bar-chart',
                         items: [
                             { label: 'Types', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/type'] }
+                        ]
+                    }
+                ];
+                break;
+            case MenuType.UserRoles:
+            case MenuType.Clients:
+            case MenuType.Users:
+                menuItems = [
+                    {
+                        label: 'User Roles', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Manage Roles', icon: 'fa fa-fw fa-columns', routerLink: ['/admin/manageroles'] }
+                        ]
+                    },
+                    {
+                        label: 'Clients', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Manage Clients', icon: 'fa fa-fw fa-columns', routerLink: ['/admin/manageclients'] },
+                            { label: 'Schools Of Clients', icon: 'fa fa-fw fa-columns', routerLink: ['/admin/manageschoolofclient'] }
+                        ]
+                    },
+                    {
+                        label: 'Users', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Manage Users', icon: 'fa fa-fw fa-columns', routerLink: ['/admin/manageusers'] }
                         ]
                     }
                 ];

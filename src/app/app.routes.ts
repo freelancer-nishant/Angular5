@@ -51,17 +51,23 @@ import { StudentScorecardsReportComponent } from './reports/view/student.scoreca
 import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.schoolsurvey.report.component'
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
+import { AdminComponent } from './admin/view/admin.component'
 import { SchoolinSchoolYearComponent } from './admin/view/schoolin-schoolyear.component'
 import { SchoolYearOfSchoolComponent } from './admin/view/schoolyear-school.component'
 import { GradeInSchoolYearComponent } from './admin/view/schoolyear-grade.component'
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
+import { AdminAssessmentsOfClientComponent } from './admin/view/admin-assessmentsofclient.component'
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
 import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
 import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
+import { ManageRolesComponent } from './admin/view/manageroles.component';
+import { ManageClientsComponent } from './admin/view/manageclients.component';
+import { ManageUsersComponent } from './admin/view/manageusers.component';
+import { ManageSchoolOfClientComponent } from './admin/view/manageschoolofclient.component';
 import { SchoolComponent } from './configurations/view/school.component'
 import { SchoolYearComponent } from './configurations/view/schoolyear.component'
 import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component'
@@ -104,18 +110,23 @@ export const routes: Routes = [
 
     //Admin pages
     { path: 'admin-configuration', component: AdminConfigurationComponent, canActivate: [AuthGuard] },
+    { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
     { path: 'schoolyear/school', component: SchoolYearOfSchoolComponent, canActivate: [AuthGuard] },
     { path: 'schoolyear/grades', component: GradeInSchoolYearComponent, canActivate: [AuthGuard] },
     { path: 'enrollment-attendance', component: EnrollmentAndAttendanceComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
+    { path: 'admin-assessmentsofclient', component: AdminAssessmentsOfClientComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponent, canActivate: [AuthGuard] },
     { path: 'school-comparison-list', component: SchoolComparisonListComponent, canActivate: [AuthGuard] },
     { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/subcategory/:typeid/:catid', component: TaxonomySubCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/item/:typeid/:catid/:subcatid', component: TaxonomyItemComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
-
-
+    { path: 'admin/manageroles', component: ManageRolesComponent, canActivate: [AuthGuard] },
+    { path: 'admin/manageclients', component: ManageClientsComponent, canActivate: [AuthGuard] },
+    { path: 'admin/manageusers', component: ManageUsersComponent, canActivate: [AuthGuard] },
+    { path: 'admin/manageschoolofclient', component: ManageSchoolOfClientComponent, canActivate: [AuthGuard] },
+    
     //Configuration pages
 
     { path: 'configurations/school', component: SchoolComponent, canActivate: [AuthGuard] },

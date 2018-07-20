@@ -1,0 +1,185 @@
+﻿<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <div class="card card-w-title content-card">
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Manage Schools
+                </p-header>
+                <p-growl [(value)]="msgs"></p-growl>
+                <div class="ui-g form-group">
+                    <!--<div class="ui-g-12 ui-md-12">
+                       
+                    </div>-->
+                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-10px">
+                        <div class="ui-g-1 ui-md-1">
+                            <label class="text-bold">Client</label>
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <p-dropdown [options]="clientList" [(ngModel)]="newSchool.client_id" [autoWidth]="false" placeholder="Select Client"></p-dropdown>
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center">
+                            <button pButton type="button" label="GO" (click)="loadSchools()"></button>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-1 ui-md-1">
+                            
+                        </div>
+                        <div class="ui-g-5 ui-md-5">
+                            
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center">
+                            
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+                            
+                        </div>
+                        <div class="ui-g-2 ui-md-2">
+
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center" style="margin-bottom:-30px; margin-top:-20px">
+                            <button pButton type="button" label="ADD" (click)="addNewSchool()"></button>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12 fa-border" style="padding:-10px;">
+                            <div class="ui-g-4 ui-md-4 text-left">
+                                <label class="text-bold">School Name</label><br />
+                            </div>
+                            <div class="ui-g-2 ui-md-2">
+                                <label class="text-bold">Client</label><br />
+                            </div>
+                            <div class="ui-g-1 ui-md-1">
+                                <label class="text-bold">Code</label><br />
+                            </div>
+                            <div class="ui-g-2 ui-md-2">
+                                <label class="text-bold">Power School Abbreviation</label><br />
+                            </div>
+                            <div class="ui-g-2 ui-md-2">
+                                <label class="text-bold">Abbreviation</label><br />
+                            </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12">
+                        <p-dataGrid [value]="schoolList" [immutable]="false">
+                            <ng-template let-school pTemplate="item">
+                                <div class="ui-g-12 ui-md-12 fa-border">
+                                    <div class="ui-g-4 ui-md-4">
+                                        <label>{{school.name}}</label>
+                                    </div>
+                                    <div class="ui-g-2 ui-md-2">
+                                        <label>{{school.client_name}}</label>
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1">
+                                        <label>{{school.code}}</label>
+                                    </div>
+                                    <div class="ui-g-2 ui-md-2">
+                                        <label>{{school.abbrev_ps}}</label>
+                                    </div>
+                                    <div class="ui-g-2 ui-md-2">
+                                        <label>{{school.abbrev}}</label>
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1">
+                                        <button pButton type="button" icon="fa fa-edit" (click)="updateSchool(school.id,school.name,school.client_id,school.code,school.abbrev,school.abbrev_ps)" [disabled]="school.name == null || school.name == '' || school.client_id == null || school.client_id == '' || school.code == null || school.code == '' || school.abbrev_ps == null || school.abbrev_ps == '' || school.abbrev == null || school.abbrev == ''" style="width:auto;"></button>
+                                        <button pButton type="button" icon="fa fa-trash" (click)="deleteSchool(school.id)" style="width:auto;"></button><br />
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-dataGrid>
+                    </div>
+                    </div>
+            </p-panel>
+            &nbsp;
+        </div>
+
+        <p-dialog header="Add School" [resizable]="true" responsive="true" [(visible)]="dialogVisible" modal="true" width="700">
+            <div style="height:480px;">
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Name :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="addSchool.name" pInputText tabindex="1" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Client :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <p-dropdown [options]="clientListIndividual" [(ngModel)]="addSchool.client_id" [autoWidth]="false" placeholder="Select Client"></p-dropdown>
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Code :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="addSchool.code" pInputText tabindex="2" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label class="text">Power School Abbreviation</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="addSchool.abbrev_ps" pInputText tabindex="3" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label class="text">Abbreviation</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="addSchool.abbrev" pInputText tabindex="4" />
+                </div>
+
+                <div class="ui-g-12 ui-md-12 text-center">
+                    <button pButton type="button" label="Save" style="width:auto;" (click)="submitNewSchool()" [disabled]="addSchool.name == null || addSchool.name == '' || addSchool.code == null || addSchool.code == '' || addSchool.abbrev_ps == null || addSchool.abbrev_ps == '' || addSchool.abbrev == null || addSchool.abbrev == '' || addSchool.client_id == '' || addSchool.client_id == null" ></button>
+                </div>
+            </div>
+        </p-dialog>
+
+        <p-dialog header="Update School" [resizable]="true" responsive="true" [(visible)]="dialogVisible1" modal="true" width="700">
+            <div style="height:480px;">
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Name :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="updatedSchool.name" pInputText tabindex="1" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Client :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <p-dropdown [options]="clientListIndividual" [(ngModel)]="updatedSchool.client_id" [autoWidth]="false" placeholder="Select Client"></p-dropdown>
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Code :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="updatedSchool.code" pInputText tabindex="2" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label class="text">Power School Abbreviation</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="updatedSchool.abbrev_ps" pInputText tabindex="3" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label class="text">Abbreviation</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="updatedSchool.abbrev" pInputText tabindex="4" />
+                </div>
+
+                <div class="ui-g-12 ui-md-12 text-center">
+                    <button pButton type="button" label="Save" style="width:auto;" (click)="submitUpdateSchool()" [disabled]="updatedSchool.name == null || updatedSchool.name == '' || updatedSchool.code == null || updatedSchool.code == '' || updatedSchool.abbrev_ps == null || updatedSchool.abbrev_ps == '' || updatedSchool.abbrev == null || updatedSchool.abbrev == '' || updatedSchool.client_id == '' || updatedSchool.client_id == null"></button>
+                </div>
+            </div>
+        </p-dialog>
+
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <div class="card card-w-title content-card">
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Manage Clients
+                </p-header>
+                <p-growl [(value)]="msgs"></p-growl>
+                <div class="ui-g form-group">
+                    <!--<div class="ui-g-12 ui-md-12">
+                        
+                    </div>-->
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-1 ui-md-1 text-left">
+                            <label class="text-bold">Client Name</label><br />
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <input type="text" pInputText [(ngModel)]="clientAdded.name" />
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center">
+                            <button pButton type="button" label="Add" (click)="addClient()" [disabled]="clientAdded.name == null || clientAdded.name == '' "></button>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <p-dataGrid [value]="clientList" [immutable]="false">
+                            <ng-template let-client pTemplate="item">
+                                <div class="ui-g-12 ui-md-12 fa-border">
+                                    <div class="ui-g-4 ui-md-4">
+                                        <!--<label>{{client.name}}</label>-->
+                                        <input type="text" pInputText [(ngModel)]="client.name" />
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1 text-center">
+                                        <button pButton type="button" label="Update"  (click)="updateClient(client.name, client.id)" [disabled]="client.name == null || client.name == '' "></button>
+                                    </div>
+                                    <div class="ui-g-1 ui-md-1">
+                                        <button pButton type="button" icon="fa fa-trash" style="width:auto;" (click)="deleteClient(client.id)" [disabled]="client.name == null || client.name == '' "></button><br />
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-dataGrid>
+                    </div>
+                </div>
+            </p-panel>
+            &nbsp;
+        </div>
+    </div>
+</div>

@@ -1,0 +1,167 @@
+﻿<div class="ui-g ui-fluid seletor-panel">
+    <div class="ui-g-12">
+        <div class="card card-w-title content-card">
+            &nbsp;
+            <p-panel [toggleable]="true">
+                <p-header class="text-normal">
+                    Manage Users
+                </p-header>
+                <p-growl [(value)]="msgs"></p-growl>
+                <div class="ui-g form-group">
+                    <!--<div class="ui-g-12 ui-md-12">
+                       
+                    </div>-->
+                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-10px">
+                        <div class="ui-g-1 ui-md-1">
+                            <label class="text-bold">Client</label>
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <p-dropdown [options]="clientList" [(ngModel)]="newUser.client_id" [autoWidth]="false" placeholder="Select Client"></p-dropdown>
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center">
+                            <button pButton type="button" label="GO" (click)="loadUsers()"></button>
+                        </div>
+                        <!--<div class="ui-g-1 ui-md-1 text-center">
+                            <button pButton type="button" label="ADD" (click)="AddNewUser()"></button>
+                        </div>-->
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-11 ui-md-11">
+                            
+                        </div>
+                        <div class="ui-g-1 ui-md-1 text-center" style="margin-bottom:-30px; margin-top:-20px">
+                            <button pButton type="button" label="ADD" (click)="AddNewUser()"></button>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12 fa-border" style="padding:-10px;">
+                        <div class="ui-g-3 ui-md-3">
+                            <label class="text-bold">Email Address</label>
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <label class="text-bold">Role</label>
+                        </div>
+                        <div class="ui-g-3 ui-md-3">
+                            <label class="text-bold">Client</label>
+                        </div>
+                    </div>
+
+                        <div class="ui-g-12 ui-md-12">
+                            <p-dataGrid [value]="userList" [immutable]="false">
+                                <ng-template let-user pTemplate="item">
+                                    <div class="ui-g-12 ui-md-12 fa-border">
+                                        <div class="ui-g-3 ui-md-3">
+                                            <label>{{user.email}}</label>
+                                        </div>
+                                        <div class="ui-g-3 ui-md-3">
+                                            <label>{{user.role}}</label>
+                                        </div>
+                                        <div class="ui-g-3 ui-md-3">
+                                            <label>{{user.client_name}}</label>
+                                        </div>
+                                        <div class="ui-g-1 ui-md-1">
+                                            <button pButton type="button" icon="fa fa-edit" (click)="UpdateUser(user.user_id, user.client_id, user.email, user.role)"></button>
+                                            <button pButton type="button" icon="fa fa-trash" style="width:auto;" (click)="DeleteUser(user.user_id)"></button><br />
+                                        </div>
+                                        <div class="ui-g-1 ui-md-1">
+
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-dataGrid>
+                        </div>
+                    </div>
+            </p-panel>
+            &nbsp;
+        </div>
+
+        <p-dialog header="Add User" [resizable]="true" responsive="true" [(visible)]="dialogVisible" modal="true" width="700">
+            <div style="height:480px;">
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Email :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="addUser.email" pInputText tabindex="1" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Role :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <p-dropdown [options]="roleList" [(ngModel)]="addUser.role" [autoWidth]="false" placeholder="Select Role"></p-dropdown>
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label class="text">Client</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <p-dropdown [options]="clientListIndividual" [(ngModel)]="addUser.client_id" [autoWidth]="false" placeholder="Select Client"></p-dropdown>
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Password :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" pInputText tabindex="3"  [(ngModel)]="addUser.password"/>
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Confirm Password :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" pInputText tabindex="4" [(ngModel)]="addUser.confirmPassword"/>
+                </div>
+
+                <div class="ui-g-12 ui-md-12 text-center">
+                    <button pButton type="button" label="Save" style="width:auto;" (click)="SubmitNewUser()" [disabled]="addUser.client_id == null || addUser.client_id == '' || addUser.email == null || addUser.email == '' || addUser.role == null || addUser.role == '' || addUser.password == null || addUser.password == '' || addUser.confirmPassword == null || addUser.confirmPassword == ''" ></button>
+                </div>
+            </div>
+        </p-dialog>
+
+        <p-dialog header="Update User" [resizable]="true" responsive="true" [(visible)]="dialogVisible1" modal="true" width="700">
+            <div style="height:480px;">
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Email :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" [(ngModel)]="updateUser.email" pInputText tabindex="1" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Role :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <p-dropdown [options]="roleList" [(ngModel)]="updateUser.role" [autoWidth]="false" placeholder="Select Role"></p-dropdown>
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label class="text">Client</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <p-dropdown [options]="clientListIndividual" [(ngModel)]="updateUser.client_id" [autoWidth]="false" placeholder="Select Client"></p-dropdown>
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Password :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" pInputText tabindex="3" [(ngModel)]="updateUser.password" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">Confirm Password :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <input id="input" type="text" pInputText tabindex="4" [(ngModel)]="updateUser.confirmPassword" />
+                </div>
+
+                <div class="ui-g-12 ui-md-12 text-center">
+                    <button pButton type="button" label="Save" style="width:auto;" [disabled]="updateUser.client_id == null || updateUser.client_id == '' || updateUser.email == null || updateUser.email == '' || updateUser.role == null || updateUser.role == '' || updateUser.password == null || updateUser.password == '' || updateUser.confirmPassword == null || updateUser.confirmPassword == ''"></button>
+                </div>
+            </div>
+        </p-dialog>
+
+    </div>
+</div>

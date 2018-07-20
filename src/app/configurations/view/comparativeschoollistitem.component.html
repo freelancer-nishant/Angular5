@@ -10,7 +10,7 @@
                 <div class="ui-g form-group">
                     <div class="ui-g-12 ui-md-12">
                         <div class="ui-g-12 ui-md-12 text-left">
-                            <label>{{comparativeSchoolListLabel}}</label><br />
+                            <h2><strong><label>{{comparativeSchoolListLabel}}</label></strong></h2>
                         </div>
                         <div class="ui-g-5 ui-md-5 text-left">
                             <button pButton type="button" label="Add New" style="width:auto;" (click)="addUpdateListItem()"></button>
@@ -59,48 +59,53 @@
         </div>
     </div>
     <div class="ui-g-12">
-        <p-dialog header="Add Update List Item" [resizable]="false" responsive="true" [(visible)]="dialogVisible" modal="true">
-            <div style="height:280px;">
+        <p-dialog header="Add Update School To List" [resizable]="false" responsive="true" [(visible)]="dialogVisible" modal="true">
+            <div style="height:280px; width:600px;" >
                 <!--<div class="ui-g">-->
-                <div class="ui-g-12 ui-md-2">
+                <div class="ui-g-4 ui-md-4">
                     <label for="input">State :</label>
                 </div>
-                <div class="ui-g-12 ui-md-4">
+                <div class="ui-g-8 ui-md-8">
                     <p-dropdown [options]="stateList" [(ngModel)]="newSchool.state" (onChange)="stateChange($event)" [autoWidth]="false" tabindex="3" placeholder="Select State"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label for="input">City :</label>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="cityList" [(ngModel)]="newSchool.city" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="6" placeholder="Select City"></p-dropdown>
-                </div>
-                <div class="ui-g-12 ui-md-2">
+
+                <div class="ui-g-4 ui-md-4">
                     <label for="input">County :</label>
                 </div>
-                <div class="ui-g-12 ui-md-4">
+                <div class="ui-g-8 ui-md-8">
                     <p-dropdown [options]="countyList" [(ngModel)]="newSchool.county" (onChange)="countyChange($event)" [autoWidth]="false" tabindex="4" placeholder="Select County"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-2">
-                    <label for="input">School Type :</label>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    <p-dropdown [options]="schooltypeList" [(ngModel)]="newSchool.schooltype" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="7" placeholder="Select School Type"></p-dropdown>
-                </div>
-                <div class="ui-g-12 ui-md-2">
+
+                <div class="ui-g-4 ui-md-4">
                     <label for="input">School Distinct :</label>
                 </div>
-                <div class="ui-g-12 ui-md-4">
+                <div class="ui-g-8 ui-md-8">
                     <p-dropdown [options]="districtList" [(ngModel)]="newSchool.district" (onChange)="districtChange($event)" [autoWidth]="false" tabindex="5" placeholder="Select District"></p-dropdown>
                 </div>
-                <div class="ui-g-12 ui-md-2">
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">City :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <p-dropdown [options]="cityList" [(ngModel)]="newSchool.city" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="6" placeholder="Select City"></p-dropdown>
+                </div>
+
+                <div class="ui-g-4 ui-md-4">
+                    <label for="input">School Type :</label>
+                </div>
+                <div class="ui-g-8 ui-md-8">
+                    <p-dropdown [options]="schooltypeList" [(ngModel)]="newSchool.schooltype" (onChange)="schooltypeChange($event)" [autoWidth]="false" tabindex="7" placeholder="Select School Type"></p-dropdown>
+                </div>
+              
+                <div class="ui-g-4 ui-md-4">
                     <label for="input">School :</label>
                 </div>
-                <div class="ui-g-12 ui-md-4">
+                <div class="ui-g-8 ui-md-8">
                     <p-dropdown [options]="schoolList" [(ngModel)]="newSchool.school" [autoWidth]="false" tabindex="8" placeholder="Select School"></p-dropdown>
                 </div>
                 <!--</div>-->
                 <div class="ui-g-12 ui-md-12 text-center">
-                    <button pButton type="button" label="save" style="width:auto;" (click)="saveListItemFromPopup()"></button>
+                    <button pButton type="button" label="Save" style="width:auto;" (click)="saveListItemFromPopup()"></button>
                 </div>
             </div>
         </p-dialog>

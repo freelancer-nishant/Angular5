@@ -122,13 +122,19 @@ import { StudentScorecardsReportComponent } from './reports/view/student.scoreca
 import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.schoolsurvey.report.component'
 
 import { AdminConfigurationComponent } from './admin/view/admin.configuration.component'
+import { AdminComponent } from './admin/view/admin.component'
 import { SchoolinSchoolYearComponent } from './admin/view/schoolin-schoolyear.component'
 import { SchoolYearOfSchoolComponent } from './admin/view/schoolyear-school.component'
 import { GradeInSchoolYearComponent } from './admin/view/schoolyear-grade.component'
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
+import { AdminAssessmentsOfClientComponent } from './admin/view/admin-assessmentsofclient.component'
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
+import { ManageRolesComponent } from './admin/view/manageroles.component'
+import { ManageClientsComponent } from './admin/view/manageclients.component'
+import { ManageUsersComponent } from './admin/view/manageusers.component'
+import { ManageSchoolOfClientComponent } from './admin/view/manageschoolofclient.component'
 import { SchoolComponent } from './configurations/view/school.component'
 import { SchoolYearComponent } from './configurations/view/schoolyear.component'
 import { ComparativeSchoolListComponent } from './configurations/view/comparativeschoollist.component'
@@ -165,6 +171,7 @@ import { GradeService } from './shared/services/grade.service'
 import { DaysInSchoolYearService } from './shared/services/days.inschoolyear.service'
 import { ClientService } from './shared/services/client.service';
 import { RoleService } from './shared/services/role.service';
+import { AssessmentService } from './shared/services/assessment.service ';
 
 import { TestService } from './shared/services/test.service'
 import { TestVersionService } from './shared/services/testversion.service'
@@ -175,6 +182,7 @@ import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
 import { TaxonomySubCategoryComponent } from './admin/view/taxonomy-subcategory.component';
 import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
+import { UserService } from "./shared/services/users.service";
 
 
 @NgModule({
@@ -311,6 +319,10 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         AssessmentsDORAOverviewComponent,
         AssessmentsDOMAOverviewComponent,
         AssessmentsComponent,
+        ManageRolesComponent,
+        ManageClientsComponent,
+        ManageUsersComponent,
+        ManageSchoolOfClientComponent,
 
         ReportsComponent,
         SchoolScorecardsComponent,
@@ -325,11 +337,13 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         VoiceOfTheSchoolSurveyReportComponent,
 
         AdminConfigurationComponent,
+        AdminComponent,
         SchoolinSchoolYearComponent,
         SchoolYearOfSchoolComponent,
         GradeInSchoolYearComponent,
         EnrollmentAndAttendanceComponent,
         AdminAssessmentsComponent,
+        AdminAssessmentsOfClientComponent,
         AssessmentUploadsComponent,
         SchoolComparisonListComponent,
 
@@ -355,7 +369,7 @@ import { TaxonomyItemComponent } from './admin/view/taxonomy-item.component';
         HttpClient,
         LoginService, SchoolService, SchoolYearService, YearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService, TaxonomyService, TaxonomyConfigurationService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
-        ClientService, RoleService,
+        ClientService, RoleService, UserService, AssessmentService,
         MessageService, ConfirmationService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig
