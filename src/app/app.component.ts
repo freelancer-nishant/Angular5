@@ -79,6 +79,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     isClientPage: boolean = false;
     selectedItem: any = {};
     confirmationService: ConfirmationService;
+    role: string;
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
@@ -95,6 +96,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.confirmationService = _confirmationService;
         if (this.isClientPage || sessionStorage.getItem('isClientPage') == "true") {
             this.isClientPage = true;
+        }
+        if (this.isLoggedIn) {
+            this.role = this.getSession().role;
         }
     }
 

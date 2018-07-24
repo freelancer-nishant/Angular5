@@ -13,6 +13,7 @@ export class AdminAssessmentSubjectsComponent implements OnInit {
     msgs: Message[] = [];
     assessmentList: any = [];
     assessmentSubjectList: any = [];
+    assessmentLevelList: any = [];
     selectedAssessment: any;
 
     addAssessmentSubject: any = {};

@@ -47,10 +47,12 @@ import { StudentScorecardsComponent } from './reports/view/student.scorecards.co
 import { StudentScorecardsReportComponent } from './reports/view/student.scorecards.report.component';
 import { VoiceOfTheSchoolSurveyReportComponent } from './reports/view/voice.schoolsurvey.report.component';
 
+import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { EnrollmentAndAttendanceComponentStudent } from './admin/view/enrollment-attendance.component.student';
 import { EnrollmentAndAttendanceComponentPeriodTeacher } from './admin/view/enrollment-attendance.component.period-teacher';
 import { EnrollmentAndAttendanceComponentDailyAttendance } from './admin/view/enrollment-attendance.component.daily-attendance';
 
+import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { AssessmentUploadsComponentSbac } from './admin/view/assessments-upload.component.sbac';
 import { AssessmentUploadsComponentPft } from './admin/view/assessments-upload.component.pft';
 import { AssessmentUploadsComponentCeldt } from './admin/view/assessments-upload.component.celdt';
@@ -64,15 +66,15 @@ import { AdminComponent } from './admin/view/admin.component'
 import { SchoolinSchoolYearComponent } from './admin/view/schoolin-schoolyear.component'
 import { SchoolYearOfSchoolComponent } from './admin/view/schoolyear-school.component'
 import { GradeInSchoolYearComponent } from './admin/view/schoolyear-grade.component'
-import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
+
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AdminAssessmentsOfClientComponent } from './admin/view/admin-assessmentsofclient.component'
 import { AdminAssessmentVersionComponent } from './admin/view/admin-assessmentversion.component';
 import { AdminAssessmentSubjectsComponent } from './admin/view/admin-assessmentsubjects.component';
+import { AdminAssessmentLevelsComponent } from './admin/view/admin-assessmentlevels.component';
 import { AdminAssessmentSubjectStrandsComponent } from './admin/view/admin-assessmentsubjectstrands.component';
 import { AdminAssessmentSubjectSubStrandsComponent } from './admin/view/admin-assessmentsubjectsubstrands.component';
-import { AdminAssessmentLevelsComponent } from './admin/view/admin-assessmentlevels.component';
-import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
+
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
 import { TaxonomyCategoryComponent } from './admin/view/taxonomy-category.component';
