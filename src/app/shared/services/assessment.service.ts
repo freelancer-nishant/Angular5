@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import { catchError, map, tap } from 'rxjs/operators';
-import { Assessment, AssessmentRequest, AssessmentOfClientRequest } from './../../shared/domain/assessment'
+import { Assessment, AssessmentRequest, AssessmentOfClientRequest, AssessmentLevel, AssessmentSubject, AssessmentVersion } from './../../shared/domain/assessment'
 import { GlobalConstants, GlobalHelper } from './../app.globals';
 
 const httpOptionsa = {
@@ -51,4 +51,21 @@ export class AssessmentService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/assessment/assessmentsofclient?id=' + id;
         return this.http.delete(url);
     }
+
+    getAssessmentVersion(client_id: any, p_school_id: any, p_school_year_id: any, p_assessment_id: any): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/assessmentversion?client_id=' + client_id + '&p_school_id=' + p_school_id +
+            '&p_school_year_id=' + p_school_year_id + '&p_assessment_id=' + p_assessment_id;
+        return this.http.get(url);
+    }
+
+    insertAssessmentVersion(assessmentVersion: AssessmentVersion): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/assessmentversion';
+        return this.http.post(url, GlobalHelper.toHttpParams(assessmentVersion), httpOptionsa);
+    }
+
+    updateAssessmentVersion(assessmentVersion: AssessmentVersion): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/assessmentversion';
+        return this.http.put(url, GlobalHelper.toHttpParams(assessmentVersion), httpOptionsa);
+    }
+
 }
