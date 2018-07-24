@@ -134,8 +134,6 @@ export const routes: Routes = [
     { path: 'enrollment-attendance/1st-period-teachers', component: EnrollmentAndAttendanceComponentPeriodTeacher, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN, GlobalConstants.ROLE_ADMIN] } },
     { path: 'enrollment-attendance/attendance', component: EnrollmentAndAttendanceComponentDailyAttendance, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN, GlobalConstants.ROLE_ADMIN] } },
 
-    //{ path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN] } },
-
     { path: 'admin-assessments-upload', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN, GlobalConstants.ROLE_ADMIN] } },
     { path: 'admin-assessments-upload/SBAC', component: AssessmentUploadsComponentSbac, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN, GlobalConstants.ROLE_ADMIN] }},
     { path: 'admin-assessments-upload/PFT', component: AssessmentUploadsComponentPft, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_CLIENT_ADMIN, GlobalConstants.ROLE_ADMIN] }},
@@ -152,9 +150,10 @@ export const routes: Routes = [
     { path: 'admin-assessmentsofclient', component: AdminAssessmentsOfClientComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessment-version', component: AdminAssessmentVersionComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessment-subjects', component: AdminAssessmentSubjectsComponent, canActivate: [AuthGuard] },
+    { path: 'admin-assessment-levels', component: AdminAssessmentLevelsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessment-subject-strands', component: AdminAssessmentSubjectStrandsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessment-subject-sub-strands', component: AdminAssessmentSubjectSubStrandsComponent, canActivate: [AuthGuard] },
-    { path: 'admin-assessment-levels', component: AdminAssessmentLevelsComponent, canActivate: [AuthGuard] },
+
     { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/subcategory/:typeid/:catid', component: TaxonomySubCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },

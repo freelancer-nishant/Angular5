@@ -93,7 +93,7 @@ import { AppComponent } from './app.component';
                             <span class="topbar-item-name">Admin</span>
                         </a>
                         <ul class="layout-menu fadeInDown">
-                            <li role="menuitem">
+                            <li role="menuitem" *ngIf="app.isAdmin()">
                                 <a href="#/admin">
                                     <span>Admin</span>
                                 </a>

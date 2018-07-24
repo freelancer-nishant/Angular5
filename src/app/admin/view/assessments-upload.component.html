@@ -10,16 +10,16 @@
                         <label class="control-label" for="selectedClient">Client</label>
                         <p-dropdown [options]="clients" [(ngModel)]="selectedClient" (onChange)="clientChange(this)" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
-                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
+                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
                         <label class="control-label" for="selectedSchool">School</label>
                         <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" (onChange)="schoolChange(this)" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
-                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
+                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
                         <label class="control-label" for="selectedYear">School Year</label>
                         <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" (onChange)="schoolYearChange($event)" [autoWidth]="false"
                             placeholder="--Select--"></p-dropdown>
                     </div>
-                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
+                    <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
                         <label class="control-label" for="selectedTestVersion">Test Version</label>
                         <p-dropdown [options]="testVersions" [(ngModel)]="selectedTestVersion" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                     </div>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
                         <label class="control-label">&nbsp;</label>
-                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto" [disabled]="selectedSchool == null || selectedYear == null || selectedTestVersion == null"></button>
+                        <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto" [disabled]="selectedClient==null || selectedSchool == null || selectedYear == null || selectedTestVersion == null"></button>
                     </div>
                     <p-growl [(value)]="errorMsgs"></p-growl>
                 </div>
@@ -40,6 +40,10 @@
         <div class="card card-w-title content-card">
             <div *ngIf="isPanelVisible && selectedSchool != null && selectedYear != null && selectedTestVersion != null">
                 <div class="ui-g form-group header-box">
+                    <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3" *ngIf="app.isAdmin()">
+                        <label class="text-normal text-color" style="font-weight:normal; font-size:18px; color:black;" for="SchoolYear">Client : </label>
+                        <span class="text-size text-color" style="font-size:18px; color:black;">{{school.ClientName}}</span>
+                    </div>
                     <div class="ui-g-12 ui-sm-12 ui-md-6 ui-lg-3">
                         <label class="text-color text-normal" style="font-weight:normal; font-size:18px; color:black;" for="SchoolName">School : </label>
                         <span class="text-size text-color" style="font-size:18px; color:black;">{{school.SchoolName}}</span>

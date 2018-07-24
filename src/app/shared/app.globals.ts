@@ -179,12 +179,12 @@ export class GlobalHelper {
                     name: "School Comparison List"
                 }
                 break;
-            /*case MenuType.Taxonomy:
+            case MenuType.Taxonomy:
                 sideMenuInfo = {
-                    icon: './assets/layout/images/admin/comparative-school-list.png',
+                    icon: './assets/layout/images/home/configuration.png',
                     name: "Manage Taxonomy"
                 }
-                break;*/
+                break;
             case MenuType.UserRoles:
                 sideMenuInfo = {
                     icon: './assets/layout/images/admin/comparative-school-list.png',
@@ -384,16 +384,6 @@ export class GlobalHelper {
                     }
                 ];
                 break;
-            /*case MenuType.Taxonomy:
-                menuItems = [
-                    {
-                        label: 'Manage Taxonomy', icon: 'fa fa-fw fa-bar-chart',
-                        items: [
-                            { label: 'Types', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/type'] }
-                        ]
-                    }
-                ];
-                break;*/
             case MenuType.UserRoles:
             case MenuType.Clients:
             case MenuType.Users:

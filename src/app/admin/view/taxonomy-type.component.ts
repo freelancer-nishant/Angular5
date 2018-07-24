@@ -27,8 +27,8 @@ export class TaxonomyTypeComponent implements OnInit {
     constructor(public app: AppComponent, private taxonomyConfigurationService: TaxonomyConfigurationService, private clientService: ClientService, private roleService: RoleService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
-        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Assessments);
-        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Assessments);
+        this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Taxonomy);
+        this.app.LeftMenuItems = GlobalHelper.getMenuItems(MenuType.Taxonomy);
         this.clearType(false);
     }
 

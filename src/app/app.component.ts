@@ -79,7 +79,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     isClientPage: boolean = false;
     selectedItem: any = {};
     confirmationService: ConfirmationService;
-    role: string;
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ElementRef;
 
@@ -96,9 +95,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         this.confirmationService = _confirmationService;
         if (this.isClientPage || sessionStorage.getItem('isClientPage') == "true") {
             this.isClientPage = true;
-        }
-        if (this.isLoggedIn) {
-            this.role = this.getSession().role;
         }
     }
 
@@ -309,10 +305,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         return this.layoutMode === MenuOrientation.SLIM;
     }
 
-    isAdmin() { return this.role === GlobalConstants.ROLE_ADMIN; }
-    isClientAdmin() { return this.role === GlobalConstants.ROLE_CLIENT_ADMIN; }
-    isClientUser() { return this.role === GlobalConstants.ROLE_CLIENT_USER; }
-    isGuestUser() { return this.role === GlobalConstants.ROLE_GUEST; }
+    isAdmin() { return this.getSession().role === GlobalConstants.ROLE_ADMIN; }
+    isClientAdmin() { return this.getSession().role === GlobalConstants.ROLE_CLIENT_ADMIN; }
+    isClientUser() { return this.getSession().role === GlobalConstants.ROLE_CLIENT_USER; }
+    isGuestUser() { return this.getSession().role === GlobalConstants.ROLE_GUEST; }
 
     changeToStaticMenu() {
         this.layoutMode = MenuOrientation.STATIC;

@@ -41,7 +41,6 @@ export class AssessmentUploadsComponent implements OnInit {
     client: any = {};
     clients: SelectItem[];
     selectedClient: any;
-    tempClient: any;
     errorMsgs: Message[] = [];
     filesAdded: any;
     clientInfo: any;
@@ -53,8 +52,8 @@ export class AssessmentUploadsComponent implements OnInit {
         private assessmentService: AssessmentUploadService) {
         this.sessionInfo = this.app.getSession();
         this.sbacYears = [];
-        this.sbacYears.push({ label: 'Befor 201516', value: 1 });
-        this.sbacYears.push({ label: 'After 201617', value: 2 });
+        this.sbacYears.push({ label: 'Befor 2015-16', value: 1 });
+        this.sbacYears.push({ label: 'After 2016-17', value: 2 });
     }
 
     ngOnInit() {
@@ -64,36 +63,28 @@ export class AssessmentUploadsComponent implements OnInit {
         this.clients = [];
         this.filesAdded = {};
 
-
-        this.selectedClient = null;
-        let clientResult: Client[] = [];
-        this.clientService.get().subscribe((result: any) => clientResult = result.data,
-            (error: any) => { },
-            () => {
-                this.clients = [];
-                clientResult.map(o => { this.clients.push({ label: o.id, value: o.name }); });
-            }
-        );
-
         if (!this.app.isAdmin()) {
+
+            this.selectedClient = this.sessionInfo.client_id;
+
             let schoolResult: School[] = [];
-            this.schoolService.get(this.sessionInfo.client_id).subscribe((result: any) => schoolResult = result.data,
+            this.schoolService.get(this.selectedClient).subscribe((result: any) => schoolResult = result.data,
                 (error: any) => { },
                 () => {
                     this.schools = [];
                     schoolResult.map(o => { this.schools.push({ label: o.name, value: o.id }); });
                 });
-        }
-
-
-        let testVersionResult: TestVersion[] = [];
-        this.testVersionService.get(this.selectedSchool, this.selectedYear,
-            this.selectedTestVersion).subscribe((result: any) => testVersionResult = result.data,
+        } else {
+            this.selectedClient = null;
+            let clientResult: Client[] = [];
+            this.clientService.get().subscribe((result: any) => clientResult = result.data,
                 (error: any) => { },
                 () => {
-                    this.testVersions = [];
-                    testVersionResult.map(o => { this.testVersions.push({ label: o.version_number, value: o.version_label }); });
-                });
+                    this.clients = [];
+                    clientResult.map(o => { this.clients.push({ label: o.name, value: o.id }); });
+                }
+            );
+        }
     }
 
     onGoClick() {
@@ -101,31 +92,44 @@ export class AssessmentUploadsComponent implements OnInit {
         this.UploadMsgs = [];
         this.UploadErrorMsgs = [];
         this.errorMsgs = [];
-        this.client.client_id = this.tempClient.find(x => x.value === this.selectedClient).label;
+
+        if (this.app.isAdmin()) {
+            this.school.ClientName = this.clients.find(x => x.value === this.selectedClient).label;
+        }
         this.school.SchoolName = this.schools.find(x => x.value === this.selectedSchool).label;
         this.school.SchoolYear = this.schoolYears.find(x => x.value === this.selectedYear).label;
         this.testVersions.TestVersion = this.testVersions.find(x => x.value === this.selectedTestVersion).label;
     }
 
     clientChange(e) {
-        console.log('client Change');
+        this.isPanelVisible = false;
         this.schools = [];
+        this.schoolYears = [];
+        this.testVersions = [];
+
         this.selectedSchool = null;
+        this.selectedYear = null;
+        this.selectedTestVersion = null;
+
         let schoolResult: School[] = [];
-        this.schoolService.get(this.tempClient).subscribe((result: any) => schoolResult = result.data,
+        this.schoolService.get(this.selectedClient).subscribe((result: any) => schoolResult = result.data,
             (error: any) => { },
             () => {
                 this.schools = [];
                 schoolResult.map(o => { this.schools.push({ label: o.name, value: o.id }); });
             });
-        this.client.client = this.clients.find(x => x.value === this.selectedClient).label;
     }
+
     schoolChange(e) {
         this.isPanelVisible = false;
-        let schollYears: SchoolSchoolYear[] = [];
         this.schoolYears = [];
+        this.testVersions = [];
+
         this.selectedYear = null;
-        this.schoolYearService.get(this.selectedClient.client_id, this.selectedSchool).subscribe((result: any) => schollYears = result.data,
+        this.selectedTestVersion = null;
+
+        let schollYears: SchoolSchoolYear[] = [];
+        this.schoolYearService.get(this.selectedClient, this.selectedSchool).subscribe((result: any) => schollYears = result.data,
             (error: any) => { },
             () => {
                 this.schoolYears = [];
@@ -135,9 +139,11 @@ export class AssessmentUploadsComponent implements OnInit {
 
     schoolYearChange(e) {
         this.isPanelVisible = false;
-        let versions: TestVersion[] = [];
         this.testVersions = [];
+
         this.selectedTestVersion = null;
+
+        let versions: TestVersion[] = [];
         this.testVersionService.get(this.selectedSchool, this.selectedYear).subscribe((result: any) => versions = result.data,
             (error: any) => { },
             () => {
@@ -153,7 +159,7 @@ export class AssessmentUploadsComponent implements OnInit {
             this.UploadMsgs.push({ severity: 'success', summary: 'success Message', detail: 'Upload Started' });
             let responseResult: ResponseResult;
             this.filesAdded.file_data = this.fileData;
-            this.filesAdded.client_id = this.sessionInfo.client_id;
+            this.filesAdded.client_id = this.selectedClient;
             this.filesAdded.school_id = this.selectedSchool;
             this.filesAdded.school_year_id = this.selectedYear;
             this.filesAdded.testversion_id = this.selectedTestVersion;
