@@ -13,10 +13,31 @@
                             <label class="text-bold">Assessment: </label>
                         </div>
                         <div class="ui-g-3 ui-md-3">
-                            <p-dropdown [autoWidth]="false" [options]="assessmentList" [(ngModel)]="selectedAssessment" placeholder="Select Assessment"></p-dropdown>
+                            <p-dropdown [autoWidth]="false" [options]="assessmentList" [(ngModel)]="selectedAssessment" placeholder="Select Assessment" (onChange)="loadAssessmentSubject()"></p-dropdown>
                         </div>
-                        <div class="ui-g-1 ui-md-1">
-                            <button pButton type="button" label="GO" (click)="loadAssessmentSubject()" style="width:auto;" [disabled]="selectedAssessment == null"></button>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12 fa-border" style="padding:-10px;">
+                        <div class="ui-g-2 ui-md-2 text-left">
+                            <label class="text-bold">Subject</label>
+                            <br />
+                        </div>
+
+                        <div class="ui-g-4 ui-md-4">
+                            <label class="text-bold">Description</label>
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g-2 ui-md-2">
+                            <input type="text" pInputText [(ngModel)]="addAssessmentSubject.subject" />
+                        </div>
+                        <div class="ui-g-4 ui-md-4">
+                            <input type="text" pInputText [(ngModel)]="addAssessmentSubject.description" />
+                        </div>
+                        <div class="ui-g-1 ui-md-1" style="margin-bottom:-30px;">
+                            <button pButton type="button" label="ADD" (click)="add()" [disabled]="selectedAssessment == null || addAssessmentSubject.subject==null"></button>
                         </div>
                     </div>
 
@@ -30,43 +51,22 @@
                                     <div class="ui-g-5 ui-md-5">
                                         <label>Description</label>
                                     </div>
-                                    <div class="ui-g-2 ui-md-2">
-                                        <label>Label</label>
-                                    </div>
                                     <div class="ui-g-1 ui-md-1">
                                         <label>&nbsp;</label>
                                     </div>
                                 </div>
                             </p-header>
-                            <p-footer class="form-group">
-                                <div class="ui-g">
-                                    <div class="ui-g-4 ui-md-4">
-                                        <input type="text" pInputText [(ngModel)]="AssessmentSubject.subject"/>
-                                    </div>
-                                    <div class="ui-g-5 ui-md-5">
-                                        <input type="text" pInputText [(ngModel)]="AssessmentSubject.description"/>
-                                    </div>
-                                    <div class="ui-g-2 ui-md-2">
-                                        <input type="text" pInputText [(ngModel)]="AssessmentSubject.label"/>
-                                    </div>
-                                    <div class="ui-g-1 ui-md-1 text-center">
-                                        <button pButton type="button" label="ADD" (click)="onAddClick()" [disabled]="selectedAssessment == null"></button>
-                                    </div>
-                                </div>
-                            </p-footer>
                             <ng-template let-subject pTemplate="item">
                                 <div class="ui-g-12 ui-md-12">
                                     <div class="ui-g-4 ui-md-4">
-                                        <label>{{subject.subject}}</label>
+                                        <input type="text" pInputText [(ngModel)]="subject.subject" />
                                     </div>
                                     <div class="ui-g-5 ui-md-5">
-                                        <label>{{subject.description}}</label>
-                                    </div>
-                                    <div class="ui-g-2 ui-md-2">
-                                        <label>{{subject.label}}</label>
+                                        <input type="text" pInputText [(ngModel)]="subject.description" />
                                     </div>
                                     <div class="ui-g-1 ui-md-1 text-center">
-                                        <a class="font-20" (click)="deleteSubject(subject.id)"><i class="fa fa-trash"></i></a>
+                                        <button pButton type="button" icon="fa fa-edit" style="width:auto;" (click)="update(subject.id)"></button>
+                                        <!--<button pButton type="button" icon="fa fa-trash" style="width:auto;" (click)="delete(subject.id)"></button>-->
                                     </div>
                                 </div>
                             </ng-template>

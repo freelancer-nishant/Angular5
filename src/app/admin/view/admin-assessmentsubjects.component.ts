@@ -15,7 +15,8 @@ export class AdminAssessmentSubjectsComponent implements OnInit {
     assessmentSubjectList: any = [];
     selectedAssessment: any;
 
-    AssessmentSubject: any = {};
+    addAssessmentSubject: any = {};
+    updateAssessmentSubject: any = {};
 
     constructor(public app: AppComponent, private assessmentService: AssessmentService, private assessmentSubjectService: AssessmentSubjectService) {
         this.app.displayLeftMenu(true);
@@ -41,6 +42,7 @@ export class AdminAssessmentSubjectsComponent implements OnInit {
     }
 
     loadAssessmentSubject() {
+        this.addAssessmentSubject = {};
         let assessmentList: any[] = [];
         this.assessmentSubjectService.get(this.selectedAssessment, null).subscribe((result: any) => assessmentList = result.data,
             (error: any) => { },
@@ -58,20 +60,47 @@ export class AdminAssessmentSubjectsComponent implements OnInit {
                 });
             });
     }
+    add() {
+        this.addAssessmentSubject.id = 0;
+        this.addAssessmentSubject.test_type_id = this.selectedAssessment;
+        this.save(this.addAssessmentSubject);
+    }
 
-    submitAssessmentSubject() {
+    save(addAssessmentSubject) {
         let responseResult: ResponseResult;
-
-        this.assessmentSubjectService.post(this.AssessmentSubject).subscribe((result: any) => responseResult = result,
+        let assessmentSubject = {
+            id: addAssessmentSubject.id,
+            assessment_type_id: addAssessmentSubject.test_type_id,
+            subject: addAssessmentSubject.subject,
+            desc: addAssessmentSubject.description,
+            label: addAssessmentSubject.subject
+        }
+        this.assessmentSubjectService.post(assessmentSubject).subscribe((result: any) => responseResult = result,
             (error: any) => {
                 this.msgs.push({ severity: 'error', detail: error.error.message });
             },
             () => {
-                this.AssessmentSubject = {};
+                this.addAssessmentSubject = {};
+                this.updateAssessmentSubject = {};
                 this.loadAssessmentSubject();
-                this.msgs.push({ severity: 'success', detail: "Assessment added successfully." });
+                this.msgs.push({ severity: 'success', detail: "Assessment Subject saved successfully." });
             });
     }
 
-    
+    update(id) {
+        this.updateAssessmentSubject = this.assessmentSubjectList.find(x => x.id === id);
+        this.save(this.updateAssessmentSubject);
+    }
+
+    //delete(id) {
+    //    let responseResult: ResponseResult;
+    //    this.assessmentSubjectService.delete(id).subscribe((result: any) => responseResult = result.data,
+    //        (error: any) => {
+    //            this.msgs.push({ severity: 'error', detail: error.error.message });
+    //        },
+    //        () => {
+    //            this.loadAssessmentSubject();
+    //            this.msgs.push({ severity: 'success', detail: "Assessment Subject deleted successfully." });
+    //        });
+    //}
 }

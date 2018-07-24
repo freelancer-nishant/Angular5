@@ -305,10 +305,38 @@ export class AppComponent implements AfterViewInit, OnDestroy {
         return this.layoutMode === MenuOrientation.SLIM;
     }
 
-    isAdmin() { return this.getSession().role === GlobalConstants.ROLE_ADMIN; }
-    isClientAdmin() { return this.getSession().role === GlobalConstants.ROLE_CLIENT_ADMIN; }
-    isClientUser() { return this.getSession().role === GlobalConstants.ROLE_CLIENT_USER; }
-    isGuestUser() { return this.getSession().role === GlobalConstants.ROLE_GUEST; }
+    isAdmin() {
+        try {
+            return this.getSession().role === GlobalConstants.ROLE_ADMIN;
+        }
+        catch (e) {
+            return false;
+        }
+    }
+    isClientAdmin() {
+        try {
+            return this.getSession().role === GlobalConstants.ROLE_CLIENT_ADMIN;
+        }
+        catch (e) {
+            return false;
+        }
+    }
+    isClientUser() {
+        try {
+            return this.getSession().role === GlobalConstants.ROLE_CLIENT_USER;
+        }
+        catch (e) {
+            return false;
+        }
+    }
+    isGuestUser() {
+        try {
+            return this.getSession().role === GlobalConstants.ROLE_GUEST;
+        }
+        catch (e) {
+            return false;
+        }
+    }
 
     changeToStaticMenu() {
         this.layoutMode = MenuOrientation.STATIC;
