@@ -55,8 +55,8 @@ export class EnrollmentAndAttendanceComponent implements OnInit {
         this.UploadMsgs = [];
         this.UploadErrorMsgs = [];
         this.errorMsgs = [];
-
         this.selectedYearName = this.schoolYears.find(x => x.value === this.selectedYear).label;
+        console.log(this.selectedYear);
     }
 
     schoolYearChange(e) {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import { Assessment, AssessmentRequest, AssessmentOfClient } from './../../shared/domain/assessment';
-import { AssessmentService } from './../../shared/services/assessment.service ';
+import { AssessmentService } from '../../shared/services/assessment.service';
 import { Client } from './../../shared/domain/client';
 import { ClientService } from './../../shared/services/client.service';
 

@@ -129,6 +129,11 @@ import { GradeInSchoolYearComponent } from './admin/view/schoolyear-grade.compon
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AdminAssessmentsOfClientComponent } from './admin/view/admin-assessmentsofclient.component'
+import { AdminAssessmentVersionComponent } from './admin/view/admin-assessmentversion.component';
+import { AdminAssessmentSubjectsComponent } from './admin/view/admin-assessmentsubjects.component';
+import { AdminAssessmentSubjectStrandsComponent } from './admin/view/admin-assessmentsubjectstrands.component';
+import { AdminAssessmentSubjectSubStrandsComponent } from './admin/view/admin-assessmentsubjectsubstrands.component';
+import { AdminAssessmentLevelsComponent } from './admin/view/admin-assessmentlevels.component';
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 import { ManageRolesComponent } from './admin/view/manageroles.component'
 import { ManageClientsComponent } from './admin/view/manageclients.component'
@@ -174,7 +179,7 @@ import { ClientService } from './shared/services/client.service';
 import { RoleService } from './shared/services/role.service';
 import { AssessmentUploadService } from './shared/services/assessment-upload.services';
 import { EnrollmentAndAttendanceService } from './shared/services/enrollment-attendance.services';
-import { AssessmentService } from './shared/services/assessment.service ';
+import { AssessmentService } from './shared/services/assessment.service';
 
 import { TestService } from './shared/services/test.service'
 import { TestVersionService } from './shared/services/testversion.service'
@@ -358,6 +363,11 @@ import { UserService } from "./shared/services/users.service";
         EnrollmentAndAttendanceComponentDailyAttendance,
         AdminAssessmentsComponent,
         AdminAssessmentsOfClientComponent,
+        AdminAssessmentVersionComponent,
+        AdminAssessmentSubjectsComponent,
+        AdminAssessmentSubjectStrandsComponent,
+        AdminAssessmentSubjectSubStrandsComponent,
+        AdminAssessmentLevelsComponent,
         AssessmentUploadsComponent,
         SchoolComparisonListComponent,
 

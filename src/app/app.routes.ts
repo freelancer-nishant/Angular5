@@ -67,6 +67,11 @@ import { GradeInSchoolYearComponent } from './admin/view/schoolyear-grade.compon
 import { EnrollmentAndAttendanceComponent } from './admin/view/enrollment-attendance.component'
 import { AdminAssessmentsComponent } from './admin/view/admin-assessments.component'
 import { AdminAssessmentsOfClientComponent } from './admin/view/admin-assessmentsofclient.component'
+import { AdminAssessmentVersionComponent } from './admin/view/admin-assessmentversion.component';
+import { AdminAssessmentSubjectsComponent } from './admin/view/admin-assessmentsubjects.component';
+import { AdminAssessmentSubjectStrandsComponent } from './admin/view/admin-assessmentsubjectstrands.component';
+import { AdminAssessmentSubjectSubStrandsComponent } from './admin/view/admin-assessmentsubjectsubstrands.component';
+import { AdminAssessmentLevelsComponent } from './admin/view/admin-assessmentlevels.component';
 import { AssessmentUploadsComponent } from './admin/view/assessments-upload.component'
 import { SchoolComparisonListComponent } from './admin/view/school.comparison.list.component'
 import { TaxonomyTypeComponent } from './admin/view/taxonomy-type.component';
@@ -145,7 +150,11 @@ export const routes: Routes = [
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessments', component: AdminAssessmentsComponent, canActivate: [AuthGuard] },
     { path: 'admin-assessmentsofclient', component: AdminAssessmentsOfClientComponent, canActivate: [AuthGuard] },
-
+    { path: 'admin-assessment-version', component: AdminAssessmentVersionComponent, canActivate: [AuthGuard] },
+    { path: 'admin-assessment-subjects', component: AdminAssessmentSubjectsComponent, canActivate: [AuthGuard] },
+    { path: 'admin-assessment-subject-strands', component: AdminAssessmentSubjectStrandsComponent, canActivate: [AuthGuard] },
+    { path: 'admin-assessment-subject-sub-strands', component: AdminAssessmentSubjectSubStrandsComponent, canActivate: [AuthGuard] },
+    { path: 'admin-assessment-levels', component: AdminAssessmentLevelsComponent, canActivate: [AuthGuard] },
     { path: 'taxonomy/type', component: TaxonomyTypeComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/category/:typeid', component: TaxonomyCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },
     { path: 'taxonomy/subcategory/:typeid/:catid', component: TaxonomySubCategoryComponent, canActivate: [AuthGuard], data: { expectedRoles: [GlobalConstants.ROLE_ADMIN] } },

@@ -83,7 +83,7 @@ export class GlobalHelper {
             case MenuType.UserRoles:
             case MenuType.Clients:
             case MenuType.Users:
-            case  MenuType.Assessments:
+            case MenuType.Assessments:
                 categories = [
                     { name: 'User Roles', route: "#/admin/manageroles" },
                     { name: 'Clients', route: "#/admin/manageclients" },
@@ -179,12 +179,12 @@ export class GlobalHelper {
                     name: "School Comparison List"
                 }
                 break;
-            case MenuType.Taxonomy:
+            /*case MenuType.Taxonomy:
                 sideMenuInfo = {
                     icon: './assets/layout/images/admin/comparative-school-list.png',
                     name: "Manage Taxonomy"
                 }
-                break;
+                break;*/
             case MenuType.UserRoles:
                 sideMenuInfo = {
                     icon: './assets/layout/images/admin/comparative-school-list.png',
@@ -384,7 +384,7 @@ export class GlobalHelper {
                     }
                 ];
                 break;
-            case MenuType.Taxonomy:
+            /*case MenuType.Taxonomy:
                 menuItems = [
                     {
                         label: 'Manage Taxonomy', icon: 'fa fa-fw fa-bar-chart',
@@ -393,11 +393,12 @@ export class GlobalHelper {
                         ]
                     }
                 ];
-                break;
+                break;*/
             case MenuType.UserRoles:
             case MenuType.Clients:
             case MenuType.Users:
             case MenuType.Assessments:
+            case MenuType.Taxonomy:
                 menuItems = [
                     {
                         label: 'User Roles', icon: 'fa fa-fw fa-bar-chart',
@@ -422,7 +423,18 @@ export class GlobalHelper {
                         label: 'Assessments', icon: 'fa fa-fw fa-bar-chart',
                         items: [
                             { label: 'Manage Assessments', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessments'] },
-                            { label: 'Assessments Of Client', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessmentsofclient'] }
+                            { label: 'Assessments Of Client', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessmentsofclient'] },
+                            { label: 'Assessment Versions', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessment-version'] },
+                            { label: 'Assessment Subjects', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessment-subjects'] },
+                            { label: 'Assessment Levels', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessment-levels'] },
+                            { label: 'Assessment Subject Strands', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessment-subject-strands'] },
+                            { label: 'Assessment Subject Sub-Strands', icon: 'fa fa-fw fa-columns', routerLink: ['/admin-assessment-subject-sub-strands'] },
+                        ]
+                    },
+                    {
+                        label: 'Manage Taxonomy', icon: 'fa fa-fw fa-bar-chart',
+                        items: [
+                            { label: 'Types', icon: 'fa fa-fw fa-columns', routerLink: ['/taxonomy/type'] }
                         ]
                     }
                 ];

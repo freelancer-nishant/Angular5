@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import { Assessment, AssessmentRequest } from './../../shared/domain/assessment';
-import { AssessmentService } from './../../shared/services/assessment.service ';
+import { AssessmentService } from '../../shared/services/assessment.service';
 import { ResponseResult } from './../../shared/domain/Common.model'
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
