@@ -180,8 +180,6 @@ import { RoleService } from './shared/services/role.service';
 import { AssessmentUploadService } from './shared/services/assessment-upload.services';
 import { EnrollmentAndAttendanceService } from './shared/services/enrollment-attendance.services';
 import { AssessmentService } from './shared/services/assessment.service';
-import { AssessmentSubjectService } from './shared/services/assessment-subject.services';
-import { AssessmentLevelService } from './shared/services/assessment-level.services';
 
 import { TestService } from './shared/services/test.service'
 import { TestVersionService } from './shared/services/testversion.service'
@@ -403,7 +401,7 @@ import { UserService } from "./shared/services/users.service";
         LoginService, SchoolService,
         SchoolYearService, YearService, SchoolGradeService, TestService, TestVersionService, ComparativeListService,
         CommonService, TaxonomyService, TaxonomyConfigurationService, SemesterInSchoolYearService, GradeService, DaysInSchoolYearService,
-        ClientService, RoleService, UserService, AssessmentService, AssessmentUploadService, AssessmentSubjectService, AssessmentLevelService,
+        ClientService, RoleService, UserService, AssessmentService, AssessmentUploadService, 
         MessageService, ConfirmationService,
         JwtHelperService, AuthService, AuthGuardService,
         VJSConfig, EnrollmentAndAttendanceService

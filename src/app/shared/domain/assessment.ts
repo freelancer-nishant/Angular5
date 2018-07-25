@@ -64,7 +64,7 @@ export interface AssessmentSubjectStrand {
     ignore_grade: any,
     test_match_code: any,
     substrand_exists: any,
-},
+}
 
 export interface AssessmentVersionRequest {
     id: any,

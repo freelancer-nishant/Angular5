@@ -8,27 +8,37 @@
                 </p-header>
                 <p-growl [(value)]="msgs"></p-growl>
                 <div class="ui-g form-group">
-                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-10px">
-                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-2">
+                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-20px">
+                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
                             <label class="text-bold">Client </label>
+                        </div>
+                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
                             <p-dropdown [options]="clients" [(ngModel)]="selectedClient" (onChange)="clientChange(this)" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                         </div>
-                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
+                    </div>
+                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-20px">
+                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
                             <label class="text-bold">School </label>
+                        </div>
+                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
                             <p-dropdown [options]="schools" [(ngModel)]="selectedSchool" (onChange)="schoolChange(this)" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                         </div>
-                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
+                    </div>
+                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-20px">
+                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
                             <label class="text-bold">School Year </label>
+                        </div>
+                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
                             <p-dropdown [options]="schoolYears" [(ngModel)]="selectedYear" (onChange)="schoolYearChange(this)" [autoWidth]="false" placeholder="--Select--"></p-dropdown>
                         </div>
-                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
-                            <label class="text-bold">Assessment </label>
-                            <p-dropdown [options]="assessments" [(ngModel)]="selectedAssessment" (onChange)="assessmentChange(this)" [autoWidth]="false"
-                                placeholder="--Select--"></p-dropdown>
-                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-20px">
                         <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-1">
-                            <label class="control-label">&nbsp;</label>
-                            <button pButton type="button" label="Go" (click)="onGoClick()" style="width:auto" [disabled]="selectedClient==null || selectedSchool == null || selectedYear == null || selectedAssessment == null"></button>
+                            <label class="text-bold">Assessment </label>
+                        </div>
+                        <div class="ui-g-12 ui-sm-6 ui-md-4 ui-lg-3">
+                            <p-dropdown [options]="assessments" [(ngModel)]="selectedAssessment" (onChange)="loadAssessmentVersion()" [autoWidth]="false"
+                                        placeholder="--Select--"></p-dropdown>
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-12 fa-border" style="padding:-10px;">
@@ -42,32 +52,29 @@
                         </div>
                     </div>
                     <div class="ui-g-12 ui-md-12 fa-border">
-                        <div class="ui-g-1 ui-md-1">
+                        <div class="ui-g-4 ui-md-4">
                             <input type="text" pInputText [(ngModel)]="insertAssessmentVersion.label" />
                         </div>
-                        <div class="ui-g-4 ui-md-4">
-                            <input type="text" pInputText [(ngModel)]="insertAssessmentVersion.test_version_number" />
+                        <div class="ui-g-1 ui-md-1">
+                            <input type="text" pInputText [(ngModel)]="insertAssessmentVersion.term_id" />
                         </div>
                         <div class="ui-g-1 ui-md-1 text-center">
-                            <button pButton type="button" label="ADD" (click)="insertVersion()" [disabled]="insertAssessmentVersion.test_version_number == null || insertAssessmentVersion.test_version_number == '' || insertAssessmentVersion.label == null || insertAssessmentVersion.label == ''"></button>
+                            <button pButton type="button" label="ADD" (click)="insertVersion()" [disabled]="selectedAssessment == null || insertAssessmentVersion.term_id == null || insertAssessmentVersion.term_id == '' || insertAssessmentVersion.label == null || insertAssessmentVersion.label == ''"></button>
                         </div>
                     </div>
 
                     <div class="ui-g-12 ui-md-12">
-                        <p-dataGrid [value]="assessmentList" [immutable]="false">
+                        <p-dataGrid [value]="assessmentList" [immutable]="false" *ngIf="selectedAssessment != null">
                             <ng-template let-assessment pTemplate="item">
                                 <div class="ui-g-12 ui-md-12 fa-border">
-                                    <div class="ui-g-1 ui-md-1">
+                                    <div class="ui-g-4 ui-md-4">
                                         <input type="text" pInputText [(ngModel)]="assessment.label" />
                                     </div>
-                                    <div class="ui-g-4 ui-md-4">
+                                    <div class="ui-g-1 ui-md-1">
                                         <input type="text" pInputText [(ngModel)]="assessment.test_version_number" />
                                     </div>
                                     <div class="ui-g-1 ui-md-1 text-center">
-                                        <button pButton type="button" icon="fa fa-edit" [disabled]="assessmentVersion.test_version_number == null || assessmentVersion.test_version_number == '' || assessmentVersion.label == null || assessmentVersion.label == '' " (click)="updateVersion()"></button>
-                                        <br />
-                                    </div>
-                                    <div class="ui-g-1 ui-md-1">
+                                        <button pButton type="button" icon="fa fa-edit" (click)="updateVersion(assessment.id)"></button>
                                     </div>
                                 </div>
                             </ng-template>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import { AssessmentService } from './../../shared/services/assessment.service';
-import { AssessmentSubjectService } from '../../shared/services/assessment-subject.services';
 import { ResponseResult } from '../../shared/domain/Common.model';
 import { Message } from 'primeng/components/common/message';
 
@@ -19,7 +18,7 @@ export class AdminAssessmentSubjectsComponent implements OnInit {
     addAssessmentSubject: any = {};
     updateAssessmentSubject: any = {};
 
-    constructor(public app: AppComponent, private assessmentService: AssessmentService, private assessmentSubjectService: AssessmentSubjectService) {
+    constructor(public app: AppComponent, private assessmentService: AssessmentService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Assessments);
@@ -45,7 +44,7 @@ export class AdminAssessmentSubjectsComponent implements OnInit {
     loadAssessmentSubject() {
         this.addAssessmentSubject = {};
         let assessmentList: any[] = [];
-        this.assessmentSubjectService.get(this.selectedAssessment, null).subscribe((result: any) => assessmentList = result.data,
+        this.assessmentService.getAssesmentSubject(this.selectedAssessment, null).subscribe((result: any) => assessmentList = result.data,
             (error: any) => { },
             () => {
                 this.assessmentSubjectList = [];
@@ -76,7 +75,7 @@ export class AdminAssessmentSubjectsComponent implements OnInit {
             desc: addAssessmentSubject.description,
             label: addAssessmentSubject.subject
         }
-        this.assessmentSubjectService.post(assessmentSubject).subscribe((result: any) => responseResult = result,
+        this.assessmentService.saveAssesmentSubject(assessmentSubject).subscribe((result: any) => responseResult = result,
             (error: any) => {
                 this.msgs.push({ severity: 'error', detail: error.error.message });
             },

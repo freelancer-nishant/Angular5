@@ -8,13 +8,15 @@
                 </p-header>
                 <p-growl [(value)]="msgs"></p-growl>
                 <div class="ui-g form-group">
-                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-10px">
+                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-20px">
                         <div class="ui-g-1 ui-md-1 ui-sm-12" style="padding-top:15px;">
                             <label class="text-bold">Assessment: </label>
                         </div>
                         <div class="ui-g-3 ui-md-3 ui-sm-12">
                             <p-dropdown [autoWidth]="false" [options]="assessmentList" [(ngModel)]="selectedAssessment" placeholder="Select Assessment" (onChange)="loadAssessmentSubject()"></p-dropdown>
                         </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12" style="margin-bottom:-10px">
                         <div class="ui-g-1 ui-md-1 ui-sm-12" style="padding-top:15px;">
                             <label class="text-bold">Subject: </label>
                         </div>
@@ -22,40 +24,31 @@
                             <p-dropdown [autoWidth]="false" [options]="assessmentSubjectList" [(ngModel)]="selectedSubject" placeholder="Select Subject"></p-dropdown>
                         </div>
                     </div>
-
-                    <div class="ui-g-12 ui-md-12 fa-border" *ngIf="selectedAssessment != null && selectedSubject!=null">
-                        <div class="ui-g-4 ui-md-4 ui-sm-12">
+                    <div class="ui-g-12 ui-md-12 fa-border">
+                        <div class="ui-g-1 ui-md-1 ui-sm-12">
                             <label class="text-bold">Level</label>
-                            <input type="text" pInputText [(ngModel)]="addAssessmentLevel.level" />
                         </div>
                         <div class="ui-g-4 ui-md-4 ui-sm-12">
                             <label class="text-bold">Level Label</label>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12 fa-border">
+                        <div class="ui-g-1 ui-md-1 ui-sm-12">
+                            <input type="text" pInputText [(ngModel)]="addAssessmentLevel.level" />
+                        </div>
+                        <div class="ui-g-4 ui-md-4 ui-sm-12">
                             <input type="text" pInputText [(ngModel)]="addAssessmentLevel.label" />
                         </div>
-                        <div class="ui-g-1 ui-md-1 col-sm-12">
-                            <label class="text-bold">&nbsp;<br /></label>
-                            <button pButton type="button" label="ADD" (click)="add()" [disabled]="selectedAssessment == null || addAssessmentLevel.level==null || addAssessmentLevel.label==null" style="width:auto;"></button>
+                        <div class="ui-g-1 ui-md-1 col-sm-12 text-center">
+                            <button pButton type="button" label="ADD" (click)="add()" [disabled]="selectedAssessment == null || addAssessmentLevel.level==null || addAssessmentLevel.level=='' || addAssessmentLevel.label==null || addAssessmentLevel.label==''" style="width:auto;"></button>
                         </div>
                     </div>
 
                     <div class="ui-g-12 ui-md-12">
                         <p-dataGrid [value]="assessmentLevelList" [immutable]="false">
-                            <p-header class="form-group">
-                                <div class="ui-g">
-                                    <div class="ui-g-4 ui-md-4">
-                                        <label>Level</label>
-                                    </div>
-                                    <div class="ui-g-4 ui-md-4">
-                                        <label>Level Label</label>
-                                    </div>
-                                    <div class="ui-g-1 ui-md-1">
-                                        <label>&nbsp;</label>
-                                    </div>
-                                </div>
-                            </p-header>
                             <ng-template let-level pTemplate="item">
                                 <div class="ui-g-12 ui-md-12">
-                                    <div class="ui-g-4 ui-md-4">
+                                    <div class="ui-g-1 ui-md-1">
                                         <input type="text" pInputText [(ngModel)]="level.level" />
                                     </div>
                                     <div class="ui-g-4 ui-md-4">

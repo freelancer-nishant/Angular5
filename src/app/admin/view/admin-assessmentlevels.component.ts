@@ -4,8 +4,6 @@ import { GlobalHelper, MenuType } from './../../shared/app.globals';
 import { Message } from 'primeng/components/common/message';
 import { ResponseResult } from '../../shared/domain/Common.model';
 import { AssessmentService } from '../../shared/services/assessment.service';
-import { AssessmentSubjectService } from '../../shared/services/assessment-subject.services';
-import { AssessmentLevelService } from '../../shared/services/assessment-level.services';
 
 @Component({
     templateUrl: './admin-assessmentlevels.component.html'
@@ -21,7 +19,7 @@ export class AdminAssessmentLevelsComponent implements OnInit {
     addAssessmentLevel: any = {};
     updateAssessmentLevel: any = {};
 
-    constructor(public app: AppComponent, private assessmentService: AssessmentService, private assessmentSubjectService: AssessmentSubjectService, private assessmentLevelService: AssessmentLevelService) {
+    constructor(public app: AppComponent, private assessmentService: AssessmentService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Assessments);
@@ -45,7 +43,7 @@ export class AdminAssessmentLevelsComponent implements OnInit {
     loadAssessmentSubject() {
         this.addAssessmentLevel = {};
         let assessmentList: any[] = [];
-        this.assessmentSubjectService.get(this.selectedAssessment,null).subscribe((result: any) => assessmentList = result.data,
+        this.assessmentService.getAssesmentSubject(this.selectedAssessment,null).subscribe((result: any) => assessmentList = result.data,
             (error: any) => { },
             () => {
                 this.assessmentSubjectList = [];
@@ -62,7 +60,7 @@ export class AdminAssessmentLevelsComponent implements OnInit {
     loadAssessmentLevel() {
         this.addAssessmentLevel = {};
         let assessmentList: any[] = [];
-        this.assessmentLevelService.get(this.selectedAssessment).subscribe((result: any) => assessmentList = result.data,
+        this.assessmentService.getAssessmentLevel(this.selectedAssessment).subscribe((result: any) => assessmentList = result.data,
             (error: any) => { },
             () => {
                 this.assessmentLevelList = [];
@@ -87,7 +85,7 @@ export class AdminAssessmentLevelsComponent implements OnInit {
     save(addAssessmentLevel) {
         let responseResult: ResponseResult;
 
-        this.assessmentLevelService.post(addAssessmentLevel).subscribe((result: any) => responseResult = result,
+        this.assessmentService.saveAssessmentLevel(addAssessmentLevel).subscribe((result: any) => responseResult = result,
             (error: any) => {
                 this.msgs.push({ severity: 'error', detail: error.error.message });
             },
