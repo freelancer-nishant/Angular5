@@ -101,11 +101,15 @@
                                <div class="ui-g form-group">
                                    <div class="ui-g-12 ui-sm-12 ui-md-6">
                                        <label for="input">Select Clients :</label>
-                                       <p-multiSelect [options]="clients" [(ngModel)]="client_ids" [filter]="false" name="client_ids" required></p-multiSelect>
+                                       <p-dropdown [options]="clients" [(ngModel)]="client_id" (onChange)="clientChange(this)" [autoWidth]="false" placeholder="--Select--" name="client_id" required></p-dropdown>
+                                   </div>
+                                   <div class="ui-g-12 ui-sm-12 ui-md-6">
+                                       <label for="input">Select Schools :</label>
+                                       <p-multiSelect [options]="schools" [(ngModel)]="school_ids" [filter]="false" name="school_ids" defaultLabel="--Select--" required></p-multiSelect>
                                    </div>
                                    <div class="ui-helper-clearfix text-center">
                                        <br />
-                                       <button type="submit" label="Save" (click)="saveItemOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemOfClient.form.valid"></button>
+                                       <button type="submit" label="Save" (click)="saveItemConfigurationOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemOfClient.form.valid"></button>
                                        <button type="button" label="Cancel" (click)="clearItemOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
                                    </div>
                                    <div class="ui-g-12 ui-md-12">

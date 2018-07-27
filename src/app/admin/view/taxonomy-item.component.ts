@@ -10,6 +10,8 @@ import { RoleService } from './../../shared/services/role.service';
 import { ResponseResult } from '../../shared/domain/Common.model';
 import { ActivatedRoute } from '@angular/router';
 import { TaxonomyItem } from '../../shared/domain/taxonomy';
+import { School } from '../../shared/domain/school';
+import { SchoolService } from '../../shared/services/school.service';
 
 @Component({
     templateUrl: './taxonomy-item.component.html'
@@ -23,15 +25,18 @@ export class TaxonomyItemComponent implements OnInit {
     category_Id: number;
     type_Id: number;
     clients: SelectItem[];
+    schools: SelectItem[];
     roles: SelectItem[];
     ItemOfClientList: any[] = [];
     ItemInRoleList: any[] = [];
-    client_ids: string[];
+    client_id: string;
+    school_ids: string[];
+    selectedSchoolClients: any[] = [];
     role_ids: string[];
     ItemParam: any = {};
     ItemParamsList: any[] = [];
 
-    constructor(public app: AppComponent, private route: ActivatedRoute, private taxonomyConfigurationService: TaxonomyConfigurationService, private clientService: ClientService, private roleService: RoleService) {
+    constructor(public app: AppComponent, private route: ActivatedRoute, private taxonomyConfigurationService: TaxonomyConfigurationService, private clientService: ClientService, private schoolService: SchoolService, private roleService: RoleService) {
         this.app.displayLeftMenu(true);
         this.app.activeCategoryDropdown = true;
         this.app.pageProfile = GlobalHelper.getSideMenuTitle(MenuType.Taxonomy);
@@ -146,6 +151,16 @@ export class TaxonomyItemComponent implements OnInit {
         this.dialogVisible = visible;
     }
 
+    clientChange(e) {
+        let schoolResult: School[] = [];
+        this.schoolService.get(parseInt(this.client_id)).subscribe((result: any) => schoolResult = result.data,
+            (error: any) => { },
+            () => {
+                this.schools = [];
+                schoolResult.map(o => { this.schools.push({ label: o.name, value: o.id }); });
+            }
+        );
+    }
     getItemOfClientList(id) {
         let itemOfClientList: any[] = [];
         this.taxonomyConfigurationService.getItemOfClient(id).subscribe((result: any) => itemOfClientList = result.data,
@@ -177,9 +192,25 @@ export class TaxonomyItemComponent implements OnInit {
             }
         });
     }
+    saveItemConfigurationOfClient() {
+        for (var i = 0; i < this.school_ids.length; i++) {
+            this.selectedSchoolClients.push({ client_id: this.client_id, school_id: this.school_ids[i] });
+        }
+
+        let responseResult: ResponseResult;
+        this.taxonomyConfigurationService.saveItemConfigurationOfClient({ item_id: this.TaxonomyItem.id, client_and_school_ids: JSON.stringify(this.selectedSchoolClients) }).subscribe((result: any) => responseResult = result,
+            (error: any) => {
+                this.app.msgs.push({ severity: 'error', detail: error.error.message });
+            },
+            () => {
+                this.clearItemOfClient();
+                this.getItemOfClientList(this.TaxonomyItem.id);
+                this.app.msgs.push({ severity: 'success', detail: "Item Of Client and Schools added successfully." });
+            });
+    }
     saveItemOfClient() {
         let responseResult: ResponseResult;
-        this.taxonomyConfigurationService.saveItemOfClient({ item_id: this.TaxonomyItem.id, client_ids: this.client_ids.join(',') }).subscribe((result: any) => responseResult = result,
+        this.taxonomyConfigurationService.saveItemOfClient({ item_id: this.TaxonomyItem.id, client_ids: this.client_id }).subscribe((result: any) => responseResult = result,
             (error: any) => {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
@@ -190,7 +221,9 @@ export class TaxonomyItemComponent implements OnInit {
             });
     }
     clearItemOfClient() {
-        this.client_ids = [];
+        this.client_id = '';
+        this.school_ids = [];
+        this.schools = [];
     }
 
     getItemInRoleList(id) {
@@ -242,7 +275,7 @@ export class TaxonomyItemComponent implements OnInit {
 
     getItemParamList(id) {
         let itemParamsList: any[] = [];
-        this.taxonomyConfigurationService.getItemVJSParam(undefined,id).subscribe((result: any) => itemParamsList = result.data,
+        this.taxonomyConfigurationService.getItemVJSParam(undefined, id).subscribe((result: any) => itemParamsList = result.data,
             (error: any) => { },
             () => {
                 this.ItemParamsList = [];

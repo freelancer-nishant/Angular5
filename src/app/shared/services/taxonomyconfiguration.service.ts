@@ -39,7 +39,7 @@ export class TaxonomyConfigurationService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/typeofclient?type_id=' + type_id;
         return this.http.get(url);
     }
-    deleteTypeOfClient(type_id: number, client_id:number): Observable<any> {
+    deleteTypeOfClient(type_id: number, client_id: number): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/typeofclient?type_id=' + type_id + '&client_id=' + client_id;
         return this.http.delete(url);
     }
@@ -187,6 +187,9 @@ export class TaxonomyConfigurationService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemofclient?item_id=' + item_id + '&client_id=' + client_id;
         return this.http.delete(url);
     }
+    saveItemConfigurationOfClient<ResponseResult>(itemofclient: any): Observable<any> {
+        return this.http.post<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemconfigurationofclient', GlobalHelper.toHttpParams(itemofclient), httpOptionsa);
+    }
     saveItemOfClient<ResponseResult>(itemofclient: any): Observable<any> {
         if (itemofclient.item_id == undefined || itemofclient.item_id == 0) {
             return this.http.post<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemofclient', GlobalHelper.toHttpParams(itemofclient), httpOptionsa);
@@ -227,7 +230,7 @@ export class TaxonomyConfigurationService {
         }
     }
 
-    getItemVJSParam(id: number, item_id:number): Observable<any> {
+    getItemVJSParam(id: number, item_id: number): Observable<any> {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemvjsparam?id=' + id + '&item_id=' + item_id;
         return this.http.get(url);
     }
@@ -244,7 +247,7 @@ export class TaxonomyConfigurationService {
     }
 
     getItemListBySubCategory(subcategory_id: number): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemlistbysubcategory?subcategory_id=' + subcategory_id ;
+        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemlistbysubcategory?subcategory_id=' + subcategory_id;
         return this.http.get(url);
     }
 }
