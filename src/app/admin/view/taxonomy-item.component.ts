@@ -171,17 +171,19 @@ export class TaxonomyItemComponent implements OnInit {
                     this.ItemOfClientList.push({
                         item_id: o.item_id,
                         client_id: o.client_id,
-                        name: o.name
+                        name: o.name,
+                        school_id: o.school_id,
+                        school_name: o.school_name
                     });
                 });
             });
     }
-    deleteItemOfClient(id, client_id) {
+    deleteItemOfClient(id, client_id,school_id) {
         this.app.confirmationService.confirm({
             message: 'Are you sure that you want to delete this Item Of Client?',
             accept: () => {
                 let responseResult: ResponseResult;
-                this.taxonomyConfigurationService.deleteItemOfClient(id, client_id).subscribe((result: any) => responseResult = result,
+                this.taxonomyConfigurationService.deleteItemOfClient(id, client_id, school_id).subscribe((result: any) => responseResult = result,
                     (error: any) => {
                         this.app.msgs.push({ severity: 'error', detail: error.error.message });
                     },
@@ -192,13 +194,13 @@ export class TaxonomyItemComponent implements OnInit {
             }
         });
     }
-    saveItemConfigurationOfClient() {
+    saveItemOfClient() {
         for (var i = 0; i < this.school_ids.length; i++) {
             this.selectedSchoolClients.push({ client_id: this.client_id, school_id: this.school_ids[i] });
         }
 
         let responseResult: ResponseResult;
-        this.taxonomyConfigurationService.saveItemConfigurationOfClient({ item_id: this.TaxonomyItem.id, client_and_school_ids: JSON.stringify(this.selectedSchoolClients) }).subscribe((result: any) => responseResult = result,
+        this.taxonomyConfigurationService.saveItemOfClient({ item_id: this.TaxonomyItem.id, client_and_school_ids: JSON.stringify(this.selectedSchoolClients) }).subscribe((result: any) => responseResult = result,
             (error: any) => {
                 this.app.msgs.push({ severity: 'error', detail: error.error.message });
             },
@@ -208,18 +210,7 @@ export class TaxonomyItemComponent implements OnInit {
                 this.app.msgs.push({ severity: 'success', detail: "Item Of Client and Schools added successfully." });
             });
     }
-    saveItemOfClient() {
-        let responseResult: ResponseResult;
-        this.taxonomyConfigurationService.saveItemOfClient({ item_id: this.TaxonomyItem.id, client_ids: this.client_id }).subscribe((result: any) => responseResult = result,
-            (error: any) => {
-                this.app.msgs.push({ severity: 'error', detail: error.error.message });
-            },
-            () => {
-                this.clearItemOfClient();
-                this.getItemOfClientList(this.TaxonomyItem.id);
-                this.app.msgs.push({ severity: 'success', detail: "Item Of Client added successfully." });
-            });
-    }
+
     clearItemOfClient() {
         this.client_id = '';
         this.school_ids = [];

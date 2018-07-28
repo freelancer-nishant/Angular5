@@ -183,19 +183,12 @@ export class TaxonomyConfigurationService {
         let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemofclient?item_id=' + item_id;
         return this.http.get(url);
     }
-    deleteItemOfClient(item_id: number, client_id: number): Observable<any> {
-        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemofclient?item_id=' + item_id + '&client_id=' + client_id;
+    deleteItemOfClient(item_id: number, client_id: number, school_id: number): Observable<any> {
+        let url: string = GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemofclient?item_id=' + item_id + '&client_id=' + client_id + '&school_id=' + school_id;
         return this.http.delete(url);
     }
-    saveItemConfigurationOfClient<ResponseResult>(itemofclient: any): Observable<any> {
-        return this.http.post<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemconfigurationofclient', GlobalHelper.toHttpParams(itemofclient), httpOptionsa);
-    }
     saveItemOfClient<ResponseResult>(itemofclient: any): Observable<any> {
-        if (itemofclient.item_id == undefined || itemofclient.item_id == 0) {
-            return this.http.post<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemofclient', GlobalHelper.toHttpParams(itemofclient), httpOptionsa);
-        } else {
-            return this.http.put<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemofclient', GlobalHelper.toHttpParams(itemofclient), httpOptionsa);
-        }
+        return this.http.post<ResponseResult>(GlobalConstants.API_BASE_URL + '/api/taxonomyconfiguration/itemofclient', GlobalHelper.toHttpParams(itemofclient), httpOptionsa);
     }
 
     getItemInRole(item_id: number): Observable<any> {

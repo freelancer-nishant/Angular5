@@ -108,17 +108,17 @@
                                        <p-multiSelect [options]="schools" [(ngModel)]="school_ids" [filter]="false" name="school_ids" defaultLabel="--Select--" required></p-multiSelect>
                                    </div>
                                    <div class="ui-helper-clearfix text-center">
-                                       <br />
-                                       <button type="submit" label="Save" (click)="saveItemConfigurationOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemOfClient.form.valid"></button>
+                                       <button type="submit" label="Save" (click)="saveItemOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemOfClient.form.valid"></button>
                                        <button type="button" label="Cancel" (click)="clearItemOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
                                    </div>
                                    <div class="ui-g-12 ui-md-12">
                                        <p-dataTable [value]="ItemOfClientList" [paginator]="true" [rows]="10" [responsive]="true" [immutable]="false">
                                            <p-column field="name" header="Client Name" [sortable]="true"></p-column>
+                                           <p-column field="school_name" header="School Name" [sortable]="true"></p-column>
                                            <p-column [style]="{'width':'110px'}">
                                                <ng-template let-row="rowData" pTemplate="body">
                                                    <span>
-                                                       <button pButton type="button" label="Delete" (click)="deleteItemOfClient(row.item_id,row.client_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
+                                                       <button pButton type="button" label="Delete" (click)="deleteItemOfClient(row.item_id,row.client_id,row.school_id)" style="width:auto;" class="ui-button-danger" icon="fa fa-trash"></button>
                                                    </span>
                                                </ng-template>
                                            </p-column>
