@@ -148,6 +148,9 @@ export class TaxonomyItemComponent implements OnInit {
     }
     clearItem(visible) {
         this.TaxonomyItem = {};
+		this.ItemOfClientList = [];
+		this.ItemInRoleList = [];
+		this.ItemParamsList = [];
         this.dialogVisible = visible;
     }
 
@@ -195,6 +198,7 @@ export class TaxonomyItemComponent implements OnInit {
         });
     }
     saveItemOfClient() {
+        this.selectedSchoolClients = [];
         for (var i = 0; i < this.school_ids.length; i++) {
             this.selectedSchoolClients.push({ client_id: this.client_id, school_id: this.school_ids[i] });
         }

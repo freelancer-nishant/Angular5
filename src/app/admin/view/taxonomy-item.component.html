@@ -59,7 +59,7 @@
                                <div class="ui-g form-group">
                                    <div class="ui-g-12 ui-sm-12 ui-md-4">
                                        <label for="input">Component Out Param :</label>
-                                       <input id="input" type="text" pInputText [(ngModel)]="ItemParam.component_out_param" name="name" required />
+                                       <input id="input" type="text" pInputText [(ngModel)]="ItemParam.component_out_param" name="OutParamName" required />
                                    </div>
                                    <div class="ui-g-12 ui-sm-12 ui-md-4">
                                        <label for="input">Report Param :</label>
@@ -67,7 +67,7 @@
                                    </div>
                                    <div class="ui-helper-clearfix text-center">
                                        <br />
-                                       <button type="submit" label="Save" (click)="saveItemParam()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemParams.form.valid"></button>
+                                       <button type="submit" label="Save" (click)="saveItemParam()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemParams.form.valid || TaxonomyItem.id==0 || TaxonomyItem.id==undefined"></button>
                                        <button type="button" label="Cancel" (click)="clearItemParam()" pButton class="ui-button-secondary" style="width:auto;"></button>
                                    </div>
                                    <div class="ui-g-12 ui-md-12">
@@ -108,7 +108,7 @@
                                        <p-multiSelect [options]="schools" [(ngModel)]="school_ids" [filter]="false" name="school_ids" defaultLabel="--Select--" required></p-multiSelect>
                                    </div>
                                    <div class="ui-helper-clearfix text-center">
-                                       <button type="submit" label="Save" (click)="saveItemOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemOfClient.form.valid"></button>
+                                       <button type="submit" label="Save" (click)="saveItemOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemOfClient.form.valid || TaxonomyItem.id==0 || TaxonomyItem.id==undefined"></button>
                                        <button type="button" label="Cancel" (click)="clearItemOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
                                    </div>
                                    <div class="ui-g-12 ui-md-12">
@@ -139,7 +139,7 @@
                                    </div>
                                    <div class="ui-helper-clearfix text-center">
                                        <br />
-                                       <button type="submit" label="Save" (click)="saveItemInRole()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemInRole.form.valid"></button>
+                                       <button type="submit" label="Save" (click)="saveItemInRole()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmItemInRole.form.valid || TaxonomyItem.id==0 || TaxonomyItem.id==undefined"></button>
                                        <button type="button" label="Cancel" (click)="clearItemInRole()" pButton class="ui-button-secondary" style="width:auto;"></button>
                                    </div>
                                    <div class="ui-g-12 ui-md-12">

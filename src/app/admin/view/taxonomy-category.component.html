@@ -51,7 +51,7 @@
                             </div>
                             <div class="ui-helper-clearfix text-center">
                                 <br />
-                                <button type="submit" label="Save" (click)="saveCategoryOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmCategoryOfClient.form.valid"></button>
+                                <button type="submit" label="Save" (click)="saveCategoryOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmCategoryOfClient.form.valid || TaxonomyCategory.id==0 || TaxonomyCategory.id==undefined"></button>
                                 <button type="button" label="Cancel" (click)="clearCategoryOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
                             </div>
                             <div class="ui-g-12 ui-md-12">
@@ -81,7 +81,7 @@
                             </div>
                             <div class="ui-helper-clearfix text-center">
                                 <br />
-                                <button type="submit" label="Save" (click)="saveCategoryInRole()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmCategoryInRole.form.valid"></button>
+                                <button type="submit" label="Save" (click)="saveCategoryInRole()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmCategoryInRole.form.valid || TaxonomyCategory.id==0 || TaxonomyCategory.id==undefined"></button>
                                 <button type="button" label="Cancel" (click)="clearCategoryInRole()" pButton class="ui-button-secondary" style="width:auto;"></button>
                             </div>
                             <div class="ui-g-12 ui-md-12">

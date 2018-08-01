@@ -51,7 +51,7 @@
                             </div>
                             <div class="ui-helper-clearfix text-center">
                                 <br />
-                                <button type="submit" label="Save" (click)="saveTypeOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmTypeOfClient.form.valid"></button>
+                                <button type="submit" label="Save" (click)="saveTypeOfClient()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmTypeOfClient.form.valid || TaxonomyType.id==0 || TaxonomyType.id==undefined"></button>
                                 <button type="button" label="Cancel" (click)="clearTypeOfClient()" pButton class="ui-button-secondary" style="width:auto;"></button>
                             </div>
                             <div class="ui-g-12 ui-md-12">
@@ -81,7 +81,7 @@
                             </div>
                             <div class="ui-helper-clearfix text-center">
                                 <br />
-                                <button type="submit" label="Save" (click)="saveTypeInRole()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmTypeInRole.form.valid"></button>
+                                <button type="submit" label="Save" (click)="saveTypeInRole()" pButton class="ui-button-primary" style="width:auto;" [disabled]="!frmTypeInRole.form.valid || TaxonomyType.id==0 || TaxonomyType.id==undefined"></button>
                                 <button type="button" label="Cancel" (click)="clearTypeInRole()" pButton class="ui-button-secondary" style="width:auto;"></button>
                             </div>
                             <div class="ui-g-12 ui-md-12">
