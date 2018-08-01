@@ -21,6 +21,9 @@
                 <div *ngIf="itemDetail.component_name=='CompareSchoolYearFilter'">
                     <compare-school-year-filter (submit)="submit()" (runReport)="runReport()"></compare-school-year-filter>
                 </div>
+                <div *ngIf="itemDetail.component_name=='SelectSchoolYearGradeFilter'">
+                    <selectschool-year-grade-filter (submit)="submit()"></selectschool-year-grade-filter>
+                </div>
             </div>
         </p-panel>
     </div>

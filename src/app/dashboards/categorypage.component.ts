@@ -16,6 +16,7 @@ import { SchoolYearGradeTestFilter } from './filters/school-year-grade-test-filt
 import { AssesmentSchoolYearGradeFilter } from './filters/assesment-school-year-grade-filter';
 import { CompareSchoolYearFilter } from './filters/compare-school-year-filter';
 import { SchoolYearFilter } from './filters/school-year-filter';
+import { SelectSchoolYearGradeFilter } from './filters/selectschool-year-grade-filter';
 
 @Component({
     templateUrl: './categorypage.component.html'
@@ -27,6 +28,7 @@ export class CategoryPageComponent implements OnInit {
     @ViewChild(SchoolYearGradeTestFilter) schoolyeargradetestfilter: SchoolYearGradeTestFilter;
     @ViewChild(AssesmentSchoolYearGradeFilter) assesmentschoolyeargradefilter: AssesmentSchoolYearGradeFilter;
     @ViewChild(CompareSchoolYearFilter) compareschoolyearfilter: CompareSchoolYearFilter;
+    @ViewChild(SelectSchoolYearGradeFilter) selectschoolyeargradefilter: SelectSchoolYearGradeFilter;
 
     sessionInfo: any = {}
     schools: SelectItem[];
@@ -227,6 +229,21 @@ export class CategoryPageComponent implements OnInit {
                             break;
                         case "apiComparativeListItems.label":
                             params[p.report_param] = [this.compareschoolyearfilter.apiComparativeListItems.label];
+                            break;
+                        default:
+                    }
+                });
+            case "SelectSchoolYearGradeFilter":
+                this.itemDetail.vjsParam.map(p => {
+                    switch (p.component_out_param) {
+                        case "selectedGrades":
+                            params[p.report_param] = this.selectschoolyeargradefilter.selectedGrades;
+                            break;
+                        case "newSchool.school":
+                            params[p.report_param] = [this.selectschoolyeargradefilter.newSchool.school];
+                            break;
+                        case "selectedYear":
+                            params[p.report_param] = [this.selectschoolyeargradefilter.selectedYear];
                             break;
                         default:
                     }
