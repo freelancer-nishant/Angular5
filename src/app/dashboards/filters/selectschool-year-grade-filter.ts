@@ -24,7 +24,6 @@ export class SelectSchoolYearGradeFilter implements OnInit {
 
     test_type_id: string = "3";
     comparativeList: SelectItem[];
-    schoolYearList: SelectItem[];
     stateList: SelectItem[];
     countyList: any = {};
     districtList: any = {};
